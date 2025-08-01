@@ -2,12 +2,12 @@ export function Projects() {
   const projects = [
     {
       id: 1,
-      title: "E-commerce Platform",
-      description: "Full-stack e-commerce application built with React and Node.js",
-      image: "/images/project1.jpg",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe"],
-      githubUrl: "https://github.com/yourusername/ecommerce",
-      liveUrl: "https://your-project.com",
+      title: "Portfolio Website",
+      description: "Full-stack portfolio application built with React",
+      image: "./images/project1.png",
+      technologies: ["React", "CSS"],
+      githubUrl: "https://github.com/Maty910/Portafolio-Marra",
+      liveUrl: "https://joaquinmarraccini.netlify.app/",
       featured: true
     },
     {
