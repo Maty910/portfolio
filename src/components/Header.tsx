@@ -13,7 +13,8 @@ export function Header({ activeSection, setActiveSection }) {
 
   return (
     <header className="header">
-      <h1>Matías Chacón's Portfolio</h1>
+      <h1>Matías Chacón</h1>
+      <p>Full-stack Developer</p>
       <nav>
         <ul>
           <li>

@@ -5,7 +5,7 @@ export function Projects() {
       title: "Portfolio Website",
       description: "Full-stack portfolio application built with React",
       image: "./images/project1.png",
-      technologies: ["React", "CSS"],
+      technologies: ["React", "CSS", "JavaScript"],
       githubUrl: "https://github.com/Maty910/Portafolio-Marra",
       liveUrl: "https://joaquinmarraccini.netlify.app/",
       featured: true
@@ -13,19 +13,19 @@ export function Projects() {
     {
       id: 2,
       title: "Task Management App",
-      description: "Collaborative task management tool with real-time updates",
-      image: "/images/project2.jpg",
-      technologies: ["Vue.js", "Firebase", "Tailwind CSS"],
-      githubUrl: "https://github.com/yourusername/task-app",
-      liveUrl: "https://task-app.com"
+      description: "Tasks management tool connected to Sqlite database",
+      image: "./images/project2.png",
+      technologies: ["React", "Node.js", "Express", "SQLite"],
+      githubUrl: "https://github.com/Maty910/tasklist",
+      liveUrl: "https://tasklistmaty.netlify.app/"
     },
     {
       id: 3,
-      title: "Weather Dashboard",
-      description: "Responsive weather application with location-based forecasts",
-      image: "/images/project3.jpg",
-      technologies: ["JavaScript", "API Integration", "Chart.js"],
-      githubUrl: "https://github.com/yourusername/weather-app"
+      title: "Community Manager Portfolio",
+      description: "Portfolio for a community manager showcasing social media management skills",
+      image: "./images/project3.png",
+      technologies: ["React", "CSS", "JavaScript"],
+      githubUrl: "https://github.com/Maty910/Portafolio-Lu"
     }
   ]
 
@@ -64,7 +64,7 @@ export function Projects() {
       </div>
       <div className="projects-cta">
         <p>Want to see more of my work?</p>
-        <a href="https://github.com/yourusername" className="btn-secondary">
+        <a href="https://github.com/Maty910/" className="btn-secondary">
           View All Projects on GitHub
         </a>
       </div>

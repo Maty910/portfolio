@@ -1,5 +1,5 @@
 :root {
-  --primary-color: #6353f2;
+  --primary-color: rgb(99, 83, 242);
   --bg-color: #0a0a0a;
   --text-primary: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(255, 255, 255, 0.7);
@@ -71,6 +71,7 @@ body {
   justify-content: flex-start;
   position: fixed;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  z-index: 0;
 }
 
 .header h1 {
@@ -130,8 +131,10 @@ body {
 } 
 
 .about h2 {
-  font-size: 1.5em;
+  font-size: 2em;
   margin: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 .about p {
@@ -158,21 +161,28 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   
   /* Nuevas propiedades para scroll */
-  height: 60vh; /* Altura fija para permitir scroll */
+  height: 72vh; /* Altura fija para permitir scroll */
   overflow-y: auto;
   overflow-x: hidden;
   
   /* Gradiente de opacidad en la parte superior */
   -webkit-mask: linear-gradient(to bottom, 
-    transparent 0%, 
+    transparent 0%,
     rgba(0,0,0,0.1) 5%, 
     rgba(0,0,0,1) 15%, 
     rgba(0,0,0,1) 100%);
   mask: linear-gradient(to bottom, 
     transparent 0%, 
-    rgba(0,0,0,0.1) 5%, 
-    rgba(0,0,0,1) 15%, 
-    rgba(0,0,0,1) 100%);
+    rgba(0,0,0,0.1) 1%, 
+    rgba(0,0,0,1) 5%, 
+    rgba(0,0,0,1) 84%);
+}
+
+.projects h2 {
+  font-size: 2em;
+  margin: 0;
+  margin-bottom: 1rem;
+  color: var(--primary-color);
 }
 
 /* Estilizar la scrollbar */
@@ -241,7 +251,7 @@ body {
   left: 0;
   right: 0;
   bottom: 0;
-  background: rgba(0, 0, 0, 0.8);
+  background: rgba(0, 0, 0, 0.6);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -359,7 +369,7 @@ body {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   
   /* Mismas propiedades de scroll */
-  height: 60vh;
+  height: 72vh;
   overflow-y: auto;
   overflow-x: hidden;
   
