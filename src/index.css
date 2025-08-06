@@ -133,6 +133,26 @@ body {
   margin-left: 2px
 }
 
+.header h1 svg {
+  font-size: 2.5rem;
+  transition: transform 0.3s ease;
+  color: var(--primary-color);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  display: inline-flex;
+  vertical-align: middle;
+  text-shadow: 0 4px 5px var(--bg-color);
+  transition: all 0.3s ease-in-out;
+}
+
+.header h1 svg:hover {
+  transition: all 0.3s ease-in-out;
+  transform: scale(1.2);
+}
+
 .about {
   position: absolute;
   right: calc(var(--pad) * 2);
@@ -448,6 +468,27 @@ body {
   transition: margin-left 0.3s ease-in-out;
 }
 
+.contact li svg {
+  font-size: 1.5rem;
+  transition: transform 0.3s ease;
+  color: var(--primary-color);
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  margin-bottom: 8px;
+  display: inline-flex;
+  margin-right: 8px;
+  vertical-align: middle;
+}
+
+.contact li a:hover svg {
+  transform: scale(1.05);
+  transition: transform 0.3s ease;
+
+}
+
 .header a {
   color: var(--text-primary);
   text-decoration: none;
@@ -518,6 +559,16 @@ body {
 .skills li:hover {
   transform:scale(1.05);
   transition: transform 0.3s ease-in-out;
+}
+
+.skills svg {
+  transition: transform 0.3s ease;
+  color: var(--primary-color);
+  flex-direction: row;
+  align-items: start;
+  justify-content: center;
+  vertical-align: middle;
+  display: inline-flex;
 }
 
 .skills a {

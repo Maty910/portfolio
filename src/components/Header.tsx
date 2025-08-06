@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import CodeIcon from '@mui/icons-material/Code';
 
 export function Header({ activeSection, setActiveSection }) {
   const [isActive, setIsActive] = useState(false)
@@ -13,7 +14,7 @@ export function Header({ activeSection, setActiveSection }) {
 
   return (
     <header className="header">
-      <h1>Matías Chacón</h1>
+      <h1>Matías Chacón <CodeIcon /></h1>
       <p>Full-stack Developer</p>
       <nav>
         <ul>
