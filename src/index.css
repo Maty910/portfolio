@@ -100,6 +100,7 @@ body {
   cursor: pointer;
   transition: margin-left 0.2s ease-in-out;
   padding: 0.5em 0;
+  
 }
 
 .header li:hover {
@@ -130,7 +131,7 @@ body {
   margin-bottom: var(--pad-sm);
   top: -20px;
   position: relative;
-  margin-left: 2px
+  margin-left: 2px;
 }
 
 .header h1 svg {

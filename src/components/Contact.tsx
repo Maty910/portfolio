@@ -21,7 +21,7 @@ export function Contact() {
           </a>
         </li>
         <li>
-          <a href="https://www.linkedin.com/in/yourusername">
+          <a href="https://www.linkedin.com/in/matias-chacon-t934/">
             <LinkedInIcon style={{ marginRight: '8px' }} />
             LinkedIn
           </a>
