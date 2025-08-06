@@ -19,11 +19,11 @@ export function Header({ activeSection, setActiveSection }) {
         <ul>
           <li>
             <a 
-              onClick={() => handleSectionClick('about')}
-              className={activeSection === 'about' ? 'active' : ''}
+              onClick={() => handleSectionClick('home')}
+              className={activeSection === 'home' ? 'active' : ''}
               style={{ cursor: 'pointer' }}
             >
-              About me
+              Home
             </a>
           </li>
           <li>
@@ -33,6 +33,15 @@ export function Header({ activeSection, setActiveSection }) {
               style={{ cursor: 'pointer' }}
             >
               Projects
+            </a>
+          </li>
+          <li>
+            <a 
+              onClick={() => handleSectionClick('skills')}
+              className={activeSection === 'skills' ? 'active' : ''}
+              style={{ cursor: 'pointer' }}
+            >
+              Skills
             </a>
           </li>
           <li>

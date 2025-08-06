@@ -1,4 +1,4 @@
-
+import { Link } from 'react-scroll';
 
 export function Navigation() {
   return (

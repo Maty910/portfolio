@@ -22,7 +22,7 @@ export function Projects() {
     {
       id: 3,
       title: "Community Manager Portfolio",
-      description: "Portfolio for a community manager showcasing social media management skills",
+      description: "[WIP] Portfolio for a community manager showcasing social media management skills",
       image: "./images/project3.png",
       technologies: ["React", "CSS", "JavaScript"],
       githubUrl: "https://github.com/Maty910/Portafolio-Lu"
@@ -31,7 +31,7 @@ export function Projects() {
 
   return (
     <section className="projects" id="projects">
-      <h2>My Projects</h2>
+      <h2>Projects</h2>
       <div className="projects-grid">
         {projects.map(project => (
           <div key={project.id} className={`project-card ${project.featured ? 'featured' : ''}`}>

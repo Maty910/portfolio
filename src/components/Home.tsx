@@ -1,7 +1,7 @@
-export function About() {
+export function Home() {
   return (
     <section className='about' id="about">
-      <h2>About Me</h2>
+      <h2>Home</h2>
       <p>
         I am a passionate developer with a love for creating dynamic and
         responsive web applications. My journey in programming started with

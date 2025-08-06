@@ -1,26 +1,29 @@
 import { useState } from 'react'
 import { Page } from './components/Page'
 import { Header } from './components/Header'
-import { About } from './components/About'
+import { Home } from './components/Home'
 import { Projects } from './components/Projects'
+import { Skills } from './components/Skills'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
 
 import './index.css'
 
 function App() {
-  const [activeSection, setActiveSection] = useState('about')
+  const [activeSection, setActiveSection] = useState('home')
 
   const renderActiveSection = () => {
     switch(activeSection) {
-      case 'about':
-        return <About />
+      case 'home':
+        return <Home />
       case 'projects':
         return <Projects />
       case 'contact':
         return <Contact />
+      case 'skills':
+        return <Skills />
       default:
-        return <About />
+        return <Home />
     }
   }
 
