@@ -16,7 +16,7 @@ export function Header({ activeSection, setActiveSection }) {
   return (
     <header className="header">
       <div className="header__logo">
-        <h1>Matías Chacón <CodeIcon /></h1>
+        <h1>Matías Chacón fix this code <CodeIcon /></h1>
         <p>Full-stack Developer</p>
       </div>
       
