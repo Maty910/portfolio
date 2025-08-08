@@ -3,6 +3,7 @@ import { Page } from './components/Page'
 import { Header } from './components/Header'
 import { Home } from './components/Home'
 import { Projects } from './components/Projects'
+import { ProjectPage } from './components/ProjectPage'
 import { Skills } from './components/Skills'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
@@ -17,7 +18,9 @@ function App() {
       case 'home':
         return <Home />
       case 'projects':
-        return <Projects />
+        return <Projects setActiveSection={setActiveSection} />
+      case 'projectpage':
+        return <ProjectPage />
       case 'contact':
         return <Contact />
       case 'skills':

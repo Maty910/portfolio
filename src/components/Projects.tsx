@@ -1,4 +1,5 @@
-export function Projects() {
+
+export function Projects({ setActiveSection }) {
   const projects = [
     {
       id: 1,
@@ -25,7 +26,16 @@ export function Projects() {
       description: "[WIP] Portfolio for a community manager showcasing social media management skills",
       image: "./images/project3.png",
       technologies: ["React", "CSS", "JavaScript"],
-      githubUrl: "https://github.com/Maty910/Portafolio-Lu"
+      githubUrl: "https://github.com/Maty910/Portafolio-Lu",
+      liveUrl: "https://luciacastro.netlify.app/",
+    },
+    {
+      id: 4,
+      title: "Inventory Management System",
+      description: "Inventory management system made with Python and Sqlite that allows users to track and manage stock levels, products and price.",
+      image: "./images/project4.png",
+      technologies: ["Python", "Sqlite"],
+      githubUrl: "https://github.com/Maty910/inventory"
     }
   ]
 
@@ -33,6 +43,12 @@ export function Projects() {
     <section className="projects" id="projects">
       <h2>Projects</h2>
       <div className="projects-grid">
+        <div 
+          key={projects.id} 
+          className={`project-card ${projects.featured ? 'featured' : ''}`} 
+          onClick={() => setActiveSection('projectpage')}
+          style={{ cursor: 'pointer' }}
+        >
         {projects.map(project => (
           <div key={project.id} className={`project-card ${project.featured ? 'featured' : ''}`}>
             <div className="project-image">
@@ -61,7 +77,9 @@ export function Projects() {
             </div>
           </div>
         ))}
+        </div>
       </div>
+      
       <div className="projects-cta">
         <p>Want to see more of my work?</p>
         <a href="https://github.com/Maty910/" className="btn-secondary">

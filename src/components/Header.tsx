@@ -19,6 +19,12 @@ export function Header({ activeSection, setActiveSection }) {
         <h1>Matías Chacón <CodeIcon /></h1>
         <p>Full-stack Developer</p>
       </div>
+      
+      <div className="cta">
+        <a className="btn-primary" href="/Desarrollador FullStack CV - Matías Chacón.pdf" download>
+          Descargar CV
+        </a>
+      </div>
 
       <nav className={`header__nav ${isMenuOpen ? 'open' : ''}`}>
         <ul>
