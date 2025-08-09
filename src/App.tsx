@@ -34,11 +34,14 @@ function App() {
     <>
       <Page>
         <Header activeSection={activeSection} setActiveSection={setActiveSection} />
-        {renderActiveSection()}
-        <Footer />
+
+        {/* main-content debe ser hermano directo del sidebar */}
+        <main className="main-content">
+          {renderActiveSection()}
+          <Footer />
+        </main>
       </Page>
     </>
   )
 }
-
 export default App
