@@ -1,90 +1,101 @@
-import { useEffect, useState } from 'react'
-import MenuIcon from '@mui/icons-material/Menu';
-import HomeIcon from '@mui/icons-material/Home';
-import WorkIcon from '@mui/icons-material/Work';
-import BuildIcon from '@mui/icons-material/Build';
-import EmailIcon from '@mui/icons-material/Email';
-import DescriptionIcon from '@mui/icons-material/Description';
-import CodeIcon from '@mui/icons-material/Code';
+// src/components/Header.tsx
+import React, { useEffect, useState } from 'react'
+import { FiMenu, FiHome, FiBriefcase, FiTool, FiMail, FiDownload, FiUserCheck } from 'react-icons/fi'
 
-export function Header({ activeSection, setActiveSection }) {
-  // persistir estado para que no se cierre al refrescar (opcional)
-  const [isExpanded, setIsExpanded] = useState(() => {
+type HeaderProps = {
+  activeSection: string
+  setActiveSection: (s: string) => void
+}
+
+export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
+  // persistencia: true = expanded
+  const [expanded, setExpanded] = useState<boolean>(() => {
     try {
-      return JSON.parse(localStorage.getItem('sidebarExpanded')) ?? false
+      const v = localStorage.getItem('sidebarExpanded')
+      return v ? JSON.parse(v) : false
     } catch {
       return false
     }
   })
 
   useEffect(() => {
-    try { localStorage.setItem('sidebarExpanded', JSON.stringify(isExpanded)) } catch {}
-  }, [isExpanded])
+    try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {}
+  }, [expanded])
 
-  const sections = [
-    { id: 'home', label: 'Home', Icon: HomeIcon },
-    { id: 'projects', label: 'Projects', Icon: WorkIcon },
-    { id: 'skills', label: 'Skills', Icon: BuildIcon },
-    { id: 'contact', label: 'Contact', Icon: EmailIcon },
-  ]
-
-  const handleKeySelect = (e, id) => {
-    if (e.key === 'Enter' || e.key === ' ') {
-      setActiveSection(id)
+  // keyboard navigation (números rápidos)
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === '1') setActiveSection('home')
+      if (e.key === '2') setActiveSection('projects')
+      if (e.key === '3') setActiveSection('skills')
+      if (e.key === '4') setActiveSection('contact')
+      // collapse/expand with 'm' (menu)
+      if (e.key.toLowerCase() === 'm') setExpanded(v => !v)
     }
-  }
+    window.addEventListener('keydown', handler)
+    return () => window.removeEventListener('keydown', handler)
+  }, [setActiveSection])
+
+  const nav = [
+    { id: 'home', label: 'Home', Icon: FiHome },
+    { id: 'projects', label: 'Projects', Icon: FiBriefcase },
+    { id: 'skills', label: 'Skills', Icon: FiTool },
+    { id: 'contact', label: 'Contact', Icon: FiMail },
+  ]
 
   return (
     <aside
-      className={`app-sidebar ${isExpanded ? 'expanded' : 'collapsed'}`}
-      onMouseEnter={() => setIsExpanded(true)}
-      onMouseLeave={() => setIsExpanded(false)}
-      aria-expanded={isExpanded}
+      className={`app-sidebar ${expanded ? 'expanded' : 'collapsed'}`}
+      onMouseEnter={() => setExpanded(true)}
+      onMouseLeave={() => setExpanded(false)}
+      aria-expanded={expanded}
     >
       <div className="sidebar-top">
         <button
           className="sidebar-toggle"
-          onClick={() => setIsExpanded(v => !v)}
-          aria-label={isExpanded ? 'Collapse sidebar' : 'Expand sidebar'}
+          onClick={() => setExpanded(v => !v)}
+          aria-label={expanded ? 'Collapse menu' : 'Expand menu'}
+          title={expanded ? 'Collapse (m)' : 'Expand (m)'}
         >
-          <MenuIcon />
+          <FiMenu />
         </button>
 
-        <div className="sidebar-brand" role="img" aria-label="Matías Chacón">
-          {isExpanded && <div className="brand-text">Matías Chacón</div>}
-          <CodeIcon className="brand-icon" />
+        <div className="brand" aria-hidden>
+          <div className="brand-avatar"><FiUserCheck /></div>
+          {expanded && <div className="brand-text">Matías Chacón</div>}
         </div>
       </div>
 
-      <nav className="sidebar-nav" aria-label="Main navigation">
+      <nav className="sidebar-nav" aria-label="Primary">
         <ul>
-          {sections.map(({ id, label, Icon }) => (
+          {nav.map(({ id, label, Icon }) => (
             <li
               key={id}
+              role="button"
+              tabIndex={0}
               className={activeSection === id ? 'active' : ''}
               onClick={() => setActiveSection(id)}
-              onKeyDown={(e) => handleKeySelect(e, id)}
-              tabIndex="0"
-              role="button"
-              aria-pressed={activeSection === id}
+              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveSection(id) }}
               title={label} /* tooltip when collapsed */
+              aria-pressed={activeSection === id}
             >
               <Icon className="nav-icon" />
-              {isExpanded && <span className="nav-label">{label}</span>}
+              {expanded && <span className="nav-label">{label}</span>}
             </li>
           ))}
         </ul>
       </nav>
 
-      <div className="sidebar-footer">
+      <div className="sidebar-bottom">
         <a
-          href="/CV/Desarrollador FullStack CV - Matías Chacón.pdf"
           className="cv-btn"
+          href="/CV/Desarrollador FullStack CV - Matías Chacón.pdf"
           download
           title="Descargar CV"
+          aria-label="Descargar CV"
         >
-          <DescriptionIcon className="cv-icon" />
-          {isExpanded && <span>Descargar CV</span>}
+          <FiDownload className="cv-icon" />
+          {expanded && <span className="cv-text">Descargar CV</span>}
         </a>
       </div>
     </aside>

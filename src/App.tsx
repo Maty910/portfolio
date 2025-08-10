@@ -33,13 +33,13 @@ function App() {
   return (
     <>
       <Page>
-        <Header activeSection={activeSection} setActiveSection={setActiveSection} />
-
-        {/* main-content debe ser hermano directo del sidebar */}
-        <main className="main-content">
-          {renderActiveSection()}
-          <Footer />
-        </main>
+        <div className="app-root">
+          <Header activeSection={activeSection} setActiveSection={setActiveSection} />
+          <main className="main-content">
+            {renderActiveSection()}
+            <Footer />
+          </main>
+        </div>
       </Page>
     </>
   )
