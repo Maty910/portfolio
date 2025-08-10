@@ -1,14 +1,23 @@
-// src/components/Header.tsx
 import React, { useEffect, useState } from 'react'
-import { FiMenu, FiHome, FiBriefcase, FiTool, FiMail, FiDownload, FiUserCheck } from 'react-icons/fi'
+import {
+  FiMenu,
+  FiHome,
+  FiBriefcase,
+  FiTool,
+  FiMail,
+  FiDownload,
+  FiUserCheck,
+} from 'react-icons/fi'
 
 type HeaderProps = {
   activeSection: string
   setActiveSection: (s: string) => void
 }
 
-export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
-  // persistencia: true = expanded
+export const Header: React.FC<HeaderProps> = ({
+  activeSection,
+  setActiveSection,
+}) => {
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
       const v = localStorage.getItem('sidebarExpanded')
@@ -19,18 +28,18 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
   })
 
   useEffect(() => {
-    try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {}
+    try {
+      localStorage.setItem('sidebarExpanded', JSON.stringify(expanded))
+    } catch {}
   }, [expanded])
 
-  // keyboard navigation (números rápidos)
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') setActiveSection('home')
       if (e.key === '2') setActiveSection('projects')
       if (e.key === '3') setActiveSection('skills')
       if (e.key === '4') setActiveSection('contact')
-      // collapse/expand with 'm' (menu)
-      if (e.key.toLowerCase() === 'm') setExpanded(v => !v)
+      if (e.key.toLowerCase() === 'm') setExpanded((v) => !v)
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
@@ -53,7 +62,7 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
       <div className="sidebar-top">
         <button
           className="sidebar-toggle"
-          onClick={() => setExpanded(v => !v)}
+          onClick={() => setExpanded((v) => !v)}
           aria-label={expanded ? 'Collapse menu' : 'Expand menu'}
           title={expanded ? 'Collapse (m)' : 'Expand (m)'}
         >
@@ -61,7 +70,9 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
         </button>
 
         <div className="brand" aria-hidden>
-          <div className="brand-avatar"><FiUserCheck /></div>
+          <div className="brand-avatar">
+            <FiUserCheck />
+          </div>
           {expanded && <div className="brand-text">Matías Chacón</div>}
         </div>
       </div>
@@ -75,10 +86,13 @@ export const Header: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
               tabIndex={0}
               className={activeSection === id ? 'active' : ''}
               onClick={() => setActiveSection(id)}
-              onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') setActiveSection(id) }}
-              title={label} /* tooltip when collapsed */
+              onKeyDown={(e) => {
+                if (e.key === 'Enter' || e.key === ' ') setActiveSection(id)
+              }}
+              title={label}
               aria-pressed={activeSection === id}
             >
+              {activeSection === id && <span className="indicator" />} {/* Indicador activo */}
               <Icon className="nav-icon" />
               {expanded && <span className="nav-label">{label}</span>}
             </li>
