@@ -38,9 +38,10 @@
 .cv-btn.pulse { animation: cvPulse 3.2s infinite; }
 
 @keyframes cvPulse {
-  0%   { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0) scale(1); }
-  50%  { box-shadow: 0 14px 30px rgba(99,83,242,0.14); transform: translateY(-1px) scale(1.01); }
-  100% { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0) scale(1); }
+  0% { box-shadow: -8px 8px 1px rgba(99,83,242,0.08); }
+  50% { box-shadow: -4px 14px 1px rgba(99,83,242,1); transform: translateY(-1px); }
+  70% { box-shadow: 4px 14px 1px rgb(255, 255, 255); transform: translateY(-1px); }
+  100% { box-shadow: 8px 8px 1px rgba(99, 83, 242, 1); transform: translateY(0); }
 }
 
 /* collapsed small icon mode */

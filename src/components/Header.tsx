@@ -9,7 +9,7 @@ import {
   FiCode,
 } from 'react-icons/fi'
 import './Header.css'
-import'../styles/buttons.css'
+import '../styles/buttons.css'
 
 type HeaderProps = {
   activeSection: string
@@ -104,7 +104,7 @@ export const Header: React.FC<HeaderProps> = ({
 
       <div className="sidebar-bottom">
         <a
-          className="cv-btn"
+          className={`cv-btn pulse`}
           href="/CV/Desarrollador FullStack CV - Matías Chacón.pdf"
           download
           title="Descargar CV"
