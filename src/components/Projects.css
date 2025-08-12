@@ -1,0 +1,58 @@
+/* Projects / Project Page styles */
+.projects, .project-page {
+  position: absolute;
+  right: calc(var(--pad) * 2);
+  bottom: calc(var(--pad) * 2);
+  width: min(900px, 60%);
+  height: 72vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 5%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 100%);
+  mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 1%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 84%);
+  padding: 1rem;
+}
+
+.projects h2, .project-page h2 { font-size: 2em; margin:0 0 1rem 0; color: var(--primary-color); }
+
+/* project grid + cards */
+.projects-grid { display:flex; flex-direction:column; gap:1.5rem; padding:1rem 0; }
+
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(99,83,242,0.12);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 260ms ease, background 200ms ease, border-color 200ms ease;
+  will-change: transform;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(99,83,242,0.22);
+}
+
+/* image + overlay */
+.project-image { position:relative; margin-bottom:1rem; border-radius:8px; overflow:hidden; }
+.project-image img { width:100%; height:200px; object-fit:cover; display:block; }
+.project-overlay { position:absolute; inset:0; background: rgba(0,0,0,0.6); display:flex; align-items:center; justify-content:center; opacity:0; transition: opacity 0.3s ease; }
+.project-card:hover .project-overlay { opacity:1; }
+
+/* content */
+.project-content h3 { color: var(--text-primary); margin-bottom: .5rem; font-size:1.2rem; }
+.project-content p { color: var(--text-secondary); margin-bottom:1rem; line-height:1.5; font-size:.9rem; }
+
+/* tech tags */
+.tech-tag {
+  background: rgba(99,83,242,0.12);
+  color: var(--primary-color);
+  padding: .28rem .5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(99,83,242,0.14);
+  font-size: .82rem;
+}
+
+/* scrollbar theme for these sections */
+.projects::-webkit-scrollbar, .project-page::-webkit-scrollbar, .about::-webkit-scrollbar, .skills::-webkit-scrollbar { width: 6px; }
+.projects::-webkit-scrollbar-track, .project-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 10px; }
+.projects::-webkit-scrollbar-thumb, .project-page::-webkit-scrollbar-thumb { background: rgba(99,83,242,0.28); border-radius: 10px; }
+.projects::-webkit-scrollbar-thumb:hover, .project-page::-webkit-scrollbar-thumb:hover { background: rgba(99,83,242,0.4); }
