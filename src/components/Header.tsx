@@ -6,7 +6,7 @@ import {
   FiTool,
   FiMail,
   FiDownload,
-  FiUserCheck,
+  FiCode,
 } from 'react-icons/fi'
 
 type HeaderProps = {
@@ -71,7 +71,7 @@ export const Header: React.FC<HeaderProps> = ({
 
         <div className="brand" aria-hidden>
           <div className="brand-avatar">
-            <FiUserCheck />
+            <FiCode />
           </div>
           {expanded && <div className="brand-text">Matías Chacón</div>}
         </div>

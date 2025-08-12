@@ -1,5 +1,4 @@
-
-export function Projects({ setActiveSection }) {
+export function Projects({ setActiveSection }: { setActiveSection: (section: string) => void }) {
   const projects = [
     {
       id: 1,
@@ -27,7 +26,7 @@ export function Projects({ setActiveSection }) {
       image: "./images/project3.png",
       technologies: ["React", "CSS", "JavaScript"],
       githubUrl: "https://github.com/Maty910/Portafolio-Lu",
-      liveUrl: "https://luciacastro.netlify.app/",
+      liveUrl: "https://luciacastro.netlify.app/"
     },
     {
       id: 4,
@@ -37,20 +36,19 @@ export function Projects({ setActiveSection }) {
       technologies: ["Python", "Sqlite"],
       githubUrl: "https://github.com/Maty910/inventory"
     }
-  ]
+  ];
 
   return (
     <section className="projects" id="projects">
       <h2>Projects</h2>
       <div className="projects-grid">
-        <div 
-          key={projects.id} 
-          className={`project-card ${projects.featured ? 'featured' : ''}`} 
-          onClick={() => setActiveSection('projectpage')}
-          style={{ cursor: 'pointer' }}
-        >
         {projects.map(project => (
-          <div key={project.id} className={`project-card ${project.featured ? 'featured' : ''}`}>
+          <div 
+            key={project.id} 
+            className={`project-card ${project.featured ? 'featured' : ''}`} 
+            onClick={() => setActiveSection('projectpage')}
+            style={{ cursor: 'pointer' }}
+          >
             <div className="project-image">
               <img src={project.image} alt={project.title} />
               <div className="project-overlay">
@@ -77,7 +75,6 @@ export function Projects({ setActiveSection }) {
             </div>
           </div>
         ))}
-        </div>
       </div>
       
       <div className="projects-cta">
@@ -87,5 +84,5 @@ export function Projects({ setActiveSection }) {
         </a>
       </div>
     </section>
-  )
+  );
 }
