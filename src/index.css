@@ -908,3 +908,96 @@ h1,h2,h3{
   .main-content, .page-content { margin-left: var(--sidebar-collapsed); width: calc(100% - var(--sidebar-collapsed)); }
   .app-sidebar.expanded ~ .main-content { margin-left: 0; width: 100%; }
 }
+
+/* ---------- MAIN CONTENT SHIFT ---------- */
+/* your main content element should have class .main-content (or .page-content) */
+.main-content, .page-content {
+  transition: margin-left 320ms cubic-bezier(.2,.9,.2,1), padding 200ms;
+  margin-left: var(--sidebar-collapsed);
+  width: calc(100% - var(--sidebar-collapsed));
+}
+.app-sidebar.expanded ~ .main-content,
+.app-sidebar.expanded ~ .page-content {
+  margin-left: var(--sidebar-expanded);
+  width: calc(100% - var(--sidebar-expanded));
+}
+
+/* ---------- PROJECTS / CARDS (kept from your original styles but polished) ---------- */
+.projects, .project-page {
+  position: absolute;
+  right: calc(var(--pad) * 2);
+  bottom: calc(var(--pad) * 2);
+  width: min(900px, 60%);
+  height: 72vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 5%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 100%);
+  mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 1%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 84%);
+  padding: 1rem;
+}
+
+/* project card */
+.project-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(99,83,242,0.12);
+  border-radius: 12px;
+  padding: 1rem;
+  transition: transform 260ms ease, background 200ms ease, border-color 200ms ease;
+}
+.project-card:hover {
+  transform: translateY(-6px);
+  background: rgba(255,255,255,0.04);
+  border-color: rgba(99,83,242,0.22);
+}
+
+/* tags */
+.tech-tag {
+  background: rgba(99,83,242,0.12);
+  color: var(--primary-color);
+  padding: 0.28rem 0.5rem;
+  border-radius: 6px;
+  border: 1px solid rgba(99,83,242,0.14);
+  font-size: 0.82rem;
+}
+
+/* scrollbars consistent with theme */
+.projects::-webkit-scrollbar, .project-page::-webkit-scrollbar, .about::-webkit-scrollbar, .skills::-webkit-scrollbar { width: 6px; }
+.projects::-webkit-scrollbar-track, .project-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 10px; }
+.projects::-webkit-scrollbar-thumb, .project-page::-webkit-scrollbar-thumb { background: rgba(99,83,242,0.28); border-radius: 10px; }
+.projects::-webkit-scrollbar-thumb:hover, .project-page::-webkit-scrollbar-thumb:hover { background: rgba(99,83,242,0.4); }
+
+/* ---------- BUTTONS, LINKS ---------- */
+.header .cta, .project-page .cta, .btn-secondary {
+  background: var(--primary-color);
+  color: var(--text-primary);
+  border-radius: 8px;
+  padding: 0.6rem 1rem;
+  text-decoration: none;
+  transition: transform 160ms ease, background 160ms ease;
+}
+
+.header .cta:hover, .project-page .cta:hover, .btn-secondary:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(90deg, #6e57f0, var(--primary-color));
+}
+
+/* ---------- SMALL / RESPONSIVE ---------- */
+@media (max-width: 880px) {
+  .app-sidebar { left: 0; width: var(--sidebar-collapsed); position: fixed; }
+  .app-sidebar.expanded { width: 100%; left: 0; right: 0; padding: 1rem; }
+  .main-content, .page-content { margin-left: var(--sidebar-collapsed); width: calc(100% - var(--sidebar-collapsed)); }
+  .app-sidebar.expanded ~ .main-content { margin-left: 0; width: 100%; }
+
+  .projects, .project-page {
+    width: min(900px, 75%);
+    height: 90vh;
+  }
+}
+
+/* ---------- MISC (accessibility, small helpers) ---------- */
+.sidebar-nav li[title] { /* show native tooltip when collapsed */ }
+.small-muted { color: var(--text-muted); font-size: 0.9rem; }
+
+/* =========================================================
+   End of index.css
+   ========================================================= */

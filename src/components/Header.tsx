@@ -8,6 +8,8 @@ import {
   FiDownload,
   FiCode,
 } from 'react-icons/fi'
+import './Header.css'
+
 
 type HeaderProps = {
   activeSection: string

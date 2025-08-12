@@ -1,4 +1,5 @@
 import { SiReact, SiCss3, SiTypescript } from 'react-icons/si'
+import './ProjectPage.css'
 
 export function ProjectPage() {
   return (

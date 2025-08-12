@@ -1,3 +1,5 @@
+import './Projects.css'
+
 export function Projects({ setActiveSection }: { setActiveSection: (section: string) => void }) {
   const projects = [
     {
