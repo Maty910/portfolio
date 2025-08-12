@@ -9,7 +9,7 @@ import {
   FiCode,
 } from 'react-icons/fi'
 import './Header.css'
-
+import'../styles/buttons.css'
 
 type HeaderProps = {
   activeSection: string

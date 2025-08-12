@@ -1,3 +1,5 @@
+@import 'src/styles/buttons.css';
+
 /* SIDEBAR (app-sidebar) */
 .app-sidebar {
   position: fixed;
