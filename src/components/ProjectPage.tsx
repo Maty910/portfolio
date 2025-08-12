@@ -1,4 +1,4 @@
-import { SiReact, SiNodedotjs, SiCss3, SiExpress, SiJavascript, SiTypescript, SiHtml5, SiPostgresql, SiSqlite, SiMongodb, SiPostman, SiPython, SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma, SiCanva } from 'react-icons/si'
+import { SiReact, SiCss3, SiTypescript } from 'react-icons/si'
 
 export function ProjectPage() {
   return (

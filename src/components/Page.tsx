@@ -1,6 +1,5 @@
-// src/components/Page.tsx
-import React, { PropsWithChildren } from 'react';
+import type { PropsWithChildren } from 'react';
 
-export function Page({ children }: PropsWithChildren<{}>) {
+export function Page({ children }: PropsWithChildren) {
   return <div className="page container">{children}</div>;
 }
