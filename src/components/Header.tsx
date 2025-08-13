@@ -10,6 +10,8 @@ import {
 } from 'react-icons/fi'
 import './Header.css'
 import '../styles/buttons.css'
+import { useTheme } from '../hooks/useTheme'
+import { ThemeToggle } from './ThemeToggle'
 
 type HeaderProps = {
   activeSection: string
@@ -53,6 +55,8 @@ export const Header: React.FC<HeaderProps> = ({
     { id: 'skills', label: 'Skills', Icon: FiTool },
     { id: 'contact', label: 'Contact', Icon: FiMail },
   ]
+
+  const { theme, setTheme } = useTheme();
 
   return (
     <aside
@@ -114,6 +118,7 @@ export const Header: React.FC<HeaderProps> = ({
           {expanded && <span className="cv-text">Descargar CV</span>}
         </a>
       </div>
+      <ThemeToggle theme={theme} setTheme={setTheme} />
     </aside>
   )
 }

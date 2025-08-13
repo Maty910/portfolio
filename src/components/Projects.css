@@ -96,3 +96,47 @@
 .projects::-webkit-scrollbar-track, .project-page::-webkit-scrollbar-track { background: rgba(255,255,255,0.03); border-radius: 10px; }
 .projects::-webkit-scrollbar-thumb, .project-page::-webkit-scrollbar-thumb { background: rgba(99,83,242,0.28); border-radius: 10px; }
 .projects::-webkit-scrollbar-thumb:hover, .project-page::-webkit-scrollbar-thumb:hover { background: rgba(99,83,242,0.4); }
+
+
+/* reveal.css (o incluir en Projects.css) */
+.reveal, .project-card.reveal {
+  --reveal-translate: 20px;
+  --reveal-duration: 520ms;
+  --reveal-delay: 0ms;
+
+  opacity: 0;
+  transform: translateY(var(--reveal-translate));
+  transition-property: opacity, transform;
+  transition-duration: var(--reveal-duration);
+  transition-delay: var(--reveal-delay);
+  transition-timing-function: cubic-bezier(.2,.9,.2,1);
+  will-change: opacity, transform;
+  pointer-events: auto;
+}
+
+/* clase que añade el estado visible (usado por useReveal) */
+.is-visible, .reveal.is-visible, .project-card.reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* permitir stagger vía variable CSS */
+.reveal { transition-delay: var(--reveal-delay, 0ms); }
+
+/* tilt styling helpers */
+.project-card {
+  will-change: transform;
+  transform-origin: center;
+  transition: box-shadow 180ms ease, transform 350ms cubic-bezier(.2,.9,.2,1);
+  backface-visibility: hidden;
+  /* sombra que resalta en hover/tilt */
+  box-shadow: 0 6px 30px rgba(0,0,0,0.35);
+}
+
+/* evitar jitter: si se aplica transform en card, anular transform en children internos que no deben moverse */
+.project-card * { transform-origin: inherit; }
+
+/* reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .reveal, .project-card { transition: none !important; transform: none !important; }
+}

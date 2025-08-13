@@ -4,6 +4,9 @@
 :root {
   --primary-color: rgb(99, 83, 242);
   --bg-color: #0a0a0a;
+  --bg-2: #1f1d22;
+  --surface: linear-gradient(180deg,var(--bg-1),var(--bg-2));
+
   --text-primary: rgba(255, 255, 255, 0.95);
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.5);
@@ -24,4 +27,13 @@
   --sidebar-collapsed: 72px;
   --sidebar-expanded: 240px;
   --sidebar-compact: 80px;
+}
+
+/* light theme */
+:root[data-theme="light"] {
+  --primary-color: rgb(99, 83, 242);
+  --bg-1: #f7f7fb;
+  --bg-2: #eef2ff;
+  --text-primary: #0b1220;
+  --surface: linear-gradient(180deg,#fff,#f5f7ff);
 }
