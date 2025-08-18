@@ -2,6 +2,8 @@ import React, { useRef } from 'react';
 import './Projects.css';
 import { useReveal } from '../hooks/useReveal';
 import { useTilt } from '../hooks/useTilt';
+import { useLanguage } from '../context/LanguageContext';
+
 
 type Project = {
   id: number;
@@ -31,6 +33,8 @@ export function Projects({ setActiveSection }: Props) {
     root: projectsRef.current,
     once: true
   });
+
+  const { t } = useLanguage()
 
   const projects: Project[] = [
     {
@@ -74,60 +78,57 @@ export function Projects({ setActiveSection }: Props) {
 
   return (
     <section className="projects" id="projects" ref={projectsRef}>
-      <h2>Projects</h2>
+      <h2>{t('projects')}</h2>
 
       <div className="projects-grid">
         {projects.map((project, i) => {
-          // tilt ref tipado — tu useTilt debe devolver RefObject<T>
           const tiltRef = useTilt<HTMLDivElement>({ maxRotate: 8, maxTilt: 6, scale: 1.02 });
-
-          // para evitar el error TS con propiedades CSS custom usamos un "as React.CSSProperties"
           const delayStyle = { ['--reveal-delay' as any]: `${i * 80}ms` } as React.CSSProperties;
 
           return (
-            <article
-              key={project.id}
-              ref={tiltRef}
-              className={`project-card reveal ${project.featured ? 'featured' : ''}`}
-              style={delayStyle}
-              onClick={() => setActiveSection('projectpage')}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') setActiveSection('projectpage');
-              }}
-            >
-              <div className="project-image">
-                <img src={project.image} alt={project.title} />
-                <div className="project-overlay">
-                  <div className="project-links">
-                    {project.githubUrl && (
-                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                        <i className="fab fa-github" /> Code
-                      </a>
-                    )}
-                    {project.liveUrl && (
-                      <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                        <i className="fas fa-external-link-alt" /> Live Demo
-                      </a>
-                    )}
+            <div key={project.id} className="project-card-wrap" style={delayStyle}>
+              <article
+                ref={tiltRef}
+                className={`project-card reveal ${project.featured ? 'featured' : ''}`}
+                onClick={() => setActiveSection('projectpage')}
+                role="button"
+                tabIndex={0}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') setActiveSection('projectpage');
+                }}
+              >
+                <div className="project-image">
+                  <img src={project.image} alt={project.title} />
+                  <div className="project-overlay">
+                    <div className="project-links">
+                      {project.githubUrl && (
+                        <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
+                          <i className="fab fa-github" /> Code
+                        </a>
+                      )}
+                      {project.liveUrl && (
+                        <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
+                          <i className="fas fa-external-link-alt" /> Live Demo
+                        </a>
+                      )}
+                    </div>
                   </div>
                 </div>
-              </div>
 
-              <div className="project-content">
-                <h3>{project.title}</h3>
-                <p>{project.description}</p>
+                <div className="project-content">
+                  <h3>{project.title}</h3>
+                  <p>{project.description}</p>
 
-                <div className="project-technologies">
-                  {project.technologies.map((tech) => (
-                    <span key={tech} className="tech-tag">
-                      {tech}
-                    </span>
-                  ))}
+                  <div className="project-technologies">
+                    {project.technologies.map((tech) => (
+                      <span key={tech} className="tech-tag">
+                        {tech}
+                      </span>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            </article>
+              </article>
+            </div>
           );
         })}
       </div>

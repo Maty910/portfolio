@@ -7,11 +7,13 @@ import {
   FiMail,
   FiDownload,
   FiCode,
+  FiGlobe
 } from 'react-icons/fi'
 import './Header.css'
 import '../styles/buttons.css'
 import { useTheme } from '../hooks/useTheme'
 import { ThemeToggle } from './ThemeToggle'
+import { useLanguage } from '../context/LanguageContext'
 
 type HeaderProps = {
   activeSection: string
@@ -22,6 +24,8 @@ export const Header: React.FC<HeaderProps> = ({
   activeSection,
   setActiveSection,
 }) => {
+  const { lang, toggleLanguage, t } = useLanguage()
+
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
       const v = localStorage.getItem('sidebarExpanded')
@@ -44,10 +48,11 @@ export const Header: React.FC<HeaderProps> = ({
       if (e.key === '3') setActiveSection('skills')
       if (e.key === '4') setActiveSection('contact')
       if (e.key.toLowerCase() === 'm') setExpanded((v) => !v)
+      if (e.key.toLowerCase() === 'l') toggleLanguage()
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [setActiveSection])
+  }, [setActiveSection, toggleLanguage])
 
   const nav = [
     { id: 'home', label: 'Home', Icon: FiHome },
@@ -119,6 +124,15 @@ export const Header: React.FC<HeaderProps> = ({
         </a>
       </div>
       <ThemeToggle theme={theme} setTheme={setTheme} />
+      <button
+            className="lang-toggle"
+            onClick={() => toggleLanguage()}
+            aria-label={`Cambiar idioma — ${lang === 'en' ? 'English' : 'Español'}`}
+            title={`Toggle language (L). Actual: ${lang}`}
+          >
+            <FiGlobe />
+            {expanded && <span className="lang-label">{lang.toUpperCase()}</span>}
+          </button>
     </aside>
   )
 }

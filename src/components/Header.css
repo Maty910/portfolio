@@ -36,8 +36,8 @@
 .sidebar-toggle {
   background: transparent;
   border: 1px solid rgba(255,255,255,0.04);
-  width: 40px;
-  height: 40px;
+  /* width: 40px; */
+  height: 30px;
   border-radius: 10px;
   color: var(--text-primary);
   display: inline-flex;
@@ -45,6 +45,7 @@
   justify-content: center;
   cursor: pointer;
   transition: background 160ms, transform 160ms, color 200ms;
+  margin-bottom: 8px;
 }
 .sidebar-toggle:focus { outline: 2px solid rgba(139,92,246,0.35); outline-offset: 3px; }
 .sidebar-toggle:hover { transform: translateY(-2px); background: rgba(255,255,255,0.02); color: var(--primary-color); }
@@ -123,3 +124,36 @@
 
 /* footer area (CV button) */
 .sidebar-footer, .sidebar-bottom { display:flex; align-items:center; justify-content:center; padding: 1rem 0.6rem; }
+
+/* estilos para el botón de idioma */
+.lang-toggle {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,0.04);
+  /* width: 30px; */
+  height: 30px;
+  border-radius: 10px;
+  color: var(--text-primary);
+  display: inline-flex;
+  align-items: center;
+  /* align-self: center; */
+  justify-content: center;
+  justify-items: center;
+  cursor: pointer;
+  transition: transform 160ms ease, color 160ms ease, background 160ms ease;
+  gap: 8px;
+}
+.lang-toggle:hover {
+  transform: translateY(-3px) scale(1.03);
+  color: var(--primary-color);
+  background: rgba(255,255,255,0.02);
+}
+.lang-toggle .lang-label {
+  font-weight: 700;
+  font-size: 0.82rem;
+  color: var(--text-primary);
+  margin-left: 6px;
+}
+.app-sidebar.collapsed .lang-toggle .lang-label { display: none; }
+
+/* si tenés un botón de tema al lado, poné un contenedor */
+.sidebar-top > div { display: flex; flex-direction: column; gap: 10px; align-items: center; }

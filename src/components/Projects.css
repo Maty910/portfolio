@@ -6,8 +6,8 @@
   width: min(900px, 60%);
   height: 72vh;
   overflow-y: auto;
-  overflow-x: hidden;
-  -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 5%, rgba(0,0,0,1) 15%, rgba(0,0,0,1) 100%);
+  overflow-x: visible;
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.05) 3%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 100%);
   mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.1) 1%, rgba(0,0,0,1) 5%, rgba(0,0,0,1) 84%);
   padding: 1rem;
 }
@@ -15,7 +15,14 @@
 .projects h2, .project-page h2 { font-size: 2em; margin:0 0 1rem 0; color: var(--primary-color); }
 
 /* project grid + cards */
-.projects-grid { display:flex; flex-direction:column; gap:1.5rem; padding:1rem 0; }
+.projects-grid { 
+  perspective: 1000px;    /* crea profundidad para los hijos 3D */
+  overflow: visible;      /* asegurar que los hijos no queden recortados por la grid */
+  padding-left: 6px;      /* pequeño colchón para que el tilt no choque contra el borde */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
 
 .project-card {
   background: rgba(255,255,255,0.03);
@@ -23,7 +30,14 @@
   border-radius: 12px;
   padding: 1rem;
   transition: transform 260ms ease, background 200ms ease, border-color 200ms ease;
+  transform-origin: center;
   will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  overflow: visible;     /* permitir sombras/elementos hijos fuera del box */
+  transition: transform 180ms ease, box-shadow 180ms ease;
 }
 .project-card:hover {
   transform: translateY(-6px);
@@ -133,10 +147,95 @@
   box-shadow: 0 6px 30px rgba(0,0,0,0.35);
 }
 
+.project-card::after {
+  /* opcional - sombra extra sin afectar layout */
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 12px;
+  box-shadow: 0 1px 10px var(--primary-color);
+  z-index: -1;
+  overflow: visible;
+}
+
 /* evitar jitter: si se aplica transform en card, anular transform en children internos que no deben moverse */
 .project-card * { transform-origin: inherit; }
 
 /* reduced motion */
 @media (prefers-reduced-motion: reduce) {
   .reveal, .project-card { transition: none !important; transform: none !important; }
+}
+
+/* WRAPPER para cada card - evita recorte */
+.project-card-wrap {
+  overflow: visible;        /* clave: permite que la card salga de su caja */
+  padding-left: 12px;       /* espacio para que el tilt no choque con el borde */
+  margin: 0;                /* conserva el gap entre cards vía .projects-grid */
+  position: relative;       /* contenedor para referencias absolutas si hiciera falta */
+}
+
+/* asegurar que el grid no recorte */
+.projects-grid {
+  perspective: 1000px;
+  overflow: visible;        /* que las cards no se recorten por el grid */
+  padding-left: 6px;        /* cojín ligero al borde */
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+/* la propia card — ligera refactor para animaciones 3D */
+.project-card {
+  position: relative;
+  overflow: visible;               /* permitir drop-shadow / pseudo sin recorte */
+  transform-origin: center;
+  will-change: transform;
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-transform-style: preserve-3d;
+  transform-style: preserve-3d;
+  transition: transform 220ms cubic-bezier(.2,.9,.2,1), box-shadow 220ms ease, background 200ms;
+  box-shadow: 0 6px 30px rgba(0,0,0,0.25);
+  border-radius: 12px;
+}
+
+/* Sombra extra via pseudo-element (menos chance de recorte si wrapper visible) */
+.project-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  border-radius: 12px;
+  z-index: -2;
+  /* sombra suave grande (no parte de layout) */
+  opacity: 0.9;
+  transform: translateZ(-1px);
+}
+
+/* Imagen: usar drop-shadow si querés una sombra que no se recorte tanto */
+.project-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  display: block;
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  /* alternativa: filter drop-shadow para sombra sin recorte agresivo */
+  filter: drop-shadow(0 14px 30px rgba(0,0,0,0.4));
+}
+
+/* Si usás mask en .projects, calibralo para que no afecte los lados:
+   (si insistes en usar mask vertical, asegurate de que solo afecte top/bottom) */
+.projects {
+  /* ... tus reglas ... */
+  overflow-x: visible; /* importante */
+  /* si hay -webkit-mask/ mask, reducir su efecto lateral */
+  -webkit-mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.04) 3%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 100%);
+  mask: linear-gradient(to bottom, transparent 0%, rgba(0,0,0,0.04) 3%, rgba(0,0,0,1) 12%, rgba(0,0,0,1) 100%);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .project-card { transition: none !important; transform: none !important; }
 }

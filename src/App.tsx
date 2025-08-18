@@ -7,6 +7,7 @@ import { ProjectPage } from './components/ProjectPage'
 import { Skills } from './components/Skills'
 import { Contact } from './components/Contact'
 import { Footer } from './components/Footer'
+import { LanguageProvider } from './context/LanguageContext'
 
 import './components/Sections.css'
 
@@ -31,7 +32,7 @@ function App() {
   }
 
   return (
-    <>
+    <LanguageProvider>
       <Page>
         <Header
           activeSection={activeSection}
@@ -40,7 +41,7 @@ function App() {
         {renderActiveSection()}
         <Footer />
       </Page>
-    </>
+    </LanguageProvider>
   )
 }
 

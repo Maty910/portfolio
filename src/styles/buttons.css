@@ -48,9 +48,3 @@
   width: 48px; height: 48px; border-radius: 10px; justify-content:center; 
 }
 .app-sidebar.collapsed .cv-btn .cv-text { display:none; }
-
-.sidebar-toggle {
-  width: 30px !important;
-  height: 30px !important;
-  align-self: center !important;
-}
