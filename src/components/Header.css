@@ -189,6 +189,10 @@
     align-items: center;
   }
 
+  .sidebar-nav {
+    justify-content: start;
+  }
+
   .sidebar-nav ul {
     flex-direction: row !important;
     gap: 0 !important;
@@ -196,7 +200,7 @@
   }
 
   .sidebar-nav li {
-    padding: 5px !important;
+    padding: 15px !important;
     border-radius: 10px !important;
     justify-content: center !important;
   }
@@ -233,5 +237,9 @@
     right: -3px;
     top: 35%;
     height: 35%;
+  }
+
+  .cv-btn .cv-icon {
+    vertical-align: middle;
   }
 }

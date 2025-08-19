@@ -30,10 +30,15 @@
 /* mobile */
 @media (max-width:880px) {
   .skills {
-    left: calc(var(--pad-sm));
-    right: calc(var(--pad-sm));
-    bottom: calc(var(--sidebar-mobile-height) + var(--pad-sm));
-    width:auto;
-    height: calc(50vh);
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1rem 0 !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    -webkit-mask: none !important;
+    mask: none !important;
   }
 }

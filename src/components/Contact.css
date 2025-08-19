@@ -5,3 +5,16 @@
 .contact ul li svg {
   vertical-align: middle;
 }
+
+/* mobile */
+@media (max-width:880px) {
+  .contact {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1rem 0 !important;
+    margin-bottom: 10vw;
+  }
+}
