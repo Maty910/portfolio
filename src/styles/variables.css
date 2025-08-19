@@ -32,8 +32,12 @@
 /* light theme */
 :root[data-theme="light"] {
   --primary-color: rgb(99, 83, 242);
+  --bg-color: #e9e9e9;
   --bg-1: #f7f7fb;
   --bg-2: #eef2ff;
+  --gradient: linear-gradient(135deg, #535bf2 0%, #7c3aed 100%);
   --text-primary: #0b1220;
-  --surface: linear-gradient(180deg,#fff,#f5f7ff);
+  --text-secondary:#090e1a;
+  --text-muted: rgba(15, 15, 15, 0.5);
+  --surface: linear-gradient(180deg,#dbd8d8,#c3c9e4);
 }

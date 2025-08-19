@@ -10,7 +10,7 @@
   flex-direction: column;
   justify-content: space-between;
   align-items: stretch;
-  background: linear-gradient(180deg, rgba(20,20,22,0.95), rgba(12,12,14,0.96));
+  background: var(--surface);
   color: var(--text-primary);
   box-shadow: -8px 0 24px rgba(0,0,0,0.5);
   z-index: 999;
