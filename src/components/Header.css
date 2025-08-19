@@ -159,38 +159,7 @@
 .sidebar-top > div { display: flex; flex-direction: column; gap: 10px; align-items: center; }
 
 
-/* responsive: mobile -> bottom bar */
-@media (max-width: 880px) {
-  .app-sidebar {
-    top: auto;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    height: var(--sidebar-mobile-height);
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    align-items: center;
-    padding: 0 8px;
-    justify-content: space-between;
-    border-right: none;
-    border-top: 1px solid rgba(139,92,246,0.06);
-    box-shadow: 0 -8px 24px rgba(0,0,0,0.5);
-    backdrop-filter: blur(6px);
-  }
 
-  .sidebar-top { flex-direction:row; gap:8px; align-items:center; }
-  .sidebar-nav { flex: 1; display:flex; justify-content:center; align-items:center; }
-  .sidebar-nav ul { flex-direction:row; gap:10px; width:auto; }
-  .sidebar-nav li { padding:8px; border-radius:10px; min-width:44px; justify-content:center; }
-  .sidebar-bottom { display:flex; flex-direction:row; gap:8px; padding:0; align-items:center; }
-
-  /* hide brand text in mobile */
-  .brand-text, .cv-text, .nav-label { display:none; }
-
-  /* place theme + lang as grouped toggles on right */
-  .theme-toggle, .lang-toggle { display:inline-flex; margin-left: 8px; }
-}
 
 
 /* === Header/sidebar - MOBILE bottom nav ===
@@ -201,16 +170,16 @@
   .app-sidebar {
     left: 0 !important;
     top: auto !important;
-    bottom: 12px !important;
-    width: calc(100% - 24px) !important;
+    bottom: 0 !important;
+    width: 100% !important;
     height: var(--sidebar-mobile-height) !important;
     display: flex !important;
     flex-direction: row !important;
     align-items: center !important;
-    justify-content: space-between !important;
+    justify-content: center !important;
     padding: 8px 12px !important;
     border-radius: 12px !important;
-    margin: 0 6px;
+    margin: 0;
     z-index: 1005;
   }
 
@@ -232,9 +201,20 @@
     justify-content: center !important;
   }
 
+  .sidebar-toggle {
+    width: 30px;
+    height: 30px;
+    margin-right: 5px;
+    margin-bottom: 0;
+  }
+
+  .sidebar-toggle:nth-child(1) {
+    display: none;
+  }
+
   .brand-text, .cv-text, .nav-label { display: none !important; } /* mantener solo iconos */
   .cv-btn { width: 44px !important; height: 44px !important; padding: 8px !important; }
-  .lang-toggle { width: 44px; height: 44px; padding: 8px; border-radius: 10px; }
+  .lang-toggle { width: 30px; height: 30px; padding: 8px; border-radius: 10px; }
 
   /* asegurar que el main-content tenga margen inferior para que no quede oculto por la bottom nav */
   .main-content, .page-content {
