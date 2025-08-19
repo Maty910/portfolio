@@ -185,18 +185,18 @@
 
   .sidebar-top, .sidebar-bottom {
     display: flex !important;
-    gap: 8px;
+    gap: 0px;
     align-items: center;
   }
 
   .sidebar-nav ul {
     flex-direction: row !important;
-    gap: 8px !important;
+    gap: 0 !important;
     width: auto !important;
   }
 
   .sidebar-nav li {
-    padding: 8px !important;
+    padding: 5px !important;
     border-radius: 10px !important;
     justify-content: center !important;
   }
@@ -223,5 +223,15 @@
 
   .brand-avatar {
     display: none;
+  }
+
+  .lang-toggle .lang-label {
+    margin-left: 0;
+  }
+
+  .indicator {
+    right: -3px;
+    top: 35%;
+    height: 35%;
   }
 }

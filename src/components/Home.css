@@ -74,9 +74,8 @@
     width: auto;
     height: auto;
     object-fit: cover;
-    margin-left: auto;
-    margin-right: 0.6rem;
     border-radius: 10px;
+    place-self: center;
   }
 
   /* evita que el contenido llegue al fondo bajo la barra inferior */
