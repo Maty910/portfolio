@@ -41,3 +41,22 @@
   --text-muted: rgba(15, 15, 15, 0.5);
   --surface: linear-gradient(180deg,#dbd8d8,#c3c9e4);
 }
+
+/* MOBILE HELPERS - agregar al final de global/variables */
+:root {
+  --sidebar-mobile-height: 88px; /* alto del bottom bar cuando el sidebar pasa a bottom */
+}
+
+/* reduce el padding general en móviles para que no haya scroll innecesario */
+@media (max-width: 880px) {
+  :root {
+    --pad: max(12px, 3vmin);
+    --pad-sm: max(8px, 2vmin);
+  }
+
+  /* evitar que el body padding haga overflow lateral */
+  body {
+    padding-left: var(--pad-sm);
+    padding-right: var(--pad-sm);
+  }
+}

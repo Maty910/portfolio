@@ -246,3 +246,63 @@
 .projects-cta p{
   margin:20px 0px;
 }
+
+/* === Projects - MOBILE tweaks ===
+   pegar al final de src/components/Projects.css
+*/
+
+@media (max-width: 880px) {
+  .projects, .project-page {
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1rem 0 !important;
+    overflow-x: visible !important;
+    overflow-y: visible !important;
+    -webkit-mask: none !important;
+    mask: none !important;
+  }
+
+  /* grid -> column */
+  .projects-grid {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+    perspective: none !important; /* reduce 3D artifacts en móvil */
+    padding-left: 0.2rem !important;
+  }
+
+  /* Cada card envuelta evita clipping por overflow del padre */
+  .project-card-wrap {
+    overflow: visible !important;
+    padding-left: 6px; /* deja un pequeño colchón para el tilt */
+  }
+
+  .project-card {
+    transform: none !important; /* evita jitter si hay transform en el padre */
+    box-shadow: 0 12px 30px rgba(0,0,0,0.45) !important;
+    border-radius: 12px !important;
+    overflow: visible !important;
+  }
+
+  .project-image img {
+    height: auto !important;
+    max-height: 32vh; /* evitar que la imagen ocupe todo el viewport */
+    object-fit: cover !important;
+    border-radius: 8px;
+  }
+
+  /* botones overlay: mover al centro y más accesibles */
+  .project-overlay { 
+    align-items: center !important;
+    justify-content: center !important;
+    padding: 0.5rem;
+  }
+
+  .project-links a {
+    padding: 0.45rem 0.8rem;
+    font-size: 0.86rem;
+  }
+}

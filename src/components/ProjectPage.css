@@ -1,0 +1,30 @@
+/* ProjectPage.css */
+@import '../styles/variables.css';
+@import '../styles/scrollbars.css';
+
+.project-page {
+  position: absolute;
+  right: calc(var(--pad) * 2);
+  bottom: calc(var(--pad) * 2);
+  width: min(900px, 60%);
+  height: 72vh;
+  overflow-y: auto;
+  overflow-x: visible;
+  padding: 1rem;
+}
+
+/* reuse scrollbars and headings */
+.project-page h2 { font-size: 2em; color: var(--primary-color); margin-bottom:1rem; }
+.project-page p { color: var(--text-secondary); line-height:1.5; }
+
+/* responsive */
+@media (max-width:880px) {
+  .project-page {
+    left: calc(var(--pad-sm));
+    right: calc(var(--pad-sm));
+    bottom: calc(var(--sidebar-mobile-height) + var(--pad-sm));
+    width: auto;
+    height: calc(100vh - var(--sidebar-mobile-height) - calc(var(--pad-sm) * 2));
+    padding: 1rem;
+  }
+}

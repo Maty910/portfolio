@@ -1,5 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi' 
+import './Page.css' 
 
 export function Page({ children }: PropsWithChildren) {
   return (

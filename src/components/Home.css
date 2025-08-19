@@ -1,4 +1,5 @@
-/* src/components/Home.css */
+@import '../styles/variables.css';
+
 .home {
   position: absolute;
   right: calc(var(--pad) * 2);
@@ -31,4 +32,55 @@
   max-width: 760px;
   line-height: 1.7;
   font-size: 1rem;
+}
+
+
+/* === Home - MOBILE tweaks ===*/
+
+@media (max-width: 880px) {
+  .home {
+    /* mantener en flujo y quitar reglas absolutas si existen */
+    position: relative !important;
+    right: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    height: auto !important;
+    padding: 1rem 0 !important;
+    overflow: visible !important;   /* importante: que no recorte contenido */
+    -webkit-mask: none !important;
+    mask: none !important;
+  }
+
+  .home-title {
+    font-size: 2rem !important;
+    text-align: left;
+    margin-left: 0 !important;
+  }
+
+  .home-subtitle {
+    font-size: 1.1rem !important;
+  }
+
+  .home-bio {
+    font-size: 0.96rem !important;
+    line-height: 1.5 !important;
+    max-width: 100% !important;
+    padding-right: 0.6rem; /* evita que texto toque el borde */
+  }
+
+  /* si tenés una imagen dentro de .page.container que se superpone, centra y reduce */
+  .page.container img {
+    max-width: 48vw;
+    width: auto;
+    height: auto;
+    object-fit: cover;
+    margin-left: auto;
+    margin-right: 0.6rem;
+    border-radius: 10px;
+  }
+
+  /* evita que el contenido llegue al fondo bajo la barra inferior */
+  .home, .about, .projects, .skills, .contact, .project-page {
+    margin-bottom: calc(var(--sidebar-mobile-height) + 12px);
+  }
 }
