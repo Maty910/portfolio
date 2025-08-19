@@ -24,7 +24,7 @@ export const Header: React.FC<HeaderProps> = ({
   activeSection,
   setActiveSection,
 }) => {
-  const { lang, toggleLanguage, t } = useLanguage()
+  const { lang, toggleLanguage } = useLanguage()
 
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
