@@ -65,6 +65,15 @@ h1,h2,h3{
   vertical-align: middle;
 }
 
+.page img {
+  width: 250px;
+  position: relative;
+  margin-top: 20px;
+  left: 160px;
+  border-radius: 10px;
+  filter: drop-shadow(0 1px 10px var(--primary-color));
+}
+
 /* Main content will shift based on sidebar state */
 .main-content, .page-content {
   transition: margin-left 320ms cubic-bezier(.2,.9,.2,1), padding 200ms;
