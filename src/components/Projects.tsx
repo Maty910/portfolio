@@ -1,12 +1,13 @@
+// src/components/Projects.tsx
 import React, { useRef } from 'react';
 import './Projects.css';
 import { useReveal } from '../hooks/useReveal';
 import { useTilt } from '../hooks/useTilt';
 import { useLanguage } from '../context/LanguageContext';
 
-
 type Project = {
   id: number;
+  slug?: string; // optional — si lo agregás en tu data, mejor
   title: string;
   description: string;
   image?: string;
@@ -20,13 +21,11 @@ type Props = {
   setActiveSection: (section: string) => void;
 };
 
-export function Projects({ setActiveSection }: Props) {
+export const Projects: React.FC<Props> = ({ setActiveSection }) => {
   // contenedor (útil si quieres usar root con IntersectionObserver)
   const projectsRef = useRef<HTMLDivElement | null>(null);
 
-  // usa el hook de reveal (si tu hook acepta objeto de opciones)
-  // Si tu useReveal en el repo es la versión antigua que toma un string,
-  // reemplaza la línea por: useReveal('.project-card.reveal');
+  // useReveal admite objeto de opciones en tu proyecto (si no, cambia a string)
   useReveal({
     selector: '.project-card.reveal',
     threshold: 0.12,
@@ -34,11 +33,12 @@ export function Projects({ setActiveSection }: Props) {
     once: true
   });
 
-  const { t } = useLanguage()
+  const { t } = useLanguage();
 
   const projects: Project[] = [
     {
       id: 1,
+      slug: 'p1',
       title: 'Portfolio Website',
       description: 'Full-stack portfolio application built with React',
       image: './images/project1.png',
@@ -49,6 +49,7 @@ export function Projects({ setActiveSection }: Props) {
     },
     {
       id: 2,
+      slug: 'p2',
       title: 'Task Management App',
       description: 'Tasks management tool connected to Sqlite database',
       image: './images/project2.png',
@@ -58,6 +59,7 @@ export function Projects({ setActiveSection }: Props) {
     },
     {
       id: 3,
+      slug: 'p3',
       title: 'Community Manager Portfolio',
       description: '[WIP] Portfolio for a community manager showcasing social media management skills',
       image: './images/project3.png',
@@ -67,6 +69,7 @@ export function Projects({ setActiveSection }: Props) {
     },
     {
       id: 4,
+      slug: 'p4',
       title: 'Inventory Management System',
       description:
         'Inventory management system made with Python and Sqlite that allows users to track and manage stock levels, products and price.',
@@ -78,12 +81,20 @@ export function Projects({ setActiveSection }: Props) {
 
   return (
     <section className="projects" id="projects" ref={projectsRef}>
-      <h2>{t('projects')}</h2>
+      {/* título de la sección usando traducción (fallback a 'Projects') */}
+      <h2>{t('projects.title') || t('projects') || 'Projects'}</h2>
 
       <div className="projects-grid">
         {projects.map((project, i) => {
           const tiltRef = useTilt<HTMLDivElement>({ maxRotate: 8, maxTilt: 6, scale: 1.02 });
           const delayStyle = { ['--reveal-delay' as any]: `${i * 80}ms` } as React.CSSProperties;
+
+          // determinamos slug (si no existe, usamos id)
+          const slug = project.slug ?? `p${project.id}`;
+
+          // tratamos de sacar la traducción; si no existe, fallback al texto del objeto
+          const title = t(`projects.items.${slug}.title`) || project.title;
+          const description = t(`projects.items.${slug}.description`) || project.description;
 
           return (
             <div key={project.id} className="project-card-wrap" style={delayStyle}>
@@ -98,17 +109,17 @@ export function Projects({ setActiveSection }: Props) {
                 }}
               >
                 <div className="project-image">
-                  <img src={project.image} alt={project.title} />
+                  <img src={project.image} alt={title} />
                   <div className="project-overlay">
                     <div className="project-links">
                       {project.githubUrl && (
                         <a href={project.githubUrl} target="_blank" rel="noopener noreferrer">
-                          <i className="fab fa-github" /> Code
+                          <i className="fab fa-github" /> {t('projects.links.code') || 'Code'}
                         </a>
                       )}
                       {project.liveUrl && (
                         <a href={project.liveUrl} target="_blank" rel="noopener noreferrer">
-                          <i className="fas fa-external-link-alt" /> Live Demo
+                          <i className="fas fa-external-link-alt" /> {t('projects.links.live') || 'Live Demo'}
                         </a>
                       )}
                     </div>
@@ -116,8 +127,8 @@ export function Projects({ setActiveSection }: Props) {
                 </div>
 
                 <div className="project-content">
-                  <h3>{project.title}</h3>
-                  <p>{project.description}</p>
+                  <h3>{title}</h3>
+                  <p>{description}</p>
 
                   <div className="project-technologies">
                     {project.technologies.map((tech) => (
@@ -134,11 +145,16 @@ export function Projects({ setActiveSection }: Props) {
       </div>
 
       <div className="projects-cta">
-        <p>Want to see more of my work?</p>
-        <a href="https://github.com/Maty910/" className="btn-secondary" target="_blank" rel="noopener noreferrer">
-          View All Projects on GitHub
+        <p>{t('projects.cta') || 'Want to see more of my work?'}</p>
+        <a
+          href="https://github.com/Maty910/"
+          className="btn-secondary"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {t('projects.viewAll') || 'View All Projects on GitHub'}
         </a>
       </div>
     </section>
   );
-}
+};

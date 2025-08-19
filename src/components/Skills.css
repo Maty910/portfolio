@@ -1,0 +1,13 @@
+.skills a {
+  color: white;
+  text-decoration: none;
+  padding: 0.5rem 1rem;
+  background: var(--primary-color);
+  border-radius: 6px;
+  font-size: 0.9rem;
+  transition: background 0.3s ease;
+}
+
+.skills a:hover {
+  background: rgba(99, 83, 242, 0.8);
+}

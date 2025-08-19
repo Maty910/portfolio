@@ -8,6 +8,7 @@ type LangContext = {
   setLang: (l: Lang) => void;
   toggleLanguage: () => void;
   t: (key: string) => string;
+  get: (key: string) => string;
 };
 
 const LanguageContext = createContext<LangContext | undefined>(undefined);
@@ -45,7 +46,22 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     }
   };
 
-  const value = useMemo(() => ({ lang, setLang, toggleLanguage, t }), [lang]);
+  // función que devuelve valor (string/array/obj)
+  const get = (key: string) => {
+    try {
+      const parts = key.split('.');
+      let cur: any = (translations as any)[lang];
+      for (const p of parts) {
+        if (cur === undefined) return undefined;
+        cur = cur[p];
+      }
+      return cur;
+    } catch {
+      return undefined;
+    }
+  };
+
+  const value = useMemo(() => ({ lang, setLang, toggleLanguage, t, get }), [lang]);
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };

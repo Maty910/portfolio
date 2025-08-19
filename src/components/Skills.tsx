@@ -1,11 +1,15 @@
 import { SiReact, SiNodedotjs, SiCss3, SiExpress, SiJavascript, SiTypescript, SiHtml5, SiPostgresql, SiSqlite, SiMongodb, SiPostman, SiPython, SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma, SiCanva } from 'react-icons/si'
+import { VscVscode } from "react-icons/vsc";
 import './Skills.css'
+import { useLanguage } from '../context/LanguageContext'
 
 export function Skills() {
+  const { t } = useLanguage();
+
   return (
     <section className="skills" id="skills">
-      <h2>Skills</h2>
-      <p>Here are some of the technologies and tools I work with:</p>
+      <h2>{t('skills.title')}</h2>
+      <p>{t('skills.sub')}</p>
       <ul className="tech-skills">
         <li><SiReact /> React</li>
         <li><SiNodedotjs /> Node.js</li>
@@ -25,12 +29,12 @@ export function Skills() {
         <li><SiJson /> JSON</li>
         <li><SiNetlify /> Netlify</li>
         <li><SiGithub /> GitHub</li>
-        <li>Visual Studio Code</li>
+        <li><VscVscode />Visual Studio Code</li>
         <li><SiFigma /> Figma</li>
         <li><SiCanva /> Canva</li>
       </ul>
 
-      <p>In addition to my technical skills, I also have experience in:</p>
+      <p>{t('skills.sub2')}</p>
       <ul className="soft-skills">
         <li>Problem Solving</li>
         <li>Version Control</li>
@@ -43,8 +47,8 @@ export function Skills() {
         <li>Continuous Learning</li>
       </ul>
 
-      <p>I'm always eager to learn new technologies and improve my skills.</p>
-      <a href="#projects">Check out my projects</a>
+      <p>{t('skills.sub3')}</p>
+      <a href="#projects">{t('skills.projects')}</a>
     </section>
   )
 }

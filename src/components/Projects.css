@@ -239,3 +239,7 @@
 @media (prefers-reduced-motion: reduce) {
   .project-card { transition: none !important; transform: none !important; }
 }
+
+.projects-cta p{
+  margin:20px 0px;
+}
