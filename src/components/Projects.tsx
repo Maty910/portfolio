@@ -4,26 +4,16 @@ import './Projects.css';
 import { useReveal } from '../hooks/useReveal';
 import { useTilt } from '../hooks/useTilt';
 import { useLanguage } from '../context/LanguageContext';
-
-type Project = {
-  id: number;
-  slug?: string; // optional — si lo agregás en tu data, mejor
-  title: string;
-  description: string;
-  image?: string;
-  technologies: string[];
-  githubUrl?: string;
-  liveUrl?: string;
-  featured?: boolean;
-};
+import type { Project, SetActive } from '../types';
 
 type Props = {
-  setActiveSection: (section: string) => void;
+  setActiveSection: SetActive
+  onOpenProject: (project: Project) => void
 };
 
-export const Projects: React.FC<Props> = ({ setActiveSection }) => {
+export const Projects: React.FC<Props> = ({ onOpenProject  }) => {
   // contenedor (útil si quieres usar root con IntersectionObserver)
-  const projectsRef = useRef<HTMLDivElement | null>(null);
+  const projectsRef = useRef<HTMLDivElement | null>(null)
 
   // useReveal admite objeto de opciones en tu proyecto (si no, cambia a string)
   useReveal({
@@ -33,7 +23,7 @@ export const Projects: React.FC<Props> = ({ setActiveSection }) => {
     once: true
   });
 
-  const { t } = useLanguage();
+  const { t } = useLanguage()
 
   const projects: Project[] = [
     {
@@ -77,7 +67,7 @@ export const Projects: React.FC<Props> = ({ setActiveSection }) => {
       technologies: ['Python', 'Sqlite'],
       githubUrl: 'https://github.com/Maty910/inventory'
     }
-  ];
+  ]
 
   return (
     <section className="projects" id="projects" ref={projectsRef}>
@@ -101,11 +91,11 @@ export const Projects: React.FC<Props> = ({ setActiveSection }) => {
               <article
                 ref={tiltRef}
                 className={`project-card reveal ${project.featured ? 'featured' : ''}`}
-                onClick={() => setActiveSection('projectpage')}
+                onClick={() => onOpenProject(project)}
                 role="button"
                 tabIndex={0}
                 onKeyDown={(e) => {
-                  if (e.key === 'Enter' || e.key === ' ') setActiveSection('projectpage');
+                  if (e.key === 'Enter' || e.key === ' ') onOpenProject(project)
                 }}
               >
                 <div className="project-image">
@@ -155,6 +145,7 @@ export const Projects: React.FC<Props> = ({ setActiveSection }) => {
           {t('projects.viewAll') || 'View All Projects on GitHub'}
         </a>
       </div>
+
     </section>
   );
 };

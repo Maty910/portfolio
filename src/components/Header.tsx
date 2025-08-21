@@ -14,10 +14,11 @@ import '../styles/buttons.css'
 import { useTheme } from '../hooks/useTheme'
 import { ThemeToggle } from './ThemeToggle'
 import { useLanguage } from '../context/LanguageContext'
+import type { Section, SetActive } from '../types';
 
 type HeaderProps = {
-  activeSection: string
-  setActiveSection: (s: string) => void
+  activeSection: Section
+  setActiveSection: SetActive
 }
 
 export const Header: React.FC<HeaderProps> = ({
@@ -96,9 +97,9 @@ export const Header: React.FC<HeaderProps> = ({
               role="button"
               tabIndex={0}
               className={activeSection === id ? 'active' : ''}
-              onClick={() => setActiveSection(id)}
+              onClick={() => setActiveSection(id as Section)}
               onKeyDown={(e) => {
-                if (e.key === 'Enter' || e.key === ' ') setActiveSection(id)
+                if (e.key === 'Enter' || e.key === ' ') setActiveSection(id as Section)
               }}
               title={label}
               aria-pressed={activeSection === id}
