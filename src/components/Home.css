@@ -29,11 +29,13 @@
 
 .home-bio {
   color: var(--text-secondary);
-  max-width: 760px;
+  max-width: 50dvw;
   line-height: 1.7;
   font-size: 1rem;
+  padding-right: 1rem;
+  margin-bottom: 2rem;
+  text-align: left;
 }
-
 
 /* === Home - MOBILE tweaks ===*/
 
