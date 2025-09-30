@@ -29,6 +29,11 @@
 
 /* mobile */
 @media (max-width:880px) {
+  .app-sidebar.expanded ~ .main-content, .app-sidebar.expanded ~ .page-content {
+    margin-left: 0;
+    width: fit-content;
+  }
+
   .skills {
     position: relative !important;
     right: auto !important;

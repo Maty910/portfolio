@@ -43,13 +43,11 @@
   .home {
     /* mantener en flujo y quitar reglas absolutas si existen */
     position: relative !important;
-    right: auto !important;
     bottom: auto !important;
     width: 100% !important;
     height: auto !important;
     padding: 1rem 0 !important;
     overflow: visible !important;   /* importante: que no recorte contenido */
-    -webkit-mask: none !important;
     mask: none !important;
   }
 
@@ -67,18 +65,18 @@
     font-size: 0.96rem !important;
     line-height: 1.5 !important;
     max-width: 100% !important;
-    padding-right: 0.6rem; /* evita que texto toque el borde */
+    padding-right: 0rem;
   }
 
   /* si tenés una imagen dentro de .page.container que se superpone, centra y reduce */
-  .page.container img {
+  /* .page.container img {
     max-width: 48vw;
     width: auto;
     height: auto;
     object-fit: cover;
     border-radius: 10px;
     place-self: center;
-  }
+  } */
 
   /* evita que el contenido llegue al fondo bajo la barra inferior */
   .home, .about, .projects, .skills, .contact, .project-page {

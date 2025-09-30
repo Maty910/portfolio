@@ -248,11 +248,22 @@
 }
 
 /* === Projects - MOBILE tweaks ===
-   pegar al final de src/components/Projects.css
+  pegar al final de src/components/Projects.css
 */
 
 @media (max-width: 880px) {
-  .projects, .project-page {
+  .projects {
+  position: absolute !important;
+  bottom: auto !important;
+  width: 90% !important;
+  height: auto !important;
+  padding: 1rem 0 !important;
+  overflow: visible !important;
+  -webkit-mask: none !important;
+  mask: none !important;
+  }
+
+  .project-page {
     position: relative !important;
     right: auto !important;
     bottom: auto !important;
@@ -287,11 +298,12 @@
     overflow: visible !important;
   }
 
-  .project-image img {
+  .project-image {
     height: auto !important;
     max-height: 32vh; /* evitar que la imagen ocupe todo el viewport */
     object-fit: cover !important;
-    border-radius: 8px;
+    border-radius: 0px;
+    width: auto;
   }
 
   /* botones overlay: mover al centro y más accesibles */
