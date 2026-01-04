@@ -1,7 +1,6 @@
 import type { PropsWithChildren } from 'react';
 import { FiCode, FiGithub, FiMail, } from 'react-icons/fi';
 import { Download, ExternalLink, Github } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 
 export function Page({ children }: PropsWithChildren) {
@@ -9,7 +8,7 @@ export function Page({ children }: PropsWithChildren) {
     <div className="page container relative min-h-screen bg-[#0f0e17] text-white overflow-x-hidden selection:bg-[#6353f2]/30 selection:text-white">
       
       {/* --- 1. FONDO DECORATIVO --- */}
-      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] fixed" />
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-size-50px_50px mask[radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)]" />
       
       {/* --- 2. HEADER IZQUIERDO (Identidad) --- */}
       <header className="min-[881px]:fixed top-8 left-28 z-20 transition-all max-[880px]:relative max-[880px]:left-0 max-[880px]:top-0 max-[880px]:mb-4 max-[880px]:p-6 animate-in fade-in-out slide-in-from-top-4 duration-100">
@@ -19,7 +18,7 @@ export function Page({ children }: PropsWithChildren) {
               Matías Chacón
             </span>
             {/* Subrayado animado */}
-            <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#6353f2] group-hover:w-full transition-all duration-500" />
+            <div className="absolute -bottom-1 left-0 w-0 h-0.2 bg-[#6353f2] group-hover:w-full transition-all duration-500" />
           </div>
           <FiCode className="text-[#6353f2] text-lg animate-pulse" />
         </h1>
@@ -33,8 +32,8 @@ export function Page({ children }: PropsWithChildren) {
         
         {/* FOTO DE PERFIL */}
         <div className="relative group">
-          <div className="absolute justify-self-center inset-[-3px] bg-linear-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-[126px] h-[126px] max-[880px]:w-[106px] max-[880px]:h-[106px]" />
-          <div className="relative w-[120px] h-[120px] max-[880px]:w-[100px] max-[880px]:h-[100px] justify-self-center rounded-full overflow-hidden border-2 border-purple-600/20 shadow-xl">
+          <div className="absolute justify-self-center -inset-0.75 bg-linear-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-31.5 h-31.5 max-[880px]:w-26.5 max-[880px]:h-26.5" />
+          <div className="relative w-30 h-30 max-[880px]:w-25 max-[880px]:h-25 justify-self-center rounded-full overflow-hidden border-2 border-purple-600/20 shadow-xl">
             <img 
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" 
               src="/images/FOTO DE PERFIL.jpg" 
@@ -51,14 +50,13 @@ export function Page({ children }: PropsWithChildren) {
           </div>
         </div>
 
-        {/* STATS MEJORADOS CON CARRUSEL FUNCIONAL */}
         <div className="hidden lg:flex flex-col gap-2 mt-4 w-55">
 
           {/* Quick Stats Grid */}
           <div className="flex gap-2">
             
             {/* 1. Years Card */}
-            <div className="flex-0 bg-linear-to-br from-[#6353f2]/10 to-[#6353f2]/5 backdrop-blur-sm px-3 py-2.5 rounded-xl border border-[#6353f2]/20 hover:border-[#6353f2]/60 hover:shadow-lg hover:shadow-[#6353f2]/10 transition-all duration-300 group flex flex-col items-center justify-center">
+            <div className="flex-0 w-12 h-15 bg-linear-to-br mb-5 from-[#6353f2]/10 to-[#6353f2]/5 backdrop-blur-sm px-3 py-2.5 rounded-xl border border-[#6353f2]/20 hover:border-[#6353f2]/60 hover:shadow-lg hover:shadow-[#6353f2]/10 transition-all duration-300 group flex flex-col items-center justify-center">
               <p className="text-2xl font-extrabold bg-linear-to-r from-[#6353f2] to-purple-400 bg-clip-text text-transparent">2+</p>
               <p className="text-[9px] text-[#a7a9be] uppercase tracking-wider font-semibold mt-0.5">Years</p>
             </div>
