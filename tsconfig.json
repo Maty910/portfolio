@@ -7,7 +7,7 @@
   "compilerOptions": {
     "baseUrl": ".",
     "paths": {
-      "@src/*": ["src/**/*.ts"],
+      "@src/*": ["src/*"],
       "@env/*": ["src/environments/*"]
     },
     "strict": true
