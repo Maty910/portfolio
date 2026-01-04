@@ -1,5 +1,4 @@
 import { FiSun, FiMoon } from 'react-icons/fi'
-// import '../styles/buttons.css'
 
 type Props = {theme: string; setTheme: (t:string) => void; }
 

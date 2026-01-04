@@ -9,9 +9,6 @@ import { LanguageProvider } from './context/LanguageContext'
 import { Footer } from './components/Footer'
 import type { Section } from './types'
 
-// Migrated to Tailwind v4 - CSS no longer needed
-// import './components/Sections.css'
-
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('home')
 

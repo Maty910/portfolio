@@ -1,6 +1,3 @@
-// src/types.ts
-import React from 'react';
-
 export type Section = 'home' | 'projects' | 'skills' | 'contact' | 'projectpage';
 
 export type Project = {
