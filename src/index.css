@@ -112,7 +112,7 @@
   h1, h2, h3 {
     @apply .font-\[family-name\:var\(--font-heading\)\] {
   font-family: var(--font-heading) /* 'Poppings', sans-serif */;
-} font-semibold tracking-tight;
+} @apply font-semibold tracking-tight;
   }
 
   /* Custom Scrollbars unificados */
