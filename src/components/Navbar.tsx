@@ -188,6 +188,7 @@ export const Navbar: React.FC<HeaderProps> = ({
                 ${activeSection === id ? 'scale-110 text-[var(--primary-color)] drop-shadow-[0_0_8px_rgba(99,83,242,0.6)]' : ''}
                 hover:scale-125 hover:text-[var(--primary-color)] hover:rotate-6 hover:drop-shadow-[0_0_10px_rgba(99,83,242,0.5)]
                 active:scale-95 active:rotate-0
+                max-[880px]:text-2xl
               `} />
               
               {expanded && (
@@ -218,14 +219,14 @@ export const Navbar: React.FC<HeaderProps> = ({
             after:animate-[pulse_2s_cubic-bezier(0.4,0,0.6,1)_infinite]
             after:shadow-[0_0_0_0_rgba(139,92,246,0.7)]
             ${expanded ? 'px-4 py-3 w-full' : 'w-[44px] h-[44px] p-2'}
-            max-[880px]:w-auto max-[880px]:px-4 max-[880px]:py-2.5
+            max-[880px]:w-auto max-[880px]:px-5 max-[880px]:py-3 max-[880px]:text-sm
           `}
           href="/CV/CV Matias Chacon.pdf"
           download
           title="Descargar CV"
           aria-label="Descargar CV"
         >
-          <FiDownload className={`${expanded ? 'text-lg' : 'text-xl'} max-[880px]:text-lg relative z-10`} />
+          <FiDownload className={`${expanded ? 'text-lg' : 'text-xl'} max-[880px]:text-base relative z-10`} />
           {expanded && <span className="text-sm whitespace-nowrap max-[880px]:inline relative z-10">Descargar CV</span>}
         </a>
 
@@ -250,13 +251,13 @@ export const Navbar: React.FC<HeaderProps> = ({
               focus:outline-2 focus:outline-[#8b5cf6]/35 focus:outline-offset-2
               animate-in fade-in zoom-in-95 duration-500 delay-500
               ${expanded ? 'px-3 py-2 w-full' : 'w-[44px] h-[44px] p-2'}
-              max-[880px]:w-[44px] max-[880px]:h-[44px] max-[880px]:p-2
+              max-[880px]:w-[48px] max-[880px]:h-[48px] max-[880px]:p-3
             `}
             onClick={() => toggleLanguage()}
             aria-label={`Cambiar idioma — ${lang === 'en' ? 'English' : 'Español'}`}
             title={`Toggle language (L). Actual: ${lang}`}
           >
-            <FiGlobe className="text-lg transition-transform duration-500 ease-out hover:rotate-180 hover:scale-110" />
+            <FiGlobe className="text-lg transition-transform duration-500 ease-out hover:rotate-180 hover:scale-110 max-[880px]:text-xl" />
             {expanded && (
               <span className="font-semibold text-xs text-[var(--text-primary)] max-[880px]:hidden animate-in fade-in slide-in-from-left-2 duration-300 delay-100">
                 {lang.toUpperCase()}

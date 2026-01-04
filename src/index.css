@@ -110,19 +110,46 @@
   }
 
   h1, h2, h3 {
-    @apply font-[family-name:var(--font-heading)] font-semibold tracking-tight;
+    @apply .font-\[family-name\:var\(--font-heading\)\] {
+  font-family: var(--font-heading) /* 'Poppings', sans-serif */;
+} font-semibold tracking-tight;
   }
 
   /* Custom Scrollbars unificados */
-  ::-webkit-scrollbar { width: 8px; height: 8px; }
-  ::-webkit-scrollbar-track { background: rgba(255,255,255,0.02); border-radius: 10px; }
+  ::-webkit-scrollbar { 
+    width: 8px; 
+    height: 8px;
+  }
+  
+  @media (max-width: 880px) {
+    ::-webkit-scrollbar { 
+      width: 4px; 
+      height: 4px;
+    }
+  }
+  
+  ::-webkit-scrollbar-track { 
+    background: rgba(255,255,255,0.02); 
+    border-radius: 10px; 
+  }
+  
   ::-webkit-scrollbar-thumb {
     background: rgba(99,83,242,0.24);
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
   }
-  ::-webkit-scrollbar-thumb:hover { background: rgba(99,83,242,0.36); }
+  
+  @media (max-width: 880px) {
+    ::-webkit-scrollbar-thumb {
+      border: 1px solid transparent;
+      background: rgba(99,83,242,0.3);
+    }
+  }
+  
+  ::-webkit-scrollbar-thumb:hover { 
+    background: rgba(99,83,242,0.36); 
+  }
 }
 
 /* === LAYOUT SHIFT === */
@@ -147,6 +174,16 @@ body:has([aria-expanded="true"]) .page-content {
   .page, .page-content, .main-content {
     margin-left: 0 !important;
     width: 100% !important;
-    /* padding-bottom: calc(var(--sidebar-mobile-height) + 20px); */
+    padding-bottom: calc(var(--sidebar-mobile-height) + 1.5rem);
+  }
+  
+  /* Smooth touch scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+  
+  /* Better tap highlight */
+  a, button {
+    -webkit-tap-highlight-color: rgba(99, 83, 242, 0.2);
   }
 }

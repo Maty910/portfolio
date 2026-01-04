@@ -11,7 +11,7 @@ export function Page({ children }: PropsWithChildren) {
       <div className="absolute inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-size-50px_50px mask[radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)]" />
       
       {/* --- 2. HEADER IZQUIERDO (Identidad) --- */}
-      <header className="min-[881px]:fixed top-8 left-28 z-20 transition-all max-[880px]:relative max-[880px]:left-0 max-[880px]:top-0 max-[880px]:mb-4 max-[880px]:p-6 animate-in fade-in-out slide-in-from-top-4 duration-100">
+      <header className="min-[881px]:fixed top-8 left-28 z-20 transition-all max-[880px]:relative max-[880px]:left-0 max-[880px]:top-0 max-[880px]:mb-6 max-[880px]:px-6 max-[880px]:pt-6 max-[880px]:pb-2 animate-in fade-in slide-in-from-top-4 duration-100">
         <h1 className="flex items-center gap-2 mb-1 text-2xl font-bold max-[880px]:text-xl group cursor-default">
           <div className="relative">
             <span className="bg-linear-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent group-hover:via-[#6353f2] transition-all duration-500">
@@ -32,8 +32,8 @@ export function Page({ children }: PropsWithChildren) {
         
         {/* FOTO DE PERFIL */}
         <div className="relative group">
-          <div className="absolute justify-self-center -inset-0.75 bg-linear-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-31.5 h-31.5 max-[880px]:w-26.5 max-[880px]:h-26.5" />
-          <div className="relative w-30 h-30 max-[880px]:w-25 max-[880px]:h-25 justify-self-center rounded-full overflow-hidden border-2 border-purple-600/20 shadow-xl">
+          <div className="absolute justify-self-center -inset-0.75 bg-linear-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-31.5 h-31.5 max-[880px]:w-28 max-[880px]:h-28" />
+          <div className="relative w-30 h-30 max-[880px]:w-[105px] max-[880px]:h-[105px] justify-self-center rounded-full overflow-hidden border-2 border-purple-600/20 shadow-xl">
             <img 
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" 
               src="/images/FOTO DE PERFIL.jpg" 
@@ -41,12 +41,12 @@ export function Page({ children }: PropsWithChildren) {
             />
             <div className="absolute inset-0 bg-linear-to-t from-[#6353f2]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-          <div className="absolute bottom-0 left-18 flex items-center gap-1.5 bg-[#0f0e17]/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/20 animate-bounce duration-500">
+          <div className="absolute bottom-0 left-18 flex items-center gap-1.5 bg-[#0f0e17]/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/20 animate-bounce duration-500 max-[880px]:left-16 max-[880px]:px-2 max-[880px]:py-1">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
             </span>
-            <span className="text-[10px] font-medium text-green-400 whitespace-nowrap">Open to work</span>
+            <span className="text-[10px] font-medium text-green-400 whitespace-nowrap max-[880px]:text-[9px]">Open to work</span>
           </div>
         </div>
 
@@ -106,18 +106,18 @@ export function Page({ children }: PropsWithChildren) {
       </div>
 
       {/* --- 5. FABs MOBILE --- */}
-      <div className="lg:hidden fixed bottom-6 right-6 z-50 flex flex-col gap-3 animate-in slide-in-from-bottom-8 duration-500 delay-700">
+      <div className="lg:hidden fixed bottom-[calc(var(--sidebar-mobile-height)+1rem)] right-6 z-50 flex flex-col gap-3 animate-in slide-in-from-bottom-8 duration-500 delay-700">
         <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" 
-          className="w-10 h-10 bg-[#16161e] border border-white/10 rounded-full flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform">
-          <FiGithub className="text-white text-lg" />
+          className="w-12 h-12 bg-[#16161e] border border-white/10 rounded-full flex items-center justify-center text-white shadow-lg active:scale-95 transition-all hover:scale-110">
+          <FiGithub className="text-white text-xl" />
         </a>
         <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" 
-          className="w-10 h-10 bg-[#0077b5] rounded-full flex items-center justify-center text-white shadow-lg active:scale-95 transition-transform">
-          <LinkedInIcon style={{ fontSize: 18 }} />
+          className="w-12 h-12 bg-[#0077b5] rounded-full flex items-center justify-center text-white shadow-lg active:scale-95 transition-all hover:scale-110">
+          <LinkedInIcon style={{ fontSize: 20 }} />
         </a>
         <a href="mailto:matias@email.com" 
-          className="w-12 h-12 bg-[#6353f2] rounded-full flex items-center justify-center text-white shadow-xl shadow-[#6353f2]/30 active:scale-95 transition-transform">
-          <FiMail className="text-white text-lg" />
+          className="w-14 h-14 bg-[#6353f2] rounded-full flex items-center justify-center text-white shadow-xl shadow-[#6353f2]/30 active:scale-95 transition-all hover:scale-110">
+          <FiMail className="text-white text-xl" />
         </a>
       </div>
 
