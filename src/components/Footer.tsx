@@ -1,13 +1,19 @@
-import './Footer.css'
-
-export function Footer () {
+export function Footer() {
   return (
-    <footer className="footer" id="footer">
-      <p>&copy; {new Date().getFullYear()} Matías Chacón. All rights reserved.</p>
-      {/* <p>
-        Follow me on{' '}
-        <a href="https://github.com/Maty910">GitHub</a>
-      </p> */}
+    <footer 
+      id="footer"
+      className={`
+        /* Desktop: Fijo abajo a la derecha, sutil */
+        fixed bottom-4 right-6 z-10
+        
+        /* Mobile: Flujo normal, centrado y con espacio para la nav bar */
+        max-[880px]:static max-[880px]:w-full max-[880px]:text-center
+        max-[880px]:pb-[calc(var(--sidebar-mobile-height)+10px)] max-[880px]:pt-4
+      `}
+    >
+      <p className="text-xs text-[var(--text-muted)] font-medium tracking-wide">
+        &copy; {new Date().getFullYear()} Matías Chacón. All rights reserved.
+      </p>
     </footer>
   )
 }
