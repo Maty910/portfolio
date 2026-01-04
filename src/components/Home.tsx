@@ -52,7 +52,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           </span>
 
           {/* Carrusel (Techs) */}
-          <div className="flex-1 min-w-0 w-full md:max-w-[400px] overflow-hidden bg-gradient-to-br from-emerald-500/10 to-emerald-500/5 backdrop-blur-sm rounded-xl border border-emerald-500/10 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 group relative py-1.5">
+          <div className="flex-1 min-w-0 w-full md:max-w-[400px] overflow-hidden bg-linear-to-br from-emerald-500/10 to-emerald-500/5 backdrop-blur-sm rounded-xl border border-emerald-500/10 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 group relative py-1.5">
             <div className="w-full">
               <div className="flex w-max animate-marquee">
                 

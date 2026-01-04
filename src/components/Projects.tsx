@@ -47,7 +47,7 @@ export const Projects = () => {
                 alt={project.title} 
                 className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0f0e17] to-transparent opacity-60"></div>
+              <div className="absolute inset-0 bg-linear-to-t from-[#0f0e17] to-transparent opacity-60"></div>
             </div>
 
             {/* Contenido */}

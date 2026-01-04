@@ -15,7 +15,7 @@ export function Page({ children }: PropsWithChildren) {
       <header className="min-[881px]:fixed top-8 left-28 z-20 transition-all max-[880px]:relative max-[880px]:left-0 max-[880px]:top-0 max-[880px]:mb-4 max-[880px]:p-6 animate-in fade-in-out slide-in-from-top-4 duration-100">
         <h1 className="flex items-center gap-2 mb-1 text-2xl font-bold max-[880px]:text-xl group cursor-default">
           <div className="relative">
-            <span className="bg-gradient-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent group-hover:via-[#6353f2] transition-all duration-500">
+            <span className="bg-linear-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent group-hover:via-[#6353f2] transition-all duration-500">
               Matías Chacón
             </span>
             {/* Subrayado animado */}
@@ -33,16 +33,16 @@ export function Page({ children }: PropsWithChildren) {
         
         {/* FOTO DE PERFIL */}
         <div className="relative group">
-          <div className="absolute justify-self-center inset-[-3px] bg-gradient-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-[126px] h-[126px] max-[880px]:w-[106px] max-[880px]:h-[106px]" />
+          <div className="absolute justify-self-center inset-[-3px] bg-linear-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite] w-[126px] h-[126px] max-[880px]:w-[106px] max-[880px]:h-[106px]" />
           <div className="relative w-[120px] h-[120px] max-[880px]:w-[100px] max-[880px]:h-[100px] justify-self-center rounded-full overflow-hidden border-2 border-purple-600/20 shadow-xl">
             <img 
               className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" 
               src="/images/FOTO DE PERFIL.jpg" 
               alt="Foto de perfil de Matías" 
             />
-            <div className="absolute inset-0 bg-gradient-to-t from-[#6353f2]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            <div className="absolute inset-0 bg-linear-to-t from-[#6353f2]/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-          <div className="absolute -bottom-0 left-18 flex items-center gap-1.5 bg-[#0f0e17]/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/20 animate-bounce duration-500">
+          <div className="absolute bottom-0 left-18 flex items-center gap-1.5 bg-[#0f0e17]/95 backdrop-blur-sm px-2.5 py-1.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/20 animate-bounce duration-500">
             <span className="relative flex h-2 w-2">
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
@@ -52,14 +52,14 @@ export function Page({ children }: PropsWithChildren) {
         </div>
 
         {/* STATS MEJORADOS CON CARRUSEL FUNCIONAL */}
-        <div className="hidden lg:flex flex-col gap-2 mt-4 w-[220px]">
+        <div className="hidden lg:flex flex-col gap-2 mt-4 w-55">
 
           {/* Quick Stats Grid */}
           <div className="flex gap-2">
             
             {/* 1. Years Card */}
-            <div className="flex-1 bg-gradient-to-br from-[#6353f2]/10 to-[#6353f2]/5 backdrop-blur-sm px-3 py-2.5 rounded-xl border border-[#6353f2]/20 hover:border-[#6353f2]/60 hover:shadow-lg hover:shadow-[#6353f2]/10 transition-all duration-300 group flex flex-col items-center justify-center">
-              <p className="text-2xl font-extrabold bg-gradient-to-r from-[#6353f2] to-purple-400 bg-clip-text text-transparent">3+</p>
+            <div className="flex-0 bg-linear-to-br from-[#6353f2]/10 to-[#6353f2]/5 backdrop-blur-sm px-3 py-2.5 rounded-xl border border-[#6353f2]/20 hover:border-[#6353f2]/60 hover:shadow-lg hover:shadow-[#6353f2]/10 transition-all duration-300 group flex flex-col items-center justify-center">
+              <p className="text-2xl font-extrabold bg-linear-to-r from-[#6353f2] to-purple-400 bg-clip-text text-transparent">2+</p>
               <p className="text-[9px] text-[#a7a9be] uppercase tracking-wider font-semibold mt-0.5">Years</p>
             </div>
 
