@@ -6,7 +6,6 @@ import {
   FiTool,
   FiMail,
   FiDownload,
-  FiCode,
   FiGlobe
 } from 'react-icons/fi'
 import { useTheme } from '../hooks/useTheme'
@@ -66,11 +65,11 @@ export const Navbar: React.FC<HeaderProps> = ({
     relative flex items-center gap-3 p-2.5 rounded-[10px] cursor-pointer
     text-[var(--text-primary)] transition-all duration-300 ease-out
     focus:outline-2 focus:outline-[rgba(99,83,242,0.18)] focus:outline-offset-3
-    hover:bg-gradient-to-r hover:from-white/10 hover:to-white/5 hover:-translate-x-2 hover:scale-[1.02]
+    hover:bg-linear-to-r hover:from-white/10 hover:to-white/5 hover:-translate-x-2 hover:scale-[1.02]
     hover:shadow-[0_2px_12px_rgba(139,92,246,0.15)]
     active:scale-95
     ${activeSection === id 
-      ? 'bg-gradient-to-r from-[#8b5cf6]/15 to-[#6353f2]/5 shadow-[inset_-2px_0_0_rgba(139,92,246,0.35),0_2px_16px_rgba(139,92,246,0.2)] text-white scale-[1.01]' 
+      ? 'bg-linear-to-r from-[#8b5cf6]/15 to-[#6353f2]/5 shadow-[inset_-2px_0_0_rgba(139,92,246,0.35),0_2px_16px_rgba(139,92,246,0.2)] text-white scale-[1.01]' 
       : ''}
     /* Responsive overrides */
     max-[880px]:justify-center max-[880px]:p-4 max-[880px]:hover:transform-none max-[880px]:hover:bg-transparent
@@ -106,7 +105,7 @@ export const Navbar: React.FC<HeaderProps> = ({
             bg-transparent border-none w-10 h-[30px] rounded-[10px] text-[var(--text-primary)]
             inline-flex items-center justify-center cursor-pointer text-xl mb-2
             transition-all duration-300 ease-out 
-            hover:-translate-y-1 hover:bg-gradient-to-br hover:from-white/10 hover:to-white/5 
+            hover:-translate-y-1 hover:bg-linear-to-br hover:from-white/10 hover:to-white/5 
             hover:text-[var(--primary-color)] hover:scale-110 hover:rotate-3
             hover:shadow-[0_4px_12px_rgba(139,92,246,0.2)]
             active:scale-95 active:rotate-0
@@ -124,7 +123,7 @@ export const Navbar: React.FC<HeaderProps> = ({
         {/* Brand / Logo */}
         <div className="flex items-center gap-3 justify-center text-[var(--primary-color)] whitespace-nowrap max-[880px]:hidden animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
           <div className={`
-            bg-gradient-to-br from-[#6353f2]/15 to-[#8b5cf6]/10 text-[var(--primary-color)] p-2 rounded-[25%] 
+            bg-linear-to-br from-[#6353f2]/15 to-[#8b5cf6]/10 text-[var(--primary-color)] p-2 rounded-[25%] 
             inline-flex items-center justify-center
             transition-all duration-300 hover:scale-105 hover:rotate-2
             hover:shadow-[0_0_20px_rgba(99,83,242,0.3)]
@@ -142,7 +141,7 @@ export const Navbar: React.FC<HeaderProps> = ({
           </div>
           {expanded && (
             <div className="font-bold text-base whitespace-nowrap animate-in fade-in slide-in-from-left-4 duration-500 delay-100">
-              <span className="bg-gradient-to-r from-[var(--primary-color)] via-purple-400 to-[var(--primary-color)] bg-clip-text text-transparent">
+              <span className="bg-linear-to-r from-[var(--primary-color)] via-purple-400 to-[var(--primary-color)] bg-clip-text text-transparent">
                 Matías Chacón
               </span>
             </div>
@@ -175,11 +174,11 @@ export const Navbar: React.FC<HeaderProps> = ({
               {activeSection === id && (
                 <span className={`
                   absolute -right-[15px] top-[12%] w-[6px] h-[76%] rounded-md
-                  bg-gradient-to-b from-[var(--primary-color)] via-purple-500 to-[#8a5af0]
+                  bg-linear-to-b from-[var(--primary-color)] via-purple-500 to-[#8a5af0]
                   shadow-[0_0_16px_rgba(99,83,242,0.85)] origin-center
                   animate-[indicator-in_0.3s_ease-out,pulse_2s_ease-in-out_infinite]
                   transition-all duration-200
-                  before:absolute before:inset-0 before:rounded-md before:bg-gradient-to-b before:from-white/30 before:to-transparent before:opacity-50
+                  before:absolute before:inset-0 before:rounded-md before:bg-linear-to-b before:from-white/30 before:to-transparent before:opacity-50
                   max-[880px]:-right-[3px] max-[880px]:top-[35%] max-[880px]:h-[35%]
                 `} />
               )}
@@ -208,11 +207,11 @@ export const Navbar: React.FC<HeaderProps> = ({
         <a
           className={`
             relative inline-flex items-center justify-center gap-2.5 overflow-hidden
-            bg-gradient-to-r from-[#8b5cf6] to-[#6353f2] text-white font-bold
+            bg-linear-to-r from-[#8b5cf6] to-[#6353f2] text-white font-bold
             rounded-xl shadow-[0_4px_14px_rgba(139,92,246,0.4)]
             hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] hover:scale-105
             active:scale-95 transition-all duration-200 cursor-pointer
-            before:absolute before:inset-0 before:bg-gradient-to-r before:from-transparent before:via-white/30 before:to-transparent
+            before:absolute before:inset-0 before:bg-linear-to-r before:from-transparent before:via-white/30 before:to-transparent
             before:translate-x-[-200%] before:skew-x-[-20deg] hover:before:translate-x-[200%]
             before:transition-transform before:duration-700 before:ease-out
             after:absolute after:inset-0 after:rounded-xl after:opacity-75
@@ -241,10 +240,10 @@ export const Navbar: React.FC<HeaderProps> = ({
           {/* Language Toggle */}
           <button
             className={`
-              bg-gradient-to-br from-white/5 to-white/3 border border-white/10 rounded-[10px]
+              bg-linear-to-br from-white/5 to-white/3 border border-white/10 rounded-[10px]
               text-[var(--text-primary)] inline-flex items-center justify-center cursor-pointer gap-2
               transition-all duration-300 ease-out
-              hover:bg-gradient-to-br hover:from-white/15 hover:to-white/8 
+              hover:bg-linear-to-br hover:from-white/15 hover:to-white/8 
               hover:border-[#8b5cf6]/30 hover:text-[var(--primary-color)] hover:scale-105
               hover:shadow-[0_4px_16px_rgba(139,92,246,0.2)]
               active:scale-95
