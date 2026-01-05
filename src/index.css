@@ -156,16 +156,25 @@
   @apply w-full h-full flex flex-col items-start;
 }
 
-.page, .page-content, .main-content {
+.page, .page-content {
   @apply flex flex-col items-start w-full h-full;
   transition: margin-left 320ms cubic-bezier(.2,.9,.2,1), padding 200ms;
 }
 
+/* Contenedor con scroll snap */
+.main-content.scroll-container {
+  @apply h-screen overflow-y-auto overflow-x-hidden;
+  scroll-snap-type: y mandatory;
+  scroll-behavior: smooth;
+  margin-left: var(--sidebar-collapsed);
+  width: calc(100% - var(--sidebar-collapsed));
+  transition: margin-left 320ms cubic-bezier(.2,.9,.2,1);
+}
+
 /* Detección de Sidebar expandido para mover contenido */
-body:has([aria-expanded="true"]) .main-content,
-body:has([aria-expanded="true"]) .page-content {
-  /* margin-left: var(--sidebar-expanded); */
-  /* width: 100% ; */
+body:has([aria-expanded="true"]) .main-content.scroll-container {
+  margin-left: var(--sidebar-expanded);
+  width: calc(100% - var(--sidebar-expanded));
 }
 
 /* Mobile Layout Shift Override */
@@ -174,6 +183,12 @@ body:has([aria-expanded="true"]) .page-content {
     margin-left: 0 !important;
     width: 100% !important;
     padding-bottom: calc(var(--sidebar-mobile-height) + 1.5rem);
+  }
+  
+  .main-content.scroll-container {
+    margin-left: 0 !important;
+    width: 100% !important;
+    height: calc(100vh - var(--sidebar-mobile-height));
   }
   
   /* Smooth touch scrolling */
