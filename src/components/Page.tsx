@@ -96,7 +96,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         {/* Card de Perfil Compacto Mobile */}
         <div className="w-full max-[880px]:bg-gradient-to-br max-[880px]:from-[#6353f2]/5 max-[880px]:to-transparent max-[880px]:p-3 max-[880px]:rounded-2xl max-[880px]:border max-[880px]:border-[#6353f2]/10">
           {/* Foto de perfil - Más compacta en mobile */}
-          <div className="relative group w-fit mx-auto lg:mx-0">
+          <div className="relative group w-fit mx-auto">
             <div className="absolute inset-[-3px] max-[880px]:inset-[-2px] bg-gradient-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
             <div className="relative w-[110px] h-[110px] max-[880px]:w-[70px] max-[880px]:h-[70px] rounded-full overflow-hidden border-[3px] max-[880px]:border-[2px] border-[#0f0e17] bg-[#0f0e17] shadow-2xl">
               <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
