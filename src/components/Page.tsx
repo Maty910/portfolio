@@ -1,7 +1,6 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { Download, ExternalLink, Github, Terminal, Cpu, Database } from 'lucide-react';
-import { SiReact, SiNodedotjs, SiTypescript } from 'react-icons/si';
+import { ExternalLink, Github, Terminal, Cpu, Database } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import type { Section } from '../types';
 
@@ -187,16 +186,6 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
                       max-[880px]:right-3 max-[880px]:top-2">
         <img className="w-[80px] max-[880px]:w-[35px] object-contain opacity-80 hover:opacity-100 hover:drop-shadow-[0_0_15px_rgba(99,83,242,0.5)] transition-all duration-500 max-[880px]:hover:drop-shadow-[0_0_10px_rgba(99,83,242,0.4)]" src="/Logo Mati.svg" alt="Matias Logo" />
       </div>
-
-      {/* FAB Download CV - Mobile */}
-      {/* <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" 
-         className="lg:hidden fixed bottom-5 right-4 z-50 flex items-center justify-center w-12 h-12 rounded-full bg-gradient-to-br from-[#6353f2] to-[#5243d6] text-white shadow-xl shadow-[#6353f2]/30 hover:shadow-[#6353f2]/50 active:scale-90 transition-all animate-in slide-in-from-bottom-8 duration-500 delay-700">
-        <Download size={18} />
-        <span className="absolute -top-0.5 -right-0.5 flex h-2.5 w-2.5">
-          <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-purple-400 opacity-75"></span>
-          <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-purple-500"></span>
-        </span>
-      </a> */}
 
       {/* Contenido Principal */}
       <div className="content-wrapper relative z-10 w-full min-h-screen max-[880px]:pt-0 transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">

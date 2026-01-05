@@ -251,7 +251,7 @@ export const Navbar: React.FC<HeaderProps> = ({
       <div className="lg:hidden fixed top-6 right-20 z-50 flex items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
         <div className="flex items-center gap-1 p-1 rounded-full bg-[#16161e]/80 backdrop-blur-md border border-white/10 shadow-lg">
           <div className="scale-75 origin-center">
-             <ThemeToggle theme={theme} setTheme={setTheme} />
+            <ThemeToggle theme={theme} setTheme={setTheme} />
           </div>
           <div className="w-[1px] h-4 bg-white/10 mx-1"></div>
           <button

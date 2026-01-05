@@ -1,7 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ArrowRight, FileText, Mail, Github } from 'lucide-react';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { ArrowRight } from 'lucide-react';
 import type { Section } from '../types';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
 
@@ -23,15 +22,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
     >
       <div className="w-full max-w-[900px] px-8 md:px-16 py-12 max-[880px]:px-4 max-[880px]:py-8">
         <div className="flex flex-col items-start gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:gap-3">
-        
-        {/* Badge "Open to work" */}
-        {/* <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6353f2]/15 border border-[#6353f2]/30 text-[#6353f2] text-xs font-medium shadow-[0_0_10px_rgba(99,83,242,0.15)] max-[880px]:text-[11px]">
-          <span className="relative flex h-2 w-2 max-[880px]:h-2.5 max-[880px]:w-2.5">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6353f2] opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6353f2] max-[880px]:h-2.5 max-[880px]:w-2.5"></span>
-          </span>
-          Available for new opportunities
-        </div> */}
 
         {/* H1 Principal (Nombre) */}
         <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight m-0 group w-fit cursor-default max-[880px]:text-2xl">
