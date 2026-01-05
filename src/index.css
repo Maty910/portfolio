@@ -92,7 +92,7 @@
   }
 
   body {
-    @apply w-screen h-full min-h-screen relative overflow-x-hidden font-sans text-base leading-relaxed antialiased;
+    @apply w-full h-full min-h-full relative overflow-x-hidden font-sans text-base leading-relaxed antialiased;
     color: var(--text-primary);
     background-color: var(--bg-color);
     
@@ -188,7 +188,7 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   .main-content.scroll-container {
     margin-left: 0 !important;
     width: 100% !important;
-    height: calc(100vh - var(--sidebar-mobile-height));
+    /* height: calc(100vh - var(--sidebar-mobile-height)); */
   }
   
   /* Smooth touch scrolling */
