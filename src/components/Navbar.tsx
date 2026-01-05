@@ -7,7 +7,7 @@ import {
   FiMail,
   FiDownload
 } from 'react-icons/fi'
-import { Sun, Moon, Languages } from 'lucide-react' // Usamos Lucide para iconos más modernos
+import { Sun, Moon, Languages } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
 import type { Section, SetActive } from '../types';
