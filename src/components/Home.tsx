@@ -1,6 +1,6 @@
 import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
-import { ArrowRight, FileText, Mail, Github, Download } from 'lucide-react';
+import { ArrowRight, Mail, Github, Download } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import type { Section } from '../types';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
@@ -12,6 +12,19 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   const { t } = useLanguage();
 
+  // Función auxiliar para resaltar palabras clave en la bio (esto es opcional, podés hacerlo directo en el JSX si preferís)
+  // Pero para mantenerlo simple y directo como pediste, vamos a hardcodear la bio con estilos acá mismo
+  // Ojo: Si usás traducciones (t), tendrías que ver cómo manejar el HTML dentro del string traducido.
+  // Asumiendo que t('header.bio') devuelve un string plano, lo vamos a reemplazar visualmente acá para el efecto.
+  
+  const bioContent = (
+    <>
+      Soy Matías Chacón — Desarrollador Full-Stack apasionado por crear <span className="text-[#6353f2] font-semibold">interfaces modernas</span> y servicios backend sólidos. Trabajo principalmente con <span className="text-[#6353f2] font-semibold">React</span> y <span className="text-[#6353f2] font-semibold">Node.js</span>, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción.
+    </>
+  );
+  // Nota: Si necesitás soporte multi-idioma real con estilos intercalados, lo ideal es usar una librería como 'react-i18next' con interpolación,
+  // o tener componentes de texto separados por idioma. Por ahora, para el ejemplo visual, uso este bloque estático o podrías adaptar tu i18n.
+
   return (
     <section 
       id="home"
@@ -20,7 +33,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                 pl-[var(--sidebar-collapsed)] max-[880px]:pl-0
                 max-[880px]:min-h-[calc(100vh-var(--sidebar-mobile-height))]"
     >
-      <div className="w-full max-w-[800px] px-0 md:px-0 py-12 max-[880px]:px-4 max-[880px]:py-8 md:ml-25">
+      <div className="w-full max-w-[900px] px-8 md:px-16 py-12 max-[880px]:px-4 max-[880px]:py-8 ml-15">
         
         <div className="flex flex-col items-start gap-4 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:gap-3">
 
@@ -33,7 +46,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             Available for new opportunities
           </div>
 
-          {/* H1 Principal - Propuesta de Valor Clara */}
+          {/* H1 Principal */}
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight m-0 group w-fit cursor-default max-[880px]:text-3xl">
             <div className="relative inline-block">
               Building Modern
@@ -43,8 +56,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
           {/* Subtítulo + Carrusel */}
           <div className="flex flex-col md:flex-row items-start md:items-center gap-4 md:gap-6 w-full">
-            
-            {/* Subtítulo Violeta */}
             <span className="text-[#6353f2] text-2xl md:text-3xl font-normal whitespace-nowrap max-[880px]:text-xl max-[880px]:font-medium">
               Web Applications
             </span>
@@ -53,7 +64,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             <div className="flex-1 min-w-0 w-full md:max-w-[380px] overflow-hidden bg-linear-to-br from-emerald-500/10 to-emerald-500/5 backdrop-blur-sm rounded-xl border border-emerald-500/10 hover:border-emerald-500/30 hover:shadow-lg hover:shadow-emerald-500/5 transition-all duration-300 group relative py-1.5 max-[880px]:py-2">
               <div className="w-full">
                 <div className="flex w-max animate-marquee">
-                  
                   {/* Grupo 1 */}
                   <div className="flex items-center gap-6 px-4">
                     <SiReact className="text-[#61dafb]" size={20} />
@@ -63,7 +73,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                     <SiMongodb className="text-[#47a248]" size={20} />
                     <SiPostgresql className="text-[#336791]" size={20} />
                   </div>
-
                   {/* Grupo 2 */}
                   <div className="flex items-center gap-6 px-4">
                     <SiReact className="text-[#61dafb]" size={20} />
@@ -73,7 +82,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                     <SiMongodb className="text-[#47a248]" size={20} />
                     <SiPostgresql className="text-[#336791]" size={20} />
                   </div>
-                  
                   {/* Grupo 3 */}
                   <div className="flex items-center gap-6 px-4">
                     <SiReact className="text-[#61dafb]" size={20} />
@@ -83,19 +91,25 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                     <SiMongodb className="text-[#47a248]" size={20} />
                     <SiPostgresql className="text-[#336791]" size={20} />
                   </div>
-
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Bio */}
-          <p className="text-[#a7a9be] text-lg leading-relaxed w-full mt-2 max-[880px]:text-sm max-[880px]:leading-relaxed max-[880px]:mt-1">
-            {t('header.bio')}
-          </p>
+          {/* BIO CON ESTILOS MEJORADOS Y TEXTO RESALTADO */}
+          <div className="mt-4 max-w-2xl">
+            <p className="text-[#a7a9be] text-lg leading-relaxed max-[880px]:text-sm max-[880px]:leading-relaxed">
+               {/* Opción A: Si usás el contenido estático definido arriba */}
+              {bioContent}
+              
+              {/* Opción B: Si querés seguir usando t() pero no tenés formato en el i18n, 
+                  dejanos el estático por ahora para que veas el efecto violeta. 
+                   Si preferís t(), avisame y vemos cómo inyectar HTML. */}
+            </p>
+          </div>
 
           {/* Botones de Acción */}
-          <div className="flex flex-wrap gap-4 mt-4 max-[880px]:w-full max-[880px]:gap-2 max-[880px]:mt-3">
+          <div className="flex flex-wrap gap-4 mt-6 max-[880px]:w-full max-[880px]:gap-2 max-[880px]:mt-4">
             
             {/* Botón CV (Primario - Violeta) */}
             <a 
@@ -132,7 +146,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           </div>
 
           {/* Redes Sociales */}
-          <div className="flex items-center gap-6 mt-6 pt-6 border-t border-white/5 w-full max-w-xl max-[880px]:mt-4 max-[880px]:pt-4">
+          <div className="flex items-center gap-6 mt-8 pt-6 border-t border-white/5 w-full max-w-xl max-[880px]:mt-4 max-[880px]:pt-4">
             <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="text-[#a7a9be] hover:text-white transition-colors transform hover:scale-110">
               <Github size={24} className="max-[880px]:w-6 max-[880px]:h-6" />
             </a>
