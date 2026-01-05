@@ -76,7 +76,7 @@ export const Navbar: React.FC<HeaderProps> = ({
     icon: Icon, 
     label, 
     active, 
-    delay = 0 
+    // delay = 0 
   }: { 
     onClick: () => void, 
     icon: any, 

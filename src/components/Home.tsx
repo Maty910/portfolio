@@ -1,5 +1,5 @@
 import React from 'react';
-import { useLanguage } from '../context/LanguageContext';
+// import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Mail, Github, Download } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import type { Section } from '../types';
@@ -10,7 +10,7 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
-  const { t } = useLanguage();
+  // const { t } = useLanguage();
 
   // Función auxiliar para resaltar palabras clave en la bio (esto es opcional, podés hacerlo directo en el JSX si preferís)
   // Pero para mantenerlo simple y directo como pediste, vamos a hardcodear la bio con estilos acá mismo
