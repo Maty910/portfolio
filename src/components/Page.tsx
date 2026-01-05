@@ -1,6 +1,6 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Terminal, Cpu, Database, Download, Mail } from 'lucide-react';
+import { ExternalLink, Github, Terminal, Cpu, Database, Mail } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import type { Section } from '../types';
 
