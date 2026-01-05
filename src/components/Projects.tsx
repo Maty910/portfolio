@@ -30,7 +30,7 @@ export const Projects = () => {
                 max-[880px]:min-h-[calc(100vh-var(--sidebar-mobile-height))]
                 pt-20 max-[880px]:pt-8"
     >
-      <div className="w-full max-w-[900px] px-8 md:px-16 py-8 max-[880px]:px-4 max-[880px]:py-4">
+      <div className="w-full max-w-[900px] px-8 md:px-16 py-8 max-[880px]:px-4 max-[880px]:py-4 ml-15">
       {/* Header */}
       <h2 className="text-[2em] text-[var(--primary-color)] mb-4">{t('projects.title')}</h2>
       <p className="text-[var(--text-secondary)] text-base leading-[1.5] mb-6">

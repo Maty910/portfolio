@@ -14,7 +14,7 @@ export function Contact() {
                 pl-[var(--sidebar-collapsed)] max-[880px]:pl-0
                 max-[880px]:min-h-[calc(100vh-var(--sidebar-mobile-height))]"
     >
-      <div className="w-full max-w-[900px] px-8 md:px-16 py-12 max-[880px]:px-4 max-[880px]:py-8">
+      <div className="w-full max-w-[900px] px-8 md:px-16 py-12 max-[880px]:px-4 max-[880px]:py-8 ml-15">
       <h2 className="text-[2em] text-[var(--primary-color)] mb-4">{t('contact.title')}</h2>
       <p className="text-[var(--text-secondary)] text-base leading-[1.5] mb-6">{t('contact.sub')}</p>
       <ul className="list-none p-0 m-0">
