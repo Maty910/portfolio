@@ -60,9 +60,14 @@ export function Skills() {
 
   return (
     <section 
-      className="absolute right-[calc(var(--pad)*2)] bottom-[calc(var(--pad)*2)] w-[min(900px,60%)] h-[72vh] overflow-y-auto overflow-x-hidden py-4 [mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.1)_1%,rgba(0,0,0,1)_5%,rgba(0,0,0,1)_84%)] [-webkit-mask-image:linear-gradient(to_bottom,transparent_0%,rgba(0,0,0,0.1)_5%,rgba(0,0,0,1)_15%,rgba(0,0,0,1)_100%)] max-[880px]:relative max-[880px]:bottom-auto max-[880px]:right-auto max-[880px]:w-full max-[880px]:h-auto max-[880px]:overflow-visible max-[880px]:[mask-image:none] max-[880px]:[-webkit-mask-image:none] max-[880px]:mb-[calc(var(--sidebar-mobile-height)+12px)] max-[880px]:py-4" 
       id="skills"
+      className="snap-start min-h-screen w-full flex items-start justify-center relative overflow-y-auto
+                transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
+                pl-[var(--sidebar-collapsed)] max-[880px]:pl-0
+                max-[880px]:min-h-[calc(100vh-var(--sidebar-mobile-height))]
+                pt-20 max-[880px]:pt-8"
     >
+      <div className="w-full max-w-[900px] px-8 md:px-16 py-8 max-[880px]:px-4 max-[880px]:py-4">
       <h2 className="text-[2em] text-[var(--primary-color)] mb-4">
         {t('skills.title')}
       </h2>
@@ -100,6 +105,7 @@ export function Skills() {
         >
             {t('skills.projects')}
         </a>
+      </div>
       </div>
     </section>
   );
