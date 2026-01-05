@@ -146,15 +146,15 @@ export const Navbar: React.FC<HeaderProps> = ({
                   <button
                     onClick={() => scrollToSection(id as Section)}
                     className={`
-                      relative w-full flex items-center gap-3 p-3 rounded-xl cursor-pointer border border-transparent
+                      relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent
                       transition-all duration-300 ease-out outline-none overflow-hidden
+                      
+                      /* Desktop Gap Logic: Solo gap cuando está expandido */
+                      ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'}
                       
                       /* Desktop Hover/Active */
                       min-[881px]:hover:bg-white/5 min-[881px]:hover:border-white/5
                       ${isActive ? 'min-[881px]:bg-[#6353f2]/10 min-[881px]:border-[#6353f2]/20' : ''}
-                      
-                      /* Layout Fix for Collapse */
-                      ${!expanded ? 'min-[881px]:justify-center' : ''}
 
                       /* Mobile Layout */
                       max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 max-[880px]:h-full max-[880px]:p-1 max-[880px]:rounded-lg
@@ -194,24 +194,24 @@ export const Navbar: React.FC<HeaderProps> = ({
         {/* --- 3. BOTTOM SECTION (Settings & CV) --- */}
         <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-white/5 w-full">
           
-          {/* CV Button - FIX DE TAMAÑO Y BRILLO */}
+          {/* CV Button */}
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
             className={`
-              group relative flex items-center justify-center gap-3 rounded-xl overflow-hidden
+              group relative flex items-center justify-center rounded-xl overflow-hidden
               bg-linear-to-r from-[#8b5cf6] to-[#6353f2] text-white font-bold
               shadow-[0_4px_14px_rgba(139,92,246,0.4)]
               transition-all duration-300 ease-out
               hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] hover:scale-[1.02] active:scale-95
               
-              /* FIX DE TAMAÑO: Altura fija (h-11) para evitar saltos verticales */
+              /* FIX DE TAMAÑO y GAP: Altura fija y gap condicional */
               h-11
-              ${expanded ? 'w-full px-4' : 'w-11 px-0'}
+              ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}
             `}
             title="Download CV"
           >
-            {/* Efecto Brillo (Shine) restaurado */}
+            {/* Efecto Brillo (Shine) */}
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
 
             <FiDownload className="text-xl shrink-0 relative z-20" />
@@ -251,7 +251,7 @@ export const Navbar: React.FC<HeaderProps> = ({
       <div className="lg:hidden fixed top-6 right-20 z-50 flex items-center gap-2 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
         <div className="flex items-center gap-1 p-1 rounded-full bg-[#16161e]/80 backdrop-blur-md border border-white/10 shadow-lg">
           <div className="scale-75 origin-center">
-            <ThemeToggle theme={theme} setTheme={setTheme} />
+             <ThemeToggle theme={theme} setTheme={setTheme} />
           </div>
           <div className="w-[1px] h-4 bg-white/10 mx-1"></div>
           <button
