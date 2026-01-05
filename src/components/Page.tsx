@@ -1,8 +1,8 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Terminal, Cpu, Database, Download, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Globe } from 'lucide-react';
+import { ExternalLink, Github, Cpu, Database, Download, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiTypescript } from 'react-icons/si';
 import type { Section } from '../types';
 
 interface PageProps extends PropsWithChildren {
