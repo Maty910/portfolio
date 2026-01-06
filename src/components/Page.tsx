@@ -1,6 +1,6 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Cpu, Database, Download, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest } from 'lucide-react';
+import { ExternalLink, Github, Cpu, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { SiReact, SiNodedotjs, SiTypescript } from 'react-icons/si';
 import type { Section } from '../types';
@@ -242,18 +242,15 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>LinkedIn</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-[#6353f2] text-white text-sm font-semibold shadow-lg shadow-[#6353f2]/20 hover:bg-[#5243d6] hover:translate-y-[-2px] transition-all">
-            <Download size={16} /><span>Download CV</span>
-          </a>
         </div>
 
         <div className="lg:hidden flex justify-center gap-3 w-full">
-           <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-[#a7a9be] hover:text-white border border-white/10">
-             <Github size={16} />
-           </a>
-           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2 bg-[#0077b5]/10 rounded-lg text-[#a7a9be] hover:text-[#0077b5] border border-[#0077b5]/20">
-             <LinkedInIcon style={{ fontSize: 18 }} />
-           </a>
+          <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-[#a7a9be] hover:text-white border border-white/10">
+            <Github size={16} />
+          </a>
+          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2 bg-[#0077b5]/10 rounded-lg text-[#a7a9be] hover:text-[#0077b5] border border-[#0077b5]/20">
+            <LinkedInIcon style={{ fontSize: 18 }} />
+          </a>
         </div>
       </div>
     );
@@ -279,17 +276,10 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
 
       {/* Desktop Layout */}
       <div className="hidden min-[881px]:block">
-        <header className="fixed top-8 left-28 z-20 transition-all duration-300 animate-in fade-in slide-in-from-top-4 duration-700">
-          <h1 className="flex items-center gap-3 mb-1 text-2xl font-bold group cursor-default">
-            <div className="relative">
-              <span className="bg-gradient-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent group-hover:via-[#6353f2] transition-all duration-500">Matías Chacón</span>
-              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-[#6353f2] group-hover:w-full transition-all duration-500" />
-            </div>
-            <FiCode className="text-[#6353f2] animate-pulse" size={24} />
-          </h1>
+        <header className="fixed top-8 left-28 z-20 transition-all animate-in fade-in slide-in-from-top-4 duration-700">
           <p className="text-[#a7a9be] text-xs font-mono tracking-wider pl-1 border-l-2 border-[#6353f2]/30 ml-1 px-2 h-4">{typingText}</p>
         </header>
-        <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all duration-300 animate-in zoom-in-95 duration-700 delay-150">
+        <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all animate-in zoom-in-95 duration-700 delay-150">
           {renderSidebarContent()}
         </div>
       </div>
