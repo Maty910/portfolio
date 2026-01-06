@@ -8,6 +8,7 @@ import { Contact } from './components/Contact'
 import { LanguageProvider } from './context/LanguageContext'
 import { Footer } from './components/Footer'
 import type { Section } from './types'
+import { Intro } from './components/Intro'
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('home');
@@ -45,6 +46,7 @@ function App() {
   return (
     <LanguageProvider>
       {/* Pasamos activeSection a Page */}
+        <Intro onFinish={() => {}} />
       <Page activeSection={activeSection}>
         <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
         <main className="main-content scroll-container">
