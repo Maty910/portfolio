@@ -1,7 +1,6 @@
 import React from 'react';
 // import { useLanguage } from '../context/LanguageContext';
-import { ArrowRight, Mail, Github, Download } from 'lucide-react';
-import LinkedInIcon from '@mui/icons-material/LinkedIn';
+import { ArrowRight, Download } from 'lucide-react';
 import type { Section } from '../types';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
 
@@ -49,7 +48,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           {/* H1 Principal */}
           <h1 className="text-4xl md:text-6xl font-bold text-white leading-tight m-0 group w-fit cursor-default max-[880px]:text-3xl">
             <div className="relative inline-block">
-              Building Modern
+              <span className="bg-gradient-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent">Matías Chacón</span>
               <div className="absolute -bottom-1 left-0 w-0 h-[3px] bg-[#6353f2] group-hover:w-full transition-all duration-500 ease-out" />
             </div>
           </h1>
@@ -144,20 +143,6 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             </button>
             
           </div>
-
-          {/* Redes Sociales */}
-          <div className="flex items-center gap-6 mt-8 pt-6 border-t border-white/5 w-full max-w-xl max-[880px]:mt-4 max-[880px]:pt-4">
-            <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="text-[#a7a9be] hover:text-white transition-colors transform hover:scale-110">
-              <Github size={24} className="max-[880px]:w-6 max-[880px]:h-6" />
-            </a>
-            <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="text-[#a7a9be] hover:text-[#0a66c2] transition-colors transform hover:scale-110">
-              <LinkedInIcon style={{ fontSize: 28 }} className="max-[880px]:!text-[24px]" />
-            </a>
-            <a href="mailto:tuemail@gmail.com" className="text-[#a7a9be] hover:text-[#6353f2] transition-colors transform hover:scale-110">
-              <Mail size={24} className="max-[880px]:w-6 max-[880px]:h-6" />
-            </a>
-          </div>
-
         </div>
       </div>
 
