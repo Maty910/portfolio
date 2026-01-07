@@ -1,12 +1,13 @@
 import { 
   SiReact, SiNodedotjs, SiCss3, SiExpress, SiJavascript, SiTypescript, 
   SiHtml5, SiPostgresql, SiSqlite, SiMongodb, SiPostman, SiPython, 
-  SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma, SiCanva,
+  SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma,
   SiNextdotjs, SiDocker,
+  SiCanva,
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { 
-  BrainCircuit, CheckCircle2, 
+  BrainCircuit, 
   Globe, Code2, Cpu, Database, Layout, Wrench, Terminal, Sparkles
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
@@ -25,7 +26,9 @@ const SKILL_CATEGORIES = [
       { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
       { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
       { name: 'CSS3', icon: SiCss3, color: '#1572b6' },
+      { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
       { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
+      { name: 'Canva', icon: SiCanva, color: '#00c4cc' },
     ]
   },
   {
@@ -40,6 +43,7 @@ const SKILL_CATEGORIES = [
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
       { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
       { name: 'SQLite', icon: SiSqlite, color: '#0f80cc' },
+      { name: 'JSON', icon: SiJson, color: '#f7df1e' },
     ]
   },
   {
@@ -72,37 +76,37 @@ export function Skills() {
     <section 
       id="skills"
       className="skills-section snap-start min-h-screen w-full flex flex-col justify-start relative
-                 max-[880px]:min-h-[calc(100vh-80px)]"
+                max-[880px]:min-h-[calc(100vh-80px)]"
     >
       {/* Contenedor Principal */}
-      <div className="w-full max-w-[1200px] px-6 md:px-12 py-16 mx-auto flex flex-col justify-center h-full
-                      max-[880px]:px-4 max-[880px]:py-10">
+      <div className="w-full max-w-[850px] px-6 md:px-12 py-12 flex flex-col justify-center h-full
+                      max-[880px]:px-4 max-[880px]:py-8 max-[880px]:max-w-full">
         
         {/* Header de Sección con animación de entrada */}
-        <div className="flex flex-col gap-3 mb-12 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-8">
+        <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#6353f2] to-[#8b5cf6] shadow-lg shadow-[#6353f2]/20 text-white">
-              <Cpu size={28} className="max-[880px]:w-5 max-[880px]:h-5" />
+            <div className="p-2 rounded-xl bg-gradient-to-br from-[#6353f2] to-[#8b5cf6] shadow-lg shadow-[#6353f2]/20 text-white">
+              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
-            <h2 className="text-4xl md:text-5xl font-bold text-white tracking-tight max-[880px]:text-3xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-[880px]:text-2xl">
               {t('skills.title')}
             </h2>
           </div>
-          <p className="text-[#a7a9be] text-lg max-w-2xl leading-relaxed max-[880px]:text-base ml-14 max-[880px]:ml-0">
+          <p className="text-[#a7a9be] text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
             {t('skills.sub')}
           </p>
         </div>
 
         {/* --- GRID DE CATEGORÍAS (Tech Stack) con stagger animation --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-10 max-[880px]:gap-4 max-[880px]:mb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 max-[880px]:gap-3 max-[880px]:mb-5">
           {SKILL_CATEGORIES.map((category, categoryIndex) => (
             <div 
               key={category.title}
-              className="group flex flex-col p-6 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-2xl
-                         hover:from-white/[0.08] hover:to-white/[0.04] hover:border-white/20 hover:shadow-xl hover:shadow-black/20
-                         transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-                         animate-in fade-in slide-in-from-bottom-8 
-                         max-[880px]:p-5"
+              className="group flex flex-col p-5 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-2xl
+                        hover:from-white/[0.08] hover:to-white/[0.04] hover:border-white/20 hover:shadow-xl hover:shadow-black/20
+                        transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+                        animate-in fade-in slide-in-from-bottom-8 
+                        max-[880px]:p-4"
               style={{ 
                 animationDelay: `${150 + categoryIndex * 100}ms`,
                 animationDuration: '700ms'
@@ -118,16 +122,16 @@ export function Skills() {
               </div>
               
               {/* Skills Grid */}
-              <div className="flex flex-wrap gap-2.5">
+              <div className="flex flex-wrap gap-2">
                 {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skill.name} 
                     className="skill-badge group/skill relative flex items-center gap-2 px-3 py-2 rounded-lg 
-                               border border-white/10 backdrop-blur-sm
-                               bg-[#0f0e17]/80
-                               hover:scale-105 hover:border-white/30 hover:-translate-y-0.5
-                               transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-                               cursor-default overflow-hidden"
+                              border border-white/10 backdrop-blur-sm
+                              bg-[#0f0e17]/80
+                              hover:scale-105 hover:border-white/30 hover:-translate-y-0.5
+                              transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+                              cursor-default overflow-hidden"
                     style={{
                       animationDelay: `${300 + categoryIndex * 100 + skillIndex * 50}ms`
                     }}
@@ -167,11 +171,11 @@ export function Skills() {
 
         {/* --- SOFT SKILLS & CTA --- */}
         <div className="flex flex-col lg:flex-row gap-6 items-stretch animate-in fade-in slide-in-from-bottom-8 duration-700"
-             style={{ animationDelay: '500ms' }}>
+            style={{ animationDelay: '500ms' }}>
           
           {/* Soft Skills con gradientes */}
-          <div className="flex-1 p-6 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10 
-                          hover:from-white/[0.08] hover:border-white/20 transition-all duration-[800ms] max-[880px]:p-5">
+          <div className="flex-1 p-5 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10 
+                          hover:from-white/[0.08] hover:border-white/20 transition-all duration-[800ms] max-[880px]:p-4">
             <h3 className="text-base font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
               <BrainCircuit size={18} className="text-[#6353f2]" />
               {t('skills.sub2')}
@@ -181,13 +185,13 @@ export function Skills() {
                 <div 
                   key={skill.name}
                   className="group/soft relative px-4 py-3 rounded-xl bg-[#0f0e17]/50 border border-white/10 
-                             hover:border-white/30 hover:scale-105 hover:-translate-y-0.5
-                             transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] cursor-default overflow-hidden"
+                            hover:border-white/30 hover:scale-105 hover:-translate-y-0.5
+                            transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] cursor-default overflow-hidden"
                 >
                   {/* Gradient background on hover */}
                   <div className={`absolute inset-0 opacity-0 group-hover/soft:opacity-100 bg-gradient-to-br ${skill.color} 
                                   transition-opacity duration-500`}
-                       style={{ opacity: 0.1 }} 
+                      style={{ opacity: 0.1 }} 
                   />
                   
                   <div className="relative z-10 flex items-center gap-2">
@@ -202,14 +206,14 @@ export function Skills() {
           </div>
 
           {/* CTA Box mejorado */}
-          <div className="lg:w-[340px] p-6 rounded-2xl bg-gradient-to-br from-[#6353f2]/20 via-[#8b5cf6]/10 to-transparent 
-                          border border-[#6353f2]/30 flex flex-col gap-4 justify-between
+          <div className="lg:w-[320px] p-5 rounded-2xl bg-gradient-to-br from-[#6353f2]/20 via-[#8b5cf6]/10 to-transparent 
+                          border border-[#6353f2]/30 flex flex-col gap-3 justify-between
                           hover:from-[#6353f2]/25 hover:border-[#6353f2]/50 hover:shadow-xl hover:shadow-[#6353f2]/10
-                          transition-all duration-[800ms] relative overflow-hidden group/cta max-[880px]:p-5">
+                          transition-all duration-[800ms] relative overflow-hidden group/cta max-[880px]:p-4">
             
             {/* Animated gradient overlay */}
             <div className="absolute inset-0 bg-gradient-to-br from-[#6353f2]/0 via-[#8b5cf6]/10 to-[#6353f2]/0 
-                           opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000" />
+                          opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000" />
             
             <div className="relative z-10">
               <div className="flex items-start gap-2 mb-3">
