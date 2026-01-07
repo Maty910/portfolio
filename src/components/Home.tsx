@@ -25,12 +25,9 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
       id="home"
       className="snap-center min-h-screen w-full flex flex-col justify-center relative
                  transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
-                 /* En mobile usamos todo el alto disponible menos el header */
                  max-[880px]:min-h-[calc(100vh-120px)]
-                 /* En desktop agregamos margen izquierdo para evitar el sidebar */
                  min-[881px]:pl-[280px]"
     >
-      {/* Contenedor principal con márgenes seguros */}
       <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto flex flex-col justify-center h-full
                       max-[880px]:px-4 max-[880px]:pt-8">
         
@@ -48,19 +45,22 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
           {/* HEADLINE PRINCIPAL */}
           <div className="flex flex-col gap-2 w-full max-[880px]:gap-1.5">
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight group cursor-default max-[880px]:text-3xl">
+            <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight group cursor-default max-[880px]:text-3xl relative z-10">
               <div className="relative inline-block">
-                Building Modern
+                {/* Texto Blanco con Brillo Violeta Animado */}
+                <span className="drop-shadow-[0_0_15px_rgba(99,83,242,0.6)] animate-pulse-slow">
+                  Architecting Scalable
+                </span>
                 <div className="absolute -bottom-2 left-0 w-1/3 h-[4px] bg-[#6353f2] rounded-full group-hover:w-full transition-all duration-700 ease-out" />
               </div>
             </h1>
             
-            <div className="flex flex-col md:flex-row items-start md:items-center gap-2 md:gap-6 w-full">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6353f2] to-[#a8a1ff] text-3xl md:text-5xl font-bold tracking-tight max-[880px]:text-xl animate-text-gradient bg-[length:200%_auto]">
-                Web Applications
+            <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 w-full">
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6353f2] to-[#a8a1ff] text-3xl md:text-5xl font-bold tracking-tight max-[880px]:text-2xl animate-text-gradient bg-[length:200%_auto]">
+                Digital Solutions
               </span>
               
-              {/* Carrusel (Techs) - Oculto en mobile muy chico para limpiar la vista */}
+              {/* Carrusel (Techs) */}
               <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-white/5 pl-6 ml-2">
                  <div className="flex w-max animate-marquee items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                     {[1, 2].map((i) => (
@@ -81,43 +81,45 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           {/* BIO */}
           <div className="mt-2 max-w-2xl border-l-2 border-[#6353f2]/30 pl-4 md:pl-6
                           max-[880px]:pl-3 max-[880px]:mt-1">
-            <p className="text-[#a7a9be] text-lg leading-relaxed max-[880px]:text-sm max-[880px]:leading-relaxed">
+            <p className="text-[#a7a9be] text-lg leading-relaxed max-[880px]:text-base max-[880px]:leading-normal">
               {bioContent}
             </p>
           </div>
 
-          {/* BOTONES DE ACCIÓN (Sin redes sociales) */}
-          <div className="flex flex-wrap gap-4 mt-4 w-full max-[880px]:gap-2.5 max-[880px]:mt-3">
-            
-            {/* Botón CV (Primario) */}
+          {/* BOTONES DE ACCIÓN */}
+          <div className="flex flex-wrap gap-4 mt-4 w-full max-[880px]:gap-3">
+
+            {/* Botón Proyectos */}
+            <button 
+              onClick={() => setActiveSection('projects')}
+              className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl
+                        bg-transparent border border-[#a7a9be]/30 text-white font-medium
+                        hover:bg-white/5 hover:border-white/50 hover:text-white
+                        transition-all duration-300 active:scale-95 cursor-pointer
+                        max-[880px]:flex-1 max-[880px]:text-sm"
+            >
+              Ver Proyectos
+              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+
+            {/* Botón CV */}
             <a 
               href="/CV/CV Matias Chacon.pdf" 
               target="_blank"
               rel="noopener noreferrer"
               className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
-                         bg-[#6353f2] text-white font-bold tracking-wide
-                         shadow-[0_0_20px_rgba(99,83,242,0.3)]
-                         hover:shadow-[0_0_30px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95
-                         transition-all duration-300 group/btn no-underline
-                         max-[880px]:flex-1 max-[880px]:text-xs max-[880px]:px-4 max-[880px]:py-2.5 cursor-pointer"
+                        bg-[#6353f2] text-white font-bold tracking-wide
+                        shadow-[0_0_20px_rgba(99,83,242,0.3)]
+                        hover:shadow-[0_0_30px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95
+                        transition-all duration-300 group/btn no-underline
+                        max-[880px]:flex-1 max-[880px]:text-sm cursor-pointer"
             >
               <div className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
-              <Download size={20} className="relative z-20 max-[880px]:w-4 max-[880px]:h-4" />
-              <span className="relative z-20 max-[880px]:text-xs">Descargar CV</span>
+              <Download size={20} className="relative z-20" />
+              <span className="relative z-20">Descargar CV</span>
             </a>
 
-            {/* Botón Proyectos (Secundario) */}
-            <button 
-              onClick={() => setActiveSection('projects')}
-              className="flex items-center justify-center gap-2 px-8 py-3.5 rounded-xl
-                         bg-transparent border border-[#a7a9be]/30 text-white font-medium
-                         hover:bg-white/5 hover:border-white/50 hover:text-white
-                         transition-all duration-300 active:scale-95 cursor-pointer
-                         max-[880px]:flex-1 max-[880px]:text-xs max-[880px]:px-4 max-[880px]:py-2.5 max-[880px]:gap-1.5"
-            >
-              <span className="max-[880px]:text-xs">Ver Proyectos</span>
-              <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform max-[880px]:w-4 max-[880px]:h-4" />
-            </button>
+            
             
           </div>
 
@@ -137,12 +139,20 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
+        /* Nueva animación de pulso lento para el brillo */
+        @keyframes pulse-slow {
+          0%, 100% { filter: drop-shadow(0 0 10px rgba(99,83,242,0.4)); }
+          50% { filter: drop-shadow(0 0 20px rgba(99,83,242,0.7)); }
+        }
 
         .animate-marquee {
           animation: marquee 20s linear infinite;
         }
         .animate-text-gradient {
           animation: text-gradient 4s ease infinite;
+        }
+        .animate-pulse-slow {
+          animation: pulse-slow 4s ease-in-out infinite;
         }
         
         .mask-linear-fade {
