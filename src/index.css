@@ -190,6 +190,7 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   .main-content.scroll-container {
     margin-left: 0 !important;
     width: 100% !important;
+    scroll-snap-type: y proximity;
     /* height: calc(100vh - var(--sidebar-mobile-height)); */
   }
   
