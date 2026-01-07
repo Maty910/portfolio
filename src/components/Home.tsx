@@ -23,12 +23,10 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   return (
     <section 
       id="home"
-      className="snap-center min-h-screen w-full flex flex-col justify-center relative
-                 transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
-                 max-[880px]:min-h-0 max-[880px]:py-6
-                 min-[881px]:pl-[280px]"
+      className="home-section snap-center min-h-screen w-full flex flex-col justify-center relative
+                 max-[880px]:min-h-0 max-[880px]:py-6"
     >
-      <div className="w-full max-w-[1000px] px-6 md:px-12 mx-auto flex flex-col justify-center h-full
+      <div className="home-content w-full max-w-[1000px] px-6 md:px-12 flex flex-col justify-center h-full
                       max-[880px]:px-4">
         
         <div className="flex flex-col items-start gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700 max-[880px]:gap-3">
