@@ -16,12 +16,14 @@ export function Contact() {
   return (
     <section 
       id="contact"
-      className="contact-section snap-start min-h-screen w-full flex flex-col justify-center relative
+      className="contact-section snap-start min-h-screen w-full flex flex-col justify-start relative
                  transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
-                 max-[880px]:min-h-[calc(100vh-80px)] max-[880px]:justify-start max-[880px]:pt-12 max-[880px]:pb-85"
+                 /* Padding consistente con otras secciones */
+                 min-[881px]:pl-[280px]
+                 max-[880px]:min-h-[calc(100vh-80px)]"
     >
-      <div className="w-full max-w-[850px] px-6 md:px-12 flex flex-col justify-center h-full
-                      max-[880px]:px-4 max-[880px]:justify-start max-[880px]:h-auto">
+      <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col h-full
+                      max-[880px]:px-4 max-[880px]:py-8">
         
         {/* Header */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
@@ -39,7 +41,7 @@ export function Contact() {
         </div>
 
         {/* Grid de Contacto */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[880px]:gap-3 pb-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[880px]:gap-3 pb-8 max-[880px]:pb-24">
           
           {/* Card Principal: Email */}
           <div className="md:col-span-2 group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 p-6 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 animate-in fade-in slide-in-from-bottom-8 max-[880px]:p-5"
