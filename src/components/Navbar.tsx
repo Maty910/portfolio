@@ -261,7 +261,7 @@ export const Navbar: React.FC<HeaderProps> = ({
         Usamos Portal para que este div flote sobre TODO (incluso sobre Page.tsx)
       */}
       {mounted && createPortal(
-        <div className="lg:hidden fixed top-6 left-6 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
+        <div className="lg:hidden fixed top-3 right-3 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
           <div className="flex items-center p-1.5 rounded-full bg-bg-base/95 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
             
             {/* Theme Toggle Mobile */}
