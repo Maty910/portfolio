@@ -261,25 +261,29 @@ export const Navbar: React.FC<HeaderProps> = ({
         Usamos Portal para que este div flote sobre TODO (incluso sobre Page.tsx)
       */}
       {mounted && createPortal(
-        <div className="lg:hidden fixed top-6 left-6 z-[99999] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
-          <div className="flex items-center p-1.5 rounded-full bg-bg-base/80 backdrop-blur-md border border-text-primary/10 shadow-lg gap-1">
+        <div className="lg:hidden fixed top-6 left-6 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
+          <div className="flex items-center p-1.5 rounded-full bg-bg-base/95 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
             
             {/* Theme Toggle Mobile */}
             <button 
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className="w-8 h-8 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              className="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              title="Cambiar tema"
+              aria-label="Cambiar tema"
             >
-              <AnimatedThemeIcon isDark={isDark} size={16} />
+              <AnimatedThemeIcon isDark={isDark} size={18} />
             </button>
 
-            <div className="w-[1px] h-4 bg-text-primary/10"></div>
+            <div className="w-[1px] h-5 bg-text-primary/10"></div>
 
             {/* Lang Toggle Mobile */}
             <button
               onClick={toggleLanguage}
-              className="w-8 h-8 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              className="w-9 h-9 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              title="Cambiar idioma"
+              aria-label="Cambiar idioma"
             >
-              <span className="text-[10px] font-bold">{lang.toUpperCase()}</span>
+              <span className="text-xs font-bold tracking-wide">{lang.toUpperCase()}</span>
             </button>
           </div>
         </div>,
