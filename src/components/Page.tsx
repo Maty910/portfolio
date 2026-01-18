@@ -265,23 +265,30 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       {/* Fondo Decorativo */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
       
-      {/* Mobile Layout */}
-      <div className="min-[881px]:hidden w-full flex flex-col items-center pt-6 pb-2 px-4 relative z-20">
-        <div className="flex flex-col items-center gap-1 mb-2 w-full text-center">
-          <h1 className="flex items-center justify-center gap-2 text-lg font-bold">
-            <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent">Matías Chacón</span>
-            <FiCode className="text-primary animate-pulse shrink-0" size={18} />
-          </h1>
-          <p className="text-text-secondary text-[10px] font-mono tracking-wider h-3.5 opacity-80">{typingText}</p>
-        </div>
-        <div className="w-full max-w-[340px] flex flex-col items-center animate-in fade-in zoom-in-95 duration-500">
-          {renderSidebarContent()}
+      {/* Mobile Layout - Optimizado y minimalista */}
+      <div className="min-[881px]:hidden w-full flex flex-col items-center pt-20 pb-2 px-4 relative z-10">
+        {/* Header compacto con avatar */}
+        <div className="flex items-center gap-3 mb-6 animate-in fade-in zoom-in-95 duration-500">
+          <div className="relative group w-fit">
+            <div className="absolute inset-[-2px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-full opacity-60 blur-sm animate-[spin_4s_linear_infinite]" />
+            <div className="relative w-12 h-12 rounded-full overflow-hidden border-2 border-bg-base bg-bg-base shadow-lg">
+              <img className="w-full h-full object-cover object-top" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
+            </div>
+            <div className="absolute -bottom-0.5 -right-0.5 w-3 h-3 bg-green-500 rounded-full border-2 border-bg-base shadow-sm" />
+          </div>
+          <div className="flex flex-col">
+            <h1 className="text-base font-bold text-text-primary flex items-center gap-2">
+              Matías Chacón
+              <FiCode className="text-primary" size={16} />
+            </h1>
+            <p className="text-text-secondary text-[10px] font-mono">{typingText}</p>
+          </div>
         </div>
       </div>
 
       {/* Desktop Layout */}
       <div className="hidden min-[881px]:block">
-        <header className="fixed top-8 left-28 z-20 transition-all duration-300 animate-in fade-in slide-in-from-top-4 duration-700">
+        <header className="fixed top-8 left-28 z-20 transition-all animate-in fade-in slide-in-from-top-4 duration-700">
           <h1 className="flex items-center gap-3 mb-1 text-2xl font-bold group cursor-default">
             <div className="relative">
               <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent group-hover:via-primary transition-all duration-500">Matías Chacón</span>
@@ -291,17 +298,14 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
           </h1>
           <p className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4">{typingText}</p>
         </header>
-        <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all duration-300 animate-in zoom-in-95 duration-700 delay-150">
+        <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all animate-in zoom-in-95 duration-700 delay-150">
           {renderSidebarContent()}
         </div>
       </div>
 
-      {/* Logo Flotante */}
-      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:top-4 max-[880px]:right-4">
-        {/* Nota: Si el logo es negro y estás en modo dark, no se va a ver. 
-            Se recomienda tener un logo que sirva para ambos o aplicar un filtro.
-            Por ahora lo dejamos igual. */}
-        <img className="w-[80px] max-[880px]:w-[35px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt="Matias Logo" />
+      {/* Logo Flotante - Desktop only para evitar conflicto con controles móviles */}
+      <div className="hidden min-[881px]:block fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500">
+        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt="Matias Logo" />
       </div>
 
       {/* Contenido Principal */}
