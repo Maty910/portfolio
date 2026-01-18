@@ -212,9 +212,6 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>LinkedIn</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary/80 hover:translate-y-[-2px] transition-all">
-            <Download size={16} /><span>Download CV</span>
-          </a>
         </div>
       </div>
     );
