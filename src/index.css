@@ -1,11 +1,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppings:wght@300;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sora:wght@100..800&display=swap');
 @import "tailwindcss";
+
 
 /* === CONFIGURACIÓN DE TEMA TAILWIND v4 === */
 @theme {
   /* Tipografías */
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Poppings', sans-serif;
+  --font-heading: 'Sora', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
 
   /* Colores mapeados a tus variables CSS para que reaccionen al cambio de tema */
   --color-primary: var(--primary-color);
