@@ -78,55 +78,57 @@ export function Contact() {
           </div>
 
           {/* Card: LinkedIn */}
-          <a 
+          <a
             href="https://www.linkedin.com/in/matias-chacon-t934/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col p-5 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-[#0a66c2]/10 hover:to-[#0a66c2]/5 hover:border-[#0a66c2]/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#0a66c2]/20 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline
-                       max-[880px]:flex-row max-[880px]:items-center max-[880px]:gap-3 max-[880px]:p-4"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-[#0a66c2]/10 hover:to-[#0a66c2]/5 hover:border-[#0a66c2]/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#0a66c2]/20 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
             style={{ animationDelay: '250ms' }}
           >
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" style={{ background: 'radial-gradient(circle at center, #0a66c220, transparent 70%)' }} />
-            
+
             {/* Icono */}
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#0a66c2]/20 to-[#0a66c2]/10 border border-[#0a66c2]/20 text-[#0a66c2] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#0a66c2]/20 to-[#0a66c2]/10 border border-[#0a66c2]/20 text-[#0a66c2] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
               <Linkedin size={22} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
-            
+
             {/* Contenido */}
-            <div className="mt-4 relative z-10 max-[880px]:mt-0 max-[880px]:flex-1">
+            <div className="relative z-10 mt-2 max-[880px]:mt-0 max-[880px]:flex-1">
               <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">LinkedIn</h3>
               <p className="text-text-secondary text-xs max-[880px]:text-[10px]">Connect professionally</p>
             </div>
-            
-            {/* Arrow */}
-            <ArrowUpRight size={18} className="absolute top-5 right-5 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500 max-[880px]:static max-[880px]:shrink-0 max-[880px]:w-4 max-[880px]:h-4" />
+
+            {/* Arrow (colocado al final, usa ml-auto en mobile) */}
+            <div className="ml-auto max-[880px]:ml-0 max-[880px]:shrink-0">
+              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-500 max-[880px]:w-4 max-[880px]:h-4" />
+            </div>
           </a>
 
           {/* Card: GitHub */}
-          <a 
+          <a
             href="https://github.com/Maty910"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col p-5 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-text-primary/10 hover:to-text-primary/5 hover:border-text-primary/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-text-primary/10 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline
-                       max-[880px]:flex-row max-[880px]:items-center max-[880px]:gap-3 max-[880px]:p-4"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-text-primary/10 hover:to-text-primary/5 hover:border-text-primary/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-text-primary/10 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
             style={{ animationDelay: '350ms' }}
           >
             <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 bg-text-primary/5" />
-            
+
             {/* Icono */}
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-text-primary/10 to-text-primary/5 border border-text-primary/20 text-text-primary group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-text-primary/10 to-text-primary/5 border border-text-primary/20 text-text-primary group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
               <Github size={22} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
-            
+
             {/* Contenido */}
-            <div className="mt-4 relative z-10 max-[880px]:mt-0 max-[880px]:flex-1">
+            <div className="relative z-10 mt-2 max-[880px]:mt-0 max-[880px]:flex-1">
               <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">GitHub</h3>
               <p className="text-text-secondary text-xs max-[880px]:text-[10px]">View my code & projects</p>
             </div>
-            
+
             {/* Arrow */}
-            <ArrowUpRight size={18} className="absolute top-5 right-5 text-text-secondary group-hover:text-text-primary group-hover:translate-x-1 group-hover:-translate-y-1 transition-all duration-500 max-[880px]:static max-[880px]:shrink-0 max-[880px]:w-4 max-[880px]:h-4" />
+            <div className="ml-auto max-[880px]:ml-0 max-[880px]:shrink-0">
+              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-500 max-[880px]:w-4 max-[880px]:h-4" />
+            </div>
           </a>
 
         </div>
