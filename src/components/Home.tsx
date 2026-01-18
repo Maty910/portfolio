@@ -13,10 +13,10 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
   const bioContent = (
     <>
-      Soy <span className="text-white font-semibold">Matías Chacón</span> — Desarrollador Full-Stack apasionado por crear <span className="text-[#6353f2] font-semibold relative inline-block">
+      Soy <span className="text-text-primary font-semibold">Matías Chacón</span> — Desarrollador Full-Stack apasionado por crear <span className="text-primary font-semibold relative inline-block">
         interfaces modernas
-        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-[#6353f2]/30 rounded-full"></span>
-      </span> y servicios backend sólidos. Trabajo principalmente con <span className="text-[#6353f2] font-semibold">React</span> y <span className="text-[#6353f2] font-semibold">Node.js</span>, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción.
+        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary/30 rounded-full"></span>
+      </span> y servicios backend sólidos. Trabajo principalmente con <span className="text-primary font-semibold">React</span> y <span className="text-primary font-semibold">Node.js</span>, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción.
     </>
   );
 
@@ -32,43 +32,41 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         <div className="flex flex-col items-start gap-6 animate-in fade-in slide-in-from-bottom-8 duration-700 max-[880px]:gap-3">
 
           {/* Badge "Open to work" */}
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#6353f2]/10 border border-[#6353f2]/20 text-[#6353f2] text-xs font-semibold tracking-wide backdrop-blur-md shadow-sm transition-transform hover:scale-105 cursor-default
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide backdrop-blur-md shadow-sm transition-transform hover:scale-105 cursor-default
                           max-[880px]:px-2 max-[880px]:py-0.5 max-[880px]:text-[9px] max-[880px]:gap-1.5">
             <span className="relative flex h-2 w-2 max-[880px]:h-1.5 max-[880px]:w-1.5">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#6353f2] opacity-75"></span>
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#6353f2]"></span>
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             Available for new opportunities
           </div>
 
           {/* HEADLINE PRINCIPAL */}
           <div className="flex flex-col gap-2 w-full max-[880px]:gap-1">
-            <h1 className="text-5xl md:text-7xl font-bold text-white leading-[1.1] tracking-tight group cursor-default max-[880px]:text-2xl relative z-10">
+            {/* Título Principal */}
+            <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-2xl relative z-10">
               <div className="relative inline-block">
-                {/* Texto Blanco con Brillo Violeta Animado */}
-                <span className="drop-shadow-[0_0_15px_rgba(99,83,242,0.6)] animate-pulse-slow">
-                  Architecting Scalable
+                {/* Texto con Brillo Violeta Animado (Usamos text-text-primary para que sea legible en ambos temas) */}
+                <span className="font-sans font-bold tracking-tight leading-[1.08] drop-shadow-[0_0_15px_rgba(99,83,242,0.4)] animate-pulse-slow selection:text-transparent selection:bg-clip-text selection:bg-gradient-to-r selection:from-primary selection:to-purple-400">
+                  desarrollo <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 animate-text-gradient bg-[length:200%_auto] font-bold">con criterio.</span>
                 </span>
-                <div className="absolute -bottom-2 left-0 w-1/3 h-[4px] bg-[#6353f2] rounded-full group-hover:w-full transition-all duration-700 ease-out" />
+                <div className="absolute -bottom-2 left-0 w-1/3 h-[4px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out" />
               </div>
             </h1>
             
             <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 w-full">
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#6353f2] to-[#a8a1ff] text-3xl md:text-5xl font-bold tracking-tight max-[880px]:text-xl animate-text-gradient bg-[length:200%_auto]">
-                Digital Solutions
-              </span>
-              
               {/* Carrusel (Techs) */}
-              <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-white/5 pl-6 ml-2">
+              <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-text-primary/10 pl-6 ml-2">
                  <div className="flex w-max animate-marquee items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                     {[1, 2].map((i) => (
                       <div key={i} className="flex items-center gap-6">
+                        <SiTypescript className="text-[#3178c6]" size={24} />
                         <SiReact className="text-[#61dafb]" size={24} />
                         <SiNodedotjs className="text-[#8cc84b]" size={24} />
-                        <SiTypescript className="text-[#3178c6]" size={24} />
                         <SiTailwindcss className="text-[#38bdf8]" size={24} />
                         <SiMongodb className="text-[#47a248]" size={24} />
                         <SiPostgresql className="text-[#336791]" size={24} />
+                        {/* Puedes agregar más iconos aquí si quieres */}
                       </div>
                     ))}
                  </div>
@@ -77,9 +75,9 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           </div>
 
           {/* BIO */}
-          <div className="mt-2 max-w-2xl border-l-2 border-[#6353f2]/30 pl-4 md:pl-6
+          <div className="mt-2 max-w-2xl border-l-2 border-primary/30 pl-4 md:pl-6
                           max-[880px]:pl-2.5 max-[880px]:mt-0">
-            <p className="text-[#a7a9be] text-lg leading-relaxed max-[880px]:text-sm max-[880px]:leading-relaxed">
+            <p className="text-text-secondary text-lg leading-relaxed max-[880px]:text-sm max-[880px]:leading-relaxed">
               {bioContent}
             </p>
           </div>
@@ -87,12 +85,12 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           {/* BOTONES DE ACCIÓN */}
           <div className="flex flex-wrap gap-4 mt-4 w-full max-[880px]:gap-2 max-[880px]:mt-2">
 
-            {/* Botón Proyectos */}
+            {/* Botón Ver Proyectos (Secundario) */}
             <button 
               onClick={() => setActiveSection('projects')}
               className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl
-                        bg-transparent border border-[#a7a9be]/30 text-white font-medium
-                        hover:bg-white/5 hover:border-white/50 hover:text-white
+                        bg-text-primary/5 border border-text-primary/10 text-text-primary font-medium
+                        hover:bg-text-primary/10 hover:border-text-primary/30 hover:translate-y-[-2px]
                         transition-all duration-300 active:scale-95 cursor-pointer
                         max-[880px]:flex-1 max-[880px]:text-xs max-[880px]:px-4 max-[880px]:py-2.5 max-[880px]:gap-2"
             >
@@ -100,13 +98,13 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform max-[880px]:w-4 max-[880px]:h-4" />
             </button>
 
-            {/* Botón CV */}
+            {/* Botón CV (Primario) */}
             <a 
               href="/CV/CV Matias Chacon.pdf" 
               target="_blank"
               rel="noopener noreferrer"
               className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
-                        bg-[#6353f2] text-white font-bold tracking-wide
+                        bg-gradient-to-r from-primary to-purple-600 text-white font-bold tracking-wide
                         shadow-[0_0_20px_rgba(99,83,242,0.3)]
                         hover:shadow-[0_0_30px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95
                         transition-all duration-300 group/btn no-underline
@@ -135,7 +133,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           50% { background-position: 100% 50%; }
           100% { background-position: 0% 50%; }
         }
-        /* Nueva animación de pulso lento para el brillo */
+        /* Animación de pulso lento para el brillo */
         @keyframes pulse-slow {
           0%, 100% { filter: drop-shadow(0 0 10px rgba(99,83,242,0.4)); }
           50% { filter: drop-shadow(0 0 20px rgba(99,83,242,0.7)); }
