@@ -1,6 +1,6 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers } from 'lucide-react';
+import { ExternalLink, Github, Database, Download, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiNextdotjs } from 'react-icons/si';
 import type { Section } from '../types';
@@ -65,22 +65,18 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
   };
 
   const renderSidebarContent = () => {
-    // Clases base para cards
     const cardBaseClass = "bg-primary/5 p-4 rounded-2xl border border-primary/20 backdrop-blur-sm w-full transition-all duration-300 hover:bg-primary/10 hover:border-primary/30 flex flex-col justify-center min-h-[120px]";
-    
-    // Wrapper: En mobile ajustamos margins para que no ocupe tanto
-    const wrapperClass = "flex flex-col gap-4 w-full animate-in fade-in slide-in-from-left-4 duration-700 max-[880px]:animate-in max-[880px]:fade-in max-[880px]:slide-in-from-top-2 max-[880px]:px-4";
+    const wrapperClass = "flex flex-col gap-4 w-full animate-in fade-in slide-in-from-left-4 duration-700 max-[880px]:animate-in max-[880px]:fade-in max-[880px]:slide-in-from-top-2";
 
     if (activeSection === 'projects') {
       return (
         <div className={wrapperClass}>
-          {/* En mobile usamos un layout más horizontal para ahorrar altura */}
-          <div className={`${cardBaseClass} max-[880px]:min-h-0 max-[880px]:p-3`}>
-            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider max-[880px]:mb-2">
+          <div className={cardBaseClass}>
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
               <Github size={14} /> GitHub Stats
             </h3>
             
-            <div className="grid grid-cols-2 gap-3 w-full">
+            <div className="grid grid-cols-2 gap-2 w-full">
               <div className="flex flex-col bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
                 <div className="flex items-center gap-1.5 text-text-secondary text-[10px] mb-1">
                   <GitCommit size={12} />
@@ -93,15 +89,14 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
               <div className="flex flex-col bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
                 <div className="flex items-center gap-1.5 text-text-secondary text-[10px] mb-1">
                   <GitPullRequest size={12} />
-                  <span>Repos</span>
+                  <span>Public Repos</span>
                 </div>
                 <span className="text-text-primary font-bold text-sm">15+</span>
                 <span className="text-[9px] text-green-500">Active</span>
               </div>
             </div>
             
-            {/* Ocultamos esto en mobile muy chico para ahorrar espacio */}
-            <div className="hidden sm:flex mt-3 pt-3 border-t border-text-primary/10 items-center gap-2">
+            <div className="mt-3 pt-3 border-t border-text-primary/10 flex items-center gap-2">
               <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
               <p className="text-[10px] text-text-secondary">Building: <span className="text-text-primary font-medium">Portfolio V2</span></p>
             </div>
@@ -113,22 +108,25 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     if (activeSection === 'skills') {
       return (
         <div className={wrapperClass}>
-          <div className={`${cardBaseClass} max-[880px]:min-h-0 max-[880px]:p-3`}>
-            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider max-[880px]:mb-2">
+          <div className={cardBaseClass}>
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
               <Layers size={14} /> Main Stack
             </h3>
             
             <div className="grid grid-cols-4 gap-2 w-full place-items-center">
-              {/* Iconos compactos */}
-              <div className="p-1.5 bg-[#61dafb]/10 rounded-lg border border-[#61dafb]/20"><SiReact size={16} className="text-[#61dafb]" /></div>
-              <div className="p-1.5 bg-text-primary/5 rounded-lg border border-text-primary/10"><SiNextdotjs size={16} className="text-text-primary" /></div>
-              <div className="p-1.5 bg-[#38bdf8]/10 rounded-lg border border-[#38bdf8]/20"><SiTailwindcss size={16} className="text-[#38bdf8]" /></div>
-              <div className="p-1.5 bg-[#3178c6]/10 rounded-lg border border-[#3178c6]/20"><SiTypescript size={16} className="text-[#3178c6]" /></div>
-              <div className="p-1.5 bg-[#8cc84b]/10 rounded-lg border border-[#8cc84b]/20"><SiNodedotjs size={16} className="text-[#8cc84b]" /></div>
-              <div className="p-1.5 bg-[#336791]/10 rounded-lg border border-[#336791]/20"><SiPostgresql size={16} className="text-[#336791]" /></div>
-              <div className="p-1.5 bg-[#47a248]/10 rounded-lg border border-[#47a248]/20"><SiMongodb size={16} className="text-[#47a248]" /></div>
-              <div className="p-1.5 bg-[#2496ed]/10 rounded-lg border border-[#2496ed]/20"><SiDocker size={16} className="text-[#2496ed]" /></div>
+              <div className="p-1.5 bg-[#61dafb]/10 rounded-lg border border-[#61dafb]/20" title="React"><SiReact size={16} className="text-[#61dafb]" /></div>
+              <div className="p-1.5 bg-text-primary/5 rounded-lg border border-text-primary/10" title="Next.js"><SiNextdotjs size={16} className="text-text-primary" /></div>
+              <div className="p-1.5 bg-[#38bdf8]/10 rounded-lg border border-[#38bdf8]/20" title="Tailwind"><SiTailwindcss size={16} className="text-[#38bdf8]" /></div>
+              <div className="p-1.5 bg-[#3178c6]/10 rounded-lg border border-[#3178c6]/20" title="TypeScript"><SiTypescript size={16} className="text-[#3178c6]" /></div>
+              <div className="p-1.5 bg-[#8cc84b]/10 rounded-lg border border-[#8cc84b]/20" title="Node.js"><SiNodedotjs size={16} className="text-[#8cc84b]" /></div>
+              <div className="p-1.5 bg-[#336791]/10 rounded-lg border border-[#336791]/20" title="PostgreSQL"><SiPostgresql size={16} className="text-[#336791]" /></div>
+              <div className="p-1.5 bg-[#47a248]/10 rounded-lg border border-[#47a248]/20" title="MongoDB"><SiMongodb size={16} className="text-[#47a248]" /></div>
+              <div className="p-1.5 bg-[#2496ed]/10 rounded-lg border border-[#2496ed]/20" title="Docker"><SiDocker size={16} className="text-[#2496ed]" /></div>
             </div>
+
+            <p className="text-[9px] text-text-secondary text-center mt-3 pt-2 border-t border-text-primary/10">
+              Always learning new technologies
+            </p>
           </div>
         </div>
       );
@@ -137,19 +135,32 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     if (activeSection === 'contact') {
       return (
         <div className={wrapperClass}>
-          <div className={`${cardBaseClass} max-[880px]:min-h-0 max-[880px]:p-3`}>
+          <div className={cardBaseClass}>
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
+              <Database size={14} /> Status & Location
+            </h3>
+            
             <div className="flex flex-col gap-2.5 w-full">
-              {/* Header compacto para mobile */}
+              <div className="flex items-center gap-2 bg-green-500/10 p-1.5 px-2 rounded-lg border border-green-500/20">
+                <span className="relative flex h-2 w-2">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
+                  <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
+                </span>
+                <span className="text-[9px] font-bold text-green-500 uppercase tracking-wide">Available for hire</span>
+              </div>
+
               <div className="flex justify-between items-center bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
                 <div className="flex items-center gap-1.5 text-text-secondary text-[10px]">
                   <MapPin size={12} />
-                  <span>BA, Arg</span>
+                  <span>BA, Argentina</span>
                 </div>
                 <LocalTime />
               </div>
+
               <button 
                 onClick={handleCopyEmail}
                 className="flex items-center justify-between w-full bg-primary/10 hover:bg-primary/20 border border-primary/30 p-2 rounded-lg transition-all group cursor-pointer active:scale-95"
+                title="Copiar email"
               >
                 <div className="flex items-center gap-2 overflow-hidden">
                   <Mail size={12} className="text-primary shrink-0" />
@@ -163,11 +174,9 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       );
     }
 
-    // --- DEFAULT SIDEBAR (Home) ---
-    // EN MOBILE: Retornamos null o un div vacío para NO duplicar la foto y stats en la home.
-    // La home.tsx ya tiene un hero section importante.
+    // Default Sidebar (Desktop Only)
     return (
-      <div className="max-[880px]:hidden flex flex-col items-center w-full gap-6 animate-in fade-in zoom-in-95 duration-700">
+      <div className="flex flex-col items-center w-full gap-6 animate-in fade-in zoom-in-95 duration-700">
         <div className="relative group w-fit mx-auto">
           <div className="absolute inset-[-3px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
           <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
@@ -180,7 +189,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 w-full">
+        <div className="hidden lg:flex flex-col gap-2 w-full">
           <div className="flex gap-2">
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
               <p className="text-xl font-bold text-text-primary">3+</p>
@@ -193,7 +202,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 pt-2 border-t border-text-primary/10 w-full">
+        <div className="hidden lg:flex flex-col gap-2 pt-2 border-t border-text-primary/10 w-full">
           <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">Connect</p>
           <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-text-primary/5 transition-all group border border-transparent hover:border-text-primary/10">
             <div className="flex items-center gap-2"><Github size={16} /><span>GitHub</span></div>
@@ -202,6 +211,9 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>LinkedIn</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+          </a>
+          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary/80 hover:translate-y-[-2px] transition-all">
+            <Download size={16} /><span>Download CV</span>
           </a>
         </div>
       </div>
@@ -215,14 +227,12 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
       
       {/* =======================
-          LAYOUT MOBILE (Compact App Bar)
+          LAYOUT MOBILE (Compact Sticky Header)
       ======================== */}
       <div className="min-[881px]:hidden w-full relative z-20">
         
-        {/* Header Flotante / Sticky */}
+        {/* Sticky App Bar */}
         <header className="sticky top-0 z-40 w-full bg-bg-base/80 backdrop-blur-xl border-b border-text-primary/5 px-5 py-3 flex items-center justify-between transition-all duration-300">
-          
-          {/* Left: Avatar + Name (Compacto) */}
           <div className="flex items-center gap-3">
              <div className="relative">
                 <div className="w-10 h-10 rounded-full overflow-hidden border border-text-primary/10">
@@ -232,17 +242,15 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
              </div>
              <div className="flex flex-col">
                 <h1 className="text-sm font-bold text-text-primary leading-tight">Matías Chacón</h1>
-                <p className="text-[10px] text-text-secondary font-mono leading-tight">{typingText}</p>
+                <p className="text-[10px] text-text-secondary font-mono leading-tight opacity-80">{typingText}</p>
              </div>
           </div>
-
-          {/* Right: Espacio para el logo flotante o controles (el logo ya está fixed) */}
         </header>
 
-        {/* Dynamic Content Bar (Justo debajo del header) */}
-        {/* Solo mostramos esto si NO es Home, o si querés mostrar algo específico */}
+        {/* Dynamic Widget Area (Mobile Only) - Se muestra debajo del header */}
+        {/* Si estamos en Home, NO mostramos nada extra para que el foco sea el título */}
         {activeSection !== 'home' && (
-          <div className="w-full animate-in fade-in slide-in-from-top-2 duration-500">
+          <div className="w-full px-4 pt-4 animate-in fade-in slide-in-from-top-2 duration-500">
             {renderSidebarContent()}
           </div>
         )}
@@ -255,20 +263,25 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         <header className="fixed top-8 left-28 z-20 transition-all duration-300 animate-in fade-in slide-in-from-top-4 duration-700">
           <h1 className="flex items-center gap-3 mb-1 text-2xl font-bold group cursor-default">
             <div className="relative">
-              <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent group-hover:via-primary transition-all duration-500">Matías Chacón</span>
+              <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent group-hover:via-primary transition-all duration-500">
+                Matías Chacón
+              </span>
               <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500" />
             </div>
             <FiCode className="text-primary animate-pulse" size={24} />
           </h1>
-          <p className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4">{typingText}</p>
+          <p className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4">
+            {typingText}
+          </p>
         </header>
+
         <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all duration-300 animate-in zoom-in-95 duration-700 delay-150">
           {renderSidebarContent()}
         </div>
       </div>
 
-      {/* Logo Flotante (Desktop only or tiny in mobile) */}
-      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:hidden">
+      {/* Logo Flotante (Desktop Only - en mobile ya tenemos el avatar) */}
+      <div className="hidden min-[881px]:block fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500">
         <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt="Matias Logo" />
       </div>
 
