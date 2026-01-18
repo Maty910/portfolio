@@ -216,4 +216,14 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   a, button {
     -webkit-tap-highlight-color: rgba(99, 83, 242, 0.2);
   }
+  
+  /* Asegurar que el contenido no quede detrás del navbar inferior */
+  section {
+    padding-bottom: env(safe-area-inset-bottom, 0);
+  }
+  
+  /* Evitar bounce scroll en iOS */
+  body {
+    overscroll-behavior-y: none;
+  }
 }
