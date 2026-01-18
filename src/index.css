@@ -1,20 +1,15 @@
-/* 1. Importamos las fuentes de Google: Syne (Impacto Artístico) + Inter (Legibilidad) + JetBrains Mono (Código) */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Poppings:wght@300;700&family=Inter:wght@300;400;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sora:wght@100..800&display=swap');
 @import "tailwindcss";
 
+/* === CONFIGURACIÓN DE TEMA TAILWIND v4 === */
 @theme {
-  /* 2. Definimos las variables del tema */
-  
-  /* Para Títulos (Alto Impacto Visual) */
-  --font-heading: 'Syne', sans-serif;
-  
-  /* Para Texto normal (Legibilidad Estándar) */
+  /* Tipografías */
   --font-sans: 'Inter', system-ui, sans-serif;
-  
-  /* Para Código/Etiquetas (Toque Dev) */
+  --font-heading: 'Sora', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* ... resto de tu configuración de colores y animaciones ... */
+  /* Colores mapeados */
   --color-primary: var(--primary-color);
   --color-surface: var(--surface);
   --color-bg-base: var(--bg-color);
@@ -32,11 +27,10 @@
   }
 
   @keyframes cvPulse {
-    0%    { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0); }
-    50%   { box-shadow: 0 16px 36px rgba(99,83,242,0.14); transform: translateY(-2px); }
+    0%   { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0); }
+    50%  { box-shadow: 0 16px 36px rgba(99,83,242,0.14); transform: translateY(-2px); }
     100% { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0); }
   }
-
 }
 
 @keyframes marquee {
@@ -54,6 +48,9 @@
 
 /* === VARIABLES CSS (Light/Dark Mode) === */
 :root {
+  /* CLAVE PARA MOBILE: Le avisa al navegador que use controles oscuros */
+  color-scheme: dark;
+
   /* Paleta Dark (Default) */
   --primary-color: rgb(99, 83, 242);
   --bg-color: #0a0a0a;
@@ -79,23 +76,26 @@
   --sidebar-mobile-height: 88px;
 }
 
-/* Paleta Light (CORREGIDA PARA QUE SEA BLANCA) */
+/* Paleta Light */
 :root[data-theme="light"] {
+  /* CLAVE PARA MOBILE: Le avisa al navegador que use controles claros */
+  color-scheme: light;
+
   --primary-color: rgb(99, 83, 242);
   
   /* Fondo principal: Blanco puro */
   --bg-color: #ffffff;
   
-  /* Fondos secundarios: Grises muy sutiles (casi blancos) */
+  /* Fondos secundarios: Grises muy sutiles */
   --bg-1: #ffffff;
   --bg-2: #f8fafc; /* Slate 50 */
   
   /* Textos oscuros de alto contraste */
-  --text-primary: #1a1a1a;   /* Casi negro, mejor lectura */
-  --text-secondary: #4b5563; /* Gris medio */
-  --text-muted: #9ca3af;     /* Gris claro */
+  --text-primary: #1a1a1a;   
+  --text-secondary: #4b5563; 
+  --text-muted: #9ca3af;     
   
-  /* Surface: Gradiente muy suave para dar profundidad sin oscurecer */
+  /* Surface: Gradiente muy suave */
   --surface: linear-gradient(180deg, #ffffff, #f3f4f6);
   
   --gradient: linear-gradient(135deg, #535bf2 0%, #7c3aed 100%);
@@ -105,12 +105,17 @@
 @layer base {
   html {
     @apply h-full;
+    /* FIX MOBILE: Pinta el fondo del html para evitar bordes grises al scrollear */
+    background-color: var(--bg-color);
+    transition: background-color 0.5s ease;
   }
 
   body {
     @apply w-full h-full min-h-full relative overflow-x-hidden font-sans text-base leading-relaxed antialiased;
     color: var(--text-primary);
     background-color: var(--bg-color);
+    /* Transición suave al cambiar de tema */
+    transition: background-color 0.5s ease, color 0.5s ease;
     
     /* Fondo complejo */
     background: 
@@ -126,8 +131,8 @@
   }
 
   h1, h2, h3 {
-    font-family: var(--font-heading); /* 'Syne', sans-serif */
-    @apply font-bold tracking-tight; /* Syne pide peso bold para lucirse */
+    font-family: var(--font-heading);
+    @apply font-semibold tracking-tight;
   }
 
   /* Custom Scrollbars unificados */
