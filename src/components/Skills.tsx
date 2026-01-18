@@ -75,10 +75,10 @@ export function Skills() {
     <section 
       id="skills"
       className="snap-start min-h-screen w-full flex flex-col justify-start relative
-                 transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
+                transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
                  /* Padding consistente con las otras secciones */
-                 min-[881px]:pl-[280px]
-                 max-[880px]:min-h-[calc(100vh-80px)]"
+                min-[881px]:pl-[280px]
+                max-[880px]:min-h-[calc(100vh-80px)]"
     >
       {/* Contenedor Principal */}
       <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
@@ -127,8 +127,8 @@ export function Skills() {
                   <div 
                     key={skill.name} 
                     className="group/skill relative flex items-center gap-2 px-3 py-1.5 rounded-lg 
-                               border border-text-primary/10 cursor-default transition-all duration-300
-                               bg-bg-base hover:scale-105 hover:-translate-y-0.5 overflow-hidden"
+                              border border-text-primary/10 cursor-default transition-all duration-300
+                              bg-bg-base hover:scale-105 hover:-translate-y-0.5 overflow-hidden"
                     // Inyectamos el color para el hover dinámico
                     style={{ '--skill-color': skill.color } as React.CSSProperties}
                   >
@@ -170,7 +170,7 @@ export function Skills() {
                 <div 
                   key={skill.name}
                   className="flex flex-col items-center justify-center p-3 rounded-xl bg-bg-base border border-text-primary/10 
-                             hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
+                            hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
                 >
                   <skill.icon size={20} className={`${skill.color} group-hover/soft:scale-110 transition-transform`} />
                   <span className="text-xs font-medium text-text-secondary group-hover/soft:text-text-primary transition-colors">
@@ -196,9 +196,9 @@ export function Skills() {
             <a 
               href="#projects" 
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl 
-                         bg-primary text-white font-bold text-sm
-                         hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
-                         transition-all duration-300 no-underline group/link"
+                        bg-primary text-white font-bold text-sm
+                        hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
+                        transition-all duration-300 no-underline group/link"
             >
               {t('skills.projects')}
               <Terminal size={16} className="group-hover/link:translate-x-1 transition-transform" />
