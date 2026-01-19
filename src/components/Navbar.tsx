@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { createPortal } from 'react-dom'
 import {
   FiMenu,
   FiHome,
@@ -7,7 +8,7 @@ import {
   FiMail,
   FiDownload
 } from 'react-icons/fi'
-import { Sun, Moon, Languages } from 'lucide-react'
+import { Sun, Moon, Languages, Globe } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
 import type { Section, SetActive } from '../types';
@@ -17,12 +18,61 @@ type HeaderProps = {
   setActiveSection: SetActive
 }
 
+// --- 1. COMPONENTE ANIMADO TEMA (BOUNCY POP) ---
+const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: number }) => (
+  <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
+    {/* Sol (Visible en Light) */}
+    {/* Animación: Spring Bounce (cubic-bezier) para que rebote al entrar */}
+    <Sun 
+      size={size}
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+        ${isDark 
+          ? 'scale-0 rotate-[180deg] opacity-0' // Se achica y gira al irse
+          : 'scale-100 rotate-0 opacity-100 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' // Entra con rebote y brillo
+        }
+      `} 
+    />
+    {/* Luna (Visible en Dark) */}
+    <Moon 
+      size={size}
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
+        ${isDark 
+          ? 'scale-100 rotate-0 opacity-100 text-primary drop-shadow-[0_0_8px_rgba(99,83,242,0.6)]' 
+          : 'scale-0 -rotate-[180deg] opacity-0' 
+        }
+      `} 
+    />
+  </div>
+);
+
+// --- 2. COMPONENTE ANIMADO IDIOMA (FLIP 3D) ---
+const AnimatedLangIcon = ({ lang, size = 20 }: { lang: 'es' | 'en'; size?: number }) => (
+  <div className="relative flex items-center justify-center" style={{ width: size, height: size, perspective: '1000px' }}>
+    <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${lang === 'en' ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d', transform: lang === 'en' ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+      
+      {/* Cara Frontal: Español */}
+      <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
+        <Globe size={size} className="text-primary drop-shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
+      </div>
+
+      {/* Cara Trasera: Inglés (Rotada 180deg) */}
+      <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+        <Languages size={size} className="text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+      </div>
+
+    </div>
+  </div>
+);
+
 export const Navbar: React.FC<HeaderProps> = ({
   activeSection,
   setActiveSection,
 }) => {
-  const { lang, toggleLanguage } = useLanguage()
+  const { lang, toggleLanguage, t } = useLanguage()
   const { theme, setTheme } = useTheme();
+  const isDark = theme === 'dark';
+  const [langPulse, setLangPulse] = useState(false);
+  const [mounted, setMounted] = useState(false);
 
   // Estado del sidebar
   const [expanded, setExpanded] = useState<boolean>(() => {
@@ -34,13 +84,11 @@ export const Navbar: React.FC<HeaderProps> = ({
     }
   })
 
-  useEffect(() => {
-    try {
-      localStorage.setItem('sidebarExpanded', JSON.stringify(expanded))
-    } catch {}
-  }, [expanded])
+  useEffect(() => { setLangPulse(true); const id = setTimeout(() => setLangPulse(false), 700); return () => clearTimeout(id); }, [lang]);
+  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {} }, [expanded])
 
-  // Shortcuts de teclado
+  // Shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') scrollToSection('home')
@@ -64,69 +112,23 @@ export const Navbar: React.FC<HeaderProps> = ({
   };
 
   const nav = [
-    { id: 'home', label: 'Home', Icon: FiHome },
-    { id: 'projects', label: 'Projects', Icon: FiBriefcase },
-    { id: 'skills', label: 'Skills', Icon: FiTool },
-    { id: 'contact', label: 'Contact', Icon: FiMail },
+    { id: 'home', label: t('nav.home'), Icon: FiHome },
+    { id: 'projects', label: t('nav.projects'), Icon: FiBriefcase },
+    { id: 'skills', label: t('nav.skills'), Icon: FiTool },
+    { id: 'contact', label: t('nav.contact'), Icon: FiMail },
   ]
-
-  // Componente de Botón de Configuración Reutilizable
-  const ConfigButton = ({ 
-    onClick, 
-    icon: Icon, 
-    label, 
-    active, 
-    // delay = 0 
-  }: { 
-    onClick: () => void, 
-    icon: any, 
-    label: string, 
-    active?: boolean,
-    delay?: number 
-  }) => (
-    <button
-      onClick={onClick}
-      className={`
-        relative group flex items-center justify-center
-        bg-white/5 border border-white/10 text-[#a7a9be]
-        hover:bg-white/10 hover:text-white hover:border-white/20
-        transition-all duration-300 ease-out overflow-hidden
-        focus:outline-none focus:ring-2 focus:ring-[#6353f2]/50
-        active:scale-95
-        /* Dimensiones dinámicas según estado expandido */
-        ${expanded ? 'w-full px-3 py-2.5 rounded-xl gap-3' : 'w-11 h-11 p-0 rounded-xl'}
-      `}
-      title={expanded ? '' : label}
-    >
-      {/* Icono con animación de rotación/escala */}
-      <div className={`
-        relative flex items-center justify-center transition-all duration-300
-        ${active ? 'text-[#6353f2] rotate-0 scale-110' : 'group-hover:rotate-12 group-hover:text-white'}
-      `}>
-        <Icon size={expanded ? 18 : 20} />
-      </div>
-
-      {/* Texto que aparece suavemente */}
-      <span className={`
-        text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
-        ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
-      `}>
-        {label}
-      </span>
-    </button>
-  );
 
   return (
     <>
       <aside
         className={`
-          z-[999] transition-[width,padding,background] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
+          z-[999] transition-[width,padding,background,border] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
           
           /* --- DESKTOP (Sidebar) --- */
           min-[881px]:fixed min-[881px]:left-0 min-[881px]:top-0 min-[881px]:h-screen
           min-[881px]:flex min-[881px]:flex-col min-[881px]:justify-between
-          min-[881px]:bg-[#0f0e17]/80 min-[881px]:backdrop-blur-xl
-          min-[881px]:border-r min-[881px]:border-white/5
+          min-[881px]:bg-bg-base/80 min-[881px]:backdrop-blur-xl
+          min-[881px]:border-r min-[881px]:border-text-primary/5
           min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)]
           ${expanded ? 'min-[881px]:w-[240px] min-[881px]:px-5' : 'min-[881px]:w-[88px] min-[881px]:px-4'}
           min-[881px]:py-6
@@ -134,9 +136,9 @@ export const Navbar: React.FC<HeaderProps> = ({
           /* --- MOBILE (Bottom Dock) --- */
           max-[880px]:fixed max-[880px]:bottom-6 max-[880px]:left-4 max-[880px]:right-4
           max-[880px]:h-16 max-[880px]:rounded-2xl
-          max-[880px]:bg-[#16161e]/90 max-[880px]:backdrop-blur-2xl
-          max-[880px]:border max-[880px]:border-white/10
-          max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.5)]
+          max-[880px]:bg-bg-base/90 max-[880px]:backdrop-blur-2xl
+          max-[880px]:border max-[880px]:border-text-primary/10
+          max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.2)]
           max-[880px]:flex max-[880px]:items-center max-[880px]:justify-around
           max-[880px]:px-2
         `}
@@ -145,37 +147,34 @@ export const Navbar: React.FC<HeaderProps> = ({
         aria-expanded={expanded}
       >
         
-        {/* --- 1. TOP SECTION --- */}
+        {/* --- 1. TOP SECTION (Desktop) --- */}
         <div className={`hidden min-[881px]:flex flex-col gap-6 items-center w-full transition-all duration-[800ms] ${expanded ? 'items-start' : ''}`}>
-          
-          {/* Toggle Button */}
           <button
             className={`
-              bg-transparent border-none w-10 h-10 rounded-xl text-[var(--text-primary)]
+              bg-transparent border-none w-10 h-10 rounded-xl text-text-primary
               flex items-center justify-center cursor-pointer text-xl
-              transition-all hover:bg-white/10 hover:text-[#6353f2] active:scale-90
+              transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90
             `}
             onClick={() => setExpanded((v) => !v)}
-            title="Toggle Menu (M)"
+            title={t('nav.toggleMenu')}
           >
             <FiMenu />
           </button>
 
-          {/* Logo */}
           <div className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? 'w-full' : 'w-10'}`}>
             <div className={`
               relative flex items-center justify-center shrink-0 p-2 rounded-xl
-              bg-gradient-to-br from-[#6353f2]/20 to-[#8b5cf6]/10
-              border border-[#6353f2]/20 shadow-[0_0_15px_rgba(99,83,242,0.15)]
+              bg-gradient-to-br from-primary/20 to-primary/10
+              border border-primary/20 shadow-[0_0_15px_rgba(99,83,242,0.15)]
               transition-all duration-[800ms]
               ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}
             `}>
-              <img src="/Logo Mati.svg" alt="Logo" className="w-full h-full object-contain" />
+              <img src="/Logo Mati.svg" alt={t('alt.logo')} className="w-full h-full object-contain" />
             </div>
             
             <div className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
-              <span className="font-bold text-white text-sm leading-tight">Matías Chacón</span>
-              <span className="text-[10px] text-[#a7a9be] uppercase tracking-wider">Full Stack Dev</span>
+              <span className="font-bold text-text-primary text-sm leading-tight">{t('header.displayName')}</span>
+              <span className="text-[10px] text-text-secondary uppercase tracking-wider">{t('header.name')}</span>
             </div>
           </div>
         </div>
@@ -193,8 +192,8 @@ export const Navbar: React.FC<HeaderProps> = ({
                     className={`
                       relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent
                       transition-all duration-300 ease-out outline-none overflow-hidden
-                      min-[881px]:hover:bg-white/5 min-[881px]:hover:border-white/5
-                      ${isActive ? 'min-[881px]:bg-[#6353f2]/10 min-[881px]:border-[#6353f2]/20' : ''}
+                      min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5
+                      ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''}
                       ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'}
                       max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 max-[880px]:h-full max-[880px]:p-1 max-[880px]:rounded-lg
                     `}
@@ -202,16 +201,14 @@ export const Navbar: React.FC<HeaderProps> = ({
                   >
                     {isActive && (
                       <>
-                        <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-[#6353f2] rounded-r-full shadow-[0_0_10px_#6353f2]" />
-                        <span className="min-[881px]:hidden absolute top-2 w-1 h-1 bg-[#6353f2] rounded-full shadow-[0_0_8px_#6353f2]" />
+                        <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_var(--primary-color)]" />
+                        <span className="min-[881px]:hidden absolute top-2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_var(--primary-color)]" />
                       </>
                     )}
-
-                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-[#6353f2] scale-110 drop-shadow-[0_0_5px_rgba(99,83,242,0.5)]' : 'text-[#a7a9be] group-hover:text-white'}`} />
-
+                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110 drop-shadow-[0_0_5px_rgba(99,83,242,0.5)]' : 'text-text-secondary group-hover:text-text-primary'}`} />
                     <span className={`
                       font-medium text-sm transition-all duration-300 whitespace-nowrap
-                      ${isActive ? 'text-white' : 'text-[#a7a9be] group-hover:text-white'}
+                      ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'}
                       ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'}
                       max-[880px]:text-[10px]
                     `}>
@@ -224,90 +221,120 @@ export const Navbar: React.FC<HeaderProps> = ({
           </ul>
         </nav>
 
-        {/* --- 3. BOTTOM SECTION (Settings & CV) --- */}
-        <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-white/5 w-full">
-          
-          {/* CV Button */}
+        {/* --- 3. BOTTOM SECTION (Desktop Settings & CV) --- */}
+        <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full">
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
             className={`
               group relative flex items-center justify-center rounded-xl overflow-hidden
-              bg-linear-to-r from-[#8b5cf6] to-[#6353f2] text-white font-bold
-              shadow-[0_4px_14px_rgba(139,92,246,0.4)]
+              bg-gradient-to-r from-primary to-primary/80 text-white font-bold
+              shadow-[0_4px_14px_rgba(99,83,242,0.4)]
               transition-all duration-300 ease-out
               hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] hover:scale-[1.02] active:scale-95
               h-11
               ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}
             `}
-            title="Download CV"
+            title={t('header.downloadCv')}
           >
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
             <FiDownload className="text-xl shrink-0 relative z-20" />
             <span className={`text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20 ${expanded ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0 ml-0'}`}>
-              Descargar CV
+              {t('header.downloadCv')}
             </span>
           </a>
 
-          {/* SETTINGS GRID - ANIMACIÓN MEJORADA */}
-          {/* Usamos grid para que la transición de layout sea sólida */}
-          <div className={`
-            grid transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] gap-3
-            ${expanded ? 'grid-cols-2' : 'grid-cols-1'}
-          `}>
-            
-            <ConfigButton 
-              onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              icon={theme === 'dark' ? Moon : Sun}
-              label={theme === 'dark' ? 'Dark' : 'Light'}
-              active={false} // Siempre neutro o activo según prefieras
-            />
+          <div className="flex flex-col gap-3">
+            <button
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
+              className={`
+                relative group flex items-center justify-center rounded-xl
+                bg-text-primary/5 border border-text-primary/10 text-text-secondary
+                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
+                transition-all duration-300 ease-out overflow-hidden
+                focus:outline-none focus:ring-2 focus:ring-primary/50
+                active:scale-95 h-11
+                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
+              `}
+              title={t('theme.toggle')}
+            >
+              <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                <AnimatedThemeIcon isDark={isDark} size={expanded ? 18 : 20} />
+              </div>
+              <span className={`
+                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
+                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
+              `}>
+                {isDark ? t('theme.dark') : t('theme.light')}
+              </span>
+            </button>
 
-            <ConfigButton 
+            <button
               onClick={toggleLanguage}
-              icon={Languages}
-              label={lang.toUpperCase()}
-              active={lang === 'en'} // Highlight si es inglés por ejemplo, o sacar prop
-            />
-            
+              className={`
+                relative group flex items-center justify-center rounded-xl
+                bg-text-primary/5 border border-text-primary/10 text-text-secondary
+                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
+                transition-all duration-300 ease-out overflow-hidden
+                focus:outline-none focus:ring-2 focus:ring-primary/50
+                active:scale-95 h-11
+                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
+              `}
+              title={t('nav.toggleLang')}
+            >
+              <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                <AnimatedLangIcon lang={lang} size={expanded ? 18 : 20} />
+              </div>
+              <span className={`
+                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
+                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
+                ${langPulse ? 'animate-pulse' : ''}
+              `}>
+                {lang === 'en' ? 'English' : 'Español'}
+              </span>
+            </button>
           </div>
         </div>
 
       </aside>
 
-      <style>{`
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-      `}</style>
+      <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
 
       {/* ========================================
-        MOBILE SETTINGS (Top Left)
+        MOBILE SETTINGS PILL (Fixed via Portal)
         ========================================
-        Movido a la IZQUIERDA para equilibrar con el Logo (derecha).
+        Posición: Top RIGHT (para mobile)
+        Z-index alto para flotar sobre todo
       */}
-      <div className="lg:hidden fixed top-6 left-6 z-50 flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
-        
-        {/* Glass Pill Container */}
-        <div className="flex items-center p-1.5 rounded-full bg-[#16161e]/60 backdrop-blur-md border border-white/10 shadow-lg gap-1">
-          
-          {/* Theme Toggle Mobile */}
-          <button 
-            onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-            className="w-8 h-8 rounded-full flex items-center justify-center text-[#a7a9be] hover:text-white hover:bg-white/10 transition-all active:scale-90"
-          >
-            {theme === 'dark' ? <Moon size={16} /> : <Sun size={16} />}
-          </button>
+      {mounted && createPortal(
+        <div className="lg:hidden fixed top-5 right-5 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
+          <div className="flex items-center p-1.5 rounded-full bg-bg-base/90 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
+            
+            {/* Theme Toggle Mobile */}
+            <button 
+              onClick={() => setTheme(isDark ? 'light' : 'dark')}
+              className="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              title={t('theme.toggle')}
+            >
+              <AnimatedThemeIcon isDark={isDark} size={18} />
+            </button>
 
-          <div className="w-[1px] h-4 bg-white/10"></div>
+            <div className="w-[1px] h-5 bg-text-primary/10"></div>
 
-          {/* Lang Toggle Mobile */}
-          <button
-            onClick={toggleLanguage}
-            className="w-8 h-8 flex items-center justify-center rounded-full text-[#a7a9be] hover:text-white hover:bg-white/10 transition-all active:scale-90"
-          >
-            <span className="text-[10px] font-bold">{lang.toUpperCase()}</span>
-          </button>
-        </div>
-      </div>
+            {/* Lang Toggle Mobile (Icono + Texto) */}
+            <button
+              onClick={toggleLanguage}
+              className={`h-10 pl-2 pr-3 rounded-full flex items-center gap-1.5 text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? 'animate-pulse' : ''}`}
+              title={t('nav.toggleLang')}
+            >
+              <AnimatedLangIcon lang={lang} size={16} />
+              <span className="text-[10px] font-bold tracking-wide">{lang.toUpperCase()}</span>
+            </button>
+
+          </div>
+        </div>,
+        document.body
+      )}
     </>
   )
 }

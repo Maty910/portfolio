@@ -2,28 +2,28 @@ import {
   SiReact, SiNodedotjs, SiCss3, SiExpress, SiJavascript, SiTypescript, 
   SiHtml5, SiPostgresql, SiSqlite, SiMongodb, SiPostman, SiPython, 
   SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma,
-  SiNextdotjs, SiDocker,
-  SiCanva,
+  SiNextdotjs, SiDocker, SiCanva,
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { 
-  BrainCircuit, 
-  Globe, Code2, Cpu, Database, Layout, Wrench, Terminal, Sparkles
+  BrainCircuit, Globe, Code2, Cpu, Database, Layout, Wrench, Terminal, Sparkles
 } from 'lucide-react';
 import { useLanguage } from '../context/LanguageContext';
 
 // --- DATA CONFIGURATION ---
 const SKILL_CATEGORIES = [
-  {
-    title: 'Frontend & UI',
+    {
+      id: 'frontend_ui',
+      title: 'Frontend & UI',
     icon: Layout,
-    gradient: 'from-purple-500/20 to-pink-500/20',
-    borderColor: 'border-purple-500/30',
+    // Usamos clases de Tailwind para los colores de acento, que se ven bien en ambos temas
+    accentClass: 'text-purple-500',
+    borderClass: 'group-hover:border-purple-500/50',
     skills: [
       { name: 'React', icon: SiReact, color: '#61dafb' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
       { name: 'Tailwind', icon: SiTailwindcss, color: '#38bdf8' },
-      { name: 'Next.js', icon: SiNextdotjs, color: '#ffffff' },
+      { name: 'Next.js', icon: SiNextdotjs, color: '#888888' }, // Gris neutro para Next
       { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
       { name: 'CSS3', icon: SiCss3, color: '#1572b6' },
       { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
@@ -32,13 +32,14 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    title: 'Backend & Data',
+      id: 'backend_data',
+      title: 'Backend & Data',
     icon: Database,
-    gradient: 'from-emerald-500/20 to-teal-500/20',
-    borderColor: 'border-emerald-500/30',
+    accentClass: 'text-emerald-500',
+    borderClass: 'group-hover:border-emerald-500/50',
     skills: [
       { name: 'Node.js', icon: SiNodedotjs, color: '#8cc84b' },
-      { name: 'Express', icon: SiExpress, color: '#ffffff' },
+      { name: 'Express', icon: SiExpress, color: '#888888' },
       { name: 'Python', icon: SiPython, color: '#3776ab' },
       { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
       { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
@@ -47,13 +48,14 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    title: 'Tools & DevOps',
+      id: 'tools_devops',
+      title: 'Tools & DevOps',
     icon: Wrench,
-    gradient: 'from-blue-500/20 to-cyan-500/20',
-    borderColor: 'border-blue-500/30',
+    accentClass: 'text-blue-500',
+    borderClass: 'group-hover:border-blue-500/50',
     skills: [
       { name: 'Git', icon: SiGit, color: '#f05032' },
-      { name: 'GitHub', icon: SiGithub, color: '#ffffff' },
+      { name: 'GitHub', icon: SiGithub, color: '#888888' },
       { name: 'VS Code', icon: VscVscode, color: '#007acc' },
       { name: 'Postman', icon: SiPostman, color: '#ff6c37' },
       { name: 'Netlify', icon: SiNetlify, color: '#00c7b7' },
@@ -63,10 +65,10 @@ const SKILL_CATEGORIES = [
 ];
 
 const SOFT_SKILLS = [
-  { name: 'Problem Solving', icon: BrainCircuit, color: 'from-purple-500 to-pink-500' },
-  { name: 'Team Work', icon: Globe, color: 'from-blue-500 to-cyan-500' },
-  { name: 'Fast Learning', icon: Sparkles, color: 'from-amber-500 to-orange-500' },
-  { name: 'Adaptability', icon: Code2, color: 'from-emerald-500 to-teal-500' },
+  { key: 'problemSolving', icon: BrainCircuit, color: 'text-purple-500' },
+  { key: 'teamWork', icon: Globe, color: 'text-blue-500' },
+  { key: 'fastLearning', icon: Sparkles, color: 'text-amber-500' },
+  { key: 'adaptability', icon: Code2, color: 'text-emerald-500' },
 ];
 
 export function Skills() {
@@ -75,91 +77,78 @@ export function Skills() {
   return (
     <section 
       id="skills"
-      className="skills-section snap-start min-h-screen w-full flex flex-col justify-start relative
+      className="snap-start min-h-screen w-full flex flex-col justify-start relative
+                transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
+                 /* Padding consistente con las otras secciones */
+                min-[881px]:pl-[280px]
                 max-[880px]:min-h-[calc(100vh-80px)]"
     >
       {/* Contenedor Principal */}
-      <div className="w-full max-w-[850px] px-6 md:px-12 py-12 flex flex-col justify-center h-full
-                      max-[880px]:px-4 max-[880px]:py-8 max-[880px]:max-w-full">
+      <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
+                      max-[880px]:px-4 max-[880px]:py-8">
         
-        {/* Header de Sección con animación de entrada */}
+        {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-[#6353f2] to-[#8b5cf6] shadow-lg shadow-[#6353f2]/20 text-white">
-              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
+            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
+              <Cpu size={24} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight max-[880px]:text-2xl">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
               {t('skills.title')}
             </h2>
           </div>
-          <p className="text-[#a7a9be] text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
+          <p className="text-text-secondary text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
             {t('skills.sub')}
           </p>
         </div>
 
-        {/* --- GRID DE CATEGORÍAS (Tech Stack) con stagger animation --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-6 max-[880px]:gap-3 max-[880px]:mb-5">
+        {/* --- GRID DE CATEGORÍAS (Tech Stack) --- */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-150">
           {SKILL_CATEGORIES.map((category, categoryIndex) => (
             <div 
               key={category.title}
-              className="group flex flex-col p-5 bg-gradient-to-br from-white/[0.05] to-white/[0.02] border border-white/10 rounded-2xl
-                        hover:from-white/[0.08] hover:to-white/[0.04] hover:border-white/20 hover:shadow-xl hover:shadow-black/20
-                        transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-                        animate-in fade-in slide-in-from-bottom-8 
-                        max-[880px]:p-4"
-              style={{ 
-                animationDelay: `${150 + categoryIndex * 100}ms`,
-                animationDuration: '700ms'
-              }}
+              className={`group flex flex-col p-5 rounded-2xl
+                          /* Fondo Glass Adaptable */
+                          bg-text-primary/5 border border-text-primary/10
+                          /* Hover Effects */
+                          hover:bg-text-primary/10 ${category.borderClass} hover:shadow-lg
+                          transition-all duration-500 ease-out
+                          max-[880px]:p-4`}
+              style={{ animationDelay: `${categoryIndex * 100}ms` }}
             >
               {/* Header de categoría */}
-              <div className={`flex items-center gap-3 mb-5 pb-4 border-b border-white/5`}>
-                <div className={`p-2 rounded-lg bg-gradient-to-br ${category.gradient} ${category.borderColor} border backdrop-blur-sm
-                                transition-transform duration-500 group-hover:scale-110 group-hover:rotate-3`}>
-                  <category.icon className="w-5 h-5 text-white" />
+              <div className="flex items-center gap-3 mb-5 pb-4 border-b border-text-primary/10">
+                <div className={`p-2 rounded-lg bg-bg-base border border-text-primary/10 shadow-sm ${category.accentClass}`}>
+                  <category.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-white text-lg tracking-wide">{category.title}</h3>
+                <h3 className="font-bold text-text-primary text-lg tracking-wide">{t(`skills.categories.${category.id}.title`)}</h3>
               </div>
               
               {/* Skills Grid */}
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
+                {category.skills.map((skill) => (
                   <div 
                     key={skill.name} 
-                    className="skill-badge group/skill relative flex items-center gap-2 px-3 py-2 rounded-lg 
-                              border border-white/10 backdrop-blur-sm
-                              bg-[#0f0e17]/80
-                              hover:scale-105 hover:border-white/30 hover:-translate-y-0.5
-                              transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-                              cursor-default overflow-hidden"
-                    style={{
-                      animationDelay: `${300 + categoryIndex * 100 + skillIndex * 50}ms`
-                    }}
+                    className="group/skill relative flex items-center gap-2 px-3 py-1.5 rounded-lg 
+                              border border-text-primary/10 cursor-default transition-all duration-300
+                              bg-bg-base hover:scale-105 hover:-translate-y-0.5 overflow-hidden"
+                    // Inyectamos el color para el hover dinámico
+                    style={{ '--skill-color': skill.color } as React.CSSProperties}
                   >
-                    {/* Glow effect on hover */}
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover/skill:opacity-100 blur-xl transition-opacity duration-500"
-                      style={{ 
-                        background: `radial-gradient(circle at center, ${skill.color}20, transparent 70%)` 
-                      }}
-                    />
+                    {/* Background con color al hover */}
+                    <div className="absolute inset-0 opacity-0 group-hover/skill:opacity-10 transition-opacity duration-300 bg-[var(--skill-color)]" />
                     
-                    {/* Background con color de la tecnología en hover */}
-                    <div 
-                      className="absolute inset-0 opacity-0 group-hover/skill:opacity-100 transition-opacity duration-[800ms]"
-                      style={{ 
-                        background: `linear-gradient(135deg, ${skill.color}15, ${skill.color}05)` 
-                      }}
-                    />
-                    
-                    {/* Icono con colores originales */}
+                    {/* Borde con color al hover */}
+                    <div className="absolute inset-0 border border-transparent group-hover/skill:border-[var(--skill-color)]/30 rounded-lg transition-colors duration-300" />
+
+                    {/* Icono */}
                     <skill.icon 
-                      className="w-5 h-5 relative z-10 transition-transform duration-500 group-hover/skill:scale-110 group-hover/skill:rotate-6" 
-                      style={{ color: skill.color }}
+                      className="w-4 h-4 relative z-10 transition-transform duration-300 group-hover/skill:scale-110" 
+                      style={{ color: skill.color }} // Color base del icono siempre visible
                     />
                     
                     {/* Texto */}
-                    <span className="text-sm font-medium text-[#a7a9be] group-hover/skill:text-white relative z-10 transition-colors duration-500">
+                    <span className="text-xs font-medium text-text-secondary group-hover/skill:text-text-primary relative z-10 transition-colors">
                       {skill.name}
                     </span>
                   </div>
@@ -170,70 +159,53 @@ export function Skills() {
         </div>
 
         {/* --- SOFT SKILLS & CTA --- */}
-        <div className="flex flex-col lg:flex-row gap-6 items-stretch animate-in fade-in slide-in-from-bottom-8 duration-700"
-            style={{ animationDelay: '500ms' }}>
+        <div className="flex flex-col lg:flex-row gap-6 items-stretch animate-in fade-in slide-in-from-bottom-8 duration-700 delay-300">
           
-          {/* Soft Skills con gradientes */}
-          <div className="flex-1 p-5 rounded-2xl bg-gradient-to-br from-white/[0.05] to-transparent border border-white/10 
-                          hover:from-white/[0.08] hover:border-white/20 transition-all duration-[800ms] max-[880px]:p-4">
-            <h3 className="text-base font-bold text-white uppercase tracking-wider mb-4 flex items-center gap-2">
-              <BrainCircuit size={18} className="text-[#6353f2]" />
+          {/* Soft Skills */}
+          <div className="flex-1 p-5 rounded-2xl bg-text-primary/5 border border-text-primary/10 
+                          hover:border-primary/30 transition-all duration-500 max-[880px]:p-4">
+            <h3 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+              <BrainCircuit size={18} className="text-primary" />
               {t('skills.sub2')}
             </h3>
-            <div className="grid grid-cols-2 gap-3">
-              {SOFT_SKILLS.map((skill) => (
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                {SOFT_SKILLS.map((skill) => (
                 <div 
-                  key={skill.name}
-                  className="group/soft relative px-4 py-3 rounded-xl bg-[#0f0e17]/50 border border-white/10 
-                            hover:border-white/30 hover:scale-105 hover:-translate-y-0.5
-                            transition-all duration-[800ms] ease-[cubic-bezier(0.25,0.1,0.25,1.0)] cursor-default overflow-hidden"
+                  key={skill.key}
+                  className="flex flex-col items-center justify-center p-3 rounded-xl bg-bg-base border border-text-primary/10 
+                            hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
                 >
-                  {/* Gradient background on hover */}
-                  <div className={`absolute inset-0 opacity-0 group-hover/soft:opacity-100 bg-gradient-to-br ${skill.color} 
-                                  transition-opacity duration-500`}
-                      style={{ opacity: 0.1 }} 
-                  />
-                  
-                  <div className="relative z-10 flex items-center gap-2">
-                    <skill.icon size={16} className="text-[#6353f2] group-hover/soft:text-white transition-colors duration-500" />
-                    <span className="text-sm font-medium text-[#a7a9be] group-hover/soft:text-white transition-colors duration-500">
-                      {skill.name}
-                    </span>
-                  </div>
+                  <skill.icon size={20} className={`${skill.color} group-hover/soft:scale-110 transition-transform`} />
+                  <span className="text-xs font-medium text-text-secondary group-hover/soft:text-text-primary transition-colors">
+                    {t(`skills.soft.${skill.key}`)}
+                  </span>
                 </div>
               ))}
             </div>
           </div>
 
-          {/* CTA Box mejorado */}
-          <div className="lg:w-[320px] p-5 rounded-2xl bg-gradient-to-br from-[#6353f2]/20 via-[#8b5cf6]/10 to-transparent 
-                          border border-[#6353f2]/30 flex flex-col gap-3 justify-between
-                          hover:from-[#6353f2]/25 hover:border-[#6353f2]/50 hover:shadow-xl hover:shadow-[#6353f2]/10
-                          transition-all duration-[800ms] relative overflow-hidden group/cta max-[880px]:p-4">
+          {/* CTA Box */}
+          <div className="lg:w-[320px] p-6 rounded-2xl bg-gradient-to-br from-primary/10 via-primary/5 to-transparent 
+                          border border-primary/20 flex flex-col gap-4 justify-between
+                          hover:shadow-xl hover:shadow-primary/10 transition-all duration-500 max-[880px]:p-5">
             
-            {/* Animated gradient overlay */}
-            <div className="absolute inset-0 bg-gradient-to-br from-[#6353f2]/0 via-[#8b5cf6]/10 to-[#6353f2]/0 
-                          opacity-0 group-hover/cta:opacity-100 transition-opacity duration-1000" />
-            
-            <div className="relative z-10">
-              <div className="flex items-start gap-2 mb-3">
-                <Sparkles size={18} className="text-[#a8a1ff] mt-0.5 animate-pulse" />
-                <p className="text-sm text-[#a7a9be] leading-relaxed italic">
-                  "{t('skills.sub3')}"
-                </p>
-              </div>
-              
-              <a 
-                href="#projects" 
-                className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl 
-                          bg-[#6353f2] text-white font-bold text-sm
-                          hover:bg-[#7c6aff] hover:shadow-lg hover:shadow-[#6353f2]/30 hover:scale-105
-                          transition-all duration-500 no-underline group/link"
-              >
-                {t('skills.projects')}
-                <Terminal size={16} className="group-hover/link:translate-x-1 transition-transform duration-500" />
-              </a>
+            <div className="flex items-start gap-3">
+              <Sparkles size={20} className="text-primary mt-1 animate-pulse" />
+              <p className="text-sm text-text-secondary leading-relaxed italic">
+                "{t('skills.sub3')}"
+              </p>
             </div>
+            
+            <a 
+              href="#projects" 
+              className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl 
+                        bg-primary text-white font-bold text-sm
+                        hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
+                        transition-all duration-300 no-underline group/link"
+            >
+              {t('skills.projects')}
+              <Terminal size={16} className="group-hover/link:translate-x-1 transition-transform" />
+            </a>
           </div>
 
         </div>

@@ -17,8 +17,8 @@ export const Projects = () => {
     technologies: p.technologies,
     githubUrl: p.githubUrl,
     liveUrl: p.liveUrl || undefined,
-    title: t(`projects.items.${p.slug}.title`) || `Project ${p.slug}`,
-    description: t(`projects.items.${p.slug}.description`) || 'No description available.',
+    title: t(`projects.items.${p.slug}.title`) || `${t('projects.defaultTitle')} ${p.slug}`,
+    description: t(`projects.items.${p.slug}.description`) || t('projects.noDescription'),
   }));
 
   return (
@@ -26,25 +26,25 @@ export const Projects = () => {
       id="projects"
       className="snap-start min-h-screen w-full flex flex-col justify-start relative
                  transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
-                 /* Mismos ajustes de padding que la Home para evitar saltos */
+                 /* Padding responsivo para sidebar */
                  min-[881px]:pl-[280px]
                  max-[880px]:min-h-[calc(100vh-80px)]"
     >
-      {/* Contenedor Principal (Consistente con Home) */}
+      {/* Contenedor Principal */}
       <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
                       max-[880px]:px-4 max-[880px]:py-8">
         
-        {/* Header de Sección con Animación de Entrada */}
+        {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-[#6353f2]/10 border border-[#6353f2]/20 text-[#6353f2]">
+            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
               <FolderOpen size={24} />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-white tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
               {t('projects.title')}
             </h2>
           </div>
-          <p className="text-[#a7a9be] text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
+          <p className="text-text-secondary text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
             {t('projects.cta')}
           </p>
         </div>
@@ -55,13 +55,17 @@ export const Projects = () => {
             <article 
               key={project.id}
               onClick={() => setSelectedProject(project)}
-              className="group relative flex flex-col bg-white/5 border border-white/5 rounded-2xl overflow-hidden cursor-pointer
+              className="group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer
+                         /* Estilos base Glass adaptables */
+                         bg-text-primary/5 border border-text-primary/10
                          transition-all duration-300 ease-out
-                         hover:bg-white/[0.07] hover:border-[#6353f2]/30 hover:shadow-[0_8px_30px_rgba(99,83,242,0.1)] hover:-translate-y-1
+                         /* Hover Effects */
+                         hover:bg-text-primary/10 hover:border-primary/30 
+                         hover:shadow-lg hover:-translate-y-1
                          active:scale-[0.98]"
             >
               {/* Imagen con Overlay */}
-              <div className="relative h-48 overflow-hidden w-full bg-[#0f0e17]">
+              <div className="relative h-48 overflow-hidden w-full bg-bg-base">
                 {project.image ? (
                   <img 
                     src={project.image} 
@@ -69,18 +73,18 @@ export const Projects = () => {
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 ) : (
-                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#1e1e2e] to-[#0f0e17]">
-                    <FolderOpen className="text-white/20" size={40} />
+                  <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-surface to-bg-base">
+                    <FolderOpen className="text-text-muted" size={40} />
                   </div>
                 )}
                 
-                {/* Gradiente de superposición para mejorar lectura de texto si fuera necesario, o efecto estético */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#0f0e17] via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
+                {/* Gradiente de superposición para contraste (usamos bg-base para que coincida con el tema) */}
+                <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
                 
                 {/* Badge "Ver más" al hover (Desktop) */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-black/40 backdrop-blur-[2px]">
-                  <span className="px-4 py-2 rounded-full bg-[#6353f2] text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    View Details
+                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
+                  <span className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                    {t('projects.viewDetails')}
                   </span>
                 </div>
               </div>
@@ -88,7 +92,7 @@ export const Projects = () => {
               {/* Contenido de la Card */}
               <div className="flex flex-col flex-grow p-5 gap-3">
                 <div className="flex justify-between items-start gap-4">
-                  <h3 className="text-xl font-bold text-white group-hover:text-[#6353f2] transition-colors leading-tight line-clamp-1">
+                  <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors leading-tight line-clamp-1">
                     {project.title}
                   </h3>
                   
@@ -99,9 +103,9 @@ export const Projects = () => {
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-[#a7a9be] hover:text-white hover:bg-white/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title="View Code"
+                        title={t('projects.links.code')}
                       >
                         <Github size={18} />
                       </a>
@@ -111,9 +115,9 @@ export const Projects = () => {
                         href={project.liveUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-[#a7a9be] hover:text-[#6353f2] hover:bg-white/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title="Live Demo"
+                        title={t('projects.links.live')}
                       >
                         <ExternalLink size={18} />
                       </a>
@@ -121,7 +125,7 @@ export const Projects = () => {
                   </div>
                 </div>
 
-                <p className="text-[#a7a9be] text-sm leading-relaxed line-clamp-2">
+                <p className="text-text-secondary text-sm leading-relaxed line-clamp-2">
                   {project.description}
                 </p>
 
@@ -130,13 +134,13 @@ export const Projects = () => {
                   {project.technologies.slice(0, 3).map(tech => (
                     <span 
                       key={tech} 
-                      className="px-2 py-1 rounded-md bg-[#6353f2]/10 border border-[#6353f2]/20 text-[#a8a1ff] text-[10px] font-medium tracking-wide uppercase"
+                      className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary text-[10px] font-medium tracking-wide uppercase"
                     >
                       {tech}
                     </span>
                   ))}
                   {project.technologies.length > 3 && (
-                    <span className="px-2 py-1 rounded-md bg-white/5 border border-white/10 text-[#a7a9be] text-[10px] font-medium">
+                    <span className="px-2 py-1 rounded-md bg-text-primary/5 border border-text-primary/10 text-text-secondary text-[10px] font-medium">
                       +{project.technologies.length - 3}
                     </span>
                   )}
@@ -152,7 +156,7 @@ export const Projects = () => {
             href="https://github.com/Maty910" 
             target="_blank" 
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 text-[#a7a9be] hover:text-[#6353f2] transition-colors font-medium text-sm group no-underline px-4 py-2 hover:bg-white/5 rounded-lg -ml-4"
+            className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors font-medium text-sm group no-underline px-4 py-2 hover:bg-text-primary/5 rounded-lg -ml-4"
           >
             {t('projects.viewAll')}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />

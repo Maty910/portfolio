@@ -1,6 +1,8 @@
 import { Link } from 'react-scroll';
+import { useLanguage } from '../context/LanguageContext';
 
 export function Navigation() {
+  const { t } = useLanguage();
   return (
     <nav>
       <ul>
@@ -12,7 +14,7 @@ export function Navigation() {
             offset={-70}
             duration={500}
           >
-            Projects
+            {t('nav.projects')}
           </Link>
         </li>
         {/* Add other navigation items as needed */}

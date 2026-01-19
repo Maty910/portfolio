@@ -1,4 +1,7 @@
+import { useLanguage } from '../context/LanguageContext';
+
 export function Footer() {
+  const { t } = useLanguage();
   return (
     <footer 
       id="footer"
@@ -12,7 +15,7 @@ export function Footer() {
       `}
     >
       <p className="text-xs text-[var(--text-muted)] font-medium tracking-wide">
-        &copy; {new Date().getFullYear()} Matías Chacón. All rights reserved.
+        &copy; {new Date().getFullYear()} Matías Chacón. {t('footer.copyRight')}
       </p>
     </footer>
   )

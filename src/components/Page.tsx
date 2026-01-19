@@ -1,9 +1,10 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Cpu, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest } from 'lucide-react';
+import { ExternalLink, Github, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { SiReact, SiNodedotjs, SiTypescript } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiNextdotjs } from 'react-icons/si';
 import type { Section } from '../types';
+import { useLanguage } from '../context/LanguageContext';
 
 interface PageProps extends PropsWithChildren {
   activeSection?: Section;
@@ -51,11 +52,13 @@ const LocalTime = () => {
     const interval = setInterval(updateTime, 60000);
     return () => clearInterval(interval);
   }, []);
-  return <span className="font-mono text-xs text-white">{time} AR</span>;
+  return <span className="font-mono text-xs text-text-primary">{time} AR</span>;
 };
 
 export function Page({ children, activeSection = 'home' }: PageProps) {
-  const typingText = useTypewriter(['Full-Stack Developer', 'React Enthusiast', 'Creative Coder', 'Pixel Precision'], 100);
+  const { t, get } = useLanguage();
+  const typingWords = (get('page.typingWords') as string[]) || ['Full-Stack Developer', 'React Enthusiast', 'Creative Coder', 'Pixel Precision'];
+  const typingText = useTypewriter(typingWords, 100);
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -65,41 +68,40 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
   };
 
   const renderSidebarContent = () => {
-    const cardBaseClass = "bg-[#6353f2]/5 p-4 rounded-2xl border border-[#6353f2]/20 backdrop-blur-sm w-full transition-all duration-300 hover:bg-[#6353f2]/10 hover:border-[#6353f2]/30 flex flex-col justify-center min-h-[120px]";
+    const cardBaseClass = "bg-primary/5 p-4 rounded-2xl border border-primary/20 backdrop-blur-sm w-full transition-all duration-300 hover:bg-primary/10 hover:border-primary/30 flex flex-col justify-center min-h-[120px]";
     const wrapperClass = "flex flex-col gap-4 w-full animate-in fade-in slide-in-from-left-4 duration-700 max-[880px]:animate-in max-[880px]:fade-in max-[880px]:slide-in-from-top-2";
 
     if (activeSection === 'projects') {
       return (
         <div className={wrapperClass}>
           <div className={cardBaseClass}>
-            <h3 className="text-[#6353f2] font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
-              <Github size={16} /> Dev Activity
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
+              <Github size={14} /> {t('page.githubStats')}
             </h3>
             
-            {/* GitHub Stats Mock - Números genéricos pero realistas */}
-            <div className="grid grid-cols-2 gap-3 w-full">
-              <div className="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
-                <div className="flex items-center gap-1.5 text-[#a7a9be] text-[10px] mb-1">
+            <div className="grid grid-cols-2 gap-2 w-full">
+              <div className="flex flex-col bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
+                <div className="flex items-center gap-1.5 text-text-secondary text-[10px] mb-1">
                   <GitCommit size={12} />
-                  <span>Commits</span>
+                  <span>{t('page.contribs')}</span>
                 </div>
-                <span className="text-white font-bold text-sm">450+</span>
-                <span className="text-[9px] text-[#6353f2]">Last Year</span>
+                <span className="text-text-primary font-bold text-sm">500+</span>
+                <span className="text-[9px] text-primary">{t('page.lifetime')}</span>
               </div>
               
-              <div className="flex flex-col bg-white/5 p-2 rounded-lg border border-white/5">
-                <div className="flex items-center gap-1.5 text-[#a7a9be] text-[10px] mb-1">
+              <div className="flex flex-col bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
+                <div className="flex items-center gap-1.5 text-text-secondary text-[10px] mb-1">
                   <GitPullRequest size={12} />
-                  <span>PRs</span>
+                  <span>{t('page.publicRepos')}</span>
                 </div>
-                <span className="text-white font-bold text-sm">32</span>
-                <span className="text-[9px] text-green-400">Merged</span>
+                <span className="text-text-primary font-bold text-sm">15+</span>
+                <span className="text-[9px] text-green-500">{t('page.active')}</span>
               </div>
             </div>
             
-            <div className="mt-3 pt-3 border-t border-white/5 flex items-center gap-2">
-              <div className="w-2 h-2 rounded-full bg-amber-400 animate-pulse" />
-              <p className="text-[10px] text-[#a7a9be]">Building: <span className="text-white">Portfolio V2</span></p>
+            <div className="mt-3 pt-3 border-t border-text-primary/10 flex items-center gap-2">
+              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <p className="text-[10px] text-text-secondary">{t('page.building')}: <span className="text-text-primary font-medium">{t('page.buildingProject')}</span></p>
             </div>
           </div>
         </div>
@@ -110,49 +112,24 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       return (
         <div className={wrapperClass}>
           <div className={cardBaseClass}>
-            <h3 className="text-[#6353f2] font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
-              <Cpu size={16} /> Tech Ecosystem
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
+              <Layers size={14} /> {t('page.mainStack')}
             </h3>
             
-            {/* Tech Categorizada - Sin porcentajes, solo facts */}
-            <div className="flex flex-col gap-3 w-full">
-              
-              {/* Frontend Row */}
-              <div className="flex items-center gap-2">
-                <div className="bg-[#61dafb]/10 p-1.5 rounded-lg border border-[#61dafb]/20">
-                  <SiReact size={14} className="text-[#61dafb]" />
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">React</span>
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">Tailwind</span>
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">Next.js</span>
-                </div>
-              </div>
-
-              {/* Backend Row */}
-              <div className="flex items-center gap-2">
-                <div className="bg-[#8cc84b]/10 p-1.5 rounded-lg border border-[#8cc84b]/20">
-                  <SiNodedotjs size={14} className="text-[#8cc84b]" />
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">Node</span>
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">Express</span>
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">API REST</span>
-                </div>
-              </div>
-
-              {/* Core/Data Row */}
-              <div className="flex items-center gap-2">
-                <div className="bg-[#3178c6]/10 p-1.5 rounded-lg border border-[#3178c6]/20">
-                  <SiTypescript size={14} className="text-[#3178c6]" />
-                </div>
-                <div className="flex flex-wrap gap-1.5">
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">TypeScript</span>
-                  <span className="text-[10px] bg-white/5 px-2 py-0.5 rounded text-[#a7a9be]">SQL</span>
-                </div>
-              </div>
-
+            <div className="grid grid-cols-4 gap-2 w-full place-items-center">
+              <div className="p-1.5 bg-[#61dafb]/10 rounded-lg border border-[#61dafb]/20" title="React"><SiReact size={16} className="text-[#61dafb]" /></div>
+              <div className="p-1.5 bg-text-primary/5 rounded-lg border border-text-primary/10" title="Next.js"><SiNextdotjs size={16} className="text-text-primary" /></div>
+              <div className="p-1.5 bg-[#38bdf8]/10 rounded-lg border border-[#38bdf8]/20" title="Tailwind"><SiTailwindcss size={16} className="text-[#38bdf8]" /></div>
+              <div className="p-1.5 bg-[#3178c6]/10 rounded-lg border border-[#3178c6]/20" title="TypeScript"><SiTypescript size={16} className="text-[#3178c6]" /></div>
+              <div className="p-1.5 bg-[#8cc84b]/10 rounded-lg border border-[#8cc84b]/20" title="Node.js"><SiNodedotjs size={16} className="text-[#8cc84b]" /></div>
+              <div className="p-1.5 bg-[#336791]/10 rounded-lg border border-[#336791]/20" title="PostgreSQL"><SiPostgresql size={16} className="text-[#336791]" /></div>
+              <div className="p-1.5 bg-[#47a248]/10 rounded-lg border border-[#47a248]/20" title="MongoDB"><SiMongodb size={16} className="text-[#47a248]" /></div>
+              <div className="p-1.5 bg-[#2496ed]/10 rounded-lg border border-[#2496ed]/20" title="Docker"><SiDocker size={16} className="text-[#2496ed]" /></div>
             </div>
+
+            <p className="text-[9px] text-text-secondary text-center mt-3 pt-2 border-t border-text-primary/10">
+              {t('page.alwaysLearning')}
+            </p>
           </div>
         </div>
       );
@@ -162,94 +139,81 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       return (
         <div className={wrapperClass}>
           <div className={cardBaseClass}>
-            <h3 className="text-[#6353f2] font-bold mb-3 flex items-center gap-2 text-sm uppercase tracking-wider">
-              <Database size={16} /> Status & Location
+            <h3 className="text-primary font-bold mb-3 flex items-center gap-2 text-xs uppercase tracking-wider">
+              <Database size={14} /> {t('page.statusLocation')}
             </h3>
             
-            <div className="flex flex-col gap-3 w-full">
-              
-              {/* 1. Available for Hire (Recuperado) */}
-              <div className="flex items-center gap-2 bg-green-500/10 p-2 rounded-lg border border-green-500/20">
+            <div className="flex flex-col gap-2.5 w-full">
+              <div className="flex items-center gap-2 bg-green-500/10 p-1.5 px-2 rounded-lg border border-green-500/20">
                 <span className="relative flex h-2 w-2">
                   <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75"></span>
                   <span className="relative inline-flex rounded-full h-2 w-2 bg-green-500"></span>
                 </span>
-                <span className="text-[10px] font-bold text-green-400 uppercase tracking-wide">Available for hire</span>
+                <span className="text-[9px] font-bold text-green-500 uppercase tracking-wide">{t('page.available')}</span>
               </div>
 
-              {/* 2. Location & Time */}
-              <div className="flex justify-between items-center bg-white/5 p-2 rounded-lg border border-white/5">
-                <div className="flex items-center gap-2 text-[#a7a9be] text-xs">
-                  <MapPin size={14} />
-                  <span>BA, Arg</span>
+              <div className="flex justify-between items-center bg-text-primary/5 p-2 rounded-lg border border-text-primary/10">
+                <div className="flex items-center gap-1.5 text-text-secondary text-[10px]">
+                  <MapPin size={12} />
+                  <span>{t('page.location')}</span>
                 </div>
                 <LocalTime />
               </div>
 
-              {/* 3. Copy Email */}
               <button 
                 onClick={handleCopyEmail}
-                className="flex items-center justify-between w-full bg-[#6353f2]/10 hover:bg-[#6353f2]/20 border border-[#6353f2]/30 p-2 rounded-lg transition-all group cursor-pointer"
+                className="flex items-center justify-between w-full bg-primary/10 hover:bg-primary/20 border border-primary/30 p-2 rounded-lg transition-all group cursor-pointer active:scale-95"
+                title={t('contact.copyEmail')}
               >
-                <div className="flex items-center gap-2">
-                  <Mail size={14} className="text-[#6353f2]" />
-                  <span className="text-[10px] text-white font-medium">matychacong@gmail.com</span>
+                <div className="flex items-center gap-2 overflow-hidden">
+                  <Mail size={12} className="text-primary shrink-0" />
+                  <span className="text-[10px] text-text-primary font-medium truncate">{t('page.email')}</span>
                 </div>
-                {copied ? <Check size={14} className="text-green-400" /> : <Copy size={14} className="text-[#a7a9be] group-hover:text-white" />}
+                {copied ? <Check size={12} className="text-green-500 shrink-0" /> : <Copy size={12} className="text-text-secondary group-hover:text-text-primary shrink-0" />}
               </button>
-
             </div>
           </div>
         </div>
       );
     }
 
-    // --- DEFAULT SIDEBAR (Home) ---
+    // Default Sidebar (Desktop Only)
     return (
       <div className="flex flex-col items-center w-full gap-6 animate-in fade-in zoom-in-95 duration-700">
         <div className="relative group w-fit mx-auto">
-          <div className="absolute inset-[-3px] max-[880px]:inset-[-2px] bg-gradient-to-r from-[#6353f2] via-purple-500 to-[#6353f2] rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
-          <div className="relative w-[110px] h-[110px] max-[880px]:w-[80px] max-[880px]:h-[80px] rounded-full overflow-hidden border-[3px] max-[880px]:border-[2px] border-[#0f0e17] bg-[#0f0e17] shadow-2xl">
-            <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
-            <div className="absolute inset-0 bg-gradient-to-tr from-[#6353f2]/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+          <div className="absolute inset-[-3px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
+            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
+              <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt={t('alt.profile')} />
+            <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-[#0f0e17] px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
+            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-bg-base px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]"></span>
-            <span className="text-[9px] font-bold text-green-400 tracking-tight">Open to work</span>
+            <span className="text-[9px] font-bold text-green-500 tracking-tight">{t('page.openToWork')}</span>
           </div>
         </div>
 
         <div className="hidden lg:flex flex-col gap-2 w-full">
-          <div className="flex gap-2">
-            <div className="flex-1 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-white/10 hover:border-[#6353f2]/40 transition-colors group flex flex-col items-center justify-center">
-              <p className="text-xl font-bold text-white">3+</p>
-              <p className="text-[9px] text-[#a7a9be] uppercase font-semibold">Years</p>
+              <div className="flex gap-2">
+            <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
+              <p className="text-xl font-bold text-text-primary">3+</p>
+              <p className="text-[9px] text-text-secondary uppercase font-semibold">{t('page.years')}</p>
             </div>
-            <div className="flex-1 bg-white/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-white/10 hover:border-[#6353f2]/40 transition-colors group flex flex-col items-center justify-center">
-              <p className="text-xl font-bold text-white">10+</p>
-              <p className="text-[9px] text-[#a7a9be] uppercase font-semibold">Projects</p>
+            <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
+              <p className="text-xl font-bold text-text-primary">10+</p>
+              <p className="text-[9px] text-text-secondary uppercase font-semibold">{t('page.projects')}</p>
             </div>
           </div>
         </div>
 
-        <div className="hidden lg:flex flex-col gap-2 pt-2 border-t border-white/5 w-full">
-          <p className="text-[10px] text-[#6353f2] font-bold uppercase tracking-widest mb-1">Connect</p>
-          <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-[#a7a9be] hover:text-white hover:bg-white/5 transition-all group border border-transparent hover:border-white/10">
-            <div className="flex items-center gap-2"><Github size={16} /><span>GitHub</span></div>
+        <div className="hidden lg:flex flex-col gap-2 pt-2 border-t border-text-primary/10 w-full">
+          <p className="text-[10px] text-primary font-bold uppercase tracking-widest mb-1">{t('page.connect')}</p>
+          <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-text-primary/5 transition-all group border border-transparent hover:border-text-primary/10">
+            <div className="flex items-center gap-2"><Github size={16} /><span>{t('contact.githubTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-[#a7a9be] hover:text-white hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
-            <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>LinkedIn</span></div>
+          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
+            <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>{t('contact.linkedinTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
-        </div>
-
-        <div className="lg:hidden flex justify-center gap-3 w-full">
-          <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2 bg-white/5 rounded-lg text-[#a7a9be] hover:text-white border border-white/10">
-            <Github size={16} />
-          </a>
-          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2 bg-[#0077b5]/10 rounded-lg text-[#a7a9be] hover:text-[#0077b5] border border-[#0077b5]/20">
-            <LinkedInIcon style={{ fontSize: 18 }} />
           </a>
         </div>
       </div>
@@ -257,37 +221,72 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
   };
 
   return (
-    <div className="page w-full min-h-screen bg-[#0f0e17] text-white overflow-x-hidden selection:bg-[#6353f2]/30 selection:text-white relative">
+    <div className="page w-full min-h-screen bg-bg-base text-text-primary overflow-x-hidden selection:bg-primary/30 selection:text-white relative transition-colors duration-500">
+      
+      {/* Fondo Decorativo */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
       
-      {/* Mobile Layout */}
-      <div className="min-[881px]:hidden w-full flex flex-col items-center pt-6 pb-2 px-4 relative z-20">
-        <div className="flex flex-col items-center gap-1 mb-2 w-full text-center">
-          <h1 className="flex items-center justify-center gap-2 text-lg font-bold">
-            <span className="bg-gradient-to-r from-white via-[#a7a0eb] to-white bg-clip-text text-transparent">Matías Chacón</span>
-            <FiCode className="text-[#6353f2] animate-pulse shrink-0" size={18} />
-          </h1>
-          <p className="text-[#a7a9be] text-[10px] font-mono tracking-wider h-3.5 opacity-80">{typingText}</p>
-        </div>
-        <div className="w-full max-w-[340px] flex flex-col items-center animate-in fade-in zoom-in-95 duration-500">
-          {renderSidebarContent()}
-        </div>
+      {/* =======================
+          LAYOUT MOBILE (Compact Sticky Header)
+      ======================== */}
+      <div className="min-[881px]:hidden w-full relative z-20">
+        
+        {/* Sticky App Bar */}
+        <header className="sticky top-0 z-40 w-full bg-bg-base/80 backdrop-blur-xl border-b border-text-primary/5 px-5 py-3 flex items-center justify-between transition-all duration-300">
+          <div className="flex items-center gap-3">
+             <div className="relative">
+                <div className="w-10 h-10 rounded-full overflow-hidden border border-text-primary/10">
+                   <img className="w-full h-full object-cover object-top" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
+                </div>
+                <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-bg-base shadow-sm"></div>
+             </div>
+             <div className="flex flex-col">
+                <h1 className="text-sm font-bold text-text-primary leading-tight">Matías Chacón</h1>
+                  <h1 className="text-sm font-bold text-text-primary leading-tight">{t('header.displayName')}</h1>
+                <p className="text-[10px] text-text-secondary font-mono leading-tight opacity-80">{typingText}</p>
+             </div>
+          </div>
+        </header>
+
+        {/* Dynamic Widget Area (Mobile Only) - Se muestra debajo del header */}
+        {/* Si estamos en Home, NO mostramos nada extra para que el foco sea el título */}
+        {activeSection !== 'home' && (
+          <div className="w-full px-4 pt-4 animate-in fade-in slide-in-from-top-2 duration-500">
+            {renderSidebarContent()}
+          </div>
+        )}
       </div>
 
-      {/* Desktop Layout */}
+      {/* =======================
+          LAYOUT DESKTOP
+      ======================== */}
       <div className="hidden min-[881px]:block">
         <header className="fixed top-8 left-28 z-20 transition-all animate-in fade-in slide-in-from-top-4 duration-700">
-          <p className="text-[#a7a9be] text-xs font-mono tracking-wider pl-1 border-l-2 border-[#6353f2]/30 ml-1 px-2 h-4">{typingText}</p>
+          <h1 className="flex items-center gap-3 mb-1 text-2xl font-bold group cursor-default">
+            <div className="relative">
+              <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent group-hover:via-primary transition-all duration-500">
+                Matías Chacón
+              </span>
+              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500" />
+            </div>
+            <FiCode className="text-primary animate-pulse" size={24} />
+          </h1>
+          <p className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4">
+            {typingText}
+          </p>
         </header>
+
         <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all animate-in zoom-in-95 duration-700 delay-150">
           {renderSidebarContent()}
         </div>
       </div>
 
-      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:top-4 max-[880px]:right-4">
-        <img className="w-[80px] max-[880px]:w-[35px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt="Matias Logo" />
+      {/* Logo Flotante (Desktop Only - en mobile ya tenemos el avatar) */}
+      <div className="hidden min-[881px]:block fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500">
+        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
       </div>
 
+      {/* Contenido Principal */}
       <div className="content-wrapper relative z-10 w-full min-h-screen transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">
         {children}
       </div>
