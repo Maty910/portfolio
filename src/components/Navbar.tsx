@@ -228,7 +228,7 @@ export const Navbar: React.FC<HeaderProps> = ({
             download
             className={`
               group relative flex items-center justify-center rounded-xl overflow-hidden
-              bg-gradient-to-r from-primary to-primary/80 text-white font-bold
+              bg-gradient-to-r from-primary to-primary/80 text-text-primary font-bold
               shadow-[0_4px_14px_rgba(99,83,242,0.4)]
               transition-all duration-300 ease-out
               hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] hover:scale-[1.02] active:scale-95
