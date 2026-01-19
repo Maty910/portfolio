@@ -1,5 +1,6 @@
 import React from 'react';
 import { Sun, Moon } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 type Theme = 'light' | 'dark';
 
@@ -10,6 +11,7 @@ interface ThemeToggleProps {
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, setTheme }) => {
   const isDark = theme === 'dark';
+  const { t } = useLanguage();
 
   const toggleTheme = () => {
     // Agregamos un pequeño feedback táctil si el navegador lo soporta
@@ -32,8 +34,8 @@ export const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, setTheme }) => 
         /* Active press */
         active:scale-90
       `}
-      title={`Cambiar a modo ${isDark ? 'claro' : 'oscuro'}`}
-      aria-label="Toggle theme"
+      title={isDark ? `${t('theme.light')}` : `${t('theme.dark')}`}
+      aria-label={t('theme.toggle')}
     >
       {/* Contenedor relativo para superponer los iconos */}
       <div className="relative w-5 h-5 overflow-hidden">
