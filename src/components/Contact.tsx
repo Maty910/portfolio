@@ -28,7 +28,7 @@ export function Contact() {
         {/* Header */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
+            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-text-primary">
               <MessageSquare size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight max-[880px]:text-2xl">
@@ -57,7 +57,7 @@ export function Contact() {
               <div className="flex gap-2 w-full md:w-auto max-[880px]:flex-row">
                 <a 
                   href="mailto:matychacong@gmail.com"
-                  className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-500 group/mail no-underline"
+                  className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-text-primary font-bold hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-500 group/mail no-underline"
                 >
                   <Send size={18} className="group-hover/mail:translate-x-0.5 group-hover/mail:-translate-y-0.5 transition-transform duration-500" />
                   <span className="max-[880px]:text-sm whitespace-nowrap">{t('contact.sendEmail')}</span>
