@@ -28,7 +28,7 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
     <div 
       className={`
         fixed inset-0 z-[9999] flex flex-col items-center justify-center
-        bg-[#0f0e17] 
+        bg-bg-base 
         transition-opacity duration-700 ease-in-out
         ${isExiting ? 'opacity-0 pointer-events-none' : 'opacity-100'}
       `}
@@ -49,7 +49,7 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
 
         {/* Nombre con efecto de revelado */}
         <div className="overflow-hidden mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-white tracking-tight animate-[slide-up_0.8s_ease-out_forwards]">
+          <h1 className="text-4xl md:text-5xl font-bold text-text-primary tracking-tight animate-[slide-up_0.8s_ease-out_forwards]">
             Matías <span className="text-[#6353f2]">Chacón</span>
           </h1>
         </div>
