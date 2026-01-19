@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { createPortal } from 'react-dom' // IMPORTANTE: Importamos createPortal
+import { createPortal } from 'react-dom'
 import {
   FiMenu,
   FiHome,
@@ -8,7 +8,7 @@ import {
   FiMail,
   FiDownload
 } from 'react-icons/fi'
-import { Sun, Moon, Languages } from 'lucide-react'
+import { Sun, Moon, Languages, Globe } from 'lucide-react' // Agregamos Globe
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
 import type { Section, SetActive } from '../types';
@@ -18,7 +18,7 @@ type HeaderProps = {
   setActiveSection: SetActive
 }
 
-// --- COMPONENTE ANIMADO (ICONO TEMA) ---
+// --- 1. COMPONENTE ANIMADO TEMA (Sol / Luna) ---
 const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: number }) => (
   <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
     {/* Sol (Visible en Light) */}
@@ -44,15 +44,49 @@ const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: numb
   </div>
 );
 
+// --- 2. COMPONENTE ANIMADO IDIOMA (Globe / Languages) ---
+const AnimatedLangIcon = ({ lang, size = 20 }: { lang: 'es' | 'en'; size?: number }) => (
+  <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
+    {/* Icono para Español (Globe - Local/Nativo) */}
+    <Globe 
+      size={size}
+      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+        ${lang === 'es'
+          ? 'rotate-0 opacity-100 scale-100 translate-y-0 text-primary'  // Visible en ES
+          : '-rotate-90 opacity-0 scale-50 -translate-y-6'                // Oculto en EN
+        }
+      `} 
+    />
+    {/* Icono para Inglés (Languages - Internacional) */}
+    <Languages 
+      size={size}
+      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+        ${lang === 'en'
+          ? 'rotate-0 opacity-100 scale-100 translate-y-0 text-emerald-400' // Visible en EN
+          : 'rotate-90 opacity-0 scale-50 translate-y-6'                     // Oculto en ES
+        }
+      `} 
+    />
+  </div>
+);
+
 export const Navbar: React.FC<HeaderProps> = ({
   activeSection,
   setActiveSection,
 }) => {
-  const { lang, toggleLanguage } = useLanguage()
+  const { lang, toggleLanguage, t } = useLanguage()
   const { theme, setTheme } = useTheme();
   const isDark = theme === 'dark';
 
-  // Estado para saber si el componente ya se montó (necesario para Portals)
+  // Flag para el "pulso" del texto al cambiar idioma (opcional, pero queda lindo)
+  const [langPulse, setLangPulse] = useState(false);
+
+  useEffect(() => {
+    setLangPulse(true);
+    const id = setTimeout(() => setLangPulse(false), 700);
+    return () => clearTimeout(id);
+  }, [lang]);
+
   const [mounted, setMounted] = useState(false);
 
   const [expanded, setExpanded] = useState<boolean>(() => {
@@ -97,10 +131,10 @@ export const Navbar: React.FC<HeaderProps> = ({
   };
 
   const nav = [
-    { id: 'home', label: 'Home', Icon: FiHome },
-    { id: 'projects', label: 'Projects', Icon: FiBriefcase },
-    { id: 'skills', label: 'Skills', Icon: FiTool },
-    { id: 'contact', label: 'Contact', Icon: FiMail },
+    { id: 'home', label: t('nav.home'), Icon: FiHome },
+    { id: 'projects', label: t('nav.projects'), Icon: FiBriefcase },
+    { id: 'skills', label: t('nav.skills'), Icon: FiTool },
+    { id: 'contact', label: t('nav.contact'), Icon: FiMail },
   ]
 
   return (
@@ -141,7 +175,7 @@ export const Navbar: React.FC<HeaderProps> = ({
               transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90
             `}
             onClick={() => setExpanded((v) => !v)}
-            title="Toggle Menu (M)"
+            title={t('nav.toggleMenu')}
           >
             <FiMenu />
           </button>
@@ -154,12 +188,12 @@ export const Navbar: React.FC<HeaderProps> = ({
               transition-all duration-[800ms]
               ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}
             `}>
-              <img src="/Logo Mati.svg" alt="Logo" className="w-full h-full object-contain" />
+              <img src="/Logo Mati.svg" alt={t('alt.logo')} className="w-full h-full object-contain" />
             </div>
             
             <div className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
-              <span className="font-bold text-text-primary text-sm leading-tight">Matías Chacón</span>
-              <span className="text-[10px] text-text-secondary uppercase tracking-wider">Full Stack Dev</span>
+              <span className="font-bold text-text-primary text-sm leading-tight">{t('header.displayName')}</span>
+              <span className="text-[10px] text-text-secondary uppercase tracking-wider">{t('header.name')}</span>
             </div>
           </div>
         </div>
@@ -169,6 +203,7 @@ export const Navbar: React.FC<HeaderProps> = ({
           <ul className="w-full list-none p-0 m-0 flex flex-col gap-2 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
             {nav.map(({ id, label, Icon }) => {
               const isActive = activeSection === id;
+              
               return (
                 <li key={id} className="relative group w-full max-[880px]:w-auto max-[880px]:h-full max-[880px]:flex-1">
                   <button
@@ -207,6 +242,8 @@ export const Navbar: React.FC<HeaderProps> = ({
 
         {/* --- 3. BOTTOM SECTION (Desktop Settings & CV) --- */}
         <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full">
+          
+          {/* CV Button */}
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
@@ -219,47 +256,82 @@ export const Navbar: React.FC<HeaderProps> = ({
               h-11
               ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}
             `}
-            title="Download CV"
+            title={t('header.downloadCv')}
           >
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
             <FiDownload className="text-xl shrink-0 relative z-20" />
             <span className={`text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20 ${expanded ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0 ml-0'}`}>
-              Descargar CV
+              {t('header.downloadCv')}
             </span>
           </a>
 
-          <div className={`grid transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] gap-3 ${expanded ? 'grid-cols-2' : 'grid-cols-1'}`}>
+          {/* SETTINGS GRID */}
+          <div className={`
+            grid transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] gap-3
+            ${expanded ? 'grid-cols-2' : 'grid-cols-1'}
+          `}>
+            
+            {/* BOTÓN THEME (Animated) */}
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className={`relative group flex items-center justify-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
-              title="Cambiar Tema"
+              className={`
+                relative group flex items-center justify-center rounded-xl
+                bg-text-primary/5 border border-text-primary/10 text-text-secondary
+                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
+                transition-all duration-300 ease-out overflow-hidden
+                focus:outline-none focus:ring-2 focus:ring-primary/50
+                active:scale-95 h-11
+                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
+              `}
+              title={t('theme.toggle')}
             >
-              <div className="shrink-0 flex items-center justify-center w-5 h-5"><AnimatedThemeIcon isDark={isDark} size={20} /></div>
-              <span className={`text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}`}>
-                {isDark ? 'Dark' : 'Light'}
+              <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                <AnimatedThemeIcon isDark={isDark} size={expanded ? 18 : 20} />
+              </div>
+              <span className={`
+                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
+                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
+              `}>
+                {isDark ? t('theme.dark') : t('theme.light')}
               </span>
             </button>
+
+            {/* BOTÓN LANGUAGE (Animated) */}
             <button
               onClick={toggleLanguage}
-              className={`relative group flex items-center justify-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
-              title="Cambiar Idioma"
+              className={`
+                relative group flex items-center justify-center rounded-xl
+                bg-text-primary/5 border border-text-primary/10 text-text-secondary
+                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
+                transition-all duration-300 ease-out overflow-hidden
+                focus:outline-none focus:ring-2 focus:ring-primary/50
+                active:scale-95 h-11
+                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
+              `}
+              title={t('nav.toggleLang')}
             >
-              <div className="shrink-0 flex items-center justify-center w-5 h-5 transition-all duration-300 group-hover:rotate-12 group-hover:text-text-primary"><Languages size={20} /></div>
-              <span className={`text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}`}>
-                {lang === 'en' ? 'English' : 'Español'}
+              <div className="shrink-0 flex items-center justify-center w-5 h-5">
+                <AnimatedLangIcon lang={lang} size={expanded ? 18 : 20} />
+              </div>
+              <span className={`
+                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
+                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
+                ${langPulse ? 'animate-pulse' : ''}
+              `}>
+                {lang.toUpperCase()}
               </span>
             </button>
+            
           </div>
         </div>
+
       </aside>
 
-      <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
+      <style>{`
+        @keyframes shimmer { 100% { transform: translateX(100%); } }
+      `}</style>
 
-      {/* ========================================
-        MOBILE SETTINGS PILL (Fixed via Portal)
-        ========================================
-        Usamos Portal para que este div flote sobre TODO (incluso sobre Page.tsx)
-      */}
+      {/* MOBILE SETTINGS PILL (Fixed via Portal) */}
       {mounted && createPortal(
         <div className="lg:hidden fixed top-3 right-3 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
           <div className="flex items-center p-1.5 rounded-full bg-bg-base/95 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
@@ -268,22 +340,21 @@ export const Navbar: React.FC<HeaderProps> = ({
             <button 
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
-              title="Cambiar tema"
-              aria-label="Cambiar tema"
+              title={t('theme.toggle')}
             >
               <AnimatedThemeIcon isDark={isDark} size={18} />
             </button>
 
             <div className="w-[1px] h-5 bg-text-primary/10"></div>
 
-            {/* Lang Toggle Mobile */}
+            {/* Lang Toggle Mobile (Icono + Texto Chico) */}
             <button
               onClick={toggleLanguage}
-              className="w-9 h-9 flex items-center justify-center rounded-full text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
-              title="Cambiar idioma"
-              aria-label="Cambiar idioma"
+              className={`flex items-center gap-1.5 pl-1.5 pr-2.5 h-9 rounded-full text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? 'animate-pulse' : ''}`}
+              title={t('nav.toggleLang')}
             >
-              <span className="text-xs font-bold tracking-wide">{lang.toUpperCase()}</span>
+              <AnimatedLangIcon lang={lang} size={16} />
+              <span className="text-[10px] font-bold tracking-wide">{lang.toUpperCase()}</span>
             </button>
           </div>
         </div>,
