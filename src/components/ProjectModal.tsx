@@ -60,8 +60,8 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                        bg-text-primary/5 text-text-secondary
                        hover:bg-text-primary/10 hover:text-text-primary hover:rotate-90"
             onClick={onClose} 
-            aria-label="Close project dialog"
-            title="Close (Esc)"
+            aria-label={t('projects.modal.closeAria')}
+            title={t('projects.modal.closeTitle')}
           >
             <X size={20} />
           </button>
@@ -94,7 +94,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
             <div className="flex flex-col h-full">
               <h4 className="text-text-primary mb-3 text-base md:text-lg font-semibold flex items-center gap-2">
                 <Code2 size={18} className="text-primary" />
-                Technologies
+                {t('projects.modal.technologies')}
               </h4>
               
               <ul className="flex flex-wrap gap-2 list-none p-0 m-0 mb-6 md:mb-8">
