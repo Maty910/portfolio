@@ -35,6 +35,14 @@ const en = {
       p4: {
         title: "Inventory Management System",
         description: "Inventory system in Python + SQLite"
+      },
+      p5: {
+        title: "Sachito Refrigeration Website",
+        description: "Responsive website for a refrigeration services technician"
+      },
+      p6: {
+        title: "Hotel Now Website",
+        description: "Landing page for a hotel booking service"
       }
     }
   },
@@ -89,6 +97,14 @@ const es = {
       p4: {
         title: "Sistema de Inventario",
         description: "Sistema de inventario en Python + SQLite"
+      },
+      p5: {
+        title: "Sitio Web Sachito Refrigeración",
+        description: "Sitio web responsivo para un técnico en refrigeración"
+      },
+      p6: {
+        title: "Sitio Web Hotel Now",
+        description: "Página de aterrizaje para un servicio de reservas hoteleras"
       }
     }
   },

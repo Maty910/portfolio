@@ -2,8 +2,8 @@
 export default [
   {
     slug: "p1",
-    image: "./images/project1.png",
-    technologies: ["React", "CSS", "JavaScript"],
+    image: "./images/DF Portfolio 1.png",
+    technologies: ["React", "Tailwind", "TypeScript"],
     githubUrl: "https://github.com/Maty910/Portafolio-Marra",
     liveUrl: "https://joaquinmarraccini.netlify.app/",
     featured: true
@@ -11,7 +11,7 @@ export default [
   {
     slug: "p2",
     image: "./images/project2.png",
-    technologies: ["React", "Node.js", "SQLite"],
+    technologies: ["React", "Node.js", "SQLite", "Express"],
     githubUrl: "https://github.com/Maty910/tasklist",
     liveUrl: "https://tasklistmaty.netlify.app/"
   },
@@ -27,5 +27,19 @@ export default [
     image: "./images/project4.png",
     technologies: ["Python", "SQLite"],
     githubUrl: "https://github.com/Maty910/inventory"
+  },
+  {
+    slug: "p5",
+    image: "./images/SC 1.png",
+    technologies: ["React", "Tailwind", "TypeScript"],
+    githubUrl: "https://github.com/Maty910/sachito-refrigeracion",
+    liveUrl: "https://sachitoref.netlify.app"
+  },
+  {
+    slug: "p6",
+    image: "./images/HN 1.png",
+    technologies: ["HTML", "CSS", "JavaScript"],
+    githubUrl: "https://github.com/Maty910/proyecto-dominio",
+    liveUrl: "https://hotelnow-project.netlify.app/"
   }
 ];
