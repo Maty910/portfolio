@@ -1,12 +1,12 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppings:wght@300;700&family=Inter:wght@300;400;600&display=swap');
-@import url('https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Sora:wght@100..800&display=swap');
+/* 1. Importamos las fuentes de Google: Syne (Impacto Artístico) + Inter (Legibilidad) + JetBrains Mono (Código) */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap');
 @import "tailwindcss";
 
 /* === CONFIGURACIÓN DE TEMA TAILWIND v4 === */
 @theme {
   /* Tipografías */
   --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Sora', sans-serif;
+  --font-heading: 'Syne', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
   /* Colores mapeados */
@@ -52,7 +52,7 @@
   color-scheme: dark;
 
   /* Paleta Dark (Default) */
-  --primary-color: rgb(99, 83, 242);
+  --primary-color: #6353f2;
   --bg-color: #0a0a0a;
   --bg-1: #0b0b0b;
   --bg-2: #1f1d22;
@@ -76,29 +76,34 @@
   --sidebar-mobile-height: 88px;
 }
 
-/* Paleta Light */
-:root[data-theme="light"] {
-  /* CLAVE PARA MOBILE: Le avisa al navegador que use controles claros */
+/* Paleta Light (OFF-WHITE PREMIUM) */
+/* Agregamos .light para asegurar compatibilidad si data-theme falla */
+:root[data-theme="light"],
+:root.light {
+  /* Fuerza al navegador a renderizar controles en modo claro */
   color-scheme: light;
 
-  --primary-color: rgb(99, 83, 242);
+  /* Violeta un poco más profundo para mejor contraste en fondos claros */
+  --primary-color: #5b4dff; 
   
-  /* Fondo principal: Blanco puro */
-  --bg-color: #ffffff;
+  /* Fondo principal: "Soft Platinum" (Gris muy suave, no blanco puro) */
+  /* Esto evita que te queme los ojos y se ve más elegante */
+  --bg-color: #f3f4f6; /* Slate 100 aprox */
   
-  /* Fondos secundarios: Grises muy sutiles */
+  /* Fondos secundarios: Blanco puro para las tarjetas/sidebar */
+  /* Al ser blanco sobre gris suave, genera relieve natural */
   --bg-1: #ffffff;
-  --bg-2: #f8fafc; /* Slate 50 */
+  --bg-2: #f8fafc; 
   
-  /* Textos oscuros de alto contraste */
-  --text-primary: #1a1a1a;   
-  --text-secondary: #4b5563; 
-  --text-muted: #9ca3af;     
+  /* Textos oscuros de alto contraste (Slate/Cool Gray) */
+  --text-primary: #0f172a;   /* Slate 900 - Casi negro */
+  --text-secondary: #475569; /* Slate 600 - Gris medio solido */
+  --text-muted: #94a3b8;     /* Slate 400 */
   
-  /* Surface: Gradiente muy suave */
-  --surface: linear-gradient(180deg, #ffffff, #f3f4f6);
+  /* Surface: Gradiente muy sutil de blanco a gris pálido para el sidebar */
+  --surface: linear-gradient(180deg, #ffffff, #f1f5f9);
   
-  --gradient: linear-gradient(135deg, #535bf2 0%, #7c3aed 100%);
+  --gradient: linear-gradient(135deg, #5b4dff 0%, #7c3aed 100%);
 }
 
 /* === ESTILOS BASE & SCROLLBARS === */
@@ -119,20 +124,20 @@
     
     /* Fondo complejo */
     background: 
-      radial-gradient(1200px 600px at 10% 10%, rgba(99,83,242,0.06), transparent),
+      radial-gradient(1200px 600px at 10% 10%, rgba(99,83,242,0.04), transparent),
       var(--surface);
   }
 
-  /* Noise Overlay */
+  /* Noise Overlay - Opacidad reducida en light mode via mix-blend */
   body::after {
     content: "";
-    @apply fixed inset-0 pointer-events-none opacity-100 -z-10 mix-blend-overlay;
+    @apply fixed inset-0 pointer-events-none opacity-[0.03] -z-10 mix-blend-overlay;
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.8'/></svg>");
   }
 
   h1, h2, h3 {
-    font-family: var(--font-heading);
-    @apply font-semibold tracking-tight;
+    font-family: var(--font-heading); /* 'Syne', sans-serif */
+    @apply font-bold tracking-tight; /* Syne pide peso bold para lucirse */
   }
 
   /* Custom Scrollbars unificados */
@@ -149,12 +154,14 @@
   }
   
   ::-webkit-scrollbar-track { 
-    background: rgba(255,255,255,0.02); 
+    /* Track más sutil en light mode automáticamente por opacidad */
+    background: rgba(125, 125, 125, 0.05); 
     border-radius: 10px; 
   }
   
   ::-webkit-scrollbar-thumb {
-    background: rgba(99,83,242,0.24);
+    /* Thumb adaptativo */
+    background: color-mix(in srgb, var(--primary-color), transparent 60%);
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
@@ -163,12 +170,11 @@
   @media (max-width: 880px) {
     ::-webkit-scrollbar-thumb {
       border: 1px solid transparent;
-      background: rgba(99,83,242,0.3);
     }
   }
   
   ::-webkit-scrollbar-thumb:hover { 
-    background: rgba(99,83,242,0.36); 
+    background: var(--primary-color);
   }
 }
 
@@ -219,7 +225,7 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   
   /* Better tap highlight */
   a, button {
-    -webkit-tap-highlight-color: rgba(99, 83, 242, 0.2);
+    -webkit-tap-highlight-color: transparent;
   }
   
   /* Asegurar que el contenido no quede detrás del navbar inferior */
