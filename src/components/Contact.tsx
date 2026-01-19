@@ -49,8 +49,8 @@ export function Contact() {
             
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
               <div className="max-w-md">
-                <h3 className="text-xl font-bold text-text-primary mb-1 max-[880px]:text-lg">Let's work together</h3>
-                <p className="text-text-secondary text-sm max-[880px]:text-xs">Have a project in mind? Send me a message.</p>
+                <h3 className="text-xl font-bold text-text-primary mb-1 max-[880px]:text-lg">{t('contact.cardTitle')}</h3>
+                <p className="text-text-secondary text-sm max-[880px]:text-xs">{t('contact.cardSubtitle')}</p>
               </div>
               
               {/* Botones */}
@@ -60,13 +60,13 @@ export function Contact() {
                   className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-white font-bold hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-500 group/mail no-underline"
                 >
                   <Send size={18} className="group-hover/mail:translate-x-0.5 group-hover/mail:-translate-y-0.5 transition-transform duration-500" />
-                  <span className="max-[880px]:text-sm whitespace-nowrap">Send Email</span>
+                  <span className="max-[880px]:text-sm whitespace-nowrap">{t('contact.sendEmail')}</span>
                 </a>
                 
                 <button 
                   onClick={handleCopyEmail}
                   className="flex items-center justify-center px-3 py-2.5 rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-primary hover:bg-text-primary/10 hover:border-text-primary/20 hover:scale-105 transition-all duration-500 cursor-pointer"
-                  title="Copy Email Address"
+                  title={t('contact.copyEmail')}
                 >
                   {copied ? <Check size={18} className="text-green-500" /> : <Copy size={18} />}
                 </button>
@@ -94,8 +94,8 @@ export function Contact() {
 
             {/* Contenido */}
             <div className="relative z-10 mt-2 max-[880px]:mt-0 max-[880px]:flex-1">
-              <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">LinkedIn</h3>
-              <p className="text-text-secondary text-xs max-[880px]:text-[10px]">Connect professionally</p>
+              <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">{t('contact.linkedinTitle')}</h3>
+              <p className="text-text-secondary text-xs max-[880px]:text-[10px]">{t('contact.linkedin')}</p>
             </div>
 
             {/* Arrow (colocado al final, usa ml-auto en mobile) */}
@@ -121,8 +121,8 @@ export function Contact() {
 
             {/* Contenido */}
             <div className="relative z-10 mt-2 max-[880px]:mt-0 max-[880px]:flex-1">
-              <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">GitHub</h3>
-              <p className="text-text-secondary text-xs max-[880px]:text-[10px]">View my code & projects</p>
+              <h3 className="text-lg font-bold text-text-primary mb-1 max-[880px]:text-sm max-[880px]:mb-0.5">{t('contact.githubTitle')}</h3>
+              <p className="text-text-secondary text-xs max-[880px]:text-[10px]">{t('contact.github')}</p>
             </div>
 
             {/* Arrow */}
