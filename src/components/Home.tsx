@@ -1,5 +1,5 @@
 import React from 'react';
-// import { useLanguage } from '../context/LanguageContext';
+import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Download } from 'lucide-react';
 import type { Section } from '../types';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
@@ -9,14 +9,11 @@ interface HomeProps {
 }
 
 export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
-  // const { t } = useLanguage();
+  const { t } = useLanguage();
 
   const bioContent = (
     <>
-      Soy <span className="text-text-primary font-semibold">Matías Chacón</span> — Desarrollador Full-Stack apasionado por crear <span className="text-primary font-semibold relative inline-block">
-        interfaces modernas
-        <span className="absolute bottom-0 left-0 w-full h-[2px] bg-primary/30 rounded-full"></span>
-      </span> y servicios backend sólidos. Trabajo principalmente con <span className="text-primary font-semibold">React</span> y <span className="text-primary font-semibold">Node.js</span>, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción.
+      {t('header.bio')}
     </>
   );
 
@@ -44,25 +41,22 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-primary opacity-75"></span>
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
-            Available for new opportunities
+            <span className="ml-1">{t('header.available')}</span>
           </div>
 
           {/* HEADLINE PRINCIPAL */}
-          <div className="flex flex-col gap-2 w-full max-[880px]:gap-2">
-            {/* Título Principal */}
-            <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default 
-                           max-[880px]:text-4xl max-[880px]:leading-[1.15] relative z-10">
+          <div className="flex flex-col gap-2 w-full max-[880px]:gap-1">
+            <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-2xl relative z-10">
               <div className="relative inline-block">
-                {/* Texto con Brillo Violeta Animado */}
-                <span className="font-sans font-bold tracking-tight drop-shadow-[0_0_15px_rgba(99,83,242,0.4)] animate-pulse-slow selection:text-transparent selection:bg-clip-text selection:bg-gradient-to-r selection:from-primary selection:to-purple-400">
-                  desarrollo <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 animate-text-gradient bg-[length:200%_auto] font-bold">con criterio.</span>
+                <span className="font-sans font-bold tracking-tight leading-[1.08] drop-shadow-[0_0_15px_rgba(99,83,242,0.4)] animate-pulse-slow selection:text-transparent selection:bg-clip-text selection:bg-gradient-to-r selection:from-primary selection:to-purple-400">
+                  {t('header.headlinePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 animate-text-gradient bg-[length:200%_auto] font-bold">{t('header.headlineHighlight')}</span>
                 </span>
                 <div className="absolute -bottom-2 left-0 w-1/3 h-[4px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out" />
               </div>
             </h1>
             
             <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 w-full">
-              {/* Carrusel (Techs) - Oculto en mobile */}
+              {/* Carrusel (Techs) */}
               <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-text-primary/10 pl-6 ml-2">
                  <div className="flex w-max animate-marquee items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                     {[1, 2].map((i) => (
@@ -107,7 +101,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             >
               <div className="absolute inset-0 -translate-x-full group-hover/btn:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
               <Download size={20} className="relative z-20 max-[880px]:w-5 max-[880px]:h-5" />
-              <span className="relative z-20">Descargar CV</span>
+              <span className="relative z-20">{t('header.downloadCv')}</span>
             </a>
 
             {/* Botón Ver Proyectos (Secundario) - Full width en mobile */}
@@ -119,7 +113,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                         transition-all duration-300 active:scale-95 cursor-pointer
                         max-[880px]:w-full max-[880px]:py-4 max-[880px]:text-base"
             >
-              Ver Proyectos
+              {t('home.viewProjects')}
               <ArrowRight size={20} className="group-hover:translate-x-1 transition-transform max-[880px]:w-5 max-[880px]:h-5" />
             </button>
             
