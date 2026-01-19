@@ -12,18 +12,18 @@ import { useLanguage } from '../context/LanguageContext';
 
 // --- DATA CONFIGURATION ---
 const SKILL_CATEGORIES = [
-    {
-      id: 'frontend_ui',
-      title: 'Frontend & UI',
+  {
+    id: 'frontend_ui',
+    title: 'Frontend & UI',
     icon: Layout,
-    // Usamos clases de Tailwind para los colores de acento, que se ven bien en ambos temas
+    // Usamos clases de Tailwind que funcionan bien en ambos modos
     accentClass: 'text-purple-500',
     borderClass: 'group-hover:border-purple-500/50',
     skills: [
       { name: 'React', icon: SiReact, color: '#61dafb' },
       { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
       { name: 'Tailwind', icon: SiTailwindcss, color: '#38bdf8' },
-      { name: 'Next.js', icon: SiNextdotjs, color: '#888888' }, // Gris neutro para Next
+      { name: 'Next.js', icon: SiNextdotjs, color: '#888888' }, // Color neutro adaptado
       { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
       { name: 'CSS3', icon: SiCss3, color: '#1572b6' },
       { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
@@ -32,8 +32,8 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-      id: 'backend_data',
-      title: 'Backend & Data',
+    id: 'backend_data',
+    title: 'Backend & Data',
     icon: Database,
     accentClass: 'text-emerald-500',
     borderClass: 'group-hover:border-emerald-500/50',
@@ -48,8 +48,8 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-      id: 'tools_devops',
-      title: 'Tools & DevOps',
+    id: 'tools_devops',
+    title: 'Tools & DevOps',
     icon: Wrench,
     accentClass: 'text-blue-500',
     borderClass: 'group-hover:border-blue-500/50',
@@ -78,22 +78,22 @@ export function Skills() {
     <section 
       id="skills"
       className="snap-start min-h-screen w-full flex flex-col justify-start relative
-                transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
+                 transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
                  /* Padding consistente con las otras secciones */
-                min-[881px]:pl-[280px]
-                max-[880px]:min-h-[calc(100vh-80px)]"
+                 min-[881px]:pl-[280px]
+                 max-[880px]:min-h-[calc(100vh-80px)]"
     >
       {/* Contenedor Principal */}
       <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
-                      max-[880px]:px-4 max-[880px]:py-8">
+                      max-[880px]:px-4 max-[880px]:py-8 max-[880px]:max-w-full">
         
         {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-lg bg-primary/10 border border-primary/20 text-primary">
-              <Cpu size={24} />
+            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
+              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
+            <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight max-[880px]:text-2xl">
               {t('skills.title')}
             </h2>
           </div>
@@ -103,35 +103,38 @@ export function Skills() {
         </div>
 
         {/* --- GRID DE CATEGORÍAS (Tech Stack) --- */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-150">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 mb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-150 max-[880px]:gap-3 max-[880px]:mb-5">
           {SKILL_CATEGORIES.map((category, categoryIndex) => (
             <div 
               key={category.title}
               className={`group flex flex-col p-5 rounded-2xl
-                          /* Fondo Glass Adaptable */
+                          /* Fondo Glass Adaptable (clave para el modo claro) */
                           bg-text-primary/5 border border-text-primary/10
                           /* Hover Effects */
-                          hover:bg-text-primary/10 ${category.borderClass} hover:shadow-lg
+                          hover:bg-text-primary/10 ${category.borderClass} hover:shadow-xl
                           transition-all duration-500 ease-out
                           max-[880px]:p-4`}
-              style={{ animationDelay: `${categoryIndex * 100}ms` }}
+              style={{ 
+                animationDelay: `${150 + categoryIndex * 100}ms`,
+                animationDuration: '700ms'
+              }}
             >
               {/* Header de categoría */}
               <div className="flex items-center gap-3 mb-5 pb-4 border-b border-text-primary/10">
                 <div className={`p-2 rounded-lg bg-bg-base border border-text-primary/10 shadow-sm ${category.accentClass}`}>
                   <category.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-text-primary text-lg tracking-wide">{t(`skills.categories.${category.id}.title`)}</h3>
+                <h3 className="font-bold text-text-primary text-lg tracking-wide">{t(`skills.categories.${category.id}.title`) || category.title}</h3>
               </div>
               
               {/* Skills Grid */}
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill) => (
+                {category.skills.map((skill, skillIndex) => (
                   <div 
                     key={skill.name} 
                     className="group/skill relative flex items-center gap-2 px-3 py-1.5 rounded-lg 
-                              border border-text-primary/10 cursor-default transition-all duration-300
-                              bg-bg-base hover:scale-105 hover:-translate-y-0.5 overflow-hidden"
+                               border border-text-primary/10 cursor-default transition-all duration-300
+                               bg-bg-base hover:scale-105 hover:-translate-y-0.5 overflow-hidden"
                     // Inyectamos el color para el hover dinámico
                     style={{ '--skill-color': skill.color } as React.CSSProperties}
                   >
@@ -169,15 +172,15 @@ export function Skills() {
               {t('skills.sub2')}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                {SOFT_SKILLS.map((skill) => (
+              {SOFT_SKILLS.map((skill) => (
                 <div 
                   key={skill.key}
                   className="flex flex-col items-center justify-center p-3 rounded-xl bg-bg-base border border-text-primary/10 
-                            hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
+                             hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
                 >
                   <skill.icon size={20} className={`${skill.color} group-hover/soft:scale-110 transition-transform`} />
                   <span className="text-xs font-medium text-text-secondary group-hover/soft:text-text-primary transition-colors">
-                    {t(`skills.soft.${skill.key}`)}
+                    {t(`skills.soft.${skill.key}`) || skill.key}
                   </span>
                 </div>
               ))}
@@ -199,9 +202,9 @@ export function Skills() {
             <a 
               href="#projects" 
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl 
-                        bg-primary text-white font-bold text-sm
-                        hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
-                        transition-all duration-300 no-underline group/link"
+                         bg-primary text-white font-bold text-sm
+                         hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
+                         transition-all duration-300 no-underline group/link"
             >
               {t('skills.projects')}
               <Terminal size={16} className="group-hover/link:translate-x-1 transition-transform" />
