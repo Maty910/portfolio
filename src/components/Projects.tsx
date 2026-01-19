@@ -17,8 +17,8 @@ export const Projects = () => {
     technologies: p.technologies,
     githubUrl: p.githubUrl,
     liveUrl: p.liveUrl || undefined,
-    title: t(`projects.items.${p.slug}.title`) || `Project ${p.slug}`,
-    description: t(`projects.items.${p.slug}.description`) || 'No description available.',
+    title: t(`projects.items.${p.slug}.title`) || `${t('projects.defaultTitle')} ${p.slug}`,
+    description: t(`projects.items.${p.slug}.description`) || t('projects.noDescription'),
   }));
 
   return (
@@ -84,7 +84,7 @@ export const Projects = () => {
                 {/* Badge "Ver más" al hover (Desktop) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
                   <span className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
-                    View Details
+                    {t('projects.viewDetails')}
                   </span>
                 </div>
               </div>
@@ -105,7 +105,7 @@ export const Projects = () => {
                         rel="noopener noreferrer" 
                         className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title="View Code"
+                        title={t('projects.links.code')}
                       >
                         <Github size={18} />
                       </a>
@@ -117,7 +117,7 @@ export const Projects = () => {
                         rel="noopener noreferrer" 
                         className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title="Live Demo"
+                        title={t('projects.links.live')}
                       >
                         <ExternalLink size={18} />
                       </a>
