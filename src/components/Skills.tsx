@@ -12,8 +12,9 @@ import { useLanguage } from '../context/LanguageContext';
 
 // --- DATA CONFIGURATION ---
 const SKILL_CATEGORIES = [
-  {
-    title: 'Frontend & UI',
+    {
+      id: 'frontend_ui',
+      title: 'Frontend & UI',
     icon: Layout,
     // Usamos clases de Tailwind para los colores de acento, que se ven bien en ambos temas
     accentClass: 'text-purple-500',
@@ -31,7 +32,8 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    title: 'Backend & Data',
+      id: 'backend_data',
+      title: 'Backend & Data',
     icon: Database,
     accentClass: 'text-emerald-500',
     borderClass: 'group-hover:border-emerald-500/50',
@@ -46,7 +48,8 @@ const SKILL_CATEGORIES = [
     ]
   },
   {
-    title: 'Tools & DevOps',
+      id: 'tools_devops',
+      title: 'Tools & DevOps',
     icon: Wrench,
     accentClass: 'text-blue-500',
     borderClass: 'group-hover:border-blue-500/50',
@@ -62,10 +65,10 @@ const SKILL_CATEGORIES = [
 ];
 
 const SOFT_SKILLS = [
-  { name: 'Problem Solving', icon: BrainCircuit, color: 'text-purple-500' },
-  { name: 'Team Work', icon: Globe, color: 'text-blue-500' },
-  { name: 'Fast Learning', icon: Sparkles, color: 'text-amber-500' },
-  { name: 'Adaptability', icon: Code2, color: 'text-emerald-500' },
+  { key: 'problemSolving', icon: BrainCircuit, color: 'text-purple-500' },
+  { key: 'teamWork', icon: Globe, color: 'text-blue-500' },
+  { key: 'fastLearning', icon: Sparkles, color: 'text-amber-500' },
+  { key: 'adaptability', icon: Code2, color: 'text-emerald-500' },
 ];
 
 export function Skills() {
@@ -118,7 +121,7 @@ export function Skills() {
                 <div className={`p-2 rounded-lg bg-bg-base border border-text-primary/10 shadow-sm ${category.accentClass}`}>
                   <category.icon className="w-5 h-5" />
                 </div>
-                <h3 className="font-bold text-text-primary text-lg tracking-wide">{category.title}</h3>
+                <h3 className="font-bold text-text-primary text-lg tracking-wide">{t(`skills.categories.${category.id}.title`)}</h3>
               </div>
               
               {/* Skills Grid */}
@@ -166,15 +169,15 @@ export function Skills() {
               {t('skills.sub2')}
             </h3>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
-              {SOFT_SKILLS.map((skill) => (
+                {SOFT_SKILLS.map((skill) => (
                 <div 
-                  key={skill.name}
+                  key={skill.key}
                   className="flex flex-col items-center justify-center p-3 rounded-xl bg-bg-base border border-text-primary/10 
                             hover:border-primary/30 hover:shadow-lg transition-all duration-300 text-center gap-2 group/soft"
                 >
                   <skill.icon size={20} className={`${skill.color} group-hover/soft:scale-110 transition-transform`} />
                   <span className="text-xs font-medium text-text-secondary group-hover/soft:text-text-primary transition-colors">
-                    {skill.name}
+                    {t(`skills.soft.${skill.key}`)}
                   </span>
                 </div>
               ))}
