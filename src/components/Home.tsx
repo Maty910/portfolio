@@ -48,7 +48,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           <div className="flex flex-col gap-2 w-full max-[880px]:gap-1">
             <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-2xl relative z-10">
               <div className="relative inline-block">
-                <span className="font-sans font-bold tracking-tight leading-[1.08] drop-shadow-[0_0_15px_rgba(99,83,242,0.4)] animate-pulse-slow selection:text-transparent selection:bg-clip-text selection:bg-gradient-to-r selection:from-primary selection:to-purple-400">
+                <span className="font-heading font-bold tracking-tight leading-[1.08] drop-shadow-[0_0_15px_rgba(99,83,242,0.4)] animate-pulse-slow selection:text-transparent selection:bg-clip-text selection:bg-gradient-to-r selection:from-primary selection:to-purple-400">
                   {t('header.headlinePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 animate-text-gradient bg-[length:200%_auto] font-bold">{t('header.headlineHighlight')}</span>
                 </span>
                 <div className="absolute -bottom-2 left-0 w-1/3 h-[4px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out" />
@@ -93,7 +93,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
-                        bg-gradient-to-r from-primary to-purple-600 text-white font-bold tracking-wide
+                        bg-gradient-to-r from-primary to-purple-600 text-text-primary font-bold tracking-wide
                         shadow-[0_0_20px_rgba(99,83,242,0.3)]
                         hover:shadow-[0_0_30px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95
                         transition-all duration-300 group/btn no-underline
