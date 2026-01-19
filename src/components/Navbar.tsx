@@ -8,7 +8,7 @@ import {
   FiMail,
   FiDownload
 } from 'react-icons/fi'
-import { Sun, Moon, Languages, Globe } from 'lucide-react' // Agregamos Globe
+import { Sun, Moon, Languages, Globe } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
 import type { Section, SetActive } from '../types';
@@ -18,55 +18,49 @@ type HeaderProps = {
   setActiveSection: SetActive
 }
 
-// --- 1. COMPONENTE ANIMADO TEMA (Sol / Luna) ---
+// --- 1. COMPONENTE ANIMADO TEMA (BOUNCY POP) ---
 const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: number }) => (
   <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
     {/* Sol (Visible en Light) */}
+    {/* Animación: Spring Bounce (cubic-bezier) para que rebote al entrar */}
     <Sun 
       size={size}
-      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
         ${isDark 
-          ? 'rotate-90 opacity-0 scale-50 translate-y-6' 
-          : 'rotate-0 opacity-100 scale-100 translate-y-0 text-amber-500' 
+          ? 'scale-0 rotate-[180deg] opacity-0' // Se achica y gira al irse
+          : 'scale-100 rotate-0 opacity-100 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' // Entra con rebote y brillo
         }
       `} 
     />
     {/* Luna (Visible en Dark) */}
     <Moon 
       size={size}
-      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
+      className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
         ${isDark 
-          ? 'rotate-0 opacity-100 scale-100 translate-y-0 text-primary' 
-          : '-rotate-90 opacity-0 scale-50 -translate-y-6' 
+          ? 'scale-100 rotate-0 opacity-100 text-primary drop-shadow-[0_0_8px_rgba(99,83,242,0.6)]' 
+          : 'scale-0 -rotate-[180deg] opacity-0' 
         }
       `} 
     />
   </div>
 );
 
-// --- 2. COMPONENTE ANIMADO IDIOMA (Globe / Languages) ---
+// --- 2. COMPONENTE ANIMADO IDIOMA (FLIP 3D) ---
 const AnimatedLangIcon = ({ lang, size = 20 }: { lang: 'es' | 'en'; size?: number }) => (
-  <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
-    {/* Icono para Español (Globe - Local/Nativo) */}
-    <Globe 
-      size={size}
-      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
-        ${lang === 'es'
-          ? 'rotate-0 opacity-100 scale-100 translate-y-0 text-primary'  // Visible en ES
-          : '-rotate-90 opacity-0 scale-50 -translate-y-6'                // Oculto en EN
-        }
-      `} 
-    />
-    {/* Icono para Inglés (Languages - Internacional) */}
-    <Languages 
-      size={size}
-      className={`absolute inset-0 transform transition-all duration-700 ease-[cubic-bezier(0.25,1,0.5,1)]
-        ${lang === 'en'
-          ? 'rotate-0 opacity-100 scale-100 translate-y-0 text-emerald-400' // Visible en EN
-          : 'rotate-90 opacity-0 scale-50 translate-y-6'                     // Oculto en ES
-        }
-      `} 
-    />
+  <div className="relative flex items-center justify-center" style={{ width: size, height: size, perspective: '1000px' }}>
+    <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${lang === 'en' ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d', transform: lang === 'en' ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
+      
+      {/* Cara Frontal: Español */}
+      <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
+        <Globe size={size} className="text-primary drop-shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
+      </div>
+
+      {/* Cara Trasera: Inglés (Rotada 180deg) */}
+      <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
+        <Languages size={size} className="text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
+      </div>
+
+    </div>
   </div>
 );
 
@@ -77,18 +71,10 @@ export const Navbar: React.FC<HeaderProps> = ({
   const { lang, toggleLanguage, t } = useLanguage()
   const { theme, setTheme } = useTheme();
   const isDark = theme === 'dark';
-
-  // Flag para el "pulso" del texto al cambiar idioma (opcional, pero queda lindo)
   const [langPulse, setLangPulse] = useState(false);
-
-  useEffect(() => {
-    setLangPulse(true);
-    const id = setTimeout(() => setLangPulse(false), 700);
-    return () => clearTimeout(id);
-  }, [lang]);
-
   const [mounted, setMounted] = useState(false);
 
+  // Estado del sidebar
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
       const v = localStorage.getItem('sidebarExpanded')
@@ -98,16 +84,11 @@ export const Navbar: React.FC<HeaderProps> = ({
     }
   })
 
-  useEffect(() => {
-    setMounted(true);
-  }, []);
+  useEffect(() => { setLangPulse(true); const id = setTimeout(() => setLangPulse(false), 700); return () => clearTimeout(id); }, [lang]);
+  useEffect(() => { setMounted(true); }, []);
+  useEffect(() => { try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {} }, [expanded])
 
-  useEffect(() => {
-    try {
-      localStorage.setItem('sidebarExpanded', JSON.stringify(expanded))
-    } catch {}
-  }, [expanded])
-
+  // Shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') scrollToSection('home')
@@ -242,8 +223,6 @@ export const Navbar: React.FC<HeaderProps> = ({
 
         {/* --- 3. BOTTOM SECTION (Desktop Settings & CV) --- */}
         <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full">
-          
-          {/* CV Button */}
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
@@ -265,13 +244,7 @@ export const Navbar: React.FC<HeaderProps> = ({
             </span>
           </a>
 
-          {/* SETTINGS GRID */}
-          <div className={`
-            grid transition-all duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] gap-3
-            ${expanded ? 'grid-cols-2' : 'grid-cols-1'}
-          `}>
-            
-            {/* BOTÓN THEME (Animated) */}
+          <div className="flex flex-col gap-3">
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className={`
@@ -296,7 +269,6 @@ export const Navbar: React.FC<HeaderProps> = ({
               </span>
             </button>
 
-            {/* BOTÓN LANGUAGE (Animated) */}
             <button
               onClick={toggleLanguage}
               className={`
@@ -318,28 +290,30 @@ export const Navbar: React.FC<HeaderProps> = ({
                 ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
                 ${langPulse ? 'animate-pulse' : ''}
               `}>
-                {lang.toUpperCase()}
+                {lang === 'en' ? 'English' : 'Español'}
               </span>
             </button>
-            
           </div>
         </div>
 
       </aside>
 
-      <style>{`
-        @keyframes shimmer { 100% { transform: translateX(100%); } }
-      `}</style>
+      <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
 
-      {/* MOBILE SETTINGS PILL (Fixed via Portal) */}
+      {/* ========================================
+        MOBILE SETTINGS PILL (Fixed via Portal)
+        ========================================
+        Posición: Top RIGHT (para mobile)
+        Z-index alto para flotar sobre todo
+      */}
       {mounted && createPortal(
-        <div className="lg:hidden fixed top-3 right-3 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
-          <div className="flex items-center p-1.5 rounded-full bg-bg-base/95 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
+        <div className="lg:hidden fixed top-5 right-5 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
+          <div className="flex items-center p-1.5 rounded-full bg-bg-base/90 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
             
             {/* Theme Toggle Mobile */}
             <button 
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className="w-9 h-9 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
+              className="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
               title={t('theme.toggle')}
             >
               <AnimatedThemeIcon isDark={isDark} size={18} />
@@ -347,15 +321,16 @@ export const Navbar: React.FC<HeaderProps> = ({
 
             <div className="w-[1px] h-5 bg-text-primary/10"></div>
 
-            {/* Lang Toggle Mobile (Icono + Texto Chico) */}
+            {/* Lang Toggle Mobile (Icono + Texto) */}
             <button
               onClick={toggleLanguage}
-              className={`flex items-center gap-1.5 pl-1.5 pr-2.5 h-9 rounded-full text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? 'animate-pulse' : ''}`}
+              className={`h-10 pl-2 pr-3 rounded-full flex items-center gap-1.5 text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? 'animate-pulse' : ''}`}
               title={t('nav.toggleLang')}
             >
               <AnimatedLangIcon lang={lang} size={16} />
               <span className="text-[10px] font-bold tracking-wide">{lang.toUpperCase()}</span>
             </button>
+
           </div>
         </div>,
         document.body
