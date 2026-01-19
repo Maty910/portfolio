@@ -37,7 +37,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
       {/* Backdrop con animación fade-in */}
       <div 
         // Usamos black/80 fijo para el backdrop porque en light mode también querés oscurecer el fondo
-        className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-300"
+        className="fixed inset-0 bg-bg-base/80 backdrop-blur-sm z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-300"
         role="dialog" 
         aria-modal="true" 
         onClick={onClose}
@@ -115,7 +115,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold no-underline transition-all duration-200 
-                               bg-primary text-white shadow-lg shadow-primary/30 
+                               bg-primary text-text-primary shadow-lg shadow-primary/30 
                                hover:opacity-90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
                   >
                     <ExternalLink size={18} />
