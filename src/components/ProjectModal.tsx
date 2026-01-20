@@ -1,6 +1,6 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
-import { X, Github, ExternalLink, Code2 } from 'lucide-react';
+import { X, Github, ExternalLink, Code2, ChevronLeft, ChevronRight } from 'lucide-react';
 import type { Project } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -11,13 +11,38 @@ type Props = {
 
 export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
   const { t } = useLanguage();
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
-  // Manejo de tecla Escape y bloqueo de scroll
+  // Normalizamos las imágenes: Si tu objeto project tiene 'images' (array) lo usa,
+  // sino usa 'image' (string) como array de 1 elemento.
+  // Podés simular más imágenes repitiendo la principal si querés probar el slider:
+  // const images = project ? [project.image, project.image, project.image] : [];
+  const images = project ? (Array.isArray(project.image) ? project.image.filter(img => img != null) : [project.image].filter(img => img != null)) : [];
+
+  const hasMultipleImages = images.length > 1;
+
+  // Reset del index cuando cambia el proyecto
+  useEffect(() => {
+    setCurrentImageIndex(0);
+  }, [project]);
+
+  // Manejo de navegación (Teclado y Click)
+  const nextImage = () => {
+    setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+
+  const prevImage = () => {
+    setCurrentImageIndex((prev) => (prev === 0 ? images.length - 1 : prev - 1));
+  };
+
+  // Manejo de eventos de teclado
   useEffect(() => {
     if (!project) return;
 
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') onClose();
+      if (e.key === 'ArrowRight') nextImage();
+      if (e.key === 'ArrowLeft') prevImage();
     };
 
     window.addEventListener('keydown', handleKeyDown);
@@ -27,22 +52,18 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
       window.removeEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'unset';
     };
-  }, [project, onClose]);
+  }, [project, onClose, images.length]); // Agregamos dependencias
 
   if (!project) return null;
 
-  // Renderizamos el modal usando un portal directamente en el body
   return createPortal(
     <>
-      {/* Backdrop con animación fade-in */}
       <div 
-        // Usamos black/80 fijo para el backdrop porque en light mode también querés oscurecer el fondo
         className="fixed inset-0 bg-bg-base/80 backdrop-blur-sm z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-300"
         role="dialog" 
         aria-modal="true" 
         onClick={onClose}
       >
-        {/* Modal Container */}
         <div 
           className="w-full max-w-4xl max-h-[90vh] overflow-y-auto rounded-2xl p-6 md:p-8 shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-4 duration-300
                      bg-bg-base border border-text-primary/10
@@ -54,14 +75,14 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
           onClick={(e) => e.stopPropagation()}
         >
           
-          {/* Botón Cerrar (X) */}
+          {/* Botón Cerrar */}
           <button 
             className="absolute right-4 top-4 md:right-6 md:top-6 flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all duration-200 z-10 border-none
                        bg-text-primary/5 text-text-secondary
                        hover:bg-text-primary/10 hover:text-text-primary hover:rotate-90"
             onClick={onClose} 
-            aria-label={t('projects.modal.closeAria')}
-            title={t('projects.modal.closeTitle')}
+            aria-label="Close project dialog"
+            title="Close (Esc)"
           >
             <X size={20} />
           </button>
@@ -76,25 +97,73 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
             </p>
           </header>
 
-          {/* Body Grid */}
           <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-6 md:gap-8 items-start">
             
-            {/* Columna Izquierda: Imagen */}
-            {project.image && (
-              <div className="relative rounded-xl overflow-hidden border border-text-primary/10 shadow-lg group">
-                <img 
-                  src={project.image} 
-                  alt={project.title} 
-                  className="w-full h-auto block object-cover transition-transform duration-500 group-hover:scale-105"
-                />
-              </div>
-            )}
+            {/* --- CAROUSEL / SLIDER DE IMÁGENES --- */}
+            <div className="relative rounded-xl overflow-hidden border border-text-primary/10 shadow-lg bg-bg-base group select-none aspect-video">
+              
+              {images.length > 0 ? (
+                <>
+                  <img 
+                    src={images[currentImageIndex]} 
+                    alt={`${project.title} screenshot ${currentImageIndex + 1}`} 
+                    className="w-full h-full object-cover transition-transform duration-500"
+                  />
+                  
+                  {/* Controles del Slider (Solo si hay más de 1 imagen) */}
+                  {hasMultipleImages && (
+                    <>
+                      {/* Flecha Izquierda */}
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); prevImage(); }}
+                        className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                                   bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
+                                   hover:bg-primary hover:text-white hover:border-primary
+                                   transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
+                        aria-label="Previous image"
+                      >
+                        <ChevronLeft size={20} />
+                      </button>
+
+                      {/* Flecha Derecha */}
+                      <button 
+                        onClick={(e) => { e.stopPropagation(); nextImage(); }}
+                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                                   bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
+                                   hover:bg-primary hover:text-white hover:border-primary
+                                   transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
+                        aria-label="Next image"
+                      >
+                        <ChevronRight size={20} />
+                      </button>
+
+                      {/* Indicadores (Dots) */}
+                      <div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2 p-1.5 rounded-full bg-black/40 backdrop-blur-sm">
+                        {images.map((_: string, idx: number) => (
+                          <button
+                            key={idx}
+                            onClick={(e: React.MouseEvent<HTMLButtonElement>) => { e.stopPropagation(); setCurrentImageIndex(idx); }}
+                            className={`w-2 h-2 rounded-full transition-all duration-300 
+                              ${idx === currentImageIndex ? 'bg-primary w-4' : 'bg-white/50 hover:bg-white'}`}
+                            aria-label={`Go to image ${idx + 1}`}
+                          />
+                        ))}
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <div className="w-full h-full flex items-center justify-center bg-text-primary/5 text-text-secondary text-sm">
+                  No images available
+                </div>
+              )}
+            </div>
 
             {/* Columna Derecha: Info & Links */}
             <div className="flex flex-col h-full">
               <h4 className="text-text-primary mb-3 text-base md:text-lg font-semibold flex items-center gap-2">
                 <Code2 size={18} className="text-primary" />
-                {t('projects.modal.technologies')}
+                {t('projects.modal.technologies') || 'Technologies'}
               </h4>
               
               <ul className="flex flex-wrap gap-2 list-none p-0 m-0 mb-6 md:mb-8">
@@ -115,7 +184,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold no-underline transition-all duration-200 
-                               bg-primary text-text-primary shadow-lg shadow-primary/30 
+                               bg-primary text-white shadow-lg shadow-primary/30 
                                hover:opacity-90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
                   >
                     <ExternalLink size={18} />
@@ -140,7 +209,6 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
             </div>
           </div>
         </div>
-
       </div>
     </>,
     document.body
