@@ -22,7 +22,7 @@ export function Contact() {
                  min-[881px]:pl-[280px]
                  max-[880px]:min-h-[calc(100vh-80px)]"
     >
-      <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col h-full
+      <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col
                       max-[880px]:px-4 max-[880px]:py-8">
         
         {/* Header */}
@@ -41,10 +41,10 @@ export function Contact() {
         </div>
 
         {/* Grid de Contacto */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[880px]:gap-3 pb-8 max-[880px]:pb-26">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[880px]:gap-3 pb-8 max-[880px]:pb-60">
           
           {/* Card Principal: Email */}
-          <div className="md:col-span-2 group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-primary/30 p-6 transition-all duration-700 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] hover:border-primary/50 hover:shadow-xl hover:shadow-primary/20 animate-in fade-in slide-in-from-bottom-8 max-[880px]:p-5"
+            <div className="md:col-span-2 group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-text-primary/10 p-6 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] animate-in fade-in slide-in-from-bottom-8 max-[880px]:p-5"
               style={{ animationDelay: '150ms' }}>
             
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
@@ -82,13 +82,11 @@ export function Contact() {
             href="https://www.linkedin.com/in/matias-chacon-t934/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-[#0a66c2]/10 hover:to-[#0a66c2]/5 hover:border-[#0a66c2]/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-[#0a66c2]/20 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
             style={{ animationDelay: '250ms' }}
           >
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500" style={{ background: 'radial-gradient(circle at center, #0a66c220, transparent 70%)' }} />
-
             {/* Icono */}
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#0a66c2]/20 to-[#0a66c2]/10 border border-[#0a66c2]/20 text-[#0a66c2] group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#0a66c2]/20 to-[#0a66c2]/10 border border-[#0a66c2]/20 text-[#0a66c2] transition-all duration-300 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
               <Linkedin size={22} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
 
@@ -100,7 +98,7 @@ export function Contact() {
 
             {/* Arrow (colocado al final, usa ml-auto en mobile) */}
             <div className="ml-auto max-[880px]:ml-0 max-[880px]:shrink-0">
-              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-500 max-[880px]:w-4 max-[880px]:h-4" />
+              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-300 max-[880px]:w-4 max-[880px]:h-4" />
             </div>
           </a>
 
@@ -109,13 +107,11 @@ export function Contact() {
             href="https://github.com/Maty910"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-gradient-to-br from-text-primary/5 to-text-primary/2 border border-text-primary/10 hover:from-text-primary/10 hover:to-text-primary/5 hover:border-text-primary/30 hover:scale-[1.02] hover:shadow-xl hover:shadow-text-primary/10 transition-all ease-[cubic-bezier(0.25,0.1,0.25,1.0)] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 duration-700 cursor-pointer no-underline"
             style={{ animationDelay: '350ms' }}
           >
-            <div className="absolute inset-0 opacity-0 group-hover:opacity-100 blur-xl transition-opacity duration-500 bg-text-primary/5" />
-
             {/* Icono */}
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-text-primary/10 to-text-primary/5 border border-text-primary/20 text-text-primary group-hover:scale-110 group-hover:rotate-3 transition-all duration-500 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-text-primary/10 to-text-primary/5 border border-text-primary/20 text-text-primary transition-all duration-300 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
               <Github size={22} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
 
@@ -127,7 +123,7 @@ export function Contact() {
 
             {/* Arrow */}
             <div className="ml-auto max-[880px]:ml-0 max-[880px]:shrink-0">
-              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-500 max-[880px]:w-4 max-[880px]:h-4" />
+              <ArrowUpRight size={18} className="text-text-secondary group-hover:text-text-primary transition-all duration-300 max-[880px]:w-4 max-[880px]:h-4" />
             </div>
           </a>
 
