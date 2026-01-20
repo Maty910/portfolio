@@ -46,24 +46,24 @@ const en = {
         description: "Full-stack portfolio application built with React"
       },
       p2: {
-        title: "Task Management App",
-        description: "Tasks management tool connected to SQLite"
+        title: "Sachito Refrigeration Website",
+        description: "Responsive website for a refrigeration services technician"
       },
       p3: {
-        title: "Community Manager Portfolio",
-        description: "[WIP] Portfolio for a community manager showcasing social media skills"
+        title: "Hotel Now Website",
+        description: "Landing page for a hotel booking service"
       },
       p4: {
         title: "Inventory Management System",
         description: "Inventory system in Python + SQLite"
       },
       p5: {
-        title: "Sachito Refrigeration Website",
-        description: "Responsive website for a refrigeration services technician"
+        title: "Task Management App",
+        description: "Tasks management tool connected to SQLite"
       },
       p6: {
-        title: "Hotel Now Website",
-        description: "Landing page for a hotel booking service"
+        title: "Community Manager Portfolio",
+        description: "[WIP] Portfolio for a community manager showcasing social media skills"
       }
     }
   },
@@ -175,24 +175,24 @@ const es = {
         description: "Aplicación portfolio full-stack construida con React"
       },
       p2: {
+        title: "Sitio Web Sachito Refrigeración",
+        description: "Sitio web responsivo para un técnico en refrigeración."
+      },
+      p3: {
+        title: "Sitio Web Hotel Now",
+        description: "Página web para un servicio de reservas hoteleras"
+      },
+      p4: {
         title: "App Gestión de Tareas",
         description: "Herramienta de gestión de tareas conectada a SQLite"
       },
-      p3: {
+      p5: {
         title: "Portafolio Web - Community Manager",
         description: "[WIP] Portfolio para community manager mostrando habilidades en redes"
       },
-      p4: {
+      p6: {
         title: "Sistema de Inventario",
         description: "Sistema de inventario en Python + SQLite"
-      },
-      p5: {
-        title: "Sitio Web Sachito Refrigeración",
-        description: "Sitio web responsivo para un técnico en refrigeración"
-      },
-      p6: {
-        title: "Sitio Web Hotel Now",
-        description: "Página de aterrizaje para un servicio de reservas hoteleras"
       }
     }
   },
