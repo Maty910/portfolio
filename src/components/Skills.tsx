@@ -129,7 +129,7 @@ export function Skills() {
               
               {/* Skills Grid */}
               <div className="flex flex-wrap gap-2">
-                {category.skills.map((skill, skillIndex) => (
+                {category.skills.map((skill) => (
                   <div 
                     key={skill.name} 
                     className="group/skill relative flex items-center gap-2 px-3 py-1.5 rounded-lg 
