@@ -238,3 +238,49 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
     overscroll-behavior-y: none;
   }
 }
+
+/* === SHIMMER / BRILLO REUTILIZABLE PARA BOTONES VIOLETA === */
+@keyframes shimmer {
+  0% { 
+    transform: translateX(-100%);
+  }
+  100% { 
+    transform: translateX(100%);
+  }
+}
+
+/* Clase reutilizable para botones con brillo en hover.
+   Uso: añadir `btn-shiny` al botón (normalmente botones con degradado violeta). */
+.btn-shiny {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shiny::before {
+  content: "";
+  position: absolute;
+  z-index: 15;
+  inset: 0;
+  width: 200%;
+  background: repeating-linear-gradient(90deg, 
+    transparent 0%, 
+    transparent 40%,
+    rgba(255,255,255,0.08) 45%, 
+    rgba(255,255,255,0.2) 50%, 
+    rgba(255,255,255,0.08) 55%,
+    transparent 60%,
+    transparent 100%);
+  transform: translateX(-100%);
+  pointer-events: none;
+  mix-blend-mode: screen;
+}
+
+.btn-shiny:hover::before,
+.group:hover .btn-shiny::before {
+  animation: shimmer 3000ms linear infinite;
+}
+
+.btn-shiny .btn-shimmer-hide-on-hover {
+  position: relative;
+  z-index: 20;
+}
