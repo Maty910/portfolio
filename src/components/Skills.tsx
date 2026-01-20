@@ -204,10 +204,11 @@ export function Skills() {
               className="inline-flex items-center justify-center gap-2 px-5 py-3 rounded-xl 
                          bg-primary text-white font-bold text-sm
                          hover:bg-primary/90 hover:shadow-lg hover:shadow-primary/30 hover:scale-[1.02]
-                         transition-all duration-300 no-underline group/link"
+                         transition-all duration-300 no-underline group btn-shiny group/link"
             >
-              {t('skills.projects')}
-              <Terminal size={16} className="group-hover/link:translate-x-1 transition-transform" />
+              <div className="absolute inset-0 -translate-x-full group-hover/link:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
+              <span className="relative z-20">{t('skills.projects')}</span>
+              <Terminal size={16} className="relative z-20 group-hover/link:translate-x-1 transition-transform" />
             </a>
           </div>
 
