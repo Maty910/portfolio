@@ -37,7 +37,8 @@ export const Projects = () => {
         {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-text-primary">
+            {/* FIX: Usamos text-white para que el icono resalte sobre el degradado violeta en ambos temas */}
+            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
               <FolderOpen size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
@@ -78,12 +79,13 @@ export const Projects = () => {
                   </div>
                 )}
                 
-                {/* Gradiente de superposición para contraste (usamos bg-base para que coincida con el tema) */}
+                {/* Gradiente de superposición para contraste */}
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
                 
                 {/* Badge "Ver más" al hover (Desktop) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
-                  <span className="px-4 py-2 rounded-full bg-primary text-text-primary text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
+                  {/* FIX: text-white aquí también por el fondo primary */}
+                  <span className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {t('projects.viewDetails')}
                   </span>
                 </div>
