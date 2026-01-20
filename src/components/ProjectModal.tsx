@@ -183,12 +183,13 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                     href={project.liveUrl} 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    className="flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold no-underline transition-all duration-200 
+                    className="group btn-shiny flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold no-underline transition-all duration-200 
                                bg-primary text-white shadow-lg shadow-primary/30 
-                               hover:opacity-90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40"
+                               hover:opacity-90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 relative overflow-hidden"
                   >
-                    <ExternalLink size={18} />
-                    {t('projects.links.live') || 'Live Demo'}
+                    <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
+                    <ExternalLink size={18} className="relative z-20" />
+                    <span className="relative z-20">{t('projects.links.live') || 'Live Demo'}</span>
                   </a>
                 )}
                 
