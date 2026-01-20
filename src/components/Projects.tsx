@@ -13,13 +13,19 @@ export const Projects = () => {
   const projects: Project[] = projectsStaticData.map((p, index) => ({
     id: index + 1,
     slug: p.slug,
-    image: p.image,
+    image: p.image, // Mantener array completo para el modal
     technologies: p.technologies,
     githubUrl: p.githubUrl,
     liveUrl: p.liveUrl || undefined,
     title: t(`projects.items.${p.slug}.title`) || `${t('projects.defaultTitle')} ${p.slug}`,
     description: t(`projects.items.${p.slug}.description`) || t('projects.noDescription'),
   }));
+
+  // Función helper para obtener la primera imagen
+  const getFirstImage = (image: string | string[] | undefined): string | undefined => {
+    if (!image) return undefined;
+    return Array.isArray(image) ? image[0] : image;
+  };
 
   return (
     <section 
@@ -67,9 +73,9 @@ export const Projects = () => {
             >
               {/* Imagen con Overlay */}
               <div className="relative h-48 overflow-hidden w-full bg-bg-base">
-                {project.image ? (
+                {getFirstImage(project.image) ? (
                   <img 
-                    src={project.image} 
+                    src={getFirstImage(project.image)} 
                     alt={project.title} 
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
@@ -84,7 +90,6 @@ export const Projects = () => {
                 
                 {/* Badge "Ver más" al hover (Desktop) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
-                  {/* FIX: text-white aquí también por el fondo primary */}
                   <span className="px-4 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300">
                     {t('projects.viewDetails')}
                   </span>
