@@ -21,18 +21,15 @@ type HeaderProps = {
 // --- 1. COMPONENTE ANIMADO TEMA (BOUNCY POP) ---
 const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: number }) => (
   <div className="relative flex items-center justify-center overflow-hidden" style={{ width: size, height: size }}>
-    {/* Sol (Visible en Light) */}
-    {/* Animación: Spring Bounce (cubic-bezier) para que rebote al entrar */}
     <Sun 
       size={size}
       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
         ${isDark 
-          ? 'scale-0 rotate-[180deg] opacity-0' // Se achica y gira al irse
-          : 'scale-100 rotate-0 opacity-100 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' // Entra con rebote y brillo
+          ? 'scale-0 rotate-[180deg] opacity-0' 
+          : 'scale-100 rotate-0 opacity-100 text-amber-500 drop-shadow-[0_0_8px_rgba(245,158,11,0.5)]' 
         }
       `} 
     />
-    {/* Luna (Visible en Dark) */}
     <Moon 
       size={size}
       className={`absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]
@@ -48,18 +45,13 @@ const AnimatedThemeIcon = ({ isDark, size = 20 }: { isDark: boolean; size?: numb
 // --- 2. COMPONENTE ANIMADO IDIOMA (FLIP 3D) ---
 const AnimatedLangIcon = ({ lang, size = 20 }: { lang: 'es' | 'en'; size?: number }) => (
   <div className="relative flex items-center justify-center" style={{ width: size, height: size, perspective: '1000px' }}>
-    <div className={`relative w-full h-full transition-transform duration-700 preserve-3d ${lang === 'en' ? 'rotate-y-180' : ''}`} style={{ transformStyle: 'preserve-3d', transform: lang === 'en' ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
-      
-      {/* Cara Frontal: Español */}
+    <div className={`relative w-full h-full transition-transform duration-700 preserve-3d`} style={{ transformStyle: 'preserve-3d', transform: lang === 'en' ? 'rotateY(180deg)' : 'rotateY(0deg)' }}>
       <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden' }}>
         <Globe size={size} className="text-primary drop-shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
       </div>
-
-      {/* Cara Trasera: Inglés (Rotada 180deg) */}
       <div className="absolute inset-0 flex items-center justify-center backface-hidden" style={{ backfaceVisibility: 'hidden', transform: 'rotateY(180deg)' }}>
         <Languages size={size} className="text-emerald-500 drop-shadow-[0_0_8px_rgba(16,185,129,0.4)]" />
       </div>
-
     </div>
   </div>
 );
@@ -74,7 +66,6 @@ export const Navbar: React.FC<HeaderProps> = ({
   const [langPulse, setLangPulse] = useState(false);
   const [mounted, setMounted] = useState(false);
 
-  // Estado del sidebar
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
       const v = localStorage.getItem('sidebarExpanded')
@@ -88,7 +79,6 @@ export const Navbar: React.FC<HeaderProps> = ({
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {} }, [expanded])
 
-  // Shortcuts
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') scrollToSection('home')
@@ -129,7 +119,8 @@ export const Navbar: React.FC<HeaderProps> = ({
           min-[881px]:flex min-[881px]:flex-col min-[881px]:justify-between
           min-[881px]:bg-bg-base/80 min-[881px]:backdrop-blur-xl
           min-[881px]:border-r min-[881px]:border-text-primary/5
-          min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)]
+          /* FIX: Sombra adaptativa */
+          min-[881px]:shadow-[10px_0_30px_rgba(0,0,0,0.05)] dark:min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)]
           ${expanded ? 'min-[881px]:w-[240px] min-[881px]:px-5' : 'min-[881px]:w-[88px] min-[881px]:px-4'}
           min-[881px]:py-6
 
@@ -138,7 +129,7 @@ export const Navbar: React.FC<HeaderProps> = ({
           max-[880px]:h-16 max-[880px]:rounded-2xl
           max-[880px]:bg-bg-base/90 max-[880px]:backdrop-blur-2xl
           max-[880px]:border max-[880px]:border-text-primary/10
-          max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.2)]
+          max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.4)]
           max-[880px]:flex max-[880px]:items-center max-[880px]:justify-around
           max-[880px]:px-2
         `}
@@ -147,14 +138,9 @@ export const Navbar: React.FC<HeaderProps> = ({
         aria-expanded={expanded}
       >
         
-        {/* --- 1. TOP SECTION (Desktop) --- */}
         <div className={`hidden min-[881px]:flex flex-col gap-6 items-center w-full transition-all duration-[800ms] ${expanded ? 'items-start' : ''}`}>
           <button
-            className={`
-              bg-transparent border-none w-10 h-10 rounded-xl text-text-primary
-              flex items-center justify-center cursor-pointer text-xl
-              transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90
-            `}
+            className="bg-transparent border-none w-10 h-10 rounded-xl text-text-primary flex items-center justify-center cursor-pointer text-xl transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90"
             onClick={() => setExpanded((v) => !v)}
             title={t('nav.toggleMenu')}
           >
@@ -162,16 +148,9 @@ export const Navbar: React.FC<HeaderProps> = ({
           </button>
 
           <div className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? 'w-full' : 'w-10'}`}>
-            <div className={`
-              relative flex items-center justify-center shrink-0 p-2 rounded-xl
-              bg-gradient-to-br from-primary/20 to-primary/10
-              border border-primary/20 shadow-[0_0_15px_rgba(99,83,242,0.15)]
-              transition-all duration-[800ms]
-              ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}
-            `}>
+            <div className={`relative flex items-center justify-center shrink-0 p-2 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 shadow-[0_0_15px_rgba(99,83,242,0.15)] transition-all duration-[800ms] ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}`}>
               <img src="/Logo Mati.svg" alt={t('alt.logo')} className="w-full h-full object-contain" />
             </div>
-            
             <div className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
               <span className="font-bold text-text-primary text-sm leading-tight">{t('header.displayName')}</span>
               <span className="text-[10px] text-text-secondary uppercase tracking-wider">{t('header.name')}</span>
@@ -179,39 +158,25 @@ export const Navbar: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        {/* --- 2. NAVIGATION --- */}
         <nav className="flex-1 flex items-center w-full max-[880px]:h-full">
           <ul className="w-full list-none p-0 m-0 flex flex-col gap-2 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
             {nav.map(({ id, label, Icon }) => {
               const isActive = activeSection === id;
-              
               return (
                 <li key={id} className="relative group w-full max-[880px]:w-auto max-[880px]:h-full max-[880px]:flex-1">
                   <button
                     onClick={() => scrollToSection(id as Section)}
-                    className={`
-                      relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent
-                      transition-all duration-300 ease-out outline-none overflow-hidden
-                      min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5
-                      ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''}
-                      ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'}
-                      max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 max-[880px]:h-full max-[880px]:p-1 max-[880px]:rounded-lg
-                    `}
+                    className={`relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''} ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'} max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 max-[880px]:h-full max-[880px]:p-1 max-[880px]:rounded-lg`}
                     title={label}
                   >
                     {isActive && (
                       <>
-                        <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_var(--primary-color)]" />
-                        <span className="min-[881px]:hidden absolute top-2 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_var(--primary-color)]" />
+                        <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_rgba(99,83,242,0.4)]" />
+                        <span className="min-[881px]:hidden absolute top-1 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
                       </>
                     )}
-                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110 drop-shadow-[0_0_5px_rgba(99,83,242,0.5)]' : 'text-text-secondary group-hover:text-text-primary'}`} />
-                    <span className={`
-                      font-medium text-sm transition-all duration-300 whitespace-nowrap
-                      ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'}
-                      ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'}
-                      max-[880px]:text-[10px]
-                    `}>
+                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110' : 'text-text-secondary group-hover:text-text-primary'}`} />
+                    <span className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'} ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'} max-[880px]:text-[10px]`}>
                       {label}
                     </span>
                   </button>
@@ -221,23 +186,14 @@ export const Navbar: React.FC<HeaderProps> = ({
           </ul>
         </nav>
 
-        {/* --- 3. BOTTOM SECTION (Desktop Settings & CV) --- */}
         <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full">
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
-            className={`
-              group relative flex items-center justify-center rounded-xl overflow-hidden
-              bg-gradient-to-r from-primary to-primary/80 text-text-primary font-bold
-              shadow-[0_4px_14px_rgba(99,83,242,0.4)]
-              transition-all duration-300 ease-out
-              hover:shadow-[0_6px_20px_rgba(139,92,246,0.6)] hover:scale-[1.02] active:scale-95
-              h-11
-              ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}
-            `}
+            className={`group relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 text-white font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}`}
             title={t('header.downloadCv')}
           >
-            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/30 to-transparent z-10" />
+            <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
             <FiDownload className="text-xl shrink-0 relative z-20" />
             <span className={`text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20 ${expanded ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0 ml-0'}`}>
               {t('header.downloadCv')}
@@ -247,70 +203,34 @@ export const Navbar: React.FC<HeaderProps> = ({
           <div className="flex flex-col gap-3">
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className={`
-                relative group flex items-center justify-center rounded-xl
-                bg-text-primary/5 border border-text-primary/10 text-text-secondary
-                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
-                transition-all duration-300 ease-out overflow-hidden
-                focus:outline-none focus:ring-2 focus:ring-primary/50
-                active:scale-95 h-11
-                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
-              `}
+              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
               title={t('theme.toggle')}
             >
-              <div className="shrink-0 flex items-center justify-center w-5 h-5">
-                <AnimatedThemeIcon isDark={isDark} size={expanded ? 18 : 20} />
-              </div>
-              <span className={`
-                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
-                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
-              `}>
+              <div className="shrink-0 flex items-center justify-center w-5 h-5"><AnimatedThemeIcon isDark={isDark} size={expanded ? 18 : 20} /></div>
+              <span className={`text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}`}>
                 {isDark ? t('theme.dark') : t('theme.light')}
               </span>
             </button>
 
             <button
               onClick={toggleLanguage}
-              className={`
-                relative group flex items-center justify-center rounded-xl
-                bg-text-primary/5 border border-text-primary/10 text-text-secondary
-                hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20
-                transition-all duration-300 ease-out overflow-hidden
-                focus:outline-none focus:ring-2 focus:ring-primary/50
-                active:scale-95 h-11
-                ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}
-              `}
+              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
               title={t('nav.toggleLang')}
             >
-              <div className="shrink-0 flex items-center justify-center w-5 h-5">
-                <AnimatedLangIcon lang={lang} size={expanded ? 18 : 20} />
-              </div>
-              <span className={`
-                text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300
-                ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}
-                ${langPulse ? 'animate-pulse' : ''}
-              `}>
+              <div className="shrink-0 flex items-center justify-center w-5 h-5"><AnimatedLangIcon lang={lang} size={expanded ? 18 : 20} /></div>
+              <span className={`text-xs font-semibold uppercase tracking-wider whitespace-nowrap transition-all duration-300 ${expanded ? 'opacity-100 w-auto translate-x-0' : 'opacity-0 w-0 -translate-x-4 absolute pointer-events-none'}`}>
                 {lang === 'en' ? 'English' : 'Español'}
               </span>
             </button>
           </div>
         </div>
-
       </aside>
 
       <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
 
-      {/* ========================================
-        MOBILE SETTINGS PILL (Fixed via Portal)
-        ========================================
-        Posición: Top RIGHT (para mobile)
-        Z-index alto para flotar sobre todo
-      */}
       {mounted && createPortal(
         <div className="lg:hidden fixed top-5 right-5 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
           <div className="flex items-center p-1.5 rounded-full bg-bg-base/90 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
-            
-            {/* Theme Toggle Mobile */}
             <button 
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
@@ -318,10 +238,7 @@ export const Navbar: React.FC<HeaderProps> = ({
             >
               <AnimatedThemeIcon isDark={isDark} size={18} />
             </button>
-
             <div className="w-[1px] h-5 bg-text-primary/10"></div>
-
-            {/* Lang Toggle Mobile (Icono + Texto) */}
             <button
               onClick={toggleLanguage}
               className={`h-10 pl-2 pr-3 rounded-full flex items-center gap-1.5 text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? 'animate-pulse' : ''}`}
@@ -330,7 +247,6 @@ export const Navbar: React.FC<HeaderProps> = ({
               <AnimatedLangIcon lang={lang} size={16} />
               <span className="text-[10px] font-bold tracking-wide">{lang.toUpperCase()}</span>
             </button>
-
           </div>
         </div>,
         document.body
