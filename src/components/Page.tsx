@@ -68,8 +68,8 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
   };
 
   const renderSidebarContent = () => {
-    const cardBaseClass = "bg-primary/5 p-4 rounded-2xl border border-primary/20 backdrop-blur-sm w-full transition-all duration-300 hover:bg-primary/10 hover:border-primary/30 flex flex-col justify-center min-h-[120px]";
-    const wrapperClass = "flex flex-col gap-4 w-full animate-in fade-in slide-in-from-left-4 duration-700 max-[880px]:animate-in max-[880px]:fade-in max-[880px]:slide-in-from-top-2";
+    const cardBaseClass = "bg-primary/5 p-4 rounded-2xl border border-primary/20 backdrop-blur-sm w-full transition-all duration-300 hover:bg-primary/10 hover:border-primary/30 flex flex-col justify-center min-h-[110px]";
+    const wrapperClass = "flex flex-col gap-4 w-full animate-in fade-in slide-in-from-left-4 duration-700 max-[880px]:animate-in max-[880px]:fade-in max-[880px]:slide-in-from-top-2 max-[880px]:duration-500";
 
     if (activeSection === 'projects') {
       return (
@@ -195,7 +195,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         <div className="hidden lg:flex flex-col gap-2 w-full">
               <div className="flex gap-2">
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
-              <p className="text-xl font-bold text-text-primary">3+</p>
+              <p className="text-xl font-bold text-text-primary">2+</p>
               <p className="text-[9px] text-text-secondary uppercase font-semibold">{t('page.years')}</p>
             </div>
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
@@ -232,29 +232,20 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       <div className="min-[881px]:hidden w-full relative z-20">
         
         {/* Sticky App Bar */}
-        <header className="sticky top-0 z-40 w-full bg-bg-base/80 backdrop-blur-xl border-b border-text-primary/5 px-5 py-3 flex items-center justify-between transition-all duration-300">
-          <div className="flex items-center gap-3">
+        <header className="sticky top-0 z-40 w-full bg-bg-base/90 backdrop-blur-xl border-b border-text-primary/10 px-4 py-2.5 flex items-center justify-between transition-all duration-300">
+          <div className="flex items-center gap-2.5">
              <div className="relative">
-                <div className="w-10 h-10 rounded-full overflow-hidden border border-text-primary/10">
+                <div className="w-9 h-9 rounded-full overflow-hidden border border-text-primary/10">
                    <img className="w-full h-full object-cover object-top" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
                 </div>
-                <div className="absolute bottom-0 right-0 w-2.5 h-2.5 bg-green-500 rounded-full border-2 border-bg-base shadow-sm"></div>
+                <div className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full border-2 border-bg-base shadow-sm"></div>
              </div>
              <div className="flex flex-col">
-                <h1 className="text-sm font-bold text-text-primary leading-tight">Matías Chacón</h1>
-                  <h1 className="text-sm font-bold text-text-primary leading-tight">{t('header.displayName')}</h1>
-                <p className="text-[10px] text-text-secondary font-mono leading-tight opacity-80">{typingText}</p>
+                <h1 className="text-sm font-bold text-text-primary leading-tight">{t('header.displayName')}</h1>
+                <p className="text-[10px] text-text-secondary font-mono leading-tight">{typingText}</p>
              </div>
           </div>
         </header>
-
-        {/* Dynamic Widget Area (Mobile Only) - Se muestra debajo del header */}
-        {/* Si estamos en Home, NO mostramos nada extra para que el foco sea el título */}
-        {activeSection !== 'home' && (
-          <div className="w-full px-4 pt-4 animate-in fade-in slide-in-from-top-2 duration-500">
-            {renderSidebarContent()}
-          </div>
-        )}
       </div>
 
       {/* =======================
