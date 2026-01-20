@@ -2,7 +2,7 @@ import React from 'react';
 import { useLanguage } from '../context/LanguageContext';
 import { ArrowRight, Download } from 'lucide-react';
 import type { Section } from '../types';
-import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiMongodb, SiPostgresql, SiDocker } from 'react-icons/si';
 
 interface HomeProps {
   setActiveSection: (section: Section) => void;
@@ -44,12 +44,13 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
           {/* HEADLINE PRINCIPAL */}
           <div className="flex flex-col gap-3 w-full max-[880px]:gap-2">
-            <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-4xl">
+            <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-4xl max-[880px]:text-center">
               <div className="relative inline-block">
                 <span className="font-heading font-bold tracking-tight leading-[1.08]">
-                  {t('header.headlinePrefix')} <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t('header.headlineHighlight')}</span>
+                  <span className="block">{t('header.headlinePrefix')}</span>
+                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t('header.headlineHighlight')}</span>
                 </span>
-                <div className="absolute -bottom-2 left-0 w-1/4 h-[3px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out max-[880px]:h-[2px]" />
+                <div className="absolute -bottom-2 left-0 w-1/4 h-[3px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out max-[880px]:h-[2px] max-[880px]:left-1/2 max-[880px]:-translate-x-1/2 max-[880px]:w-1/2" />
               </div>
             </h1>
             
@@ -65,6 +66,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
                         <SiTailwindcss className="text-[#38bdf8]" size={24} />
                         <SiMongodb className="text-[#47a248]" size={24} />
                         <SiPostgresql className="text-[#336791]" size={24} />
+                        <SiDocker className="text-[#2496ed]" size={24} />
                       </div>
                     ))}
                  </div>
@@ -74,7 +76,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
           {/* BIO */}
           <div className="mt-2 max-w-2xl border-l-2 border-primary/30 pl-4 md:pl-6
-                          max-[880px]:pl-3 max-[880px]:mt-1 max-[880px]:border-l-2">
+                          max-[880px]:pl-3 max-[880px]:mt-10 max-[880px]:border-l-2">
             <p className="text-text-secondary text-lg leading-relaxed 
                           max-[880px]:text-sm max-[880px]:leading-relaxed">
               {bioContent}
@@ -91,12 +93,13 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               target="_blank"
               rel="noopener noreferrer"
               className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl 
-                        bg-gradient-to-r from-primary to-purple-600 text-white font-bold tracking-wide
-                        shadow-lg shadow-primary/20
-                        hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]
-                        transition-all duration-300 ease-out group/btn no-underline
-                        max-[880px]:w-full max-[880px]:py-3.5 max-[880px]:text-sm cursor-pointer"
+                            bg-gradient-to-r from-primary to-purple-600 text-white font-bold tracking-wide
+                          shadow-lg shadow-primary/20
+                          hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]
+                            transition-all duration-300 ease-out group btn-shiny no-underline
+                          max-[880px]:w-full max-[880px]:py-3.5 max-[880px]:text-sm cursor-pointer"
             >
+                <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
               <Download size={20} className="relative z-20 max-[880px]:w-5 max-[880px]:h-5" />
               <span className="relative z-20">{t('header.downloadCv')}</span>
             </a>
