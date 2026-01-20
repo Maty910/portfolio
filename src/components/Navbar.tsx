@@ -186,21 +186,21 @@ export const Navbar: React.FC<HeaderProps> = ({
           </ul>
         </nav>
 
-        <div className="max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full">
+        <div className={`max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full ${!expanded ? 'items-center' : ''}`}>
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
-            className={`group relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 text-white font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}`}
+            className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 text-white font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}`}
             title={t('header.downloadCv')}
           >
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
             <FiDownload className="text-xl shrink-0 relative z-20" />
-            <span className={`text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20 ${expanded ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0 ml-0'}`}>
+            <span className={`text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20 ${expanded ? 'opacity-100 w-auto ml-1' : 'opacity-0 w-0 ml-0 absolute'}`}>
               {t('header.downloadCv')}
             </span>
           </a>
 
-          <div className="flex flex-col gap-3">
+          <div className={`flex flex-col gap-3 ${!expanded ? 'items-center' : 'items-stretch'}`}>
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
               className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
