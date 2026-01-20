@@ -107,7 +107,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                   <img 
                     src={images[currentImageIndex]} 
                     alt={`${project.title} screenshot ${currentImageIndex + 1}`} 
-                    className="w-full h-full object-cover transition-transform duration-500"
+                    className="w-full h-full object-contain transition-transform duration-500"
                   />
                   
                   {/* Controles del Slider (Solo si hay más de 1 imagen) */}
