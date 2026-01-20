@@ -1,6 +1,6 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers } from 'lucide-react';
+import { ExternalLink, Github, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers, Download } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiNextdotjs } from 'react-icons/si';
 import type { Section } from '../types';
@@ -10,34 +10,50 @@ interface PageProps extends PropsWithChildren {
   activeSection?: Section;
 }
 
-const useTypewriter = (words: string[], speed = 150, pause = 2000) => {
+// 1. Hook optimizado: Devuelve SOLO el texto, sin cursor integrado para evitar duplicados
+const useTypewriter = (words: string[], speed = 50, pause = 2000) => {
   const [index, setIndex] = useState(0);
   const [subIndex, setSubIndex] = useState(0);
   const [reverse, setReverse] = useState(false);
-  const [blink, setBlink] = useState(true);
+  const [isPaused, setIsPaused] = useState(false);
 
   useEffect(() => {
-    const timeout2 = setTimeout(() => setBlink((prev) => !prev), 500);
-    return () => clearTimeout(timeout2);
-  }, [blink]);
+    // Si estamos en pausa (texto completo), esperar antes de borrar
+    if (isPaused) {
+      const timeout = setTimeout(() => {
+        setIsPaused(false);
+        setReverse(true);
+      }, pause);
+      return () => clearTimeout(timeout);
+    }
 
-  useEffect(() => {
-    if (subIndex === words[index].length + 1 && !reverse) {
-      setTimeout(() => setReverse(true), pause);
+    // Lógica de borrado (más rápido que el tipeo)
+    if (reverse) {
+      if (subIndex === 0) {
+        setReverse(false);
+        setIndex((prev) => (prev + 1) % words.length);
+        return;
+      }
+      const timeout = setTimeout(() => {
+        setSubIndex((prev) => prev - 1);
+      }, speed / 2); // Borra al doble de velocidad
+      return () => clearTimeout(timeout);
+    }
+
+    // Lógica de tipeo
+    if (subIndex === words[index].length) {
+      setIsPaused(true);
       return;
     }
-    if (subIndex === 0 && reverse) {
-      setReverse(false);
-      setIndex((prev) => (prev + 1) % words.length);
-      return;
-    }
+
     const timeout = setTimeout(() => {
-      setSubIndex((prev) => prev + (reverse ? -1 : 1));
-    }, Math.max(reverse ? 75 : subIndex === words[index].length ? 1000 : speed, parseInt(Math.random() * 350 + '')));
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, words, speed, pause]);
+      setSubIndex((prev) => prev + 1);
+    }, speed + (Math.random() * 20)); // Pequeña variación para realismo
 
-  return `${words[index].substring(0, subIndex)}${blink ? '|' : ' '}`;
+    return () => clearTimeout(timeout);
+  }, [subIndex, index, reverse, isPaused, words, speed, pause]);
+
+  return words[index].substring(0, subIndex);
 };
 
 // Componente Hora Local
@@ -55,10 +71,56 @@ const LocalTime = () => {
   return <span className="font-mono text-xs text-text-primary">{time} AR</span>;
 };
 
+// Componente Cursor Independiente (Violeta y con respiración)
+const Cursor = () => (
+  <span 
+    className="inline-block ml-0.5 w-[2px] h-[1.1em] bg-primary align-middle rounded-full animate-cursor-breath"
+    aria-hidden="true"
+  />
+);
+
+// Componente animado del nombre (Sin cambios de tamaño)
+const AnimatedName = () => {
+  const names = ['Matías Chacón', 'mchacon'];
+  // Reutilizamos el hook limpio para el nombre también
+  const text = useTypewriter(names, 100, 4000); 
+
+  return (
+    <span className="inline-flex items-center min-h-[1.5em]">
+      <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent font-semibold text-2xl uppercase tracking-tight select-none">
+        {text}
+      </span>
+      {/* Cursor solo para el nombre */}
+      <Cursor />
+    </span>
+  );
+};
+
 export function Page({ children, activeSection = 'home' }: PageProps) {
   const { t, get } = useLanguage();
-  const typingWords = (get('page.typingWords') as string[]) || ['Full-Stack Developer', 'React Enthusiast', 'Creative Coder', 'Pixel Precision'];
-  const typingText = useTypewriter(typingWords, 100);
+  
+  // Lista completa de frases
+  const typingWords = [
+    'Full-Stack Developer',
+    'React Developer',
+    'Creative Coder',
+    'Pixel Precision',
+    'UI/UX Advocate',
+    'Performance-Obsessed',
+    'API Craftsman',
+    'Design Systems Builder',
+    'TDD',
+    'Learner',
+    'TypeScript Fan',
+    'JS Advocate',
+    'Node.js Backend Developer',
+    'Tailwind CSS User',
+    'Docker Enthusiast',
+    'Database Manager',
+  ];
+  
+  // Hook aplicado a las frases
+  const typingText = useTypewriter(typingWords, 60, 2000);
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -167,7 +229,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
               >
                 <div className="flex items-center gap-2 overflow-hidden">
                   <Mail size={12} className="text-primary shrink-0" />
-                  <span className="text-[10px] text-text-primary font-medium truncate">{t('page.email')}</span>
+                  <span className="text-[10px] text-text-primary font-medium truncate">matychacong@gmail.com</span>
                 </div>
                 {copied ? <Check size={12} className="text-green-500 shrink-0" /> : <Copy size={12} className="text-text-secondary group-hover:text-text-primary shrink-0" />}
               </button>
@@ -182,20 +244,20 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       <div className="flex flex-col items-center w-full gap-6 animate-in fade-in zoom-in-95 duration-700">
         <div className="relative group w-fit mx-auto">
           <div className="absolute inset-[-3px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
-            <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
-              <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt={t('alt.profile')} />
+          <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
+            <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt={t('alt.profile')} />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
-            <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-bg-base px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
+          <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-bg-base px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
             <span className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse shadow-[0_0_5px_#22c55e]"></span>
             <span className="text-[9px] font-bold text-green-500 tracking-tight">{t('page.openToWork')}</span>
           </div>
         </div>
 
         <div className="hidden lg:flex flex-col gap-2 w-full">
-              <div className="flex gap-2">
+          <div className="flex gap-2">
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
-              <p className="text-xl font-bold text-text-primary">2+</p>
+              <p className="text-xl font-bold text-text-primary">3+</p>
               <p className="text-[9px] text-text-secondary uppercase font-semibold">{t('page.years')}</p>
             </div>
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
@@ -215,74 +277,79 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>{t('contact.linkedinTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
+          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary/80 hover:translate-y-[-2px] transition-all">
+            <Download size={16} /><span>{t('header.downloadCv')}</span>
+          </a>
+        </div>
+
+        <div className="lg:hidden flex justify-center gap-3 w-full">
+           <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2 bg-text-primary/5 rounded-lg text-text-secondary hover:text-text-primary border border-text-primary/10">
+             <Github size={16} />
+           </a>
+           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20">
+             <LinkedInIcon style={{ fontSize: 18 }} />
+           </a>
         </div>
       </div>
     );
   };
 
   return (
-    <div className="page w-full min-h-screen bg-bg-base text-text-primary overflow-x-hidden selection:bg-primary selection:text-white relative transition-colors duration-500">
+    <div className="page w-full min-h-screen bg-bg-base text-text-primary overflow-x-hidden selection:bg-primary/30 selection:text-white relative transition-colors duration-500">
       
-      {/* Fondo Decorativo */}
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
       
-      {/* =======================
-          LAYOUT MOBILE (Compact Sticky Header)
-      ======================== */}
-      <div className="min-[881px]:hidden w-full relative z-20">
-        
-        {/* Sticky App Bar */}
-        <header className="sticky top-0 z-40 w-full bg-bg-base/90 backdrop-blur-xl border-b border-text-primary/10 px-4 py-2.5 flex items-center justify-between transition-all duration-300">
-          <div className="flex items-center gap-2.5">
-             <div className="relative">
-                <div className="w-9 h-9 rounded-full overflow-hidden border border-text-primary/10">
-                   <img className="w-full h-full object-cover object-top" src="/images/FOTO DE PERFIL.jpg" alt="Profile" />
-                </div>
-                <div className="absolute bottom-0 right-0 w-2 h-2 bg-green-500 rounded-full border-2 border-bg-base shadow-sm"></div>
-             </div>
-             <div className="flex flex-col">
-                <h1 className="text-sm font-bold text-text-primary leading-tight">{t('header.displayName')}</h1>
-                <p className="text-[10px] text-text-secondary font-mono leading-tight">{typingText}</p>
-             </div>
+      {/* Mobile Layout */}
+      <div className="min-[881px]:hidden w-full flex flex-col items-center pt-6 pb-2 px-4 relative z-20">
+        <div className="flex flex-col items-center gap-1 mb-2 w-full text-center">
+          <h1 className="flex items-center justify-center gap-2 text-lg font-bold">
+            <AnimatedName />
+            <FiCode className="text-primary animate-pulse shrink-0" size={18} />
+          </h1>
+          <div className="text-text-secondary text-[10px] font-mono tracking-wider h-3.5 opacity-80 flex items-center justify-center gap-1">
+            {typingText} 
+            <Cursor />
           </div>
-        </header>
+        </div>
+        <div className="w-full max-w-[340px] flex flex-col items-center animate-in fade-in zoom-in-95 duration-500">
+          {renderSidebarContent()}
+        </div>
       </div>
 
-      {/* =======================
-          LAYOUT DESKTOP
-      ======================== */}
+      {/* Desktop Layout */}
       <div className="hidden min-[881px]:block">
         <header className="fixed top-8 left-28 z-20 transition-all animate-in fade-in slide-in-from-top-4 duration-700">
           <h1 className="flex items-center gap-3 mb-1 text-2xl font-bold group cursor-default">
-            <div className="relative">
-              <span className="bg-gradient-to-r from-text-primary via-primary to-text-primary bg-clip-text text-transparent group-hover:via-primary transition-all duration-500">
-                Matías Chacón
-              </span>
-              <div className="absolute -bottom-1 left-0 w-0 h-[2px] bg-primary group-hover:w-full transition-all duration-500" />
-            </div>
+            <AnimatedName />
             <FiCode className="text-primary animate-pulse" size={24} />
           </h1>
-          <p className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4">
+          <div className="text-text-secondary text-xs font-mono tracking-wider pl-1 border-l-2 border-primary/30 ml-1 px-2 h-4 flex items-center">
             {typingText}
-          </p>
+            <Cursor />
+          </div>
         </header>
-
         <div className="fixed top-28 left-28 z-20 w-[220px] flex flex-col gap-6 transition-all animate-in zoom-in-95 duration-700 delay-150">
           {renderSidebarContent()}
         </div>
       </div>
 
-      {/* Logo Flotante (Desktop Only - en mobile ya tenemos el avatar) */}
-      <div className="hidden min-[881px]:block fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500">
-        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
+      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:top-4 max-[880px]:right-4">
+        <img className="w-[80px] max-[880px]:w-[35px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
       </div>
 
-      {/* Contenido Principal */}
       <div className="content-wrapper relative z-10 w-full min-h-screen transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">
         {children}
       </div>
 
       <style>{`
+        @keyframes cursor-breath {
+          0%, 100% { opacity: 1; transform: scaleY(1); }
+          50% { opacity: 0.5; transform: scaleY(0.7); }
+        }
+        .animate-cursor-breath {
+          animation: cursor-breath 1.2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+        }
+
         body:has([aria-expanded="true"]) header.fixed,
         body:has([aria-expanded="true"]) .fixed[class*="top-28"] {
           left: 18rem; 
