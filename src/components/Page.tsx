@@ -257,7 +257,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         <div className="hidden lg:flex flex-col gap-2 w-full">
           <div className="flex gap-2">
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
-              <p className="text-xl font-bold text-text-primary">3+</p>
+              <p className="text-xl font-bold text-text-primary">2+</p>
               <p className="text-[9px] text-text-secondary uppercase font-semibold">{t('page.years')}</p>
             </div>
             <div className="flex-1 bg-text-primary/5 backdrop-blur-sm px-3 py-2 rounded-xl border border-text-primary/10 hover:border-primary/40 transition-colors group flex flex-col items-center justify-center">
@@ -276,9 +276,6 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>{t('contact.linkedinTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
-          </a>
-          <a href="/cv.pdf" target="_blank" rel="noopener noreferrer" className="mt-2 flex items-center justify-center gap-2 px-4 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold shadow-lg shadow-primary/20 hover:bg-primary/80 hover:translate-y-[-2px] transition-all">
-            <Download size={16} /><span>{t('header.downloadCv')}</span>
           </a>
         </div>
 
