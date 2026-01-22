@@ -13,8 +13,8 @@ const en = {
     displayName: "Matías Chacón",
     bio: "I’m Matías Chacón — a passionate Full-Stack Web Developer focused on building modern, maintainable user interfaces and reliable backend services. I work primarily with React and Node.js, enjoy creating responsive, accessible apps, and I love turning ideas into production-ready projects (from personal portfolios to task & inventory systems).",
     downloadCv: "Download CV",
-    headlinePrefix: "development",
-    headlineHighlight: "with purpose.",
+    headlinePrefix: "development with",
+    headlineHighlight: "purpose",
     available: "Available for new opportunities"
   },
   alt: {
@@ -142,8 +142,8 @@ const es = {
     displayName: "Matías Chacón",
     bio: "Soy Matías Chacón — Desarrollador Full-Stack apasionado por crear interfaces modernas y servicios backend sólidos. Trabajo principalmente con React y Node.js, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción (desde portfolios hasta sistemas de gestión de tareas e inventarios).",
     downloadCv: "Descargar CV",
-    headlinePrefix: "desarrollo",
-    headlineHighlight: "con criterio.",
+    headlinePrefix: "desarrollo con",
+    headlineHighlight: "criterio",
     available: "Disponible para nuevas oportunidades"
   },
   alt: {
