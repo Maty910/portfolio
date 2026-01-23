@@ -32,7 +32,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
         
         <div className="flex flex-col items-start gap-6 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:gap-4 max-[880px]:mb-6">
 
-          {/* Badge "Open to work" */}
+          {/* Badge "Open to work"
           <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/10 border border-primary/20 text-primary text-xs font-semibold tracking-wide backdrop-blur-md shadow-sm transition-all duration-300 hover:scale-105 cursor-default
                           max-[880px]:px-2.5 max-[880px]:py-1 max-[880px]:text-[11px]">
             <span className="relative flex h-2 w-2">
@@ -40,7 +40,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-primary"></span>
             </span>
             <span className="ml-1">{t('header.available')}</span>
-          </div>
+          </div> */}
 
           {/* HEADLINE PRINCIPAL */}
           <div className="flex flex-col gap-3 w-full max-[880px]:gap-2">
