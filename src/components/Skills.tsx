@@ -3,6 +3,7 @@ import {
   SiHtml5, SiPostgresql, SiSqlite, SiMongodb, SiPostman, SiPython, 
   SiGit, SiTailwindcss, SiJson, SiNetlify, SiGithub, SiFigma,
   SiNextdotjs, SiDocker, SiCanva,
+  SiSolidity,
 } from 'react-icons/si';
 import { VscVscode } from 'react-icons/vsc';
 import { 
@@ -45,6 +46,7 @@ const SKILL_CATEGORIES = [
       { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
       { name: 'SQLite', icon: SiSqlite, color: '#0f80cc' },
       { name: 'JSON', icon: SiJson, color: '#f7df1e' },
+      { name: 'Solidity', icon: SiSolidity, color: '#363636' },
     ]
   },
   {
