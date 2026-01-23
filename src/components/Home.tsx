@@ -47,7 +47,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             <h1 className="text-5xl md:text-7xl font-bold text-text-primary leading-[1.1] tracking-tight group cursor-default max-[880px]:text-4xl max-[880px]:text-center">
               <div className="relative inline-block">
                 <span className="font-heading font-bold tracking-tight leading-[1.08]">
-                  <span className="block">{t('header.headlinePrefix')}</span>
+                  <span className="block text-end">{t('header.headlinePrefix')}</span>
                   <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400">{t('header.headlineHighlight')}</span>
                 </span>
                 <div className="absolute -bottom-2 left-0 w-1/4 h-[3px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out max-[880px]:h-[2px] max-[880px]:left-1/2 max-[880px]:-translate-x-1/2 max-[880px]:w-1/2" />
