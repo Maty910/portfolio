@@ -279,10 +279,10 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         </div>
 
         <div className="lg:hidden flex justify-center gap-3 w-full">
-           <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2 bg-text-primary/5 rounded-lg text-text-secondary hover:text-text-primary border border-text-primary/10">
-             <Github size={16} />
+           <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-text-primary/5 rounded-lg text-text-secondary hover:text-text-primary border border-text-primary/10 flex items-center justify-center transition-all">
+             <Github size={18} />
            </a>
-           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20">
+           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20 flex items-center justify-center transition-all">
              <LinkedInIcon style={{ fontSize: 18 }} />
            </a>
         </div>
@@ -294,6 +294,25 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     <div className="page w-full min-h-screen bg-bg-base text-text-primary overflow-x-hidden selection:bg-primary/30 selection:text-white relative transition-colors duration-500">
       
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
+
+      {/* Mobile Layout - Solo visible en Home */}
+      {activeSection === 'home' && (
+        <div className="min-[881px]:hidden w-full flex flex-col items-center pt-6 pb-2 px-4 relative z-20">
+          <div className="flex flex-col items-center gap-1 mb-2 w-full text-center">
+            <h1 className="flex items-center justify-center gap-2 text-lg font-bold">
+              <AnimatedName />
+              <FiCode className="text-primary animate-pulse shrink-0" size={18} />
+            </h1>
+            <div className="text-text-secondary text-[10px] font-mono tracking-wider h-3.5 opacity-80 flex items-center justify-center gap-1">
+              {typingText} 
+              <Cursor />
+            </div>
+          </div>
+          <div className="w-full max-w-[340px] flex flex-col items-center animate-in fade-in zoom-in-95 duration-500">
+            {renderSidebarContent()}
+          </div>
+        </div>
+      )}
 
       {/* Desktop Layout */}
       <div className="hidden min-[881px]:block">
