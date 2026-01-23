@@ -1,8 +1,8 @@
 import { useEffect, useState, type PropsWithChildren } from 'react';
 import { FiCode } from 'react-icons/fi';
-import { ExternalLink, Github, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers, Download } from 'lucide-react';
+import { ExternalLink, Github, Database, Mail, MapPin, Check, Copy, GitCommit, GitPullRequest, Layers } from 'lucide-react';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
-import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker, SiNextdotjs } from 'react-icons/si';
+import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker } from 'react-icons/si';
 import type { Section } from '../types';
 import { useLanguage } from '../context/LanguageContext';
 
@@ -97,7 +97,7 @@ const AnimatedName = () => {
 };
 
 export function Page({ children, activeSection = 'home' }: PageProps) {
-  const { t, get } = useLanguage();
+  const { t } = useLanguage();
   
   // Lista completa de frases
   const typingWords = [
@@ -180,7 +180,6 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             
             <div className="grid grid-cols-4 gap-2 w-full place-items-center">
               <div className="p-1.5 bg-[#61dafb]/10 rounded-lg border border-[#61dafb]/20" title="React"><SiReact size={16} className="text-[#61dafb]" /></div>
-              <div className="p-1.5 bg-text-primary/5 rounded-lg border border-text-primary/10" title="Next.js"><SiNextdotjs size={16} className="text-text-primary" /></div>
               <div className="p-1.5 bg-[#38bdf8]/10 rounded-lg border border-[#38bdf8]/20" title="Tailwind"><SiTailwindcss size={16} className="text-[#38bdf8]" /></div>
               <div className="p-1.5 bg-[#3178c6]/10 rounded-lg border border-[#3178c6]/20" title="TypeScript"><SiTypescript size={16} className="text-[#3178c6]" /></div>
               <div className="p-1.5 bg-[#8cc84b]/10 rounded-lg border border-[#8cc84b]/20" title="Node.js"><SiNodedotjs size={16} className="text-[#8cc84b]" /></div>
@@ -295,23 +294,6 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     <div className="page w-full min-h-screen bg-bg-base text-text-primary overflow-x-hidden selection:bg-primary/30 selection:text-white relative transition-colors duration-500">
       
       <div className="fixed inset-0 pointer-events-none opacity-[0.03] bg-[linear-gradient(rgba(99,83,242,0.1)_1px,transparent_1px),linear-gradient(90deg,rgba(99,83,242,0.1)_1px,transparent_1px)] bg-[size:50px_50px] [mask-image:radial-gradient(ellipse_at_top_left,black_40%,transparent_70%)] z-0" />
-      
-      {/* Mobile Layout */}
-      <div className="min-[881px]:hidden w-full flex flex-col items-center pt-6 pb-2 px-4 relative z-20">
-        <div className="flex flex-col items-center gap-1 mb-2 w-full text-center">
-          <h1 className="flex items-center justify-center gap-2 text-lg font-bold">
-            <AnimatedName />
-            <FiCode className="text-primary animate-pulse shrink-0" size={18} />
-          </h1>
-          <div className="text-text-secondary text-[10px] font-mono tracking-wider h-3.5 opacity-80 flex items-center justify-center gap-1">
-            {typingText} 
-            <Cursor />
-          </div>
-        </div>
-        <div className="w-full max-w-[340px] flex flex-col items-center animate-in fade-in zoom-in-95 duration-500">
-          {renderSidebarContent()}
-        </div>
-      </div>
 
       {/* Desktop Layout */}
       <div className="hidden min-[881px]:block">
@@ -330,8 +312,8 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
         </div>
       </div>
 
-      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:top-4 max-[880px]:right-4">
-        <img className="w-[80px] max-[880px]:w-[35px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
+      <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:hidden">
+        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
       </div>
 
       <div className="content-wrapper relative z-10 w-full min-h-screen transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">
