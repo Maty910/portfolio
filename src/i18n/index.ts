@@ -54,16 +54,16 @@ const en = {
         description: "Landing page for a hotel booking service"
       },
       p4: {
-        title: "Inventory Management System",
-        description: "Inventory system in Python + SQLite"
-      },
-      p5: {
         title: "Task Management App",
         description: "Tasks management tool connected to SQLite"
       },
-      p6: {
+      p5: {
         title: "Community Manager Portfolio",
         description: "[WIP] Portfolio for a community manager showcasing social media skills"
+      },
+      p6: {
+        title: "Inventory Management System",
+        description: "Inventory system in Python + SQLite"
       }
     }
   },
