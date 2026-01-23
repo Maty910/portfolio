@@ -1,26 +1,44 @@
 import React, { useEffect, useState } from 'react';
+import { Code2 } from 'lucide-react';
 
 interface IntroProps {
   onFinish: () => void;
 }
 
 export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
+  const [count, setCount] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
+  // Efecto del contador 0 -> 100
   useEffect(() => {
-    // 1. Duración total un poco más corta para que no sea tedioso
-    const timer = setTimeout(() => {
-      setIsExiting(true);
-    }, 2000);
+    const duration = 2000; 
+    const interval = 20;
+    const steps = duration / interval;
+    const increment = 100 / steps;
 
-    // 2. Desmontar
+    const timer = setInterval(() => {
+      setCount((prev) => {
+        const next = prev + increment;
+        if (next >= 100) {
+          clearInterval(timer);
+          return 100;
+        }
+        return next;
+      });
+    }, interval);
+
     const exitTimer = setTimeout(() => {
+      setIsExiting(true);
+    }, duration + 300);
+
+    const finishTimer = setTimeout(() => {
       onFinish();
-    }, 2700);
+    }, duration + 1000);
 
     return () => {
-      clearTimeout(timer);
+      clearInterval(timer);
       clearTimeout(exitTimer);
+      clearTimeout(finishTimer);
     };
   }, [onFinish]);
 
@@ -28,54 +46,84 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
     <div 
       className={`
         fixed inset-0 z-[9999] flex flex-col items-center justify-center
-        bg-bg-base 
-        transition-opacity duration-700 ease-in-out
-        ${isExiting ? 'opacity-0 pointer-events-none' : 'opacity-100'}
+        bg-bg-base overflow-hidden cursor-wait
+        transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)]
+        ${isExiting ? 'opacity-0 scale-110 pointer-events-none blur-sm' : 'opacity-100 scale-100'}
       `}
     >
-      <div className="relative flex flex-col items-center">
+      
+      {/* 1. Fondo con textura sutil animada */}
+      <div className="absolute inset-0 pointer-events-none opacity-[0.03]" 
+           style={{ 
+             backgroundImage: 'radial-gradient(#6353f2 1px, transparent 1px)', 
+             backgroundSize: '24px 24px' 
+           }} 
+      />
+
+      <div className="relative z-10 flex flex-col items-center gap-8">
         
-        {/* LOGO MATI - Animado */}
-        <div className="relative mb-8 w-24 h-24 md:w-32 md:h-32">
-          {/* Resplandor violeta detrás */}
-          <div className="absolute inset-0 bg-[#6353f2] blur-2xl opacity-20 animate-pulse rounded-full" />
-          
-          <img 
-            src="/Logo Mati.svg" 
-            alt="Logo Matias Chacon"
-            className="w-full h-full object-contain relative z-10 animate-[bounce-gentle_3s_infinite_ease-in-out] drop-shadow-[0_0_15px_rgba(99,83,242,0.5)]"
-          />
+        {/* LOGO CON EFECTO DE REVELADO (Centrado Arreglado) */}
+        <div className={`relative transition-all duration-700 delay-100 ${isExiting ? 'translate-y-[-20px] opacity-0' : 'translate-y-0 opacity-100'}`}>
+          {/* Contenedor Cuadrado Fijo para asegurar centro geométrico */}
+          <div className="relative w-32 h-32 flex items-center justify-center">
+            
+            {/* Anillos de pulso: Usamos un contenedor absoluto centrado para la animación */}
+            {/* Anillo 1 */}
+            <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 w-full h-full rounded-full border border-primary/30 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite]" />
+            
+            {/* Anillo 2 (Con delay) */}
+            <div className="absolute top-1/2 left-[55%] -translate-x-1/2 -translate-y-1/2 w-[80%] h-[80%] rounded-full border border-primary/50 animate-[ping_2s_cubic-bezier(0,0,0.2,1)_infinite_400ms]" />
+            
+            {/* Logo Central (Flotando encima) */}
+            <img 
+              src="/Logo Mati.svg" 
+              alt="Logo Matias"
+              className="w-24 h-24 object-contain relative z-10 drop-shadow-[0_0_25px_rgba(99,83,242,0.6)]"
+            />
+          </div>
         </div>
 
-        {/* Nombre con efecto de revelado */}
-        <div className="overflow-hidden mb-6">
-          <h1 className="text-4xl md:text-5xl font-bold text-text-primary tracking-tight animate-[slide-up_0.8s_ease-out_forwards]">
-            Matías <span className="text-[#6353f2]">Chacón</span>
+        {/* TEXTO DE BIENVENIDA */}
+        <div className="text-center space-y-3 overflow-hidden">
+          <h1 className="text-4xl md:text-5xl font-bold text-text-primary tracking-tighter flex flex-col items-center">
+            <span className="block overflow-hidden h-[1.3em]">
+              <span className={`block animate-slide-up-reveal delay-300 ${isExiting ? 'translate-y-[100%]' : ''}`}>
+                Matías <span className="text-primary">Chacón</span>
+              </span>
+            </span>
           </h1>
+          
+          <div className="flex items-center gap-2 justify-center text-text-secondary text-xs font-mono tracking-[0.2em] uppercase">
+            <Code2 size={14} className="text-primary animate-pulse" />
+            <span className="opacity-0 animate-[fade-in_0.5s_ease-out_0.5s_forwards]">Full Stack Dev</span>
+          </div>
         </div>
 
-        {/* Línea de carga */}
-        <div className="w-48 h-1 bg-[#1e1e2d] rounded-full overflow-hidden">
-          <div className="h-full bg-gradient-to-r from-[#6353f2] to-[#a8a1ff] animate-[loading_2.2s_ease-in-out_forwards] w-0 rounded-full" />
+        {/* BARRA DE PROGRESO */}
+        <div className="w-64 mt-2 relative">
+          <div className="flex justify-between text-[10px] font-mono text-text-secondary mb-1.5 uppercase tracking-wide">
+            <span>Loading experience</span>
+            <span className="text-primary font-bold">{Math.round(count)}%</span>
+          </div>
+          
+          <div className="h-0.5 w-full bg-text-primary/10 rounded-full overflow-hidden">
+            <div 
+              className="h-full bg-primary shadow-[0_0_10px_rgba(99,83,242,0.8)] transition-all duration-75 ease-linear"
+              style={{ width: `${count}%` }}
+            />
+          </div>
         </div>
-
-        <div className=''></div>
 
       </div>
 
       <style>{`
-        @keyframes slide-up {
+        @keyframes slide-up-reveal {
           0% { transform: translateY(100%); opacity: 0; }
           100% { transform: translateY(0); opacity: 1; }
         }
-        @keyframes loading {
-          0% { width: 0%; }
-          50% { width: 70%; }
-          100% { width: 100%; }
-        }
-        @keyframes bounce-gentle {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
+        @keyframes fade-in {
+          from { opacity: 0; }
+          to { opacity: 1; }
         }
       `}</style>
     </div>
