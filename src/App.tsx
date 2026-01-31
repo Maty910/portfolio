@@ -12,6 +12,7 @@ import { Intro } from './components/Intro'
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('home');
+  const [hasModalOpen, setHasModalOpen] = useState(false);
 
   // Observar qué sección está visible para actualizar la navbar
   useEffect(() => {
@@ -48,10 +49,10 @@ function App() {
       {/* Pasamos activeSection a Page */}
         <Intro onFinish={() => {}} />
       <Page activeSection={activeSection}>
-        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} hasModalOpen={hasModalOpen} />
         <main className="main-content scroll-container">
           <Home setActiveSection={setActiveSection} />
-          <Projects />
+          <Projects onModalChange={setHasModalOpen} />
           <Skills />
           <Contact />
         </main>
