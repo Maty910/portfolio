@@ -5,7 +5,11 @@ import { Github, ExternalLink, ArrowRight, FolderOpen } from 'lucide-react';
 import projectsStaticData from '../data/projectsData';
 import type { Project } from '../types';
 
-export const Projects = () => {
+interface ProjectsProps {
+  onModalChange?: (isOpen: boolean) => void;
+}
+
+export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -61,7 +65,10 @@ export const Projects = () => {
           {projects.map((project) => (
             <article 
               key={project.id}
-              onClick={() => setSelectedProject(project)}
+              onClick={() => {
+                setSelectedProject(project);
+                onModalChange?.(true);
+              }}
               className="group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer
                          /* Estilos base Glass adaptables */
                          bg-text-primary/5 border border-text-primary/10
@@ -192,7 +199,10 @@ export const Projects = () => {
       {/* Modal Project */}
       <ProjectModal 
         project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
+        onClose={() => {
+          setSelectedProject(null);
+          onModalChange?.(false);
+        }} 
       />
     </section>
   );
