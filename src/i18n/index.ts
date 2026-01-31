@@ -1,5 +1,7 @@
 // Consolidated translation file for English and Spanish
-const en = {
+import type { Translations } from './types';
+
+const en: Translations = {
   nav: {
     toggleMenu: "Toggle Menu (M)",
     toggleLang: "Toggle language",
@@ -35,11 +37,6 @@ const en = {
     },
     noDescription: "No description available.",
     defaultTitle: "Project",
-    modal: {
-      closeAria: "Close project dialog",
-      closeTitle: "Close (Esc)",
-      technologies: "Technologies"
-    },
     items: {
       p1: {
         title: "Portfolio Website - Director of Photography",
@@ -143,7 +140,7 @@ const en = {
   footer: { copyRight: "All rights reserved." }
 };
 
-const es = {
+const es: Translations = {
   nav: {
     toggleMenu: "Alternar menú (M)",
     toggleLang: "Cambiar idioma",
@@ -179,11 +176,6 @@ const es = {
     },
     noDescription: "No hay descripción disponible.",
     defaultTitle: "Proyecto",
-    modal: {
-      closeAria: "Cerrar diálogo del proyecto",
-      closeTitle: "Cerrar (Esc)",
-      technologies: "Tecnologías"
-    },
     items: {
       p1: {
         title: "Portafolio Web - Director de Fotografía",
