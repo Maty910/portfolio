@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useRef } from 'react'
 import { createPortal } from 'react-dom'
 import {
   FiMenu,
@@ -79,6 +79,24 @@ export const Navbar: React.FC<HeaderProps> = ({
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {} }, [expanded])
 
+  // ✅ OPTIMIZACIÓN: useRef para valores actuales sin causar re-renders
+  const themeRef = useRef(theme);
+  const expandedRef = useRef(expanded);
+
+  useEffect(() => {
+    themeRef.current = theme;
+    expandedRef.current = expanded;
+  }, [theme, expanded]);
+
+  // ✅ FIX: Definir scrollToSection ANTES del useEffect que lo usa
+  const scrollToSection = (sectionId: Section) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      setActiveSection(sectionId);
+    }
+  };
+
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') scrollToSection('home')
@@ -87,19 +105,13 @@ export const Navbar: React.FC<HeaderProps> = ({
       if (e.key === '4') scrollToSection('contact')
       if (e.key.toLowerCase() === 'm') setExpanded((v) => !v)
       if (e.key.toLowerCase() === 'l') toggleLanguage()
-      if (e.key.toLowerCase() === 't') setTheme(theme === 'dark' ? 'light' : 'dark')
+      // ✅ FIX: Usar ref para evitar dependency en theme
+      if (e.key.toLowerCase() === 't') setTheme(themeRef.current === 'dark' ? 'light' : 'dark')
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [toggleLanguage, theme, setTheme])
+  }, [scrollToSection, setExpanded, toggleLanguage, setTheme]) // ✅ Deps estables
 
-  const scrollToSection = (sectionId: Section) => {
-    const section = document.getElementById(sectionId);
-    if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      setActiveSection(sectionId);
-    }
-  };
 
   const nav = [
     { id: 'home', label: t('nav.home'), Icon: FiHome },
@@ -166,17 +178,24 @@ export const Navbar: React.FC<HeaderProps> = ({
                 <li key={id} className="relative group w-full max-[880px]:w-auto max-[880px]:h-full max-[880px]:flex-1">
                   <button
                     onClick={() => scrollToSection(id as Section)}
-                    className={`relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''} ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'} max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 max-[880px]:h-full max-[880px]:p-1 max-[880px]:rounded-lg`}
+                    className={`relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''} ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'} 
+                    /* ✅ FIX: Touch target 44x44px mínimo (WCAG) */
+                    max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1.5 
+                    max-[880px]:h-14 max-[880px]:p-2 max-[880px]:rounded-lg 
+                    max-[880px]:min-h-[44px]`}
                     title={label}
                   >
                     {isActive && (
                       <>
                         <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_rgba(99,83,242,0.4)]" />
-                        <span className="min-[881px]:hidden absolute top-1 w-1 h-1 bg-primary rounded-full shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
+                        {/* ✅ FIX: Indicador más visible en mobile */}
+                        <span className="min-[881px]:hidden absolute top-1 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
                       </>
                     )}
-                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110' : 'text-text-secondary group-hover:text-text-primary'}`} />
-                    <span className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? 'text-text-primary' : 'text-text-secondary group-hover:text-text-primary'} ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'} max-[880px]:text-[10px]`}>
+                    {/* ✅ FIX: Iconos más grandes en mobile para mejor visibilidad */}
+                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110' : 'text-text-secondary group-hover:text-text-primary'} max-[880px]:text-xl`} />
+                    {/* ✅ FIX: Texto legible en mobile (11px mínimo) */}
+                    <span className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? 'text-text-primary font-semibold' : 'text-text-secondary group-hover:text-text-primary'} ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'} max-[880px]:text-[11px] max-[880px]:font-medium`}>
                       {label}
                     </span>
                   </button>
