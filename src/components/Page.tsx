@@ -97,10 +97,10 @@ const AnimatedName = () => {
 };
 
 export function Page({ children, activeSection = 'home' }: PageProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   
-  // Lista completa de frases
-  const typingWords = [
+  // Lista completa de frases traducidas
+  const typingWordsEn = [
     'Full-Stack Developer',
     'React Developer',
     'Creative Coder',
@@ -109,8 +109,8 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     'Performance-Obsessed',
     'API Craftsman',
     'Design Systems Builder',
-    'TDD',
-    'Learner',
+    'TDD Enthusiast',
+    'Lifelong Learner',
     'TypeScript Fan',
     'JS Advocate',
     'Node.js Backend Developer',
@@ -118,9 +118,32 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     'Docker Enthusiast',
     'Database Manager',
   ];
+
+  const typingWordsEs = [
+    'Desarrollador Full-Stack',
+    'Desarrollador React',
+    'Coder Creativo',
+    'Precisión de Píxeles',
+    'Defensor de UI/UX',
+    'Obsesionado por el Rendimiento',
+    'Artesano de APIs',
+    'Constructor de Design Systems',
+    'Entusiasta de TDD',
+    'Aprendiz de por Vida',
+    'Fan de TypeScript',
+    'Defensor de JS',
+    'Desarrollador Backend Node.js',
+    'Usuario de Tailwind CSS',
+    'Entusiasta de Docker',
+    'Gestor de Bases de Datos',
+  ];
   
-  // Hook aplicado a las frases
-  const typingText = useTypewriter(typingWords, 60, 2000);
+  // Hook aplicado a las frases (selecciona según el idioma actual)
+  const typingText = useTypewriter(
+    lang === 'en' ? typingWordsEn : typingWordsEs, 
+    60, 
+    2000
+  );
   const [copied, setCopied] = useState(false);
 
   const handleCopyEmail = () => {
@@ -272,7 +295,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             <div className="flex items-center gap-2"><Github size={16} /><span>{t('contact.githubTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
+          <a href="https://www.linkedin.com/in/matias-chacon-t934/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>{t('contact.linkedinTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
@@ -282,7 +305,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
            <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-text-primary/5 rounded-lg text-text-secondary hover:text-text-primary border border-text-primary/10 flex items-center justify-center transition-all">
              <Github size={18} />
            </a>
-           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20 flex items-center justify-center transition-all">
+           <a href="https://www.linkedin.com/in/matias-chacon-t934/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20 flex items-center justify-center transition-all">
              <LinkedInIcon style={{ fontSize: 18 }} />
            </a>
         </div>
