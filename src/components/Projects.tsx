@@ -44,7 +44,7 @@ export const Projects = () => {
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
             {/* FIX: Usamos text-white para que el icono resalte sobre el degradado violeta en ambos temas */}
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
+            <div className="p-2 rounded-xl gradient-primary-br shadow-lg shadow-primary/20 text-white">
               <FolderOpen size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
@@ -111,11 +111,17 @@ export const Projects = () => {
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 
+                                   /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
+                                   focus-visible:outline-none focus-visible:ring-2 
+                                   focus-visible:ring-primary focus-visible:ring-offset-2 
+                                   focus-visible:ring-offset-bg-base
+                                   transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
                         title={t('projects.links.code')}
+                        aria-label={`${t('projects.links.code')} - ${project.title}`}
                       >
-                        <Github size={18} />
+                        <Github size={18} aria-hidden="true" />
                       </a>
                     )}
                     {project.liveUrl && (
@@ -123,11 +129,17 @@ export const Projects = () => {
                         href={project.liveUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 
+                                   /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
+                                   focus-visible:outline-none focus-visible:ring-2 
+                                   focus-visible:ring-primary focus-visible:ring-offset-2 
+                                   focus-visible:ring-offset-bg-base
+                                   transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
                         title={t('projects.links.live')}
+                        aria-label={`${t('projects.links.live')} - ${project.title}`}
                       >
-                        <ExternalLink size={18} />
+                        <ExternalLink size={18} aria-hidden="true" />
                       </a>
                     )}
                   </div>
@@ -138,11 +150,15 @@ export const Projects = () => {
                 </p>
 
                 {/* Tech Stack Mini Tags */}
-                <div className="mt-auto pt-3 flex flex-wrap gap-2">
+                <div className="mt-auto pt-3 flex flex-wrap gap-2 max-w-full overflow-hidden">
                   {project.technologies.slice(0, 3).map(tech => (
                     <span 
                       key={tech} 
-                      className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary text-[10px] font-medium tracking-wide uppercase"
+                      className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary 
+                                 text-[10px] font-medium tracking-wide uppercase
+                                 /* ✅ FIX: Prevenir overflow en mobile */
+                                 max-w-[120px] truncate"
+                      title={tech}
                     >
                       {tech}
                     </span>
