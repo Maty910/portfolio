@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { Code2 } from 'lucide-react';
+import { useLanguage } from '../context/LanguageContext';
 
 interface IntroProps {
   onFinish: () => void;
 }
 
 export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
+  const { t } = useLanguage();
   const [count, setCount] = useState(0);
   const [isExiting, setIsExiting] = useState(false);
 
@@ -77,7 +79,7 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
             {/* Logo Central (Flotando encima) */}
             <img 
               src="/Logo Mati.svg" 
-              alt="Logo Matias"
+              alt={t('alt.logo')}
               className="w-24 h-24 object-contain relative z-10 drop-shadow-[0_0_25px_rgba(99,83,242,0.6)]"
             />
           </div>
@@ -88,21 +90,21 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
           <h1 className="text-4xl md:text-5xl font-bold text-text-primary tracking-tighter flex flex-col items-center">
             <span className="block overflow-hidden h-[1.3em]">
               <span className={`block animate-slide-up-reveal delay-300 ${isExiting ? 'translate-y-[100%]' : ''}`}>
-                Matías <span className="text-primary">Chacón</span>
+                {t('intro.name').split(' ')[0]} <span className="text-primary">{t('intro.name').split(' ')[1]}</span>
               </span>
             </span>
           </h1>
           
           <div className="flex items-center gap-2 justify-center text-text-secondary text-xs font-mono tracking-[0.2em] uppercase">
             <Code2 size={14} className="text-primary animate-pulse" />
-            <span className="opacity-0 animate-[fade-in_0.5s_ease-out_0.5s_forwards]">Full Stack Dev</span>
+            <span className="opacity-0 animate-[fade-in_0.5s_ease-out_0.5s_forwards]">{t('intro.role')}</span>
           </div>
         </div>
 
         {/* BARRA DE PROGRESO */}
         <div className="w-64 mt-2 relative">
           <div className="flex justify-between text-[10px] font-mono text-text-secondary mb-1.5 uppercase tracking-wide">
-            <span>Loading experience</span>
+            <span>{t('intro.loading')}</span>
             <span className="text-primary font-bold">{Math.round(count)}%</span>
           </div>
           
