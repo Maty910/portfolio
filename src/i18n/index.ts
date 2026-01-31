@@ -120,6 +120,21 @@ const en = {
     active: "Active",
     connect: "Connect"
   },
+  intro: {
+    name: "Matías Chacón",
+    role: "Full Stack Dev",
+    loading: "Loading experience"
+  },
+  projectModal: {
+    closeAria: "Close project dialog",
+    closeTitle: "Close (Esc)",
+    technologies: "Technologies",
+    viewCode: "View Code",
+    viewLive: "Live Demo",
+    noImages: "No images available",
+    previousImage: "Previous image",
+    nextImage: "Next image"
+  },
   theme: {
     light: "Light",
     dark: "Dark",
@@ -248,6 +263,21 @@ const es = {
     lifetime: "Lifetime",
     active: "Activo",
     connect: "Conectar"
+  },
+  intro: {
+    name: "Matías Chacón",
+    role: "Desarrollador Full Stack",
+    loading: "Cargando experiencia"
+  },
+  projectModal: {
+    closeAria: "Cerrar diálogo del proyecto",
+    closeTitle: "Cerrar (Esc)",
+    technologies: "Tecnologías",
+    viewCode: "Ver Código",
+    viewLive: "Demo en Vivo",
+    noImages: "No hay imágenes disponibles",
+    previousImage: "Imagen anterior",
+    nextImage: "Imagen siguiente"
   },
   theme: {
     light: "Claro",
