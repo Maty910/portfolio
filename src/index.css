@@ -284,3 +284,119 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   position: relative;
   z-index: 20;
 }
+
+/* === UTILITIES CSS PERSONALIZADAS === */
+/* ✅ Gradientes reutilizables para consistencia */
+.gradient-primary {
+  background-image: linear-gradient(to right, var(--primary-color), #a855f7);
+}
+
+.gradient-primary-br {
+  background-image: linear-gradient(to bottom right, var(--primary-color), #a855f7);
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, var(--primary-color), #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ✅ Variables CSS para colores de iconos de tecnologías */
+.tech-react {
+  color: var(--color-react, #61dafb);
+}
+
+.tech-typescript {
+  color: var(--color-typescript, #3178c6);
+}
+
+.tech-tailwind {
+  color: var(--color-tailwind, #38bdf8);
+}
+
+.tech-nodejs {
+  color: var(--color-nodejs, #8cc84b);
+}
+
+.tech-postgresql {
+  color: var(--color-postgresql, #336791);
+}
+
+.tech-mongodb {
+  color: var(--color-mongodb, #47a248);
+}
+
+.tech-docker {
+  color: var(--color-docker, #2496ed);
+}
+
+/* ✅ Focus rings consistentes para accesibilidad */
+.focus-ring-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color), 0 0 0 4px var(--bg-color);
+}
+
+/* ✅ Cards interactivas reutilizables */
+.card-hover {
+  transition: all 0.3s ease-out;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.card-hover:active {
+  transform: scale(0.98);
+}
+
+.card-base {
+  border-radius: 1rem;
+  background-color: rgba(var(--text-primary-rgb, 167, 169, 190), 0.05);
+  border: 1px solid rgba(var(--text-primary-rgb, 167, 169, 190), 0.1);
+}
+
+/* ✅ Botones reutilizables */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.625rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, var(--primary-color), #a855f7);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(99, 83, 242, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* === VARIABLES CSS PARA COLORES DE TECNOLOGÍAS === */
+:root {
+  --color-react: #61dafb;
+  --color-typescript: #3178c6;
+  --color-tailwind: #38bdf8;
+  --color-nodejs: #8cc84b;
+  --color-postgresql: #336791;
+  --color-mongodb: #47a248;
+  --color-docker: #2496ed;
+}
+
+/* Opcional: Ajustar en light mode si es necesario */
+:root[data-theme="light"],
+:root.light {
+  /* Los colores de tech se mantienen igual en ambos temas */
+  /* pero puedes ajustarlos aquí si necesitas más contraste */
+}
