@@ -1,6 +1,7 @@
 // src/context/LanguageContext.tsx
-import React, { createContext, useContext, useEffect, useMemo, useState } from 'react';
+import React, { createContext, useContext, useEffect, useMemo, useState, useCallback } from 'react';
 import translations from '../i18n';
+import type { Translations } from '../i18n/types';
 
 type Lang = 'en' | 'es';
 type LangContext = {
@@ -8,7 +9,7 @@ type LangContext = {
   setLang: (l: Lang) => void;
   toggleLanguage: () => void;
   t: (key: string) => string;
-  get: (key: string) => any;
+  get: <T = any>(key: string) => T | undefined;
 };
 
 const LanguageContext = createContext<LangContext | undefined>(undefined);
@@ -47,13 +48,17 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {}
   }, [lang]);
 
-  const toggleLanguage = () => setLang((prev) => (prev === 'en' ? 'es' : 'en'));
+  // ✅ OPTIMIZACIÓN: useCallback para función estable
+  const toggleLanguage = useCallback(() => setLang((prev) => (prev === 'en' ? 'es' : 'en')), []);
 
-  // t admite rutas con puntos. Ej: "header.bio"
-  const t = (key: string) => {
+  // ✅ OPTIMIZACIÓN: Memoizar las traducciones actuales para evitar accesos repetidos
+  const currentTranslations = useMemo(() => translations[lang] as Translations, [lang]);
+
+  // ✅ OPTIMIZACIÓN: useCallback con dependencia memoizada
+  const t = useCallback((key: string): string => {
     try {
       const parts = key.split('.');
-      let cur: any = (translations as any)[lang];
+      let cur: any = currentTranslations;
       for (const p of parts) {
         if (!cur) return key;
         cur = cur[p];
@@ -62,24 +67,27 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
     } catch {
       return key;
     }
-  };
+  }, [currentTranslations]);
 
-  // función que devuelve valor (string/array/obj)
-  const get = (key: string) => {
+  // ✅ OPTIMIZACIÓN: useCallback con tipado genérico
+  const get = useCallback(<T = any>(key: string): T | undefined => {
     try {
       const parts = key.split('.');
-      let cur: any = (translations as any)[lang];
+      let cur: any = currentTranslations;
       for (const p of parts) {
         if (cur === undefined) return undefined;
         cur = cur[p];
       }
-      return cur;
+      return cur as T;
     } catch {
       return undefined;
     }
-  };
+  }, [currentTranslations]);
 
-  const value = useMemo(() => ({ lang, setLang, toggleLanguage, t, get }), [lang]);
+  const value = useMemo(
+    () => ({ lang, setLang, toggleLanguage, t, get }), 
+    [lang, toggleLanguage, t, get]
+  );
 
   return <LanguageContext.Provider value={value}>{children}</LanguageContext.Provider>;
 };
