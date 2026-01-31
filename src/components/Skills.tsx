@@ -19,9 +19,9 @@ const SKILL_CATEGORIES = [
     accentClass: 'text-purple-500',
     borderClass: 'group-hover:border-purple-500/30',
     skills: [
-      { name: 'React', icon: SiReact, color: '#61dafb' },
-      { name: 'TypeScript', icon: SiTypescript, color: '#3178c6' },
-      { name: 'Tailwind', icon: SiTailwindcss, color: '#38bdf8' },
+      { name: 'React', icon: SiReact, color: 'var(--color-react)' },
+      { name: 'TypeScript', icon: SiTypescript, color: 'var(--color-typescript)' },
+      { name: 'Tailwind', icon: SiTailwindcss, color: 'var(--color-tailwind)' },
       { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
       { name: 'CSS3', icon: SiCss3, color: '#1572b6' },
       { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
@@ -36,11 +36,11 @@ const SKILL_CATEGORIES = [
     accentClass: 'text-emerald-500',
     borderClass: 'group-hover:border-emerald-500/30',
     skills: [
-      { name: 'Node.js', icon: SiNodedotjs, color: '#8cc84b' },
+      { name: 'Node.js', icon: SiNodedotjs, color: 'var(--color-nodejs)' },
       { name: 'Express', icon: SiExpress, color: '#888888' },
       { name: 'Python', icon: SiPython, color: '#3776ab' },
-      { name: 'PostgreSQL', icon: SiPostgresql, color: '#4169e1' },
-      { name: 'MongoDB', icon: SiMongodb, color: '#47a248' },
+      { name: 'PostgreSQL', icon: SiPostgresql, color: 'var(--color-postgresql)' },
+      { name: 'MongoDB', icon: SiMongodb, color: 'var(--color-mongodb)' },
       { name: 'SQLite', icon: SiSqlite, color: '#0f80cc' },
       { name: 'JSON', icon: SiJson, color: '#f7df1e' },
       { name: 'Solidity', icon: SiSolidity, color: '#363636' },
@@ -58,7 +58,7 @@ const SKILL_CATEGORIES = [
       { name: 'VS Code', icon: VscVscode, color: '#007acc' },
       { name: 'Postman', icon: SiPostman, color: '#ff6c37' },
       { name: 'Netlify', icon: SiNetlify, color: '#00c7b7' },
-      { name: 'Docker', icon: SiDocker, color: '#2496ed' },
+      { name: 'Docker', icon: SiDocker, color: 'var(--color-docker)' },
     ]
   }
 ];
