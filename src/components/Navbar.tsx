@@ -16,6 +16,7 @@ import type { Section, SetActive } from '../types';
 type HeaderProps = {
   activeSection: Section
   setActiveSection: SetActive
+  hasModalOpen: boolean
 }
 
 // --- 1. COMPONENTE ANIMADO TEMA (BOUNCY POP) ---
@@ -59,6 +60,7 @@ const AnimatedLangIcon = ({ lang, size = 20 }: { lang: 'es' | 'en'; size?: numbe
 export const Navbar: React.FC<HeaderProps> = ({
   activeSection,
   setActiveSection,
+  hasModalOpen,
 }) => {
   const { lang, toggleLanguage, t } = useLanguage()
   const { theme, setTheme } = useTheme();
@@ -247,7 +249,7 @@ export const Navbar: React.FC<HeaderProps> = ({
 
       <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
 
-      {mounted && createPortal(
+      {mounted && !hasModalOpen && activeSection !== 'home' && createPortal(
         <div className="lg:hidden fixed top-5 right-5 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
           <div className="flex items-center p-1.5 rounded-full bg-bg-base/90 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
             <button 
