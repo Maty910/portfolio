@@ -81,8 +81,8 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                        bg-text-primary/5 text-text-secondary
                        hover:bg-text-primary/10 hover:text-text-primary hover:rotate-90"
             onClick={onClose} 
-            aria-label="Close project dialog"
-            title="Close (Esc)"
+            aria-label={t('projectModal.closeAria')}
+            title={t('projectModal.closeTitle')}
           >
             <X size={20} />
           </button>
@@ -120,7 +120,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
                                    hover:bg-primary hover:text-white hover:border-primary
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
-                        aria-label="Previous image"
+                        aria-label={t('projectModal.previousImage') || 'Previous image'}
                       >
                         <ChevronLeft size={20} />
                       </button>
@@ -132,7 +132,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
                                    hover:bg-primary hover:text-white hover:border-primary
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
-                        aria-label="Next image"
+                        aria-label={t('projectModal.nextImage') || 'Next image'}
                       >
                         <ChevronRight size={20} />
                       </button>
@@ -154,7 +154,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                 </>
               ) : (
                 <div className="w-full h-full flex items-center justify-center bg-text-primary/5 text-text-secondary text-sm">
-                  No images available
+                  {t('projectModal.noImages')}
                 </div>
               )}
             </div>
