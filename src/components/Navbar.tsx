@@ -211,7 +211,8 @@ export const Navbar: React.FC<HeaderProps> = ({
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
-            className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 text-white font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}`}
+            className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? 'w-full px-4 gap-3' : 'w-11 px-0 gap-0'}`}
+            style={{ color: 'var(--color-on-primary)' }}
             title={t('header.downloadCv')}
           >
             <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
