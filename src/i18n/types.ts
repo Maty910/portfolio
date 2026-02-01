@@ -9,6 +9,7 @@ export interface Translations {
     experience: string;
     projects: string;
     skills: string;
+    education: string;
     contact: string;
   };
   header: {
@@ -49,6 +50,15 @@ export interface Translations {
     title: string;
     subtitle: string;
     responsibilities: string;
+    viewMore: string;
+  };
+  education: {
+    title: string;
+    subtitle: string;
+    description: string;
+    skills: string;
+    certificates: string;
+    clickToView: string;
     viewMore: string;
   };
   skills: {
