@@ -22,11 +22,11 @@ const SKILL_CATEGORIES = [
       { name: 'React', icon: SiReact, color: 'var(--color-react)' },
       { name: 'TypeScript', icon: SiTypescript, color: 'var(--color-typescript)' },
       { name: 'Tailwind', icon: SiTailwindcss, color: 'var(--color-tailwind)' },
-      { name: 'HTML5', icon: SiHtml5, color: '#e34f26' },
-      { name: 'CSS3', icon: SiCss3, color: '#1572b6' },
-      { name: 'JavaScript', icon: SiJavascript, color: '#f7df1e' },
-      { name: 'Figma', icon: SiFigma, color: '#f24e1e' },
-      { name: 'Canva', icon: SiCanva, color: '#00c4cc' },
+      { name: 'HTML5', icon: SiHtml5, color: 'var(--color-html5)' },
+      { name: 'CSS3', icon: SiCss3, color: 'var(--color-css3)' },
+      { name: 'JavaScript', icon: SiJavascript, color: 'var(--color-javascript)' },
+      { name: 'Figma', icon: SiFigma, color: 'var(--color-figma)' },
+      { name: 'Canva', icon: SiCanva, color: 'var(--color-canva)' },
     ]
   },
   {
@@ -37,13 +37,13 @@ const SKILL_CATEGORIES = [
     borderClass: 'group-hover:border-emerald-500/30',
     skills: [
       { name: 'Node.js', icon: SiNodedotjs, color: 'var(--color-nodejs)' },
-      { name: 'Express', icon: SiExpress, color: '#888888' },
-      { name: 'Python', icon: SiPython, color: '#3776ab' },
+      { name: 'Express', icon: SiExpress, color: 'var(--color-express)' },
+      { name: 'Python', icon: SiPython, color: 'var(--color-python)' },
       { name: 'PostgreSQL', icon: SiPostgresql, color: 'var(--color-postgresql)' },
       { name: 'MongoDB', icon: SiMongodb, color: 'var(--color-mongodb)' },
-      { name: 'SQLite', icon: SiSqlite, color: '#0f80cc' },
-      { name: 'JSON', icon: SiJson, color: '#f7df1e' },
-      { name: 'Solidity', icon: SiSolidity, color: '#363636' },
+      { name: 'SQLite', icon: SiSqlite, color: 'var(--color-sqlite)' },
+      { name: 'JSON', icon: SiJson, color: 'var(--color-json)' },
+      { name: 'Solidity', icon: SiSolidity, color: 'var(--color-solidity)' },
     ]
   },
   {
@@ -53,11 +53,11 @@ const SKILL_CATEGORIES = [
     accentClass: 'text-blue-500',
     borderClass: 'group-hover:border-blue-500/30',
     skills: [
-      { name: 'Git', icon: SiGit, color: '#f05032' },
-      { name: 'GitHub', icon: SiGithub, color: '#888888' },
-      { name: 'VS Code', icon: VscVscode, color: '#007acc' },
-      { name: 'Postman', icon: SiPostman, color: '#ff6c37' },
-      { name: 'Netlify', icon: SiNetlify, color: '#00c7b7' },
+      { name: 'Git', icon: SiGit, color: 'var(--color-git)' },
+      { name: 'GitHub', icon: SiGithub, color: 'var(--color-github)' },
+      { name: 'VS Code', icon: VscVscode, color: 'var(--color-vscode)' },
+      { name: 'Postman', icon: SiPostman, color: 'var(--color-postman)' },
+      { name: 'Netlify', icon: SiNetlify, color: 'var(--color-netlify)' },
       { name: 'Docker', icon: SiDocker, color: 'var(--color-docker)' },
     ]
   }
@@ -90,8 +90,8 @@ export function Skills() {
         {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
-              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
+            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20">
+              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" style={{ color: 'var(--color-on-primary)' }} />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight max-[880px]:text-2xl">
               {t('skills.title')}
@@ -216,10 +216,11 @@ export function Skills() {
               <a 
                 href="#projects" 
                 className="relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl w-full
-                           bg-primary text-white font-bold text-sm
+                           bg-primary font-bold text-sm
                            shadow-lg shadow-primary/20
                            hover:bg-primary/90 hover:shadow-primary/30 hover:scale-[1.02]
                            transition-all duration-300 no-underline group/link"
+                style={{ color: 'var(--color-on-primary)' }}
               >
                 {/* Brillo animado al hover */}
                 <div className="absolute inset-0 -translate-x-full group-hover/link:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
