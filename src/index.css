@@ -116,7 +116,7 @@
   /* Textos oscuros de alto contraste (Slate/Cool Gray) */
   --text-primary: #0f172a;   /* Slate 900 - Casi negro */
   --text-secondary: #475569; /* Slate 600 - Gris medio solido */
-  --text-muted: #94a3b8;     /* Slate 400 */
+  --text-muted: #64748b;     /* Slate 500 - Mejorado para WCAG AA (4.5:1 contrast) */
   
   /* Surface: Gradiente muy sutil de blanco a gris pálido para el sidebar */
   --surface: linear-gradient(180deg, #ffffff, #f1f5f9);
@@ -503,4 +503,66 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   background-color: var(--primary-color);
   color: var(--color-on-primary);
   border-color: var(--primary-color);
+}
+
+/* === ANIMACIÓN DE TRANSICIÓN DE TEMA === */
+/* View Transitions API para cambio de tema suave con expansión circular */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+::view-transition-new(root) {
+  z-index: 999;
+}
+
+/* Fallback para navegadores sin View Transitions API */
+.theme-transitioning {
+  transition: background-color 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+.theme-transitioning * {
+  transition: color 300ms cubic-bezier(0.25, 1, 0.5, 1),
+              background-color 300ms cubic-bezier(0.25, 1, 0.5, 1),
+              border-color 300ms cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Deshabilitar animación de tema si el usuario prefiere movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+  
+  .theme-transitioning,
+  .theme-transitioning * {
+    transition: none !important;
+  }
+}
+
+/* === SKELETON LOADERS === */
+/* Animación de shimmer para estados de carga */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  animation: skeleton-shimmer 2s ease-in-out infinite;
+}
+
+/* Respetar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+  }
 }
