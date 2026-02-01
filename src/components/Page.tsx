@@ -227,7 +227,13 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
                           motion-safe:animate-[spin_4s_linear_infinite]
                           max-[880px]:animate-none max-[880px]:blur-[2px]" />
           <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
-            <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt={t('alt.profile')} />
+            <img 
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
+              src="/images/FOTO DE PERFIL.jpg" 
+              alt={t('alt.profile')} 
+              loading="lazy"
+              decoding="async"
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-bg-base px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
@@ -315,7 +321,13 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       </div>
 
       <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:hidden">
-        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
+        <img 
+          className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" 
+          src="/Logo Mati.svg" 
+          alt={t('alt.logo')} 
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="content-wrapper relative z-10 w-full min-h-screen transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">
