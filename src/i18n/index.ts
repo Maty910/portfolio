@@ -6,8 +6,10 @@ const en: Translations = {
     toggleMenu: "Toggle Menu (M)",
     toggleLang: "Toggle language",
     home: "Home",
+    experience: "Experience",
     projects: "Projects",
     skills: "Skills",
+    education: "Education",
     contact: "Contact"
   },
   header: {
@@ -63,6 +65,21 @@ const en: Translations = {
         description: "Inventory system in Python + SQLite"
       }
     }
+  },
+  experience: {
+    title: "Professional Experience",
+    subtitle: "My journey through software development and web technologies",
+    responsibilities: "Key Responsibilities",
+    viewMore: "View full experience on LinkedIn"
+  },
+  education: {
+    title: "Education & Certifications",
+    subtitle: "My academic background and professional certifications in technology and psychology",
+    description: "Description",
+    skills: "Skills Learned",
+    certificates: "Certificates",
+    clickToView: "Click to view details",
+    viewMore: "View full education on LinkedIn"
   },
   skills: {
     title: "Skills",
@@ -145,8 +162,10 @@ const es: Translations = {
     toggleMenu: "Alternar menú (M)",
     toggleLang: "Cambiar idioma",
     home: "Inicio",
+    experience: "Experiencia",
     projects: "Proyectos",
     skills: "Habilidades",
+    education: "Educación",
     contact: "Contacto"
   },
   header: {
@@ -202,6 +221,21 @@ const es: Translations = {
         description: "Sistema de inventario en Python + SQLite"
       }
     }
+  },
+  experience: {
+    title: "Experiencia Profesional",
+    subtitle: "Mi trayectoria en el desarrollo de software y tecnologías web",
+    responsibilities: "Responsabilidades Principales",
+    viewMore: "Ver experiencia completa en LinkedIn"
+  },
+  education: {
+    title: "Educación y Certificaciones",
+    subtitle: "Mi formación académica y certificaciones profesionales en tecnología y psicología",
+    description: "Descripción",
+    skills: "Habilidades Aprendidas",
+    certificates: "Certificados",
+    clickToView: "Click para ver detalles",
+    viewMore: "Ver educación completa en LinkedIn"
   },
   skills: {
     title: "Habilidades",
