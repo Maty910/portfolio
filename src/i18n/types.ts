@@ -6,6 +6,7 @@ export interface Translations {
     toggleMenu: string;
     toggleLang: string;
     home: string;
+    experience: string;
     projects: string;
     skills: string;
     contact: string;
@@ -43,6 +44,12 @@ export interface Translations {
         description: string;
       };
     };
+  };
+  experience: {
+    title: string;
+    subtitle: string;
+    responsibilities: string;
+    viewMore: string;
   };
   skills: {
     title: string;
