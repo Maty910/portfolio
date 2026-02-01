@@ -46,6 +46,24 @@
   animation-play-state: paused;
 }
 
+/* === SOPORTE ACCESIBILIDAD: Respeto a prefers-reduced-motion (WCAG 2.3.3) === */
+@media (prefers-reduced-motion: reduce) {
+  /* Desactivar todas las animaciones y transiciones */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Mantener transformaciones instantáneas pero sin animación */
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
 /* === VARIABLES CSS (Light/Dark Mode) === */
 :root {
   /* CLAVE PARA MOBILE: Le avisa al navegador que use controles oscuros */
@@ -383,8 +401,9 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   transform: scale(1.05);
 }
 
-/* === VARIABLES CSS PARA COLORES DE TECNOLOGÍAS === */
+/* === VARIABLES CSS PARA COLORES DE TECNOLOGÍAS Y REDES === */
 :root {
+  /* Tech Stack - Core */
   --color-react: #61dafb;
   --color-typescript: #3178c6;
   --color-tailwind: #38bdf8;
@@ -392,6 +411,38 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   --color-postgresql: #336791;
   --color-mongodb: #47a248;
   --color-docker: #2496ed;
+  
+  /* Tech Stack - Frontend */
+  --color-html5: #e34f26;
+  --color-css3: #1572b6;
+  --color-javascript: #f7df1e;
+  --color-figma: #f24e1e;
+  --color-canva: #00c4cc;
+  
+  /* Tech Stack - Backend */
+  --color-express: #888888;
+  --color-python: #3776ab;
+  --color-sqlite: #0f80cc;
+  --color-json: #f7df1e;
+  --color-solidity: #363636;
+  
+  /* Tech Stack - Tools */
+  --color-git: #f05032;
+  --color-github: #6e5494;
+  --color-vscode: #007acc;
+  --color-postman: #ff6c37;
+  --color-netlify: #00c7b7;
+  
+  /* Social Networks */
+  --color-linkedin: #0a66c2;
+  
+  /* UI Feedback */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  /* Colors on Brand Surfaces */
+  --color-on-primary: #ffffff;
 }
 
 /* Opcional: Ajustar en light mode si es necesario */
@@ -399,4 +450,57 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 :root.light {
   /* Los colores de tech se mantienen igual en ambos temas */
   /* pero puedes ajustarlos aquí si necesitas más contraste */
+}
+
+/* === OPTIMIZACIÓN DE PERFORMANCE CON WILL-CHANGE === */
+/* Informa al navegador qué propiedades van a animarse para optimizar el renderizado */
+
+/* Para elementos que se animan al hacer hover (cards, botones) */
+.hover-lift {
+  will-change: transform, box-shadow;
+}
+
+.hover-lift:hover {
+  will-change: auto; /* Liberar recursos después del hover */
+}
+
+/* Para elementos con animaciones continuas (marquee, spinners) */
+.animate-marquee,
+.animate-spin,
+.animate-pulse,
+.animate-ping {
+  will-change: transform, opacity;
+}
+
+/* Para modales y overlays que aparecen/desaparecen */
+[role="dialog"],
+.modal-overlay {
+  will-change: opacity, transform;
+}
+
+/* Aplicar automáticamente a elementos con transiciones de transform */
+[class*="hover:-translate"],
+[class*="hover:scale"],
+[class*="hover:rotate"],
+[class*="group-hover:translate"],
+[class*="group-hover:scale"] {
+  will-change: transform;
+}
+
+/* Remover will-change cuando no está activo (mejor práctica) */
+@media (hover: none) {
+  .hover-lift,
+  [class*="hover:-translate"],
+  [class*="hover:scale"],
+  [class*="hover:rotate"] {
+    will-change: auto;
+  }
+}
+
+/* === ESTILOS PARA MODAL DE PROYECTOS === */
+/* Botones de navegación del carousel - hover con color dinámico */
+.carousel-arrow:hover {
+  background-color: var(--primary-color);
+  color: var(--color-on-primary);
+  border-color: var(--primary-color);
 }
