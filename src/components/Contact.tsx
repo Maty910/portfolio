@@ -44,7 +44,7 @@ export function Contact() {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4 max-[880px]:gap-3 pb-8 max-[880px]:pb-60">
           
           {/* Card Principal: Email */}
-            <div className="md:col-span-2 group relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary/20 to-primary/5 border border-text-primary/10 p-6 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] animate-in fade-in slide-in-from-bottom-8 max-[880px]:p-5"
+            <div className="md:col-span-2 group relative overflow-hidden rounded-xl bg-gradient-to-br from-primary/20 to-primary/5 border border-text-primary/10 p-6 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] animate-in fade-in slide-in-from-bottom-8 max-[880px]:p-5"
               style={{ animationDelay: '150ms' }}>
             
             <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
@@ -66,7 +66,7 @@ export function Contact() {
                 
                 <button 
                   onClick={handleCopyEmail}
-                  className="flex items-center justify-center px-3 py-2.5 rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-primary hover:bg-text-primary/10 hover:border-text-primary/20 hover:scale-105 transition-all duration-500 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary"
+                  className="flex items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2.5 rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-primary hover:bg-text-primary/10 hover:border-text-primary/20 hover:scale-105 transition-all duration-500 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary"
                   title={t('contact.copyEmail')}
                   aria-label={copied ? 'Email copied to clipboard' : 'Copy email address to clipboard'}
                 >
@@ -84,12 +84,12 @@ export function Contact() {
             href="https://www.linkedin.com/in/matias-chacon-t934/"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             style={{ animationDelay: '250ms' }}
             aria-label="Visit my LinkedIn profile"
           >
             {/* Icono */}
-            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[#0a66c2]/20 to-[#0a66c2]/10 border border-[#0a66c2]/20 text-[#0a66c2] transition-all duration-300 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
+            <div className="p-2.5 rounded-xl bg-gradient-to-br from-[var(--color-linkedin,#0a66c2)]/20 to-[var(--color-linkedin,#0a66c2)]/10 border border-[var(--color-linkedin,#0a66c2)]/20 transition-all duration-300 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3" style={{ color: 'var(--color-linkedin, #0a66c2)' }}>
               <Linkedin size={22} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
 
@@ -110,7 +110,7 @@ export function Contact() {
             href="https://github.com/Maty910"
             target="_blank"
             rel="noopener noreferrer"
-            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-2xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+            className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             style={{ animationDelay: '350ms' }}
             aria-label="Visit my GitHub profile"
           >
