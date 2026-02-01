@@ -163,7 +163,13 @@ export const Navbar: React.FC<HeaderProps> = ({
 
           <div className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? 'w-full' : 'w-10'}`}>
             <div className={`relative flex items-center justify-center shrink-0 p-2 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 transition-all duration-[800ms] ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}`}>
-              <img src="/Logo Mati.svg" alt={t('alt.logo')} className="w-full h-full object-contain" />
+              <img 
+                src="/Logo Mati.svg" 
+                alt={t('alt.logo')} 
+                className="w-full h-full object-contain"
+                fetchpriority="high"
+                decoding="async"
+              />
             </div>
             <div className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
               <span className="font-bold text-text-primary text-sm leading-tight">{t('header.displayName')}</span>
