@@ -81,6 +81,8 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
               src="/Logo Mati.svg" 
               alt={t('alt.logo')}
               className="w-24 h-24 object-contain relative z-10 drop-shadow-[0_0_25px_rgba(99,83,242,0.6)]"
+              fetchpriority="high"
+              decoding="async"
             />
           </div>
         </div>
