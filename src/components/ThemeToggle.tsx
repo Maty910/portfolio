@@ -6,17 +6,23 @@ type Theme = 'light' | 'dark';
 
 interface ThemeToggleProps {
   theme: Theme;
-  setTheme: (theme: Theme) => void;
+  setTheme: (theme: Theme, x?: number, y?: number) => void;
 }
 
 export const ThemeToggle: React.FC<ThemeToggleProps> = ({ theme, setTheme }) => {
   const isDark = theme === 'dark';
   const { t } = useLanguage();
 
-  const toggleTheme = () => {
+  const toggleTheme = (e: React.MouseEvent<HTMLButtonElement>) => {
     // Agregamos un pequeño feedback táctil si el navegador lo soporta
     if (navigator.vibrate) navigator.vibrate(5);
-    setTheme(isDark ? 'light' : 'dark');
+    
+    // Obtener las coordenadas del click para la animación
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = rect.left + rect.width / 2;
+    const y = rect.top + rect.height / 2;
+    
+    setTheme(isDark ? 'light' : 'dark', x, y);
   };
 
   return (
