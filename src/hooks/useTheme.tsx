@@ -50,44 +50,50 @@ export const useTheme = () => {
     }
 
     // Si el navegador soporta View Transitions API
-    if (document.startViewTransition && x !== undefined && y !== undefined) {
-      const transition = document.startViewTransition(() => {
-        setTheme(newTheme);
-      });
-
+    const supportsViewTransitions = 'startViewTransition' in document;
+    
+    if (supportsViewTransitions && x !== undefined && y !== undefined) {
       // Calcular el radio máximo para que cubra toda la pantalla
       const maxRadius = Math.hypot(
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
       );
 
-      // Crear estilos dinámicos para la animación circular
+      // @ts-ignore - View Transitions API
+      const transition = document.startViewTransition(() => {
+        // Actualizar el estado de React
+        setTheme(newTheme);
+      });
+
+      // Aplicar la animación circular cuando esté listo
       transition.ready.then(() => {
+        // Aplicar clip-path al nuevo contenido
+        const animationDuration = 600;
+        const easing = 'cubic-bezier(0.25, 1, 0.5, 1)';
+        
         document.documentElement.animate(
-          [
-            {
-              clipPath: `circle(0px at ${x}px ${y}px)`,
-            },
-            {
-              clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
-            },
-          ],
           {
-            duration: 600,
-            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+            clipPath: [
+              `circle(0px at ${x}px ${y}px)`,
+              `circle(${maxRadius}px at ${x}px ${y}px)`
+            ],
+          },
+          {
+            duration: animationDuration,
+            easing: easing,
             pseudoElement: '::view-transition-new(root)',
           }
         );
+      }).catch((error) => {
+        console.error('View transition failed:', error);
       });
     } else {
-      // Fallback: animación simple con fade
+      // Fallback: animación suave con fade para navegadores sin soporte
       document.documentElement.classList.add('theme-transitioning');
+      setTheme(newTheme);
       setTimeout(() => {
-        setTheme(newTheme);
-        setTimeout(() => {
-          document.documentElement.classList.remove('theme-transitioning');
-        }, 300);
-      }, 150);
+        document.documentElement.classList.remove('theme-transitioning');
+      }, 400);
     }
   };
 
