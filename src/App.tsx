@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { Page } from './components/Page'
 import { Navbar } from './components/Navbar'
 import { Home } from './components/Home'
+import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
 import { Skills } from './components/Skills'
+import { Education } from './components/Education'
 import { Contact } from './components/Contact'
 import { LanguageProvider } from './context/LanguageContext'
 import { Footer } from './components/Footer'
@@ -52,8 +54,10 @@ function App() {
         <Navbar activeSection={activeSection} setActiveSection={setActiveSection} hasModalOpen={hasModalOpen} />
         <main className="main-content scroll-container">
           <Home setActiveSection={setActiveSection} />
+          <Experience onModalChange={setHasModalOpen} />
           <Projects onModalChange={setHasModalOpen} />
           <Skills />
+          <Education onModalChange={setHasModalOpen} />
           <Contact />
         </main>
         <Footer />
