@@ -116,9 +116,8 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                       {/* Flecha Izquierda */}
                       <button 
                         onClick={(e) => { e.stopPropagation(); prevImage(); }}
-                        className="absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                        className="carousel-arrow absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
-                                   hover:bg-primary hover:text-white hover:border-primary
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
                         aria-label={t('projectModal.previousImage') || 'Previous image'}
                       >
@@ -128,9 +127,8 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                       {/* Flecha Derecha */}
                       <button 
                         onClick={(e) => { e.stopPropagation(); nextImage(); }}
-                        className="absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
+                        className="carousel-arrow absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
-                                   hover:bg-primary hover:text-white hover:border-primary
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
                         aria-label={t('projectModal.nextImage') || 'Next image'}
                       >
@@ -184,8 +182,9 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                     target="_blank" 
                     rel="noopener noreferrer" 
                     className="group btn-shiny flex items-center justify-center gap-2 px-4 py-3 rounded-lg text-sm font-semibold no-underline transition-all duration-200 
-                               bg-primary text-white shadow-lg shadow-primary/30 
+                               bg-primary shadow-lg shadow-primary/30 
                                hover:opacity-90 hover:-translate-y-0.5 hover:shadow-xl hover:shadow-primary/40 relative overflow-hidden"
+                    style={{ color: 'var(--color-on-primary)' }}
                   >
                     <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
                     <ExternalLink size={18} className="relative z-20" />
