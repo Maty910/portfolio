@@ -96,12 +96,13 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               href="/CV/CV Matias Chacon.pdf" 
               target="_blank"
               rel="noopener noreferrer"
-              className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl 
-                            gradient-primary text-white font-bold tracking-wide
+              className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
+                            gradient-primary font-bold tracking-wide
                           shadow-lg shadow-primary/20
                           hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]
                             transition-all duration-300 ease-out group btn-shiny no-underline
                           max-[880px]:w-full max-[880px]:py-3.5 max-[880px]:text-sm cursor-pointer"
+              style={{ color: 'var(--color-on-primary)' }}
             >
                 <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
               <Download size={20} className="relative z-20 max-[880px]:w-5 max-[880px]:h-5" />
