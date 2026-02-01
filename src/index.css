@@ -507,33 +507,76 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 
 /* === ANIMACIÓN DE TRANSICIÓN DE TEMA === */
 /* View Transitions API para cambio de tema suave con expansión circular */
+
+/* CRÍTICO: Configurar el elemento raíz para View Transitions */
+:root {
+  view-transition-name: root;
+}
+
+/* Configuración base para las transiciones */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
 }
 
+/* El contenido antiguo (tema actual) se desvanece */
 ::view-transition-old(root) {
   z-index: 1;
 }
 
+/* El contenido nuevo (nuevo tema) aparece encima con clip-path circular */
 ::view-transition-new(root) {
   z-index: 999;
 }
 
-/* Fallback para navegadores sin View Transitions API */
-.theme-transitioning {
-  transition: background-color 300ms cubic-bezier(0.25, 1, 0.5, 1);
+/* Prevenir parpadeos durante la transición */
+::view-transition-group(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
 }
 
-.theme-transitioning * {
-  transition: color 300ms cubic-bezier(0.25, 1, 0.5, 1),
-              background-color 300ms cubic-bezier(0.25, 1, 0.5, 1),
-              border-color 300ms cubic-bezier(0.25, 1, 0.5, 1);
+/* Fallback mejorado para navegadores sin View Transitions API */
+/* Esta animación se verá muy bien en Brave y otros navegadores */
+.theme-transitioning {
+  position: relative;
+}
+
+.theme-transitioning::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: var(--bg-color);
+  animation: theme-fade-overlay 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes theme-fade-overlay {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 /* Deshabilitar animación de tema si el usuario prefiere movimiento reducido */
 @media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
   ::view-transition-old(root),
   ::view-transition-new(root) {
     animation: none !important;
