@@ -3,11 +3,11 @@ import { createPortal } from 'react-dom'
 import {
   FiMenu,
   FiHome,
-  FiBriefcase,
   FiTool,
   FiMail,
   FiDownload
 } from 'react-icons/fi'
+import { Briefcase, GraduationCap, FolderGit } from 'lucide-react'
 import { Sun, Moon, Languages, Globe } from 'lucide-react'
 import { useTheme } from '../hooks/useTheme'
 import { useLanguage } from '../context/LanguageContext'
@@ -102,9 +102,11 @@ export const Navbar: React.FC<HeaderProps> = ({
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === '1') scrollToSection('home')
-      if (e.key === '2') scrollToSection('projects')
-      if (e.key === '3') scrollToSection('skills')
-      if (e.key === '4') scrollToSection('contact')
+      if (e.key === '2') scrollToSection('experience')
+      if (e.key === '3') scrollToSection('projects')
+      if (e.key === '4') scrollToSection('skills')
+      if (e.key === '5') scrollToSection('education')
+      if (e.key === '6') scrollToSection('contact')
       if (e.key.toLowerCase() === 'm') setExpanded((v) => !v)
       if (e.key.toLowerCase() === 'l') toggleLanguage()
       // ✅ FIX: Usar ref para evitar dependency en theme
@@ -117,8 +119,10 @@ export const Navbar: React.FC<HeaderProps> = ({
 
   const nav = [
     { id: 'home', label: t('nav.home'), Icon: FiHome },
-    { id: 'projects', label: t('nav.projects'), Icon: FiBriefcase },
+    { id: 'experience', label: t('nav.experience'), Icon: Briefcase },
+    { id: 'projects', label: t('nav.projects'), Icon: FolderGit },
     { id: 'skills', label: t('nav.skills'), Icon: FiTool },
+    { id: 'education', label: t('nav.education'), Icon: GraduationCap },
     { id: 'contact', label: t('nav.contact'), Icon: FiMail },
   ]
 
@@ -152,7 +156,7 @@ export const Navbar: React.FC<HeaderProps> = ({
         aria-expanded={expanded}
       >
         
-        <div className={`hidden min-[881px]:flex flex-col gap-6 items-center w-full transition-all duration-[800ms] ${expanded ? 'items-start' : ''}`}>
+        <div className={`hidden min-[881px]:flex flex-col gap-3 items-center w-full transition-all duration-[800ms] ${expanded ? 'items-start' : ''}`}>
           <button
             className="bg-transparent border-none w-10 h-10 rounded-xl text-text-primary flex items-center justify-center cursor-pointer text-xl transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90"
             onClick={() => setExpanded((v) => !v)}
@@ -167,7 +171,7 @@ export const Navbar: React.FC<HeaderProps> = ({
                 src="/Logo Mati.svg" 
                 alt={t('alt.logo')} 
                 className="w-full h-full object-contain"
-                fetchpriority="high"
+                fetchPriority="high"
                 decoding="async"
               />
             </div>
@@ -179,17 +183,17 @@ export const Navbar: React.FC<HeaderProps> = ({
         </div>
 
         <nav className="flex-1 flex items-center w-full max-[880px]:h-full">
-          <ul className="w-full list-none p-0 m-0 flex flex-col gap-2 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
+          <ul className="w-full list-none p-0 m-0 flex flex-col gap-1 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
             {nav.map(({ id, label, Icon }) => {
               const isActive = activeSection === id;
               return (
                 <li key={id} className="relative group w-full max-[880px]:w-auto max-[880px]:h-full max-[880px]:flex-1">
                   <button
                     onClick={() => scrollToSection(id as Section)}
-                    className={`relative w-full flex items-center p-3 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''} ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'} 
+                    className={`relative w-full flex items-center p-2 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? 'min-[881px]:bg-primary/10 min-[881px]:border-primary/20' : ''} ${expanded ? 'min-[881px]:gap-3' : 'min-[881px]:gap-0 min-[881px]:justify-center'} 
                     /* ✅ FIX: Touch target 44x44px mínimo (WCAG) */
-                    max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1.5 
-                    max-[880px]:h-14 max-[880px]:p-2 max-[880px]:rounded-lg 
+                    max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 
+                    max-[880px]:h-full max-[880px]:p-1.5 max-[880px]:rounded-lg 
                     max-[880px]:min-h-[44px]`}
                     title={label}
                   >
@@ -200,10 +204,12 @@ export const Navbar: React.FC<HeaderProps> = ({
                         <span className="min-[881px]:hidden absolute top-1 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
                       </>
                     )}
-                    {/* ✅ FIX: Iconos más grandes en mobile para mejor visibilidad */}
-                    <Icon className={`text-xl transition-all duration-300 shrink-0 ${isActive ? 'text-primary scale-110' : 'text-text-secondary group-hover:text-text-primary'} max-[880px]:text-xl`} />
-                    {/* ✅ FIX: Texto legible en mobile (11px mínimo) */}
-                    <span className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? 'text-text-primary font-semibold' : 'text-text-secondary group-hover:text-text-primary'} ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'} max-[880px]:text-[11px] max-[880px]:font-medium`}>
+                    {/* ✅ FIX: Iconos estandarizados con contenedor de tamaño fijo */}
+                    <div className="flex items-center justify-center w-5 h-5 shrink-0">
+                      <Icon className={`w-5 h-5 transition-all duration-300 ${isActive ? 'text-primary scale-110' : 'text-text-secondary group-hover:text-text-primary'}`} style={{ strokeWidth: 2 }} />
+                    </div>
+                    {/* ✅ FIX: Texto legible en mobile */}
+                    <span className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? 'text-text-primary font-semibold' : 'text-text-secondary group-hover:text-text-primary'} ${!expanded ? 'min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4' : 'min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0'} max-[880px]:text-[10px] max-[880px]:font-medium max-[880px]:leading-tight`}>
                       {label}
                     </span>
                   </button>
@@ -213,7 +219,7 @@ export const Navbar: React.FC<HeaderProps> = ({
           </ul>
         </nav>
 
-        <div className={`max-[880px]:hidden flex flex-col gap-4 pt-4 border-t border-text-primary/10 w-full ${!expanded ? 'items-center' : ''}`}>
+        <div className={`max-[880px]:hidden flex flex-col gap-3 pt-3 border-t border-text-primary/10 w-full ${!expanded ? 'items-center' : ''}`}>
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
@@ -228,10 +234,10 @@ export const Navbar: React.FC<HeaderProps> = ({
             </span>
           </a>
 
-          <div className={`flex flex-col gap-3 ${!expanded ? 'items-center' : 'items-stretch'}`}>
+          <div className={`flex flex-col gap-2 ${!expanded ? 'items-center' : 'items-stretch'}`}>
             <button
               onClick={() => setTheme(isDark ? 'light' : 'dark')}
-              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
+              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-10 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-10 p-0 justify-center'}`}
               title={t('theme.toggle')}
             >
               <div className="shrink-0 flex items-center justify-center w-5 h-5"><AnimatedThemeIcon isDark={isDark} size={expanded ? 18 : 20} /></div>
@@ -242,7 +248,7 @@ export const Navbar: React.FC<HeaderProps> = ({
 
             <button
               onClick={toggleLanguage}
-              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-11 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-11 p-0 justify-center'}`}
+              className={`relative group flex items-center rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-secondary hover:bg-text-primary/10 hover:text-text-primary hover:border-text-primary/20 transition-all duration-300 ease-out overflow-hidden focus:outline-none focus:ring-2 focus:ring-primary/50 active:scale-95 h-10 ${expanded ? 'w-full gap-3 px-3 justify-start' : 'w-10 p-0 justify-center'}`}
               title={t('nav.toggleLang')}
             >
               <div className="shrink-0 flex items-center justify-center w-5 h-5"><AnimatedLangIcon lang={lang} size={expanded ? 18 : 20} /></div>
