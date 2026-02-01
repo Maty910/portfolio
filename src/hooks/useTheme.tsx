@@ -38,5 +38,58 @@ export const useTheme = () => {
     localStorage.setItem('theme', theme);
   }, [theme]);
 
-  return { theme, setTheme };
+  // Función mejorada que acepta coordenadas para la animación
+  const setThemeWithTransition = (newTheme: Theme, x?: number, y?: number) => {
+    // Verificar si el usuario prefiere movimiento reducido
+    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    
+    if (prefersReducedMotion) {
+      // Sin animación si el usuario prefiere reducir movimiento
+      setTheme(newTheme);
+      return;
+    }
+
+    // Si el navegador soporta View Transitions API
+    if (document.startViewTransition && x !== undefined && y !== undefined) {
+      const transition = document.startViewTransition(() => {
+        setTheme(newTheme);
+      });
+
+      // Calcular el radio máximo para que cubra toda la pantalla
+      const maxRadius = Math.hypot(
+        Math.max(x, window.innerWidth - x),
+        Math.max(y, window.innerHeight - y)
+      );
+
+      // Crear estilos dinámicos para la animación circular
+      transition.ready.then(() => {
+        document.documentElement.animate(
+          [
+            {
+              clipPath: `circle(0px at ${x}px ${y}px)`,
+            },
+            {
+              clipPath: `circle(${maxRadius}px at ${x}px ${y}px)`,
+            },
+          ],
+          {
+            duration: 600,
+            easing: 'cubic-bezier(0.25, 1, 0.5, 1)',
+            pseudoElement: '::view-transition-new(root)',
+          }
+        );
+      });
+    } else {
+      // Fallback: animación simple con fade
+      document.documentElement.classList.add('theme-transitioning');
+      setTimeout(() => {
+        setTheme(newTheme);
+        setTimeout(() => {
+          document.documentElement.classList.remove('theme-transitioning');
+        }, 300);
+      }, 150);
+    }
+  };
+
+  return { theme, setTheme: setThemeWithTransition };
 };
