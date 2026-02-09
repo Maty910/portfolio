@@ -1,0 +1,3 @@
+Contact: https://mchacon.dev/
+Preferred-Languages: es, en
+Canonical: https://mchacon.dev/.well-known/security.txt
