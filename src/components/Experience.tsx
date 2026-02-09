@@ -28,7 +28,7 @@ export const Experience: React.FC<ExperienceProps> = () => {
     {
       id: 1,
       company: 'ForIT Software Factory',
-      logo: 'https://media.licdn.com/dms/image/v2/D4D0BAQHMlbKUKZ7U9Q/company-logo_200_200/company-logo_200_200/0/1719933821423/forit_software_factory_logo?e=1743033600&v=beta&t=sLCgEQVYY7EfCHJhVE3QNZZm0Ap6qHCp_Dc5TJg6jJo',
+      logo: 'public/logos/icon-forit.svg',
       position: 'Web Developer',
       type: 'Part-time',
       startDate: 'Dec 2025',
