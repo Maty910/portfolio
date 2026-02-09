@@ -81,7 +81,6 @@ export const Navbar: React.FC<HeaderProps> = ({
   useEffect(() => { setMounted(true); }, []);
   useEffect(() => { try { localStorage.setItem('sidebarExpanded', JSON.stringify(expanded)) } catch {} }, [expanded])
 
-  // ✅ OPTIMIZACIÓN: useRef para valores actuales sin causar re-renders
   const themeRef = useRef(theme);
   const expandedRef = useRef(expanded);
 
@@ -90,7 +89,6 @@ export const Navbar: React.FC<HeaderProps> = ({
     expandedRef.current = expanded;
   }, [theme, expanded]);
 
-  // ✅ FIX: Definir scrollToSection ANTES del useEffect que lo usa
   const scrollToSection = (sectionId: Section) => {
     const section = document.getElementById(sectionId);
     if (section) {
@@ -109,12 +107,11 @@ export const Navbar: React.FC<HeaderProps> = ({
       if (e.key === '6') scrollToSection('contact')
       if (e.key.toLowerCase() === 'm') setExpanded((v) => !v)
       if (e.key.toLowerCase() === 'l') toggleLanguage()
-      // ✅ FIX: Usar ref para evitar dependency en theme
       if (e.key.toLowerCase() === 't') setTheme(themeRef.current === 'dark' ? 'light' : 'dark')
     }
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
-  }, [scrollToSection, setExpanded, toggleLanguage, setTheme]) // ✅ Deps estables
+  }, [scrollToSection, setExpanded, toggleLanguage, setTheme])
 
 
   const nav = [
@@ -166,15 +163,7 @@ export const Navbar: React.FC<HeaderProps> = ({
           </button>
 
           <div className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? 'w-full' : 'w-10'}`}>
-            <div className={`relative flex items-center justify-center shrink-0 p-2 rounded-xl bg-gradient-to-br from-primary/20 to-primary/10 border border-primary/20 transition-all duration-[800ms] ${expanded ? 'w-10 h-10' : 'w-10 h-10 hover:scale-110'}`}>
-              <img 
-                src="/Logo Mati.svg" 
-                alt={t('alt.logo')} 
-                className="w-full h-full object-contain"
-                fetchPriority="high"
-                decoding="async"
-              />
-            </div>
+            
             <div className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-4 pointer-events-none'}`}>
               <span className="font-bold text-text-primary text-sm leading-tight">{t('header.displayName')}</span>
               <span className="text-[8px] text-text-secondary uppercase tracking-tight">{t('header.name')}</span>
@@ -183,7 +172,7 @@ export const Navbar: React.FC<HeaderProps> = ({
         </div>
 
         <nav className="flex-1 flex items-center w-full max-[880px]:h-full">
-          <ul className="w-full list-none p-0 m-0 flex flex-col gap-1 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
+          <ul className="w-full list-none p-0 m-0 flex flex-col gap-3 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
             {nav.map(({ id, label, Icon }) => {
               const isActive = activeSection === id;
               return (
