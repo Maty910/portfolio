@@ -1,69 +1,189 @@
-# React + TypeScript + Vite
+# 🚀 Matías Chacón | Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+[![Deploy Status](https://img.shields.io/badge/status-live-success)](https://mchacon.dev)
+[![Built with React](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
+[![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite)](https://vitejs.dev)
 
-Currently, two official plugins are available:
+Portfolio personal de Matías Chacón - Desarrollador Full Stack especializado en React, Node.js y TypeScript.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+🌐 **[Ver en vivo](https://mchacon.dev)**
 
-## Expanding the ESLint configuration
+## ✨ Características
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- 🎨 Diseño moderno y responsivo con Tailwind CSS
+- 🌙 Modo oscuro/claro con transiciones suaves
+- 🌍 Soporte multi-idioma (ES/EN)
+- ⚡ Optimizado para performance y SEO
+- 📱 Progressive Web App (PWA) instalable
+- 🔒 Headers de seguridad configurados
+- 📊 Structured data (Schema.org) para mejor indexación
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🛠️ Tecnologías
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+- **Frontend:** React 19, TypeScript 5
+- **UI:** Material-UI, Tailwind CSS 4, Lucide React
+- **Build Tool:** Vite 7
+- **Linting:** ESLint 9
+- **Estado:** React Context API
+- **Animaciones:** CSS Transitions, View Transitions API
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## 🚀 Inicio Rápido
+
+### Prerequisitos
+
+- Node.js 18.x o superior
+- pnpm (recomendado) o npm
+
+### Instalación
+
+```bash
+# Clonar el repositorio
+git clone https://github.com/Maty910/portfolio.git
+
+# Instalar dependencias
+pnpm install
+
+# Iniciar servidor de desarrollo
+pnpm dev
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+El sitio estará disponible en `http://localhost:5173`
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+## 📜 Scripts Disponibles
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
+```bash
+pnpm dev          # Iniciar servidor de desarrollo
+pnpm build        # Compilar para producción
+pnpm preview      # Vista previa de la build de producción
+pnpm lint         # Ejecutar linter
+pnpm lint:fix     # Corregir errores de linting automáticamente
+pnpm type-check   # Verificar tipos de TypeScript
+pnpm format       # Formatear código con Prettier
+pnpm clean        # Limpiar archivos de build y caché
+```
+
+## 📁 Estructura del Proyecto
+
+```
+portfolio/
+├── public/              # Archivos estáticos
+│   ├── certificates/    # Certificados en PDF
+│   ├── CV/             # Curriculum Vitae
+│   ├── images/         # Imágenes del portfolio
+│   ├── logos/          # Logos de tecnologías
+│   ├── manifest.json   # Manifest PWA
+│   ├── robots.txt      # Configuración para crawlers
+│   ├── sitemap.xml     # Sitemap para SEO
+│   └── _headers        # Headers HTTP (Netlify/Cloudflare)
+├── src/
+│   ├── components/     # Componentes React
+│   ├── context/        # Context API para estado global
+│   ├── data/           # Datos de proyectos
+│   ├── hooks/          # Custom React hooks
+│   ├── i18n/           # Configuración de internacionalización
+│   ├── types/          # Definiciones de tipos TypeScript
+│   └── utils/          # Funciones de utilidad
+└── vercel.json         # Configuración de deployment
+```
+
+## 🔧 Configuración
+
+### Variables de Entorno
+
+Actualmente no se requieren variables de entorno. El proyecto funciona out-of-the-box.
+
+### Meta Tags y SEO
+
+El archivo `index.html` incluye:
+
+- Meta tags OpenGraph para redes sociales
+- Twitter Cards
+- Structured Data (JSON-LD)
+- Meta tags para SEO avanzado
+- Icons y manifest para PWA
+
+## 🌐 Deployment
+
+Este proyecto está configurado para deployment en:
+
+- **Vercel** (recomendado) - `vercel.json` incluido
+- **Netlify** - `_headers` y `_redirects` incluidos
+- **Cloudflare Pages** - Compatible
+
+Para deployar en Vercel:
+
+```bash
+# Instalar Vercel CLI
+npm i -g vercel
+
+# Deploy
+vercel
+```
+
+## 📱 PWA (Progressive Web App)
+
+El sitio es instalable como aplicación web progresiva:
+
+- Service Worker para caché offline
+- Manifest.json configurado
+- Icons optimizados
+- Theme colors adaptables
+
+## 🔒 Seguridad
+
+Headers de seguridad configurados:
+
+- `X-Content-Type-Options: nosniff`
+- `X-Frame-Options: DENY`
+- `X-XSS-Protection: 1; mode=block`
+- `Referrer-Policy: strict-origin-when-cross-origin`
+- `Content-Security-Policy` para mayor protección
+
+## 📊 Performance
+
+- Lazy loading de imágenes
+- Code splitting automático con Vite
+- Preconnect a Google Fonts
+- Caché optimizado para assets estáticos
+- Lighthouse Score: 95+ en todas las métricas
+
+## 🤝 Contribuciones
+
+Este es un proyecto personal, pero sugerencias y feedback son bienvenidos.
+
+## 📄 Licencia
+
+Copyright © 2026 Matías Chacón. Todos los derechos reservados.
+
+## 📧 Contacto
+
+- **Portfolio:** [mchacon.dev](https://mchacon.dev)
+- **GitHub:** [@Maty910](https://github.com/Maty910)
+- **LinkedIn:** [Matías Chacón](https://www.linkedin.com/in/matias-chacon-t934/)
+
+---
+
+Hecho con ❤️ por Matías Chacón
+{
+files: ['**/*.{ts,tsx}'],
+extends: [
+// Other configs...
+// Enable lint rules for React
+reactX.configs['recommended-typescript'],
+// Enable lint rules for React DOM
+reactDom.configs.recommended,
+],
+languageOptions: {
+parserOptions: {
+project: ['./tsconfig.node.json', './tsconfig.app.json'],
+tsconfigRootDir: import.meta.dirname,
+},
+// other options...
+},
+},
 ])
+
+```
+
 ```
