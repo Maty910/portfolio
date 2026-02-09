@@ -220,7 +220,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     {
       id: 1,
       institution: 'Universidad de Buenos Aires',
-      logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/1/12/Seal_of_the_University_of_Buenos_Aires.svg/200px-Seal_of_the_University_of_Buenos_Aires.svg.png',
+      logo: 'public/logos/UBA-01.webp',
       degree: 'Licenciatura en Psicología',
       field: 'Psychology',
       startDate: '2021',
@@ -245,7 +245,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     {
       id: 2,
       institution: 'ForIT Software Factory',
-      logo: 'https://media.licdn.com/dms/image/v2/D4D0BAQHMlbKUKZ7U9Q/company-logo_200_200/company-logo_200_200/0/1719933821423/forit_software_factory_logo?e=1743033600&v=beta&t=sLCgEQVYY7EfCHJhVE3QNZZm0Ap6qHCp_Dc5TJg6jJo',
+      logo: 'public/logos/icon-forit.svg',
       degree: 'Desarrollador Web Avanzado',
       field: 'Web Development',
       startDate: 'Dec 2025',
@@ -348,6 +348,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     {
       id: 5,
       institution: 'Talento Tech',
+      logo: 'public/logos/Talento-Tech-Logo.webp',
       degree: 'Design UX/UI, Web Page, Digital/Multimedia and Information Resources Design',
       field: 'UX/UI Design',
       startDate: 'Aug 2024',
@@ -389,6 +390,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     {
       id: 6,
       institution: 'Talento Tech',
+      logo: 'public/logos/Talento-Tech-Logo.webp',
       degree: 'Python, Information Technology',
       field: 'Python Development',
       startDate: 'Mar 2025',
@@ -437,6 +439,31 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
         'Selenium WebDriver'
       ],
       certificates: []
+    }, 
+    {
+      id: 8,
+      institution: 'Talento Tech',
+      logo: 'public/logos/Talento-Tech-Logo.webp',
+      degree: 'Figma Course',
+      field: 'UX/UI Design',
+      startDate: 'Jan 2026',
+      endDate: 'Jan 2026',
+      duration: '1 mes',
+      location: 'Argentina',
+      description: [
+        'Curso intensivo de Figma como parte del programa Talento Tech. Desarrollé habilidades prácticas en diseño de interfaces, prototipado y colaboración en tiempo real utilizando Figma.'
+      ],
+      skills: [
+        'Figma (Software)',
+        'UX/UI Design',
+        'Prototyping',
+        'Collaboration Tools'
+      ],
+      certificates: [
+        {
+          name: 'Figma Course Certificate'
+        }
+      ]
     }
   ];
 
