@@ -1,0 +1,18 @@
+# Wrangler configuration for Cloudflare Pages
+# https://developers.cloudflare.com/pages/
+
+name = "mati-portfolio"
+pages_build_output_dir = "dist"
+
+[build]
+command = "pnpm build"
+
+[build.environment]
+NODE_VERSION = "22"
+PNPM_VERSION = "8"
+
+# Preview environment
+[env.preview]
+
+# Production environment  
+[env.production]

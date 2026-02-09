@@ -5,6 +5,29 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [1.0.1] - 2026-02-09
+
+### 🐛 Corregido
+
+- Error de incompatibilidad de versión de Node.js en build de Cloudflare Pages
+- Actualizado `engines.node` en package.json de `18.x` a `>=18.0.0`
+- Ahora soporta Node.js 18, 20, 22 y versiones superiores
+
+### 📝 Documentación
+
+- Agregado [CLOUDFLARE.md](CLOUDFLARE.md) con guía de deployment en Cloudflare Pages
+- Agregado [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md) con soluciones a problemas comunes
+- Agregado `wrangler.toml` para configuración de Cloudflare
+- Actualizado README.md para reflejar deployment actual en Cloudflare Pages
+- Actualizado .nvmrc a Node 22
+
+### 🔄 Cambiado
+
+- Proveedor de hosting principal actualizado a Cloudflare Pages
+- Documentación reorganizada para priorizar Cloudflare sobre Vercel
+
+---
+
 ## [1.0.0] - 2026-02-09
 
 ### ✨ Agregado

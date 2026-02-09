@@ -91,7 +91,13 @@ portfolio/
 
 ### Variables de Entorno
 
-Actualmente no se requieren variables de entorno. El proyecto funciona out-of-the-box.
+Actualmente no se requieren variables de entorno para el build.
+
+### Configuración de Deployment
+
+- **Cloudflare Pages:** Ver [CLOUDFLARE.md](CLOUDFLARE.md)
+- **Vercel:** `vercel.json` incluido
+- **Netlify:** `_headers` y `_redirects` incluidos
 
 ### Meta Tags y SEO
 

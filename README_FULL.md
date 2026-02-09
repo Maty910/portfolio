@@ -114,7 +114,8 @@ Portfolio profesional diseñado para mostrar mis proyectos, habilidades y experi
 
 ### Deployment
 
-![Vercel](https://img.shields.io/badge/Vercel-Deploy-000000?logo=vercel&logoColor=white)
+![Cloudflare](https://img.shields.io/badge/Cloudflare-Pages-F38020?logo=cloudflare&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-Compatible-000000?logo=vercel&logoColor=white)
 ![GitHub Actions](https://img.shields.io/badge/GitHub%20Actions-CI%2FCD-2088FF?logo=githubactions&logoColor=white)
 
 ---
@@ -220,20 +221,49 @@ portfolio/
 
 ## 🌐 Deployment
 
-### Vercel (Recomendado)
+### Cloudflare Pages (Actual)
+
+Este portfolio está desplegado en **Cloudflare Pages**.
+
+📖 Ver [CLOUDFLARE.md](CLOUDFLARE.md) para configuración detallada.
 
 ```bash
-# 1. Instalar Vercel CLI
+# Build command
+pnpm build
+
+# Build output directory
+dist
+
+# Node version
+22 (o >=18.0.0)
+```
+
+**Deployments Automáticos:**
+
+- 🚀 Push a `main` → Producción en [mchacon.dev](https://mchacon.dev)
+- 👀 Push a otras ramas → Preview deployments
+
+**Manual con Wrangler CLI:**
+
+```bash
+npm install -g wrangler
+wrangler pages deploy dist
+```
+
+### Vercel (Alternativa)
+
+```bash
+# Instalar Vercel CLI
 npm i -g vercel
 
-# 2. Deploy
+# Deploy
 vercel
 
-# 3. Deploy a producción
+# Deploy a producción
 vercel --prod
 ```
 
-### Netlify
+### Netlify (Alternativa)
 
 ```bash
 # Build command
@@ -245,14 +275,14 @@ dist
 # Los archivos _headers y _redirects ya están configurados
 ```
 
-### Otros Proveedores
+### Otros Proveedores Compatibles
 
-Compatible con:
-
-- Cloudflare Pages
-- GitHub Pages
-- AWS Amplify
-- Firebase Hosting
+- ✅ Cloudflare Pages (actual)
+- ✅ Vercel (configurado en vercel.json)
+- ✅ Netlify (configurado en \_headers y \_redirects)
+- ✅ GitHub Pages
+- ✅ AWS Amplify
+- ✅ Firebase Hosting
 
 ---
 
