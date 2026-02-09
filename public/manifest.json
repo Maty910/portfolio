@@ -1,0 +1,22 @@
+{
+  "name": "Matías Chacón | Desarrollador Full Stack",
+  "short_name": "M. Chacón",
+  "description": "Portfolio de Matías Chacón - Desarrollador Full Stack especializado en React y Node.js",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
+  "background_color": "#000000",
+  "theme_color": "#000000",
+  "orientation": "portrait-primary",
+  "icons": [
+    {
+      "src": "/Logo Mati.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "categories": ["portfolio", "developer", "technology"],
+  "lang": "es-AR",
+  "dir": "ltr"
+}
