@@ -1,0 +1,38 @@
+name: Feature Request
+description: Sugerir una idea para este proyecto
+title: "[FEATURE] "
+labels: ["enhancement", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ¡Gracias por sugerir una nueva funcionalidad!
+
+  - type: textarea
+    id: problem
+    attributes:
+      label: ¿Está relacionado con un problema?
+      description: Una descripción clara y concisa del problema.
+      placeholder: Estoy frustrado cuando...
+    validations:
+      required: true
+
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solución Propuesta
+      description: Una descripción clara y concisa de lo que quieres que suceda.
+    validations:
+      required: true
+
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Una descripción de cualquier solución o funcionalidad alternativa que hayas considerado.
+
+  - type: textarea
+    id: additional
+    attributes:
+      label: Contexto Adicional
+      description: Cualquier otra información o screenshots sobre la feature request.
