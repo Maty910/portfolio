@@ -90,6 +90,7 @@ chore: tareas de mantenimiento
 ## 🧪 Testing (Futuro)
 
 Cuando se agreguen tests:
+
 - Escribir tests para nuevas funcionalidades
 - Mantener cobertura >80%
 - Tests unitarios para lógica compleja
@@ -117,6 +118,7 @@ Cuando se agreguen tests:
 ## ❓ Dudas
 
 Si tienes preguntas, puedes:
+
 - Abrir un issue para discusión
 - Contactarme en [LinkedIn](https://www.linkedin.com/in/matias-chacon-t934/)
 
