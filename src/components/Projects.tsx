@@ -5,7 +5,11 @@ import { Github, ExternalLink, ArrowRight, FolderOpen } from 'lucide-react';
 import projectsStaticData from '../data/projectsData';
 import type { Project } from '../types';
 
-export const Projects = () => {
+interface ProjectsProps {
+  onModalChange?: (isOpen: boolean) => void;
+}
+
+export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
   const { t } = useLanguage();
   const [selectedProject, setSelectedProject] = useState<Project | null>(null);
 
@@ -43,8 +47,8 @@ export const Projects = () => {
         {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
-            {/* FIX: Usamos text-white para que el icono resalte sobre el degradado violeta en ambos temas */}
-            <div className="p-2 rounded-xl bg-gradient-to-br from-primary to-purple-500 shadow-lg shadow-primary/20 text-white">
+            {/* ✅ FIX: Usa var(--color-on-primary) para texto sobre gradient violeta */}
+            <div className="p-2 rounded-xl gradient-primary-br shadow-lg shadow-primary/20" style={{ color: 'var(--color-on-primary)' }}>
               <FolderOpen size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
@@ -61,8 +65,11 @@ export const Projects = () => {
           {projects.map((project) => (
             <article 
               key={project.id}
-              onClick={() => setSelectedProject(project)}
-              className="group relative flex flex-col rounded-2xl overflow-hidden cursor-pointer
+              onClick={() => {
+                setSelectedProject(project);
+                onModalChange?.(true);
+              }}
+              className="group relative flex flex-col rounded-xl overflow-hidden cursor-pointer
                          /* Estilos base Glass adaptables */
                          bg-text-primary/5 border border-text-primary/10
                          transition-all duration-300 ease-out
@@ -77,6 +84,8 @@ export const Projects = () => {
                   <img 
                     src={getFirstImage(project.image)} 
                     alt={project.title} 
+                    loading="lazy"
+                    decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                   />
                 ) : (
@@ -90,7 +99,7 @@ export const Projects = () => {
                 
                 {/* Badge "Ver más" al hover (Desktop) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
-                  <span className="relative px-4 py-2 rounded-full bg-primary text-white text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 btn-shiny">
+                  <span className="relative px-4 py-2 rounded-full bg-primary text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 btn-shiny" style={{ color: 'var(--color-on-primary)' }}>
                     <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
                     <span className="relative z-20">{t('projects.viewDetails')}</span>
                   </span>
@@ -111,11 +120,17 @@ export const Projects = () => {
                         href={project.githubUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 
+                                   /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
+                                   focus-visible:outline-none focus-visible:ring-2 
+                                   focus-visible:ring-primary focus-visible:ring-offset-2 
+                                   focus-visible:ring-offset-bg-base
+                                   transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
                         title={t('projects.links.code')}
+                        aria-label={`${t('projects.links.code')} - ${project.title}`}
                       >
-                        <Github size={18} />
+                        <Github size={18} aria-hidden="true" />
                       </a>
                     )}
                     {project.liveUrl && (
@@ -123,11 +138,17 @@ export const Projects = () => {
                         href={project.liveUrl} 
                         target="_blank" 
                         rel="noopener noreferrer" 
-                        className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 transition-colors z-10"
+                        className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 
+                                   /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
+                                   focus-visible:outline-none focus-visible:ring-2 
+                                   focus-visible:ring-primary focus-visible:ring-offset-2 
+                                   focus-visible:ring-offset-bg-base
+                                   transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
                         title={t('projects.links.live')}
+                        aria-label={`${t('projects.links.live')} - ${project.title}`}
                       >
-                        <ExternalLink size={18} />
+                        <ExternalLink size={18} aria-hidden="true" />
                       </a>
                     )}
                   </div>
@@ -138,11 +159,15 @@ export const Projects = () => {
                 </p>
 
                 {/* Tech Stack Mini Tags */}
-                <div className="mt-auto pt-3 flex flex-wrap gap-2">
+                <div className="mt-auto pt-3 flex flex-wrap gap-2 max-w-full overflow-hidden">
                   {project.technologies.slice(0, 3).map(tech => (
                     <span 
                       key={tech} 
-                      className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary text-[10px] font-medium tracking-wide uppercase"
+                      className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary 
+                                 text-[10px] font-medium tracking-wide uppercase
+                                 /* ✅ FIX: Prevenir overflow en mobile */
+                                 max-w-[120px] truncate"
+                      title={tech}
                     >
                       {tech}
                     </span>
@@ -176,7 +201,10 @@ export const Projects = () => {
       {/* Modal Project */}
       <ProjectModal 
         project={selectedProject} 
-        onClose={() => setSelectedProject(null)} 
+        onClose={() => {
+          setSelectedProject(null);
+          onModalChange?.(false);
+        }} 
       />
     </section>
   );

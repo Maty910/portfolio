@@ -46,6 +46,24 @@
   animation-play-state: paused;
 }
 
+/* === SOPORTE ACCESIBILIDAD: Respeto a prefers-reduced-motion (WCAG 2.3.3) === */
+@media (prefers-reduced-motion: reduce) {
+  /* Desactivar todas las animaciones y transiciones */
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+  
+  /* Mantener transformaciones instantáneas pero sin animación */
+  .animate-marquee {
+    animation: none !important;
+  }
+}
+
 /* === VARIABLES CSS (Light/Dark Mode) === */
 :root {
   /* CLAVE PARA MOBILE: Le avisa al navegador que use controles oscuros */
@@ -98,7 +116,7 @@
   /* Textos oscuros de alto contraste (Slate/Cool Gray) */
   --text-primary: #0f172a;   /* Slate 900 - Casi negro */
   --text-secondary: #475569; /* Slate 600 - Gris medio solido */
-  --text-muted: #94a3b8;     /* Slate 400 */
+  --text-muted: #64748b;     /* Slate 500 - Mejorado para WCAG AA (4.5:1 contrast) */
   
   /* Surface: Gradiente muy sutil de blanco a gris pálido para el sidebar */
   --surface: linear-gradient(180deg, #ffffff, #f1f5f9);
@@ -283,4 +301,311 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 .btn-shiny .btn-shimmer-hide-on-hover {
   position: relative;
   z-index: 20;
+}
+
+/* === UTILITIES CSS PERSONALIZADAS === */
+/* ✅ Gradientes reutilizables para consistencia */
+.gradient-primary {
+  background-image: linear-gradient(to right, var(--primary-color), #a855f7);
+}
+
+.gradient-primary-br {
+  background-image: linear-gradient(to bottom right, var(--primary-color), #a855f7);
+}
+
+.gradient-text {
+  background-image: linear-gradient(to right, var(--primary-color), #c084fc);
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  color: transparent;
+}
+
+/* ✅ Variables CSS para colores de iconos de tecnologías */
+.tech-react {
+  color: var(--color-react, #61dafb);
+}
+
+.tech-typescript {
+  color: var(--color-typescript, #3178c6);
+}
+
+.tech-tailwind {
+  color: var(--color-tailwind, #38bdf8);
+}
+
+.tech-nodejs {
+  color: var(--color-nodejs, #8cc84b);
+}
+
+.tech-postgresql {
+  color: var(--color-postgresql, #336791);
+}
+
+.tech-mongodb {
+  color: var(--color-mongodb, #47a248);
+}
+
+.tech-docker {
+  color: var(--color-docker, #2496ed);
+}
+
+/* ✅ Focus rings consistentes para accesibilidad */
+.focus-ring-primary:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--primary-color), 0 0 0 4px var(--bg-color);
+}
+
+/* ✅ Cards interactivas reutilizables */
+.card-hover {
+  transition: all 0.3s ease-out;
+}
+
+.card-hover:hover {
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+  transform: translateY(-4px);
+}
+
+.card-hover:active {
+  transform: scale(0.98);
+}
+
+.card-base {
+  border-radius: 1rem;
+  background-color: rgba(var(--text-primary-rgb, 167, 169, 190), 0.05);
+  border: 1px solid rgba(var(--text-primary-rgb, 167, 169, 190), 0.1);
+}
+
+/* ✅ Botones reutilizables */
+.btn-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 0.75rem;
+  padding: 0.625rem;
+  transition: all 0.3s ease;
+}
+
+.btn-primary {
+  background-image: linear-gradient(to right, var(--primary-color), #a855f7);
+  color: white;
+  font-weight: bold;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.75rem;
+  box-shadow: 0 10px 15px -3px rgba(99, 83, 242, 0.3);
+  transition: all 0.3s ease;
+}
+
+.btn-primary:hover {
+  opacity: 0.9;
+  transform: scale(1.05);
+}
+
+/* === VARIABLES CSS PARA COLORES DE TECNOLOGÍAS Y REDES === */
+:root {
+  /* Tech Stack - Core */
+  --color-react: #61dafb;
+  --color-typescript: #3178c6;
+  --color-tailwind: #38bdf8;
+  --color-nodejs: #8cc84b;
+  --color-postgresql: #336791;
+  --color-mongodb: #47a248;
+  --color-docker: #2496ed;
+  
+  /* Tech Stack - Frontend */
+  --color-html5: #e34f26;
+  --color-css3: #1572b6;
+  --color-javascript: #f7df1e;
+  --color-figma: #f24e1e;
+  --color-canva: #00c4cc;
+  
+  /* Tech Stack - Backend */
+  --color-express: #888888;
+  --color-python: #3776ab;
+  --color-sqlite: #0f80cc;
+  --color-json: #f7df1e;
+  --color-solidity: #363636;
+  
+  /* Tech Stack - Tools */
+  --color-git: #f05032;
+  --color-github: #6e5494;
+  --color-vscode: #007acc;
+  --color-postman: #ff6c37;
+  --color-netlify: #00c7b7;
+  
+  /* Social Networks */
+  --color-linkedin: #0a66c2;
+  
+  /* UI Feedback */
+  --color-success: #10b981;
+  --color-error: #ef4444;
+  --color-warning: #f59e0b;
+  
+  /* Colors on Brand Surfaces */
+  --color-on-primary: #ffffff;
+}
+
+/* Opcional: Ajustar en light mode si es necesario */
+:root[data-theme="light"],
+:root.light {
+  /* Los colores de tech se mantienen igual en ambos temas */
+  /* pero puedes ajustarlos aquí si necesitas más contraste */
+}
+
+/* === OPTIMIZACIÓN DE PERFORMANCE CON WILL-CHANGE === */
+/* Informa al navegador qué propiedades van a animarse para optimizar el renderizado */
+
+/* Para elementos que se animan al hacer hover (cards, botones) */
+.hover-lift {
+  will-change: transform, box-shadow;
+}
+
+.hover-lift:hover {
+  will-change: auto; /* Liberar recursos después del hover */
+}
+
+/* Para elementos con animaciones continuas (marquee, spinners) */
+.animate-marquee,
+.animate-spin,
+.animate-pulse,
+.animate-ping {
+  will-change: transform, opacity;
+}
+
+/* Para modales y overlays que aparecen/desaparecen */
+[role="dialog"],
+.modal-overlay {
+  will-change: opacity, transform;
+}
+
+/* Aplicar automáticamente a elementos con transiciones de transform */
+[class*="hover:-translate"],
+[class*="hover:scale"],
+[class*="hover:rotate"],
+[class*="group-hover:translate"],
+[class*="group-hover:scale"] {
+  will-change: transform;
+}
+
+/* Remover will-change cuando no está activo (mejor práctica) */
+@media (hover: none) {
+  .hover-lift,
+  [class*="hover:-translate"],
+  [class*="hover:scale"],
+  [class*="hover:rotate"] {
+    will-change: auto;
+  }
+}
+
+/* === ESTILOS PARA MODAL DE PROYECTOS === */
+/* Botones de navegación del carousel - hover con color dinámico */
+.carousel-arrow:hover {
+  background-color: var(--primary-color);
+  color: var(--color-on-primary);
+  border-color: var(--primary-color);
+}
+
+/* === ANIMACIÓN DE TRANSICIÓN DE TEMA === */
+/* View Transitions API para cambio de tema suave con expansión circular */
+
+/* CRÍTICO: Configurar el elemento raíz para View Transitions */
+:root {
+  view-transition-name: root;
+}
+
+/* Configuración base para las transiciones */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+}
+
+/* El contenido antiguo (tema actual) se desvanece */
+::view-transition-old(root) {
+  z-index: 1;
+}
+
+/* El contenido nuevo (nuevo tema) aparece encima con clip-path circular */
+::view-transition-new(root) {
+  z-index: 999;
+}
+
+/* Prevenir parpadeos durante la transición */
+::view-transition-group(root) {
+  animation-duration: 0.6s;
+  animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Fallback mejorado para navegadores sin View Transitions API */
+/* Esta animación se verá muy bien en Brave y otros navegadores */
+.theme-transitioning {
+  position: relative;
+}
+
+.theme-transitioning::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: 9999;
+  pointer-events: none;
+  background: var(--bg-color);
+  animation: theme-fade-overlay 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+}
+
+@keyframes theme-fade-overlay {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.7;
+  }
+  100% {
+    opacity: 0;
+  }
+}
+
+.theme-transitioning *,
+.theme-transitioning *::before,
+.theme-transitioning *::after {
+  transition: color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+              stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Deshabilitar animación de tema si el usuario prefiere movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-group(root),
+  ::view-transition-old(root),
+  ::view-transition-new(root) {
+    animation: none !important;
+  }
+  
+  .theme-transitioning,
+  .theme-transitioning * {
+    transition: none !important;
+  }
+}
+
+/* === SKELETON LOADERS === */
+/* Animación de shimmer para estados de carga */
+@keyframes skeleton-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.skeleton-shimmer {
+  animation: skeleton-shimmer 2s ease-in-out infinite;
+}
+
+/* Respetar prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton-shimmer {
+    animation: none;
+  }
 }

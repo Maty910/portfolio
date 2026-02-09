@@ -48,7 +48,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               <div className="relative inline-block">
                 <span className="font-heading font-bold tracking-tight leading-[1.08]">
                   <span className="block max-[880px]:text-center md:text-end">{t('header.headlinePrefix')}</span>
-                  <span className="block text-transparent bg-clip-text bg-gradient-to-r from-primary to-purple-400 max-[880px]:text-center">{t('header.headlineHighlight')}</span>
+                  <span className="block gradient-text max-[880px]:text-center">{t('header.headlineHighlight')}</span>
                 </span>
                 <div className="absolute -bottom-2 left-0 w-1/4 h-[3px] bg-primary rounded-full group-hover:w-full transition-all duration-700 ease-out max-[880px]:h-[2px] max-[880px]:left-1/2 max-[880px]:-translate-x-1/2 max-[880px]:w-1/2" />
               </div>
@@ -56,17 +56,19 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
             
             <div className="flex flex-col md:flex-row items-start md:items-center gap-3 md:gap-6 w-full">
               {/* Carrusel (Techs) */}
-              <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-text-primary/10 pl-6 ml-2">
+              <div className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-text-primary/10 pl-6 ml-2" 
+                   role="list" 
+                   aria-label="Tech Stack">
                  <div className="flex w-max animate-marquee items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                     {[1, 2].map((i) => (
                       <div key={i} className="flex items-center gap-6">
-                        <SiTypescript className="text-[#3178c6]" size={24} />
-                        <SiReact className="text-[#61dafb]" size={24} />
-                        <SiNodedotjs className="text-[#8cc84b]" size={24} />
-                        <SiTailwindcss className="text-[#38bdf8]" size={24} />
-                        <SiMongodb className="text-[#47a248]" size={24} />
-                        <SiPostgresql className="text-[#336791]" size={24} />
-                        <SiDocker className="text-[#2496ed]" size={24} />
+                        <SiTypescript className="tech-typescript" size={24} aria-label="TypeScript" role="listitem" />
+                        <SiReact className="tech-react" size={24} aria-label="React" role="listitem" />
+                        <SiNodedotjs className="tech-nodejs" size={24} aria-label="Node.js" role="listitem" />
+                        <SiTailwindcss className="tech-tailwind" size={24} aria-label="Tailwind CSS" role="listitem" />
+                        <SiMongodb className="tech-mongodb" size={24} aria-label="MongoDB" role="listitem" />
+                        <SiPostgresql className="tech-postgresql" size={24} aria-label="PostgreSQL" role="listitem" />
+                        <SiDocker className="tech-docker" size={24} aria-label="Docker" role="listitem" />
                       </div>
                     ))}
                  </div>
@@ -85,19 +87,22 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
           {/* BOTONES DE ACCIÓN */}
           <div className="flex flex-wrap gap-4 mt-4 w-full 
-                          max-[880px]:flex-col max-[880px]:gap-3 max-[880px]:mt-3 max-[880px]:mb-16">
+                          max-[880px]:flex-col max-[880px]:gap-4 max-[880px]:mt-4 
+                          /* ✅ FIX: Espacio seguro para el Navbar flotante */
+                          max-[880px]:mb-24 max-[880px]:pb-safe">
 
             {/* Botón CV (Primario) - Full width en mobile */}
             <a 
               href="/CV/CV Matias Chacon.pdf" 
               target="_blank"
               rel="noopener noreferrer"
-              className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl 
-                            bg-gradient-to-r from-primary to-purple-600 text-white font-bold tracking-wide
+              className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
+                            gradient-primary font-bold tracking-wide
                           shadow-lg shadow-primary/20
                           hover:shadow-xl hover:-translate-y-1 active:scale-[0.98]
                             transition-all duration-300 ease-out group btn-shiny no-underline
                           max-[880px]:w-full max-[880px]:py-3.5 max-[880px]:text-sm cursor-pointer"
+              style={{ color: 'var(--color-on-primary)' }}
             >
                 <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
               <Download size={20} className="relative z-20 max-[880px]:w-5 max-[880px]:h-5" />

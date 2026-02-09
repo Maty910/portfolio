@@ -1,4 +1,4 @@
-export type Section = 'home' | 'projects' | 'skills' | 'contact' | 'projectpage';
+export type Section = 'home' | 'experience' | 'projects' | 'skills' | 'education' | 'contact' | 'projectpage';
 
 export type Project = {
   id: number;

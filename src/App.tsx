@@ -2,8 +2,10 @@ import { useState, useEffect } from 'react'
 import { Page } from './components/Page'
 import { Navbar } from './components/Navbar'
 import { Home } from './components/Home'
+import { Experience } from './components/Experience'
 import { Projects } from './components/Projects'
 import { Skills } from './components/Skills'
+import { Education } from './components/Education'
 import { Contact } from './components/Contact'
 import { LanguageProvider } from './context/LanguageContext'
 import { Footer } from './components/Footer'
@@ -12,6 +14,7 @@ import { Intro } from './components/Intro'
 
 function App() {
   const [activeSection, setActiveSection] = useState<Section>('home');
+  const [hasModalOpen, setHasModalOpen] = useState(false);
 
   // Observar qué sección está visible para actualizar la navbar
   useEffect(() => {
@@ -48,11 +51,13 @@ function App() {
       {/* Pasamos activeSection a Page */}
         <Intro onFinish={() => {}} />
       <Page activeSection={activeSection}>
-        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
+        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} hasModalOpen={hasModalOpen} />
         <main className="main-content scroll-container">
           <Home setActiveSection={setActiveSection} />
-          <Projects />
+          <Experience onModalChange={setHasModalOpen} />
+          <Projects onModalChange={setHasModalOpen} />
           <Skills />
+          <Education onModalChange={setHasModalOpen} />
           <Contact />
         </main>
         <Footer />

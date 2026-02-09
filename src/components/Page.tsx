@@ -5,56 +5,51 @@ import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import { SiReact, SiNodedotjs, SiTypescript, SiTailwindcss, SiPostgresql, SiMongodb, SiDocker } from 'react-icons/si';
 import type { Section } from '../types';
 import { useLanguage } from '../context/LanguageContext';
+import { useTypewriter } from '../hooks/useTypewriter';
+import { useCopyToClipboard } from '../hooks/useCopyToClipboard';
 
 interface PageProps extends PropsWithChildren {
   activeSection?: Section;
 }
 
-// 1. Hook optimizado: Devuelve SOLO el texto, sin cursor integrado para evitar duplicados
-const useTypewriter = (words: string[], speed = 50, pause = 2000) => {
-  const [index, setIndex] = useState(0);
-  const [subIndex, setSubIndex] = useState(0);
-  const [reverse, setReverse] = useState(false);
-  const [isPaused, setIsPaused] = useState(false);
+// ✅ OPTIMIZACIÓN: Constantes fuera del componente para evitar recreación
+const TYPING_WORDS_EN = [
+  'Full-Stack Developer',
+  'React Developer',
+  'Creative Coder',
+  'Pixel Precision',
+  'UI/UX Advocate',
+  'Performance-Obsessed',
+  'API Craftsman',
+  'Design Systems Builder',
+  'TDD Enthusiast',
+  'Lifelong Learner',
+  'TypeScript Fan',
+  'JS Advocate',
+  'Node.js Backend Developer',
+  'Tailwind CSS User',
+  'Docker Enthusiast',
+  'Database Manager',
+] as const;
 
-  useEffect(() => {
-    // Si estamos en pausa (texto completo), esperar antes de borrar
-    if (isPaused) {
-      const timeout = setTimeout(() => {
-        setIsPaused(false);
-        setReverse(true);
-      }, pause);
-      return () => clearTimeout(timeout);
-    }
-
-    // Lógica de borrado (más rápido que el tipeo)
-    if (reverse) {
-      if (subIndex === 0) {
-        setReverse(false);
-        setIndex((prev) => (prev + 1) % words.length);
-        return;
-      }
-      const timeout = setTimeout(() => {
-        setSubIndex((prev) => prev - 1);
-      }, speed / 2); // Borra al doble de velocidad
-      return () => clearTimeout(timeout);
-    }
-
-    // Lógica de tipeo
-    if (subIndex === words[index].length) {
-      setIsPaused(true);
-      return;
-    }
-
-    const timeout = setTimeout(() => {
-      setSubIndex((prev) => prev + 1);
-    }, speed + (Math.random() * 20)); // Pequeña variación para realismo
-
-    return () => clearTimeout(timeout);
-  }, [subIndex, index, reverse, isPaused, words, speed, pause]);
-
-  return words[index].substring(0, subIndex);
-};
+const TYPING_WORDS_ES = [
+  'Desarrollador Full-Stack',
+  'Desarrollador React',
+  'Coder Creativo',
+  'Precisión de Píxeles',
+  'Defensor de UI/UX',
+  'Obsesionado por el Rendimiento',
+  'Artesano de APIs',
+  'Constructor de Design Systems',
+  'Entusiasta de TDD',
+  'Aprendiz de por Vida',
+  'Fan de TypeScript',
+  'Defensor de JS',
+  'Desarrollador Backend Node.js',
+  'Usuario de Tailwind CSS',
+  'Entusiasta de Docker',
+  'Gestor de Bases de Datos',
+] as const;
 
 // Componente Hora Local
 const LocalTime = () => {
@@ -97,36 +92,20 @@ const AnimatedName = () => {
 };
 
 export function Page({ children, activeSection = 'home' }: PageProps) {
-  const { t } = useLanguage();
+  const { t, lang } = useLanguage();
   
-  // Lista completa de frases
-  const typingWords = [
-    'Full-Stack Developer',
-    'React Developer',
-    'Creative Coder',
-    'Pixel Precision',
-    'UI/UX Advocate',
-    'Performance-Obsessed',
-    'API Craftsman',
-    'Design Systems Builder',
-    'TDD',
-    'Learner',
-    'TypeScript Fan',
-    'JS Advocate',
-    'Node.js Backend Developer',
-    'Tailwind CSS User',
-    'Docker Enthusiast',
-    'Database Manager',
-  ];
+  // ✅ OPTIMIZACIÓN: Hook aplicado a las frases (selecciona según el idioma actual)
+  const typingText = useTypewriter(
+    lang === 'en' ? TYPING_WORDS_EN : TYPING_WORDS_ES, 
+    60, 
+    2000
+  );
   
-  // Hook aplicado a las frases
-  const typingText = useTypewriter(typingWords, 60, 2000);
-  const [copied, setCopied] = useState(false);
+  // ✅ OPTIMIZACIÓN: Hook reutilizable para clipboard
+  const { copied, copy } = useCopyToClipboard(2000);
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('matychacong@gmail.com');
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+    copy('matychacong@gmail.com');
   };
 
   const renderSidebarContent = () => {
@@ -179,13 +158,13 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             </h3>
             
             <div className="grid grid-cols-4 gap-2 w-full place-items-center">
-              <div className="p-1.5 bg-[#61dafb]/10 rounded-lg border border-[#61dafb]/20" title="React"><SiReact size={16} className="text-[#61dafb]" /></div>
-              <div className="p-1.5 bg-[#38bdf8]/10 rounded-lg border border-[#38bdf8]/20" title="Tailwind"><SiTailwindcss size={16} className="text-[#38bdf8]" /></div>
-              <div className="p-1.5 bg-[#3178c6]/10 rounded-lg border border-[#3178c6]/20" title="TypeScript"><SiTypescript size={16} className="text-[#3178c6]" /></div>
-              <div className="p-1.5 bg-[#8cc84b]/10 rounded-lg border border-[#8cc84b]/20" title="Node.js"><SiNodedotjs size={16} className="text-[#8cc84b]" /></div>
-              <div className="p-1.5 bg-[#336791]/10 rounded-lg border border-[#336791]/20" title="PostgreSQL"><SiPostgresql size={16} className="text-[#336791]" /></div>
-              <div className="p-1.5 bg-[#47a248]/10 rounded-lg border border-[#47a248]/20" title="MongoDB"><SiMongodb size={16} className="text-[#47a248]" /></div>
-              <div className="p-1.5 bg-[#2496ed]/10 rounded-lg border border-[#2496ed]/20" title="Docker"><SiDocker size={16} className="text-[#2496ed]" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-react, #61dafb)/10', borderColor: 'var(--color-react, #61dafb)/20' }} title="React"><SiReact size={16} className="tech-react" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-tailwind, #38bdf8)/10', borderColor: 'var(--color-tailwind, #38bdf8)/20' }} title="Tailwind"><SiTailwindcss size={16} className="tech-tailwind" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-typescript, #3178c6)/10', borderColor: 'var(--color-typescript, #3178c6)/20' }} title="TypeScript"><SiTypescript size={16} className="tech-typescript" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-nodejs, #8cc84b)/10', borderColor: 'var(--color-nodejs, #8cc84b)/20' }} title="Node.js"><SiNodedotjs size={16} className="tech-nodejs" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-postgresql, #336791)/10', borderColor: 'var(--color-postgresql, #336791)/20' }} title="PostgreSQL"><SiPostgresql size={16} className="tech-postgresql" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-mongodb, #47a248)/10', borderColor: 'var(--color-mongodb, #47a248)/20' }} title="MongoDB"><SiMongodb size={16} className="tech-mongodb" /></div>
+              <div className="p-1.5 rounded-lg border" style={{ backgroundColor: 'var(--color-docker, #2496ed)/10', borderColor: 'var(--color-docker, #2496ed)/20' }} title="Docker"><SiDocker size={16} className="tech-docker" /></div>
             </div>
 
             <p className="text-[9px] text-text-secondary text-center mt-3 pt-2 border-t border-text-primary/10">
@@ -242,9 +221,19 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
     return (
       <div className="flex flex-col items-center w-full gap-6 animate-in fade-in zoom-in-95 duration-700">
         <div className="relative group w-fit mx-auto">
-          <div className="absolute inset-[-3px] bg-gradient-to-r from-primary via-purple-500 to-primary rounded-full opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 animate-[spin_4s_linear_infinite]" />
+          <div className="absolute inset-[-3px] gradient-primary rounded-full 
+                          opacity-60 blur-sm group-hover:opacity-90 group-hover:blur-md transition-all duration-500 
+                          /* ✅ FIX: Deshabilitar animación pesada en mobile (GPU) */
+                          motion-safe:animate-[spin_4s_linear_infinite]
+                          max-[880px]:animate-none max-[880px]:blur-[2px]" />
           <div className="relative w-[110px] h-[110px] rounded-full overflow-hidden border-[3px] border-bg-base bg-bg-base shadow-2xl">
-            <img className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" src="/images/FOTO DE PERFIL.jpg" alt={t('alt.profile')} />
+            <img 
+              className="w-full h-full object-cover object-top transition-transform duration-700 group-hover:scale-110" 
+              src="/images/FOTO DE PERFIL.jpg" 
+              alt={t('alt.profile')} 
+              loading="lazy"
+              decoding="async"
+            />
             <div className="absolute inset-0 bg-gradient-to-tr from-primary/30 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
           </div>
           <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 flex items-center gap-1.5 bg-bg-base px-2 py-0.5 rounded-full border border-green-500/30 shadow-lg shadow-green-500/10 transition-transform hover:scale-105 cursor-help whitespace-nowrap z-10">
@@ -272,7 +261,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
             <div className="flex items-center gap-2"><Github size={16} /><span>{t('contact.githubTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
-          <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
+          <a href="https://www.linkedin.com/in/matias-chacon-t934/" target="_blank" rel="noopener noreferrer" className="flex items-center justify-between px-3 py-2 rounded-lg text-sm text-text-secondary hover:text-text-primary hover:bg-[#0077b5]/10 transition-all group border border-transparent hover:border-[#0077b5]/30">
             <div className="flex items-center gap-2"><LinkedInIcon style={{ fontSize: 18 }} /><span>{t('contact.linkedinTitle')}</span></div>
             <ExternalLink size={12} className="opacity-0 group-hover:opacity-100 transition-opacity" />
           </a>
@@ -282,7 +271,7 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
            <a href="https://github.com/Maty910" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-text-primary/5 rounded-lg text-text-secondary hover:text-text-primary border border-text-primary/10 flex items-center justify-center transition-all">
              <Github size={18} />
            </a>
-           <a href="https://linkedin.com/in/tu-usuario" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20 flex items-center justify-center transition-all">
+           <a href="https://www.linkedin.com/in/matias-chacon-t934/" target="_blank" rel="noopener noreferrer" className="p-2.5 bg-[#0077b5]/10 rounded-lg text-text-secondary hover:text-[#0077b5] border border-[#0077b5]/20 flex items-center justify-center transition-all">
              <LinkedInIcon style={{ fontSize: 18 }} />
            </a>
         </div>
@@ -332,7 +321,13 @@ export function Page({ children, activeSection = 'home' }: PageProps) {
       </div>
 
       <div className="fixed top-6 right-8 z-30 animate-in fade-in slide-in-from-top-4 duration-700 delay-500 max-[880px]:hidden">
-        <img className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" src="/Logo Mati.svg" alt={t('alt.logo')} />
+        <img 
+          className="w-[80px] object-contain opacity-80 hover:opacity-100 transition-all duration-500" 
+          src="/Logo Mati.svg" 
+          alt={t('alt.logo')} 
+          loading="lazy"
+          decoding="async"
+        />
       </div>
 
       <div className="content-wrapper relative z-10 w-full min-h-screen transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]">

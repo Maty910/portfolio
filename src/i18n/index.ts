@@ -1,11 +1,15 @@
 // Consolidated translation file for English and Spanish
-const en = {
+import type { Translations } from './types';
+
+const en: Translations = {
   nav: {
     toggleMenu: "Toggle Menu (M)",
     toggleLang: "Toggle language",
     home: "Home",
+    experience: "Experience",
     projects: "Projects",
     skills: "Skills",
+    education: "Education",
     contact: "Contact"
   },
   header: {
@@ -35,11 +39,6 @@ const en = {
     },
     noDescription: "No description available.",
     defaultTitle: "Project",
-    modal: {
-      closeAria: "Close project dialog",
-      closeTitle: "Close (Esc)",
-      technologies: "Technologies"
-    },
     items: {
       p1: {
         title: "Portfolio Website - Director of Photography",
@@ -66,6 +65,21 @@ const en = {
         description: "Inventory system in Python + SQLite"
       }
     }
+  },
+  experience: {
+    title: "Professional Experience",
+    subtitle: "My journey through software development and web technologies",
+    responsibilities: "Key Responsibilities",
+    viewMore: "View full experience on LinkedIn"
+  },
+  education: {
+    title: "Education & Certifications",
+    subtitle: "My academic background and professional certifications in technology and psychology",
+    description: "Description",
+    skills: "Skills Learned",
+    certificates: "Certificates",
+    clickToView: "Click to view details",
+    viewMore: "View full education on LinkedIn"
   },
   skills: {
     title: "Skills",
@@ -120,6 +134,21 @@ const en = {
     active: "Active",
     connect: "Connect"
   },
+  intro: {
+    name: "Matías Chacón",
+    role: "Full Stack Dev",
+    loading: "Loading experience"
+  },
+  projectModal: {
+    closeAria: "Close project dialog",
+    closeTitle: "Close (Esc)",
+    technologies: "Technologies",
+    viewCode: "View Code",
+    viewLive: "Live Demo",
+    noImages: "No images available",
+    previousImage: "Previous image",
+    nextImage: "Next image"
+  },
   theme: {
     light: "Light",
     dark: "Dark",
@@ -128,13 +157,15 @@ const en = {
   footer: { copyRight: "All rights reserved." }
 };
 
-const es = {
+const es: Translations = {
   nav: {
     toggleMenu: "Alternar menú (M)",
     toggleLang: "Cambiar idioma",
     home: "Inicio",
+    experience: "Experiencia",
     projects: "Proyectos",
     skills: "Habilidades",
+    education: "Educación",
     contact: "Contacto"
   },
   header: {
@@ -164,11 +195,6 @@ const es = {
     },
     noDescription: "No hay descripción disponible.",
     defaultTitle: "Proyecto",
-    modal: {
-      closeAria: "Cerrar diálogo del proyecto",
-      closeTitle: "Cerrar (Esc)",
-      technologies: "Tecnologías"
-    },
     items: {
       p1: {
         title: "Portafolio Web - Director de Fotografía",
@@ -195,6 +221,21 @@ const es = {
         description: "Sistema de inventario en Python + SQLite"
       }
     }
+  },
+  experience: {
+    title: "Experiencia Profesional",
+    subtitle: "Mi trayectoria en el desarrollo de software y tecnologías web",
+    responsibilities: "Responsabilidades Principales",
+    viewMore: "Ver experiencia completa en LinkedIn"
+  },
+  education: {
+    title: "Educación y Certificaciones",
+    subtitle: "Mi formación académica y certificaciones profesionales en tecnología y psicología",
+    description: "Descripción",
+    skills: "Habilidades Aprendidas",
+    certificates: "Certificados",
+    clickToView: "Click para ver detalles",
+    viewMore: "Ver educación completa en LinkedIn"
   },
   skills: {
     title: "Habilidades",
@@ -248,6 +289,21 @@ const es = {
     lifetime: "Lifetime",
     active: "Activo",
     connect: "Conectar"
+  },
+  intro: {
+    name: "Matías Chacón",
+    role: "Desarrollador Full Stack",
+    loading: "Cargando experiencia"
+  },
+  projectModal: {
+    closeAria: "Cerrar diálogo del proyecto",
+    closeTitle: "Cerrar (Esc)",
+    technologies: "Tecnologías",
+    viewCode: "Ver Código",
+    viewLive: "Demo en Vivo",
+    noImages: "No hay imágenes disponibles",
+    previousImage: "Imagen anterior",
+    nextImage: "Imagen siguiente"
   },
   theme: {
     light: "Claro",
