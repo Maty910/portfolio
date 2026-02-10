@@ -8,7 +8,7 @@ export function Contact() {
 
   const handleCopyEmail = (e: React.MouseEvent) => {
     e.preventDefault();
-    navigator.clipboard.writeText("matychacong@gmail.com");
+    navigator.clipboard.writeText("contact@mchacon.dev");
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   };
@@ -61,7 +61,7 @@ export function Contact() {
               {/* Botones */}
               <div className="flex gap-2 w-full md:w-auto max-[880px]:flex-row">
                 <a
-                  href="mailto:matychacong@gmail.com"
+                  href="mailto:contact@mchacon.dev"
                   className="flex-1 md:flex-none flex items-center justify-center gap-2 px-5 py-2.5 rounded-xl bg-primary text-text-primary font-bold hover:opacity-90 hover:scale-105 hover:shadow-lg hover:shadow-primary/30 transition-all duration-500 group group/mail btn-shiny no-underline"
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover/mail:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
