@@ -9,8 +9,6 @@ export default defineConfig({
     drop: ["console", "debugger"],
   },
   build: {
-    // Optimizaciones de producción
-    minify: "terser",
     // Code splitting mejorado
     rollupOptions: {
       output: {
