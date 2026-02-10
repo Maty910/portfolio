@@ -1,9 +1,8 @@
-# 🚀 Matías Chacón | Portfolio
+# 🧉 Matías Chacón | Portfolio
 
 [![Deploy Status](https://img.shields.io/badge/status-live-success)](https://mchacon.dev)
 [![Built with React](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite)](https://vitejs.dev)
 
 Portfolio personal de Matías Chacón - Desarrollador Full Stack especializado en React, Node.js y TypeScript.
 
