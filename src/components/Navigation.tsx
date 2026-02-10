@@ -1,5 +1,5 @@
-import { Link } from 'react-scroll';
-import { useLanguage } from '../context/LanguageContext';
+import { Link } from "react-scroll";
+import { useLanguage } from "../hooks/useLanguage";
 
 export function Navigation() {
   const { t } = useLanguage();
@@ -7,14 +7,8 @@ export function Navigation() {
     <nav>
       <ul>
         <li>
-          <Link
-            to="projects"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={500}
-          >
-            {t('nav.projects')}
+          <Link to="projects" spy={true} smooth={true} offset={-70} duration={500}>
+            {t("nav.projects")}
           </Link>
         </li>
         {/* Add other navigation items as needed */}
