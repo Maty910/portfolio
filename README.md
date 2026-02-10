@@ -111,21 +111,41 @@ El archivo `index.html` incluye:
 
 ## 🌐 Deployment
 
-Este proyecto está configurado para deployment en:
+### Cloudflare Pages (Actual)
 
-- **Vercel** (recomendado) - `vercel.json` incluido
-- **Netlify** - `_headers` y `_redirects` incluidos
-- **Cloudflare Pages** - Compatible
-
-Para deployar en Vercel:
+Este proyecto está desplegado en Cloudflare Pages:
 
 ```bash
-# Instalar Vercel CLI
-npm i -g vercel
+# Ver configuración en wrangler.toml y CLOUDFLARE.md
+```
 
-# Deploy
+**Build Settings:**
+- Build command: `pnpm build`
+- Build output: `dist`
+- Node version: `22` (o >=18)
+
+Los deployments son automáticos:
+- Push a `main` → Producción
+- Push a otras ramas → Preview
+
+📖 **Guía completa:** [CLOUDFLARE.md](CLOUDFLARE.md)  
+🐛 **Troubleshooting:** [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md)
+
+### Otros Proveedores
+
+También compatible con:
+
+**Vercel:**
+```bash
+npm i -g vercel
 vercel
 ```
+
+**Netlify:**
+- Build: `pnpm build`
+- Directory: `dist`
+
+---
 
 ## 📱 PWA (Progressive Web App)
 

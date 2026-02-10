@@ -7,19 +7,46 @@ y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
 ## [1.0.1] - 2026-02-09
 
+### � Performance
+
+- Optimizado carga de Google Fonts (async con media query)
+- Agregado preload de recursos críticos en index.html
+- Actualizado vite.config.ts con optimizaciones de build
+- Code splitting mejorado (React, MUI, Icons en chunks separados)
+- Minificación con Terser y drop de console.log en producción
+- Assets pequeños (<4kb) ahora se inline automáticamente
+
+### 📝 SEO
+
+- Mejorado sitemap.xml con secciones del portfolio (#home, #projects, etc.)
+- Agregado soporte para image sitemap (SEO de imágenes)
+- Incluidas todas las secciones del SPA en sitemap
+- Meta imágenes con títulos y captions descriptivos
+
 ### 🐛 Corregido
 
 - Error de incompatibilidad de versión de Node.js en build de Cloudflare Pages
 - Actualizado `engines.node` en package.json de `18.x` a `>=18.0.0`
 - Ahora soporta Node.js 18, 20, 22 y versiones superiores
 
-### 📝 Documentación
+### 📚 Documentación
 
 - Agregado [CLOUDFLARE.md](CLOUDFLARE.md) con guía de deployment en Cloudflare Pages
-- Agregado [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md) con soluciones a problemas comunes
+- Agregado [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md) con soluciones a 10+ problemas
+- Agregado [PERFORMANCE_OPTIMIZATION.md](PERFORMANCE_OPTIMIZATION.md) - Guía completa de optimización
+- Agregado [GOOGLE_SEARCH_CONSOLE.md](GOOGLE_SEARCH_CONSOLE.md) - Setup de GSC paso a paso
+- Agregado [QUICK_START.md](QUICK_START.md) - Guía rápida de 1 hora para mejorar PageSpeed
+- Agregado script de optimización automática de imágenes (scripts/optimize-images.js)
+- Agregado guía de optimización manual de imágenes (scripts/README.md)
 - Agregado `wrangler.toml` para configuración de Cloudflare
 - Actualizado README.md para reflejar deployment actual en Cloudflare Pages
 - Actualizado .nvmrc a Node 22
+
+### 📦 Herramientas
+
+- Script automático para convertir PNG/JPG a WebP con Sharp
+- 3 opciones de optimización de imágenes documentadas
+- Comandos para análisis de bundle y performance
 
 ### 🔄 Cambiado
 
