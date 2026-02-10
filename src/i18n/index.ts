@@ -121,7 +121,7 @@ const en: Translations = {
     alwaysLearning: "Always learning new technologies",
     available: "Available for hire",
     location: "BA, Argentina",
-    email: "matychacong@gmail.com",
+    email: "contact@mchacon.dev",
     openToWork: "Open to work",
     statusLocation: "Status & Location",
     typingWords: ["Full-Stack Developer", "React Enthusiast", "Creative Coder", "Pixel Precision"],
@@ -277,7 +277,7 @@ const es: Translations = {
     alwaysLearning: "Siempre aprendiendo nuevas tecnologías",
     available: "Disponible para contratación",
     location: "BA, Argentina",
-    email: "matychacong@gmail.com",
+    email: "contact@mchacon.dev",
     openToWork: "Abierto a oportunidades",
     statusLocation: "Estado y ubicación",
     typingWords: [
