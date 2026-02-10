@@ -9,7 +9,7 @@ import {
   SiTailwindcss,
   SiTypescript,
 } from "react-icons/si";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 import type { Section } from "../types";
 
 interface HomeProps {
