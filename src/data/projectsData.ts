@@ -3,61 +3,48 @@ export default [
   {
     slug: "p1",
     image: [
-      "./images/DF Portfolio 1.png",
-      "./images/DF Portfolio 2.png",
-      "./images/DF Portfolio 3.png",
-      "./images/DF Portfolio 4.png",
+      "./images/DF Portfolio 1.webp",
+      "./images/DF Portfolio 2.webp",
+      "./images/DF Portfolio 3.webp",
+      "./images/DF Portfolio 4.webp",
     ],
     technologies: ["React", "Tailwind", "TypeScript"],
     githubUrl: "https://github.com/Maty910/Portafolio-Marra",
     liveUrl: "https://joaquinmarraccini.netlify.app/",
-    featured: true
+    featured: true,
   },
   {
     slug: "p2",
-    image: [
-      "./images/SC 1.png",
-      "./images/SC 2.png",
-      "./images/SC 3.png",
-      "./images/SC 4.png"
-    ],
+    image: ["./images/SC 1.webp", "./images/SC 2.webp", "./images/SC 3.webp", "./images/SC 4.webp"],
     technologies: ["React", "Tailwind", "TypeScript"],
     githubUrl: "https://github.com/Maty910/sachito-refrigeracion",
-    liveUrl: "https://sachitoref.netlify.app"
+    liveUrl: "https://sachitoref.netlify.app",
   },
   {
     slug: "p3",
-    image: [
-      "./images/HN 1.png",
-      "./images/HN 2.png",
-      "./images/HN 3.png"
-    ],
+    image: ["./images/HN 1.webp", "./images/HN 2.webp", "./images/HN 3.webp"],
     technologies: ["TypeScript", "Tailwind", "Docker", "Node.js", "Express", "PostgreSQL"],
     githubUrl: "https://github.com/Maty910/proyecto-dominio",
-    liveUrl: "https://hotel-now-poso.onrender.com/"
+    liveUrl: "https://hotel-now-poso.onrender.com/",
   },
   {
     slug: "p4",
-    image: [
-      "./images/TL 1.png",
-      "./images/TL 2.png",
-      "./images/TL 3.png",
-    ],
+    image: ["./images/TL 1.webp", "./images/TL 2.webp", "./images/TL 3.webp"],
     technologies: ["React", "Node.js", "SQLite", "Express"],
     githubUrl: "https://github.com/Maty910/tasklist",
-    liveUrl: "https://tasklistmaty.netlify.app/"
+    liveUrl: "https://tasklistmaty.netlify.app/",
   },
   {
     slug: "p5",
     image: "./images/project3.png",
     technologies: ["React", "CSS"],
     githubUrl: "https://github.com/Maty910/Portafolio-Lu",
-    liveUrl: "https://luciacastro.netlify.app/"
+    liveUrl: "https://luciacastro.netlify.app/",
   },
   {
     slug: "p6",
     image: "./images/project4.png",
     technologies: ["Python", "SQLite"],
-    githubUrl: "https://github.com/Maty910/inventory"
+    githubUrl: "https://github.com/Maty910/inventory",
   },
 ];
