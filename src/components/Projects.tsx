@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { useLanguage } from '../context/LanguageContext';
-import { ProjectModal } from './ProjectModal';
-import { Github, ExternalLink, ArrowRight, FolderOpen } from 'lucide-react';
-import projectsStaticData from '../data/projectsData';
-import type { Project } from '../types';
+import { ArrowRight, ExternalLink, FolderOpen, Github } from "lucide-react";
+import { useState } from "react";
+import projectsStaticData from "../data/projectsData";
+import { useLanguage } from "../hooks/useLanguage";
+import type { Project } from "../types";
+import { ProjectModal } from "./ProjectModal";
 
 interface ProjectsProps {
   onModalChange?: (isOpen: boolean) => void;
@@ -21,8 +21,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
     technologies: p.technologies,
     githubUrl: p.githubUrl,
     liveUrl: p.liveUrl || undefined,
-    title: t(`projects.items.${p.slug}.title`) || `${t('projects.defaultTitle')} ${p.slug}`,
-    description: t(`projects.items.${p.slug}.description`) || t('projects.noDescription'),
+    title: t(`projects.items.${p.slug}.title`) || `${t("projects.defaultTitle")} ${p.slug}`,
+    description: t(`projects.items.${p.slug}.description`) || t("projects.noDescription"),
   }));
 
   // Función helper para obtener la primera imagen
@@ -32,7 +32,7 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
   };
 
   return (
-    <section 
+    <section
       id="projects"
       className="snap-start min-h-screen w-full flex flex-col justify-start relative
                  transition-all duration-300 ease-[cubic-bezier(.2,.9,.2,1)]
@@ -41,29 +41,33 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                  max-[880px]:min-h-[calc(100vh-80px)]"
     >
       {/* Contenedor Principal */}
-      <div className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
-                      max-[880px]:px-4 max-[880px]:py-8">
-        
+      <div
+        className="w-full max-w-[1000px] px-6 md:px-12 py-12 mx-auto flex flex-col justify-center h-full
+                      max-[880px]:px-4 max-[880px]:py-8"
+      >
         {/* Header de Sección */}
         <div className="flex flex-col gap-4 mb-8 animate-in fade-in slide-in-from-bottom-4 duration-700 max-[880px]:mb-6">
           <div className="flex items-center gap-3">
             {/* ✅ FIX: Usa var(--color-on-primary) para texto sobre gradient violeta */}
-            <div className="p-2 rounded-xl gradient-primary-br shadow-lg shadow-primary/20" style={{ color: 'var(--color-on-primary)' }}>
+            <div
+              className="p-2 rounded-xl gradient-primary-br shadow-lg shadow-primary/20"
+              style={{ color: "var(--color-on-primary)" }}
+            >
               <FolderOpen size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight">
-              {t('projects.title')}
+              {t("projects.title")}
             </h2>
           </div>
           <p className="text-text-secondary text-lg max-w-2xl leading-relaxed max-[880px]:text-sm">
-            {t('projects.cta')}
+            {t("projects.cta")}
           </p>
         </div>
 
         {/* Grid de Proyectos */}
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pb-8 animate-in fade-in slide-in-from-bottom-8 duration-700 delay-150">
           {projects.map((project) => (
-            <article 
+            <article
               key={project.id}
               onClick={() => {
                 setSelectedProject(project);
@@ -81,9 +85,9 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
               {/* Imagen con Overlay */}
               <div className="relative h-48 overflow-hidden w-full bg-bg-base">
                 {getFirstImage(project.image) ? (
-                  <img 
-                    src={getFirstImage(project.image)} 
-                    alt={project.title} 
+                  <img
+                    src={getFirstImage(project.image)}
+                    alt={project.title}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
@@ -93,15 +97,18 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                     <FolderOpen className="text-text-muted" size={40} />
                   </div>
                 )}
-                
+
                 {/* Gradiente de superposición para contraste */}
                 <div className="absolute inset-0 bg-gradient-to-t from-bg-base via-transparent to-transparent opacity-60 group-hover:opacity-40 transition-opacity duration-300" />
-                
+
                 {/* Badge "Ver más" al hover (Desktop) */}
                 <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity duration-300 bg-bg-base/40 backdrop-blur-[2px]">
-                  <span className="relative px-4 py-2 rounded-full bg-primary text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 btn-shiny" style={{ color: 'var(--color-on-primary)' }}>
+                  <span
+                    className="relative px-4 py-2 rounded-full bg-primary text-xs font-bold tracking-wide shadow-lg transform translate-y-4 group-hover:translate-y-0 transition-transform duration-300 btn-shiny"
+                    style={{ color: "var(--color-on-primary)" }}
+                  >
                     <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
-                    <span className="relative z-20">{t('projects.viewDetails')}</span>
+                    <span className="relative z-20">{t("projects.viewDetails")}</span>
                   </span>
                 </div>
               </div>
@@ -112,14 +119,14 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                   <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors leading-tight line-clamp-1">
                     {project.title}
                   </h3>
-                  
+
                   {/* Links Rápidos (Iconos) */}
                   <div className="flex gap-2 shrink-0">
                     {project.githubUrl && (
-                      <a 
-                        href={project.githubUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={project.githubUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="p-1.5 rounded-lg text-text-secondary hover:text-text-primary hover:bg-text-primary/10 
                                    /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
                                    focus-visible:outline-none focus-visible:ring-2 
@@ -127,17 +134,17 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                                    focus-visible:ring-offset-bg-base
                                    transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title={t('projects.links.code')}
-                        aria-label={`${t('projects.links.code')} - ${project.title}`}
+                        title={t("projects.links.code")}
+                        aria-label={`${t("projects.links.code")} - ${project.title}`}
                       >
                         <Github size={18} aria-hidden="true" />
                       </a>
                     )}
                     {project.liveUrl && (
-                      <a 
-                        href={project.liveUrl} 
-                        target="_blank" 
-                        rel="noopener noreferrer" 
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="p-1.5 rounded-lg text-text-secondary hover:text-primary hover:bg-text-primary/10 
                                    /* ✅ FIX: Focus keyboard navigation (WCAG 2.4.7) */
                                    focus-visible:outline-none focus-visible:ring-2 
@@ -145,8 +152,8 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                                    focus-visible:ring-offset-bg-base
                                    transition-colors z-10"
                         onClick={(e) => e.stopPropagation()}
-                        title={t('projects.links.live')}
-                        aria-label={`${t('projects.links.live')} - ${project.title}`}
+                        title={t("projects.links.live")}
+                        aria-label={`${t("projects.links.live")} - ${project.title}`}
                       >
                         <ExternalLink size={18} aria-hidden="true" />
                       </a>
@@ -160,9 +167,9 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
 
                 {/* Tech Stack Mini Tags */}
                 <div className="mt-auto pt-3 flex flex-wrap gap-2 max-w-full overflow-hidden">
-                  {project.technologies.slice(0, 3).map(tech => (
-                    <span 
-                      key={tech} 
+                  {project.technologies.slice(0, 3).map((tech) => (
+                    <span
+                      key={tech}
                       className="px-2 py-1 rounded-md bg-primary/10 border border-primary/20 text-primary 
                                  text-[10px] font-medium tracking-wide uppercase
                                  /* ✅ FIX: Prevenir overflow en mobile */
@@ -185,26 +192,25 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
 
         {/* Footer Link - Github */}
         <div className="mt-2 text-center md:text-left animate-in fade-in slide-in-from-bottom-2 duration-700 delay-300">
-          <a 
-            href="https://github.com/Maty910" 
-            target="_blank" 
+          <a
+            href="https://github.com/Maty910"
+            target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 text-text-secondary hover:text-primary transition-colors font-medium text-sm group no-underline px-4 py-2 hover:bg-text-primary/5 rounded-lg -ml-4"
           >
-            {t('projects.viewAll')}
+            {t("projects.viewAll")}
             <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
-
       </div>
 
       {/* Modal Project */}
-      <ProjectModal 
-        project={selectedProject} 
+      <ProjectModal
+        project={selectedProject}
         onClose={() => {
           setSelectedProject(null);
           onModalChange?.(false);
-        }} 
+        }}
       />
     </section>
   );
