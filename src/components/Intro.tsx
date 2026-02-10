@@ -48,7 +48,7 @@ export const Intro: React.FC<IntroProps> = ({ onFinish }) => {
     <div
       className={`
         fixed inset-0 z-[9999] flex flex-col items-center justify-center
-        bg-bg-base overflow-hidden cursor-wait
+        bg-bg-base overflow-hidden
         transition-all duration-700 ease-[cubic-bezier(0.87,0,0.13,1)]
         ${isExiting ? "opacity-0 scale-110 pointer-events-none blur-sm" : "opacity-100 scale-100"}
       `}
