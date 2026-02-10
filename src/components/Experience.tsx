@@ -1,5 +1,5 @@
 import { Briefcase, Building2, Calendar, ExternalLink, MapPin } from "lucide-react";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface ExperienceProps {
   onModalChange?: (isOpen: boolean) => void;
