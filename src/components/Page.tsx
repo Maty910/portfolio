@@ -126,7 +126,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
   const { copied, copy } = useCopyToClipboard(2000);
 
   const handleCopyEmail = () => {
-    copy("matychacong@gmail.com");
+    copy("contact@mchacon.dev");
   };
 
   const renderSidebarContent = () => {
@@ -299,7 +299,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <div className="flex items-center gap-2 overflow-hidden">
                   <Mail size={12} className="text-primary shrink-0" />
                   <span className="text-[10px] text-text-primary font-medium truncate">
-                    matychacong@gmail.com
+                    contact@mchacon.dev
                   </span>
                 </div>
                 {copied ? (
