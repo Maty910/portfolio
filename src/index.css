@@ -1,13 +1,13 @@
 /* 1. Importamos las fuentes de Google: Syne (Impacto Artístico) + Inter (Legibilidad) + JetBrains Mono (Código) */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Syne:wght@400;700;800&family=Inter:wght@300;400;600&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
 /* === CONFIGURACIÓN DE TEMA TAILWIND v4 === */
 @theme {
   /* Tipografías */
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Syne', sans-serif;
-  --font-mono: 'JetBrains Mono', monospace;
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-heading: "Syne", sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
 
   /* Colores mapeados */
   --color-primary: var(--primary-color);
@@ -18,24 +18,85 @@
   --color-text-muted: var(--text-muted);
 
   /* Animaciones */
-  --animate-indicator-in: indicatorIn 260ms cubic-bezier(.2,.9,.2,1);
+  --animate-indicator-in: indicatorIn 260ms cubic-bezier(0.2, 0.9, 0.2, 1);
   --animate-cv-pulse: cvPulse 6.2s infinite ease-in-out;
 
   @keyframes indicatorIn {
-    from { opacity: 0; transform: scaleY(0.6); }
-    to { opacity: 1; transform: scaleY(1); }
+    from {
+      opacity: 0;
+      transform: scaleY(0.6);
+    }
+    to {
+      opacity: 1;
+      transform: scaleY(1);
+    }
   }
 
   @keyframes cvPulse {
-    0%   { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0); }
-    50%  { box-shadow: 0 16px 36px rgba(99,83,242,0.14); transform: translateY(-2px); }
-    100% { box-shadow: 0 8px 18px rgba(99,83,242,0.08); transform: translateY(0); }
+    0% {
+      box-shadow: 0 8px 18px rgba(99, 83, 242, 0.08);
+      transform: translateY(0);
+    }
+    50% {
+      box-shadow: 0 16px 36px rgba(99, 83, 242, 0.14);
+      transform: translateY(-2px);
+    }
+    100% {
+      box-shadow: 0 8px 18px rgba(99, 83, 242, 0.08);
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes expandCircle {
+    0% {
+      transform: scale(0);
+      border-radius: 100%;
+    }
+    100% {
+      transform: scale(50);
+      border-radius: 50%;
+    }
+  }
+
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+
+  @keyframes slideInLeft {
+    from {
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  @keyframes slideInBottom {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
   }
 }
 
 @keyframes marquee {
-  0% { transform: translateX(0); }
-  100% { transform: translateX(-33.33%); }
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.33%);
+  }
 }
 
 .animate-marquee {
@@ -57,7 +118,7 @@
     transition-duration: 0.01ms !important;
     scroll-behavior: auto !important;
   }
-  
+
   /* Mantener transformaciones instantáneas pero sin animación */
   .animate-marquee {
     animation: none !important;
@@ -80,14 +141,14 @@
   --text-secondary: rgba(255, 255, 255, 0.7);
   --text-muted: rgba(255, 255, 255, 0.5);
   --border-color: rgba(83, 91, 242, 0.3);
-  
+
   --gradient: linear-gradient(135deg, #535bf2 0%, #7c3aed 100%);
-  
+
   /* Espaciados */
   --pad: max(20px, 4vmin);
   --pad-sm: max(10px, 2vmin);
   --pad-lg: max(40px, 8vmin);
-  
+
   /* Tamaños Sidebar */
   --sidebar-collapsed: 72px;
   --sidebar-expanded: 240px;
@@ -102,25 +163,25 @@
   color-scheme: light;
 
   /* Violeta un poco más profundo para mejor contraste en fondos claros */
-  --primary-color: #5b4dff; 
-  
+  --primary-color: #5b4dff;
+
   /* Fondo principal: "Soft Platinum" (Gris muy suave, no blanco puro) */
   /* Esto evita que te queme los ojos y se ve más elegante */
   --bg-color: #f3f4f6; /* Slate 100 aprox */
-  
+
   /* Fondos secundarios: Blanco puro para las tarjetas/sidebar */
   /* Al ser blanco sobre gris suave, genera relieve natural */
   --bg-1: #ffffff;
-  --bg-2: #f8fafc; 
-  
+  --bg-2: #f8fafc;
+
   /* Textos oscuros de alto contraste (Slate/Cool Gray) */
-  --text-primary: #0f172a;   /* Slate 900 - Casi negro */
+  --text-primary: #0f172a; /* Slate 900 - Casi negro */
   --text-secondary: #475569; /* Slate 600 - Gris medio solido */
-  --text-muted: #64748b;     /* Slate 500 - Mejorado para WCAG AA (4.5:1 contrast) */
-  
+  --text-muted: #64748b; /* Slate 500 - Mejorado para WCAG AA (4.5:1 contrast) */
+
   /* Surface: Gradiente muy sutil de blanco a gris pálido para el sidebar */
   --surface: linear-gradient(180deg, #ffffff, #f1f5f9);
-  
+
   --gradient: linear-gradient(135deg, #5b4dff 0%, #7c3aed 100%);
 }
 
@@ -138,12 +199,13 @@
     color: var(--text-primary);
     background-color: var(--bg-color);
     /* Transición suave al cambiar de tema */
-    transition: background-color 0.5s ease, color 0.5s ease;
-    
+    transition:
+      background-color 0.5s ease,
+      color 0.5s ease;
+
     /* Fondo complejo */
-    background: 
-      radial-gradient(1200px 600px at 10% 10%, rgba(99,83,242,0.04), transparent),
-      var(--surface);
+    background:
+      radial-gradient(1200px 600px at 10% 10%, rgba(99, 83, 242, 0.04), transparent), var(--surface);
   }
 
   /* Noise Overlay - Opacidad reducida en light mode via mix-blend */
@@ -153,30 +215,32 @@
     background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200' height='200'><filter id='f'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='1' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23f)' opacity='0.8'/></svg>");
   }
 
-  h1, h2, h3 {
+  h1,
+  h2,
+  h3 {
     font-family: var(--font-heading); /* 'Syne', sans-serif */
     @apply font-bold tracking-tight; /* Syne pide peso bold para lucirse */
   }
 
   /* Custom Scrollbars unificados */
-  ::-webkit-scrollbar { 
-    width: 8px; 
+  ::-webkit-scrollbar {
+    width: 8px;
     height: 8px;
   }
-  
+
   @media (max-width: 880px) {
-    ::-webkit-scrollbar { 
-      width: 4px; 
+    ::-webkit-scrollbar {
+      width: 4px;
       height: 4px;
     }
   }
-  
-  ::-webkit-scrollbar-track { 
+
+  ::-webkit-scrollbar-track {
     /* Track más sutil en light mode automáticamente por opacidad */
-    background: rgba(125, 125, 125, 0.05); 
-    border-radius: 10px; 
+    background: rgba(125, 125, 125, 0.05);
+    border-radius: 10px;
   }
-  
+
   ::-webkit-scrollbar-thumb {
     /* Thumb adaptativo */
     background: color-mix(in srgb, var(--primary-color), transparent 60%);
@@ -184,14 +248,14 @@
     border: 2px solid transparent;
     background-clip: padding-box;
   }
-  
+
   @media (max-width: 880px) {
     ::-webkit-scrollbar-thumb {
       border: 1px solid transparent;
     }
   }
-  
-  ::-webkit-scrollbar-thumb:hover { 
+
+  ::-webkit-scrollbar-thumb:hover {
     background: var(--primary-color);
   }
 }
@@ -201,9 +265,12 @@
   @apply w-full h-full flex flex-col items-start;
 }
 
-.page, .page-content {
+.page,
+.page-content {
   @apply flex flex-col items-start w-full h-full;
-  transition: margin-left 320ms cubic-bezier(.2,.9,.2,1), padding 200ms;
+  transition:
+    margin-left 320ms cubic-bezier(0.2, 0.9, 0.2, 1),
+    padding 200ms;
 }
 
 /* Contenedor con scroll snap */
@@ -213,7 +280,7 @@
   scroll-behavior: smooth;
   margin-left: var(--sidebar-collapsed);
   width: calc(100% - var(--sidebar-collapsed));
-  transition: margin-left 320ms cubic-bezier(.2,.9,.2,1);
+  transition: margin-left 320ms cubic-bezier(0.2, 0.9, 0.2, 1);
 }
 
 /* Detección de Sidebar expandido para mover contenido */
@@ -224,33 +291,36 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 
 /* Mobile Layout Shift Override */
 @media (max-width: 880px) {
-  .page, .page-content, .main-content {
+  .page,
+  .page-content,
+  .main-content {
     margin-left: 0 !important;
     width: 100% !important;
     padding-bottom: calc(var(--sidebar-mobile-height) + 1.5rem);
   }
-  
+
   .main-content.scroll-container {
     margin-left: 0 !important;
     width: 100% !important;
     /* height: calc(100vh - var(--sidebar-mobile-height)); */
   }
-  
+
   /* Smooth touch scrolling */
   * {
     -webkit-overflow-scrolling: touch;
   }
-  
+
   /* Better tap highlight */
-  a, button {
+  a,
+  button {
     -webkit-tap-highlight-color: transparent;
   }
-  
+
   /* Asegurar que el contenido no quede detrás del navbar inferior */
   section {
     padding-bottom: env(safe-area-inset-bottom, 0);
   }
-  
+
   /* Evitar bounce scroll en iOS */
   body {
     overscroll-behavior-y: none;
@@ -259,10 +329,10 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 
 /* === SHIMMER / BRILLO REUTILIZABLE PARA BOTONES VIOLETA === */
 @keyframes shimmer {
-  0% { 
+  0% {
     transform: translateX(-100%);
   }
-  100% { 
+  100% {
     transform: translateX(100%);
   }
 }
@@ -280,14 +350,16 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   z-index: 15;
   inset: 0;
   width: 200%;
-  background: repeating-linear-gradient(90deg, 
-    transparent 0%, 
+  background: repeating-linear-gradient(
+    90deg,
+    transparent 0%,
     transparent 40%,
-    rgba(255,255,255,0.08) 45%, 
-    rgba(255,255,255,0.2) 50%, 
-    rgba(255,255,255,0.08) 55%,
+    rgba(255, 255, 255, 0.08) 45%,
+    rgba(255, 255, 255, 0.2) 50%,
+    rgba(255, 255, 255, 0.08) 55%,
     transparent 60%,
-    transparent 100%);
+    transparent 100%
+  );
   transform: translateX(-100%);
   pointer-events: none;
   mix-blend-mode: screen;
@@ -353,7 +425,9 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 /* ✅ Focus rings consistentes para accesibilidad */
 .focus-ring-primary:focus-visible {
   outline: none;
-  box-shadow: 0 0 0 2px var(--primary-color), 0 0 0 4px var(--bg-color);
+  box-shadow:
+    0 0 0 2px var(--primary-color),
+    0 0 0 4px var(--bg-color);
 }
 
 /* ✅ Cards interactivas reutilizables */
@@ -411,36 +485,36 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   --color-postgresql: #336791;
   --color-mongodb: #47a248;
   --color-docker: #2496ed;
-  
+
   /* Tech Stack - Frontend */
   --color-html5: #e34f26;
   --color-css3: #1572b6;
   --color-javascript: #f7df1e;
   --color-figma: #f24e1e;
   --color-canva: #00c4cc;
-  
+
   /* Tech Stack - Backend */
   --color-express: #888888;
   --color-python: #3776ab;
   --color-sqlite: #0f80cc;
   --color-json: #f7df1e;
   --color-solidity: #363636;
-  
+
   /* Tech Stack - Tools */
   --color-git: #f05032;
   --color-github: #6e5494;
   --color-vscode: #007acc;
   --color-postman: #ff6c37;
   --color-netlify: #00c7b7;
-  
+
   /* Social Networks */
   --color-linkedin: #0a66c2;
-  
+
   /* UI Feedback */
   --color-success: #10b981;
   --color-error: #ef4444;
   --color-warning: #f59e0b;
-  
+
   /* Colors on Brand Surfaces */
   --color-on-primary: #ffffff;
 }
@@ -543,7 +617,7 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 }
 
 .theme-transitioning::before {
-  content: '';
+  content: "";
   position: fixed;
   inset: 0;
   z-index: 9999;
@@ -567,11 +641,12 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 .theme-transitioning *,
 .theme-transitioning *::before,
 .theme-transitioning *::after {
-  transition: color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-              background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-              border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-              fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-              stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+  transition:
+    color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
 }
 
 /* Deshabilitar animación de tema si el usuario prefiere movimiento reducido */
@@ -581,7 +656,7 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   ::view-transition-new(root) {
     animation: none !important;
   }
-  
+
   .theme-transitioning,
   .theme-transitioning * {
     transition: none !important;
