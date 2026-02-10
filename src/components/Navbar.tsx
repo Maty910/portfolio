@@ -1,7 +1,7 @@
 import { Briefcase, FolderGit, Globe, GraduationCap, Languages, Moon, Sun } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
 import { createPortal } from "react-dom";
-import { FiDownload, FiHome, FiMail, FiMenu, FiTool } from "react-icons/fi";
+import { FiDownload, FiHome, FiMail, FiTool } from "react-icons/fi";
 import { useLanguage } from "../hooks/useLanguage";
 import { useTheme } from "../hooks/useTheme";
 import type { Section, SetActive } from "../types";
@@ -83,13 +83,13 @@ export const Navbar: React.FC<HeaderProps> = ({
   const isDark = theme === "dark";
   const [langPulse, setLangPulse] = useState(false);
   const [mounted, setMounted] = useState(false);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const [expanded, setExpanded] = useState<boolean>(() => {
     try {
       const v = localStorage.getItem("sidebarExpanded");
       return v ? JSON.parse(v) : false;
     } catch {
-      // Error al leer localStorage, devolver valor por defecto
       return false;
     }
   });
@@ -156,29 +156,13 @@ export const Navbar: React.FC<HeaderProps> = ({
 
   return (
     <>
+      {/* ========== DESKTOP SIDEBAR ========== */}
       <aside
-        className={`
-          z-[999] transition-[width,padding,background,border] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)]
-          
-          /* --- DESKTOP (Sidebar) --- */
-          min-[881px]:fixed min-[881px]:left-0 min-[881px]:top-0 min-[881px]:h-screen
-          min-[881px]:flex min-[881px]:flex-col min-[881px]:justify-between
-          min-[881px]:bg-bg-base/80 min-[881px]:backdrop-blur-xl
-          min-[881px]:border-r min-[881px]:border-text-primary/5
-          /* FIX: Sombra adaptativa */
-          min-[881px]:shadow-[10px_0_30px_rgba(0,0,0,0.05)] dark:min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)]
-          ${expanded ? "min-[881px]:w-[240px] min-[881px]:px-5" : "min-[881px]:w-[88px] min-[881px]:px-4"}
-          min-[881px]:py-6
-
-          /* --- MOBILE (Bottom Dock) --- */
-          max-[880px]:fixed max-[880px]:bottom-6 max-[880px]:left-4 max-[880px]:right-4
-          max-[880px]:h-16 max-[880px]:rounded-2xl
-          max-[880px]:bg-bg-base/90 max-[880px]:backdrop-blur-2xl
-          max-[880px]:border max-[880px]:border-text-primary/10
-          max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.1)] dark:max-[880px]:shadow-[0_10px_30px_rgba(0,0,0,0.4)]
-          max-[880px]:flex max-[880px]:items-center max-[880px]:justify-around
-          max-[880px]:px-2
-        `}
+        className="z-[999] hidden min-[881px]:fixed min-[881px]:left-0 min-[881px]:top-0 min-[881px]:h-screen min-[881px]:flex min-[881px]:flex-col min-[881px]:justify-between min-[881px]:bg-bg-base/80 min-[881px]:backdrop-blur-xl min-[881px]:border-r min-[881px]:border-text-primary/5 min-[881px]:shadow-[10px_0_30px_rgba(0,0,0,0.05)] dark:min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)] transition-[width,padding] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] min-[881px]:py-6"
+        style={{
+          width: expanded ? "240px" : "88px",
+          padding: expanded ? "24px 20px" : "24px 16px",
+        }}
         onMouseEnter={() => setExpanded(true)}
         onMouseLeave={() => setExpanded(false)}
         aria-expanded={expanded}
@@ -187,11 +171,19 @@ export const Navbar: React.FC<HeaderProps> = ({
           className={`hidden min-[881px]:flex flex-col gap-3 items-center w-full transition-all duration-[800ms] ${expanded ? "items-start" : ""}`}
         >
           <button
-            className="bg-transparent border-none w-10 h-10 rounded-xl text-text-primary flex items-center justify-center cursor-pointer text-xl transition-all hover:bg-text-primary/10 hover:text-primary active:scale-90"
+            className="group w-10 h-10 rounded-xl bg-transparent border-none flex flex-col items-end justify-center gap-[5px] hover:bg-text-primary/10 transition-colors cursor-pointer"
             onClick={() => setExpanded((v) => !v)}
             title={t("nav.toggleMenu")}
           >
-            <FiMenu />
+            <span
+              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-4"}`}
+            />
+            <span
+              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-3" : "w-5"}`}
+            />
+            <span
+              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-3"}`}
+            />
           </button>
 
           <div
@@ -210,41 +202,42 @@ export const Navbar: React.FC<HeaderProps> = ({
           </div>
         </div>
 
-        <nav className="flex-1 flex items-center w-full max-[880px]:h-full">
-          <ul className="w-full list-none p-0 m-0 flex flex-col gap-3 max-[880px]:flex-row max-[880px]:justify-between max-[880px]:items-center max-[880px]:w-full max-[880px]:h-full">
+        <nav className="flex-1 flex items-center w-full">
+          <ul className="w-full list-none p-0 m-0 flex flex-col gap-3">
             {nav.map(({ id, label, Icon }) => {
               const isActive = activeSection === id;
               return (
-                <li
-                  key={id}
-                  className="relative group w-full max-[880px]:w-auto max-[880px]:h-full max-[880px]:flex-1"
-                >
+                <li key={id} className="relative group w-full">
                   <button
                     onClick={() => scrollToSection(id as Section)}
-                    className={`relative w-full flex items-center p-2 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden min-[881px]:hover:bg-text-primary/5 min-[881px]:hover:border-text-primary/5 ${isActive ? "min-[881px]:bg-primary/10 min-[881px]:border-primary/20" : ""} ${expanded ? "min-[881px]:gap-3" : "min-[881px]:gap-0 min-[881px]:justify-center"} 
-                    /* ✅ FIX: Touch target 44x44px mínimo (WCAG) */
-                    max-[880px]:flex-col max-[880px]:justify-center max-[880px]:gap-1 
-                    max-[880px]:h-full max-[880px]:p-1.5 max-[880px]:rounded-lg 
-                    max-[880px]:min-h-[44px]`}
+                    className={`relative w-full flex items-center p-2 rounded-xl cursor-pointer border border-transparent transition-all duration-300 ease-out outline-none overflow-hidden hover:bg-text-primary/5 hover:border-text-primary/5 ${
+                      isActive ? "bg-primary/10 border-primary/20" : ""
+                    } ${expanded ? "gap-3" : "gap-0 justify-center"}`}
                     title={label}
                   >
                     {isActive && (
-                      <>
-                        <span className="max-[880px]:hidden absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_rgba(99,83,242,0.4)]" />
-                        {/* ✅ FIX: Indicador más visible en mobile */}
-                        <span className="min-[881px]:hidden absolute top-1 w-1.5 h-1.5 bg-primary rounded-full shadow-[0_0_8px_rgba(99,83,242,0.4)]" />
-                      </>
+                      <span className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-6 bg-primary rounded-r-full shadow-[0_0_10px_rgba(99,83,242,0.4)]" />
                     )}
-                    {/* ✅ FIX: Iconos estandarizados con contenedor de tamaño fijo */}
                     <div className="flex items-center justify-center w-5 h-5 shrink-0">
                       <Icon
-                        className={`w-5 h-5 transition-all duration-300 ${isActive ? "text-primary scale-110" : "text-text-secondary group-hover:text-text-primary"}`}
+                        className={`w-5 h-5 transition-all duration-300 ${
+                          isActive
+                            ? "text-primary scale-110"
+                            : "text-text-secondary group-hover:text-text-primary"
+                        }`}
                         style={{ strokeWidth: 2 }}
                       />
                     </div>
-                    {/* ✅ FIX: Texto legible en mobile */}
                     <span
-                      className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${isActive ? "text-text-primary font-semibold" : "text-text-secondary group-hover:text-text-primary"} ${!expanded ? "min-[881px]:opacity-0 min-[881px]:w-0 min-[881px]:translate-x-4" : "min-[881px]:opacity-100 min-[881px]:w-auto min-[881px]:translate-x-0"} max-[880px]:text-[10px] max-[880px]:font-medium max-[880px]:leading-tight`}
+                      className={`font-medium text-sm transition-all duration-300 whitespace-nowrap ${
+                        isActive
+                          ? "text-text-primary font-semibold"
+                          : "text-text-secondary group-hover:text-text-primary"
+                      } ${
+                        !expanded
+                          ? "opacity-0 w-0 translate-x-4"
+                          : "opacity-100 w-auto translate-x-0"
+                      }`}
                     >
                       {label}
                     </span>
@@ -308,34 +301,204 @@ export const Navbar: React.FC<HeaderProps> = ({
         </div>
       </aside>
 
-      <style>{`@keyframes shimmer { 100% { transform: translateX(100%); } }`}</style>
-
+      {/* ========== MOBILE MENU BUTTON ========== */}
       {mounted &&
-        !hasModalOpen &&
-        activeSection !== "home" &&
         createPortal(
-          <div className="lg:hidden fixed top-5 right-5 z-[100000] flex items-center gap-3 animate-in fade-in slide-in-from-top-4 duration-700 delay-200">
-            <div className="flex items-center p-1.5 rounded-full bg-bg-base/90 backdrop-blur-xl border border-text-primary/10 shadow-xl gap-1">
-              <button
-                onClick={() => setTheme(isDark ? "light" : "dark")}
-                className="w-10 h-10 rounded-full flex items-center justify-center text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90"
-                title={t("theme.toggle")}
-              >
-                <AnimatedThemeIcon isDark={isDark} size={18} />
-              </button>
-              <div className="w-[1px] h-5 bg-text-primary/10"></div>
-              <button
-                onClick={toggleLanguage}
-                className={`h-10 pl-2 pr-3 rounded-full flex items-center gap-1.5 text-text-secondary hover:text-text-primary hover:bg-text-primary/10 transition-all active:scale-90 ${langPulse ? "animate-pulse" : ""}`}
-                title={t("nav.toggleLang")}
-              >
-                <AnimatedLangIcon lang={lang} size={16} />
-                <span className="text-[10px] font-bold tracking-wide">{lang.toUpperCase()}</span>
-              </button>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className={`min-[881px]:hidden fixed top-6 right-6 z-[10000] w-14 h-14 rounded-2xl backdrop-blur-xl border shadow-lg flex items-center justify-center transition-all duration-500 ease-[cubic-bezier(0.19,1,0.22,1)] animate-in fade-in slide-in-from-top-4 ${
+              mobileMenuOpen
+                ? "bg-transparent border-transparent text-text-primary scale-110"
+                : "bg-bg-base/80 border-text-primary/10 text-text-primary hover:scale-105 active:scale-95"
+            }`}
+            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            style={{ top: "calc(24px + env(safe-area-inset-top, 0px))" }}
+          >
+            {/* Icons container */}
+            <div className="relative w-6 h-6 flex items-center justify-center">
+              <span
+                className={`absolute h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${mobileMenuOpen ? "w-6 rotate-45" : "w-6 -translate-y-[7px]"}`}
+              />
+              <span
+                className={`absolute h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${mobileMenuOpen ? "w-0 opacity-0" : "w-4 translate-x-1"}`}
+              />
+              <span
+                className={`absolute h-0.5 bg-current rounded-full transition-all duration-300 ease-out ${mobileMenuOpen ? "w-6 -rotate-45" : "w-3 translate-x-1.5 translate-y-[7px]"}`}
+              />
+            </div>
+          </button>,
+          document.body
+        )}
+
+      {/* ========== MOBILE FULLSCREEN OVERLAY MENU ========== */}
+      {mounted &&
+        mobileMenuOpen &&
+        createPortal(
+          <div className="min-[881px]:hidden fixed inset-0 z-[9999] overflow-hidden">
+            {/* Background - Consistent Glassmorphism with Reveal Animation */}
+            <div
+              className={`absolute inset-0 bg-bg-base/98 backdrop-blur-3xl transition-opacity duration-300 ${mobileMenuOpen ? "opacity-100" : "opacity-0"}`}
+            />
+
+            {/* Circular Reveal Effect */}
+            <div
+              className="absolute top-6 right-6 w-14 h-14 bg-bg-base rounded-full animate-[expandCircle_0.6s_ease-out_forwards] pointer-events-none"
+              style={{ top: "calc(24px + env(safe-area-inset-top, 0px))" }}
+            />
+
+            {/* Contenido del Menu */}
+            <div
+              className="relative h-full flex flex-col px-8 pt-8 pb-10 opacity-0 animate-[fadeIn_0.3s_ease-out_0.2s_forwards]"
+              style={{
+                paddingTop: "calc(32px + env(safe-area-inset-top, 0px))",
+                paddingBottom: "calc(40px + env(safe-area-inset-bottom, 0px))",
+              }}
+            >
+              {/* Header */}
+              <div className="flex items-center justify-between mb-12">
+                <div className="flex flex-col opacity-0 animate-[slideInLeft_0.5s_ease-out_0.1s_forwards]">
+                  <h2 className="text-2xl font-bold font-heading text-text-primary">
+                    {t("header.displayName")}
+                  </h2>
+                  <p className="text-xs text-text-secondary uppercase tracking-widest">
+                    {t("header.name")}
+                  </p>
+                </div>
+              </div>
+
+              {/* Navigation Items - Consistent Typography */}
+              <nav className="flex-1 flex flex-col justify-center gap-4">
+                {nav.map(({ id, label, Icon }, index) => {
+                  const isActive = activeSection === id;
+                  const delay = index * 50 + 200;
+
+                  return (
+                    <button
+                      key={id}
+                      onClick={() => {
+                        scrollToSection(id as Section);
+                        setMobileMenuOpen(false);
+                      }}
+                      className={`group flex items-center gap-5 text-left p-2 rounded-xl transition-all duration-300 opacity-0 animate-[slideInBottom_0.5s_ease-out_forwards] ${
+                        isActive ? "" : "hover:translate-x-2"
+                      }`}
+                      style={{
+                        animationDelay: `${delay}ms`,
+                      }}
+                    >
+                      <div
+                        className={`p-3 rounded-2xl transition-all duration-300 ${
+                          isActive
+                            ? "bg-primary text-white shadow-lg shadow-primary/30 scale-110"
+                            : "bg-text-primary/5 text-text-secondary group-hover:bg-text-primary/10 group-hover:text-text-primary"
+                        }`}
+                      >
+                        <Icon size={22} strokeWidth={2} />
+                      </div>
+                      <span
+                        className={`text-3xl font-bold font-heading tracking-tight transition-colors ${
+                          isActive
+                            ? "text-text-primary"
+                            : "text-text-secondary group-hover:text-text-primary"
+                        }`}
+                      >
+                        {label}
+                      </span>
+                    </button>
+                  );
+                })}
+              </nav>
+
+              {/* Bottom Actions - Consistent Cards */}
+              <div className="grid grid-cols-2 gap-3 animate-in slide-in-from-bottom-8 fade-in duration-500 delay-200">
+                {/* CV Button */}
+                <a
+                  href="/CV/CV Matias Chacon.pdf"
+                  download
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="col-span-2 flex items-center justify-between p-4 rounded-xl bg-text-primary/5 hover:bg-text-primary/10 transition-colors group no-underline border border-text-primary/5"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center text-primary">
+                      <FiDownload size={20} />
+                    </div>
+                    <div className="flex flex-col text-left">
+                      <span className="text-sm font-bold text-text-primary">
+                        {t("header.downloadCv")}
+                      </span>
+                      <span className="text-[10px] text-text-secondary uppercase tracking-wider">
+                        PDF
+                      </span>
+                    </div>
+                  </div>
+                </a>
+
+                {/* Theme Toggle */}
+                <button
+                  onClick={(e) => {
+                    const rect = e.currentTarget.getBoundingClientRect();
+                    setTheme(
+                      isDark ? "light" : "dark",
+                      rect.left + rect.width / 2,
+                      rect.top + rect.height / 2
+                    );
+                  }}
+                  className="flex flex-row items-center justify-center gap-2 p-4 rounded-xl bg-text-primary/5 hover:bg-text-primary/10 transition-colors border border-text-primary/5 active:scale-95"
+                >
+                  <AnimatedThemeIcon isDark={isDark} size={20} />
+                  <span className="text-xs font-bold text-text-primary">
+                    {isDark ? "Dark" : "Light"}
+                  </span>
+                </button>
+
+                {/* Language Toggle */}
+                <button
+                  onClick={() => {
+                    toggleLanguage();
+                    setLangPulse(true);
+                  }}
+                  className="flex flex-row items-center justify-center gap-2 p-4 rounded-xl bg-text-primary/5 hover:bg-text-primary/10 transition-colors border border-text-primary/5 active:scale-95"
+                >
+                  <AnimatedLangIcon lang={lang} size={20} />
+                  <span className="text-xs font-bold text-text-primary uppercase">{lang}</span>
+                </button>
+              </div>
             </div>
           </div>,
           document.body
         )}
+
+      <style>{`
+        @keyframes shimmer {
+          100% { transform: translateX(200%); }
+        }
+        
+        @keyframes float {
+          0%, 100% {
+            transform: translate(0, 0) rotate(0deg);
+          }
+          25% {
+            transform: translate(10px, -10px) rotate(5deg);
+          }
+          50% {
+            transform: translate(-5px, 10px) rotate(-5deg);
+          }
+          75% {
+            transform: translate(-10px, -5px) rotate(3deg);
+          }
+        }
+        
+        @keyframes bounce {
+          0%, 100% {
+            transform: translateY(0);
+          }
+          50% {
+            transform: translateY(-10px);
+          }
+        }
+      `}</style>
+
+      {/* Desktop floating controls - REMOVES as per request */}
     </>
   );
 };
