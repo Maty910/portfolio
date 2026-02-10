@@ -9,7 +9,6 @@ import type { Section, SetActive } from "../types";
 type HeaderProps = {
   activeSection: Section;
   setActiveSection: SetActive;
-  hasModalOpen: boolean;
 };
 
 // --- 1. COMPONENTE ANIMADO TEMA (BOUNCY POP) ---
@@ -73,15 +72,10 @@ const AnimatedLangIcon = ({ lang, size = 20 }: { lang: "es" | "en"; size?: numbe
   </div>
 );
 
-export const Navbar: React.FC<HeaderProps> = ({
-  activeSection,
-  setActiveSection,
-  hasModalOpen,
-}) => {
+export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection }) => {
   const { lang, toggleLanguage, t } = useLanguage();
   const { theme, setTheme } = useTheme();
   const isDark = theme === "dark";
-  const [langPulse, setLangPulse] = useState(false);
   const [mounted, setMounted] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -95,9 +89,7 @@ export const Navbar: React.FC<HeaderProps> = ({
   });
 
   useEffect(() => {
-    setLangPulse(true);
-    const id = setTimeout(() => setLangPulse(false), 700);
-    return () => clearTimeout(id);
+    // Language change effect
   }, [lang]);
   useEffect(() => {
     setMounted(true);
@@ -453,10 +445,7 @@ export const Navbar: React.FC<HeaderProps> = ({
 
                 {/* Language Toggle */}
                 <button
-                  onClick={() => {
-                    toggleLanguage();
-                    setLangPulse(true);
-                  }}
+                  onClick={toggleLanguage}
                   className="flex flex-row items-center justify-center gap-2 p-4 rounded-xl bg-text-primary/5 hover:bg-text-primary/10 transition-colors border border-text-primary/5 active:scale-95"
                 >
                   <AnimatedLangIcon lang={lang} size={20} />

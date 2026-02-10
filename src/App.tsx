@@ -1,27 +1,27 @@
-import { useState, useEffect } from 'react'
-import { Page } from './components/Page'
-import { Navbar } from './components/Navbar'
-import { Home } from './components/Home'
-import { Experience } from './components/Experience'
-import { Projects } from './components/Projects'
-import { Skills } from './components/Skills'
-import { Education } from './components/Education'
-import { Contact } from './components/Contact'
-import { LanguageProvider } from './context/LanguageContext'
-import { Footer } from './components/Footer'
-import type { Section } from './types'
-import { Intro } from './components/Intro'
+import { useEffect, useState } from "react";
+import { Contact } from "./components/Contact";
+import { Education } from "./components/Education";
+import { Experience } from "./components/Experience";
+import { Footer } from "./components/Footer";
+import { Home } from "./components/Home";
+import { Intro } from "./components/Intro";
+import { Navbar } from "./components/Navbar";
+import { Page } from "./components/Page";
+import { Projects } from "./components/Projects";
+import { Skills } from "./components/Skills";
+import { LanguageProvider } from "./context/LanguageContext";
+import type { Section } from "./types";
 
 function App() {
-  const [activeSection, setActiveSection] = useState<Section>('home');
+  const [activeSection, setActiveSection] = useState<Section>("home");
   const [hasModalOpen, setHasModalOpen] = useState(false);
 
   // Observar qué sección está visible para actualizar la navbar
   useEffect(() => {
     const observerOptions = {
       root: null,
-      rootMargin: '-50% 0px -50% 0px',
-      threshold: 0
+      rootMargin: "-50% 0px -50% 0px",
+      threshold: 0,
     };
 
     const observerCallback = (entries: IntersectionObserverEntry[]) => {
@@ -38,7 +38,7 @@ function App() {
     const observer = new IntersectionObserver(observerCallback, observerOptions);
 
     // Observar todas las secciones
-    const sections = document.querySelectorAll('section[id]');
+    const sections = document.querySelectorAll("section[id]");
     sections.forEach((section) => observer.observe(section));
 
     return () => {
@@ -49,9 +49,9 @@ function App() {
   return (
     <LanguageProvider>
       {/* Pasamos activeSection a Page */}
-        <Intro onFinish={() => {}} />
+      <Intro onFinish={() => {}} />
       <Page activeSection={activeSection}>
-        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} hasModalOpen={hasModalOpen} />
+        <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
         <main className="main-content scroll-container">
           <Home setActiveSection={setActiveSection} />
           <Experience onModalChange={setHasModalOpen} />
