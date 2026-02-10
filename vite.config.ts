@@ -5,15 +5,12 @@ import { defineConfig } from "vite";
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
+  esbuild: {
+    drop: ["console", "debugger"],
+  },
   build: {
     // Optimizaciones de producción
     minify: "terser",
-    /*terserOptions: {
-      compress: {
-        drop_console: true,
-        drop_debugger: true,
-      },
-    },*/
     // Code splitting mejorado
     rollupOptions: {
       output: {
