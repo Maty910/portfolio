@@ -1,25 +1,24 @@
-# 🚀 Matías Chacón | Portfolio
+# 🧉 Matías Chacón | Portfolio
 
 [![Deploy Status](https://img.shields.io/badge/status-live-success)](https://mchacon.dev)
 [![Built with React](https://img.shields.io/badge/React-19-61dafb?logo=react)](https://react.dev)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5-3178c6?logo=typescript)](https://www.typescriptlang.org/)
-[![Vite](https://img.shields.io/badge/Vite-7-646cff?logo=vite)](https://vitejs.dev)
 
 Portfolio personal de Matías Chacón - Desarrollador Full Stack especializado en React, Node.js y TypeScript.
 
-🌐 **[Ver en vivo](https://mchacon.dev)**
+**[Ver en vivo](https://mchacon.dev)**
 
-## ✨ Características
+## Características
 
-- 🎨 Diseño moderno y responsivo con Tailwind CSS
-- 🌙 Modo oscuro/claro con transiciones suaves
-- 🌍 Soporte multi-idioma (ES/EN)
-- ⚡ Optimizado para performance y SEO
-- 📱 Progressive Web App (PWA) instalable
-- 🔒 Headers de seguridad configurados
-- 📊 Structured data (Schema.org) para mejor indexación
+- Diseño moderno y responsivo con Tailwind CSS
+- Modo oscuro/claro con transiciones suaves
+- Soporte multi-idioma (ES/EN)
+- Optimizado para performance y SEO
+- Progressive Web App (PWA) instalable
+- Headers de seguridad configurados
+- Structured data (Schema.org) para mejor indexación
 
-## 🛠️ Tecnologías
+## Tecnologías
 
 - **Frontend:** React 19, TypeScript 5
 - **UI:** Material-UI, Tailwind CSS 4, Lucide React
@@ -28,7 +27,7 @@ Portfolio personal de Matías Chacón - Desarrollador Full Stack especializado e
 - **Estado:** React Context API
 - **Animaciones:** CSS Transitions, View Transitions API
 
-## 🚀 Inicio Rápido
+## Inicio Rápido
 
 ### Prerequisitos
 
@@ -50,7 +49,7 @@ pnpm dev
 
 El sitio estará disponible en `http://localhost:5173`
 
-## 📜 Scripts Disponibles
+## Scripts Disponibles
 
 ```bash
 pnpm dev          # Iniciar servidor de desarrollo
@@ -63,7 +62,7 @@ pnpm format       # Formatear código con Prettier
 pnpm clean        # Limpiar archivos de build y caché
 ```
 
-## 📁 Estructura del Proyecto
+## Estructura del Proyecto
 
 ```
 portfolio/
@@ -87,7 +86,7 @@ portfolio/
 └── vercel.json         # Configuración de deployment
 ```
 
-## 🔧 Configuración
+## Configuración
 
 ### Variables de Entorno
 
@@ -109,7 +108,7 @@ El archivo `index.html` incluye:
 - Meta tags para SEO avanzado
 - Icons y manifest para PWA
 
-## 🌐 Deployment
+## Deployment
 
 ### Cloudflare Pages (Actual)
 
@@ -130,8 +129,8 @@ Los deployments son automáticos:
 - Push a `main` → Producción
 - Push a otras ramas → Preview
 
-📖 **Guía completa:** [CLOUDFLARE.md](CLOUDFLARE.md)  
-🐛 **Troubleshooting:** [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md)
+**Guía completa:** [CLOUDFLARE.md](CLOUDFLARE.md)  
+**Troubleshooting:** [CLOUDFLARE_TROUBLESHOOTING.md](CLOUDFLARE_TROUBLESHOOTING.md)
 
 ### Otros Proveedores
 
@@ -151,7 +150,7 @@ vercel
 
 ---
 
-## 📱 PWA (Progressive Web App)
+## PWA (Progressive Web App)
 
 El sitio es instalable como aplicación web progresiva:
 
@@ -160,7 +159,7 @@ El sitio es instalable como aplicación web progresiva:
 - Icons optimizados
 - Theme colors adaptables
 
-## 🔒 Seguridad
+## Seguridad
 
 Headers de seguridad configurados:
 
@@ -170,7 +169,7 @@ Headers de seguridad configurados:
 - `Referrer-Policy: strict-origin-when-cross-origin`
 - `Content-Security-Policy` para mayor protección
 
-## 📊 Performance
+## Performance
 
 - Lazy loading de imágenes
 - Code splitting automático con Vite
@@ -178,15 +177,15 @@ Headers de seguridad configurados:
 - Caché optimizado para assets estáticos
 - Lighthouse Score: 95+ en todas las métricas
 
-## 🤝 Contribuciones
+## Contribuciones
 
 Este es un proyecto personal, pero sugerencias y feedback son bienvenidos.
 
-## 📄 Licencia
+## Licencia
 
 Copyright © 2026 Matías Chacón. Todos los derechos reservados.
 
-## 📧 Contacto
+## Contacto
 
 - **Portfolio:** [mchacon.dev](https://mchacon.dev)
 - **GitHub:** [@Maty910](https://github.com/Maty910)
@@ -194,26 +193,4 @@ Copyright © 2026 Matías Chacón. Todos los derechos reservados.
 
 ---
 
-Hecho con ❤️ por Matías Chacón
-{
-files: ['**/*.{ts,tsx}'],
-extends: [
-// Other configs...
-// Enable lint rules for React
-reactX.configs['recommended-typescript'],
-// Enable lint rules for React DOM
-reactDom.configs.recommended,
-],
-languageOptions: {
-parserOptions: {
-project: ['./tsconfig.node.json', './tsconfig.app.json'],
-tsconfigRootDir: import.meta.dirname,
-},
-// other options...
-},
-},
-])
-
-```
-
-```
+Hecho con ❤️ y 🧉 por Matías Chacón
