@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import { useState } from "react";
 import { createPortal } from "react-dom";
-import { useLanguage } from "../context/LanguageContext";
+import { useLanguage } from "../hooks/useLanguage";
 
 interface EducationProps {
   onModalChange?: (isOpen: boolean) => void;
