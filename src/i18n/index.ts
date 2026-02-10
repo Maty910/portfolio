@@ -1,5 +1,5 @@
 // Consolidated translation file for English and Spanish
-import type { Translations } from './types';
+import type { Translations } from "./types";
 
 const en: Translations = {
   nav: {
@@ -10,23 +10,23 @@ const en: Translations = {
     projects: "Projects",
     skills: "Skills",
     education: "Education",
-    contact: "Contact"
+    contact: "Contact",
   },
   header: {
     name: "Full-Stack Web Developer",
     displayName: "Matías Chacón",
-    bio: "I’m Matías Chacón — a passionate Full-Stack Web Developer focused on building modern, maintainable user interfaces and reliable backend services. I work primarily with React and Node.js, enjoy creating responsive, accessible apps, and I love turning ideas into production-ready projects (from personal portfolios to task & inventory systems).",
+    bio: "I'm Matías Chacón — a Full-Stack Web Developer currently working at ForIT Software Factory, specializing in building modern, scalable applications with Clean Architecture and TDD principles. I work primarily with React, TypeScript and Node.js, with expertise in domain modeling, code review, and collaborative development. Passionate about delivering maintainable, production-ready solutions while continuously learning new technologies and best practices.",
     downloadCv: "Download CV",
     headlinePrefix: "development with",
     headlineHighlight: "purpose",
-    available: "Available for new opportunities"
+    available: "Available for new opportunities",
   },
   alt: {
     profile: "Profile",
-    logo: "Logo"
+    logo: "Logo",
   },
   home: {
-    viewProjects: "View Projects"
+    viewProjects: "View Projects",
   },
   projects: {
     title: "Projects",
@@ -35,42 +35,42 @@ const en: Translations = {
     viewDetails: "View Details",
     links: {
       code: "View Code",
-      live: "Live Demo"
+      live: "Live Demo",
     },
     noDescription: "No description available.",
     defaultTitle: "Project",
     items: {
       p1: {
         title: "Portfolio Website - Director of Photography",
-        description: "Full-stack portfolio application built with React"
+        description: "Full-stack portfolio application built with React",
       },
       p2: {
         title: "Sachito Refrigeration Website",
-        description: "Responsive website for a refrigeration services technician"
+        description: "Responsive website for a refrigeration services technician",
       },
       p3: {
         title: "Hotel Now Website",
-        description: "Landing page for a hotel booking service"
+        description: "Landing page for a hotel booking service",
       },
       p4: {
         title: "Task Management App",
-        description: "Tasks management tool connected to SQLite"
+        description: "Tasks management tool connected to SQLite",
       },
       p5: {
         title: "Community Manager Portfolio",
-        description: "[WIP] Portfolio for a community manager showcasing social media skills"
+        description: "[WIP] Portfolio for a community manager showcasing social media skills",
       },
       p6: {
         title: "Inventory Management System",
-        description: "Inventory system in Python + SQLite"
-      }
-    }
+        description: "Inventory system in Python + SQLite",
+      },
+    },
   },
   experience: {
     title: "Professional Experience",
     subtitle: "My journey through software development and web technologies",
     responsibilities: "Key Responsibilities",
-    viewMore: "View full experience on LinkedIn"
+    viewMore: "View full experience on LinkedIn",
   },
   education: {
     title: "Education & Certifications",
@@ -79,7 +79,7 @@ const en: Translations = {
     skills: "Skills Learned",
     certificates: "Certificates",
     clickToView: "Click to view details",
-    viewMore: "View full education on LinkedIn"
+    viewMore: "View full education on LinkedIn",
   },
   skills: {
     title: "Skills",
@@ -92,13 +92,13 @@ const en: Translations = {
       problemSolving: "Problem Solving",
       teamWork: "Team Work",
       fastLearning: "Fast Learning",
-      adaptability: "Adaptability"
+      adaptability: "Adaptability",
     },
     categories: {
-      frontend_ui: { title: 'Frontend & UI' },
-      backend_data: { title: 'Backend & Data' },
-      tools_devops: { title: 'Tools & DevOps' }
-    }
+      frontend_ui: { title: "Frontend & UI" },
+      backend_data: { title: "Backend & Data" },
+      tools_devops: { title: "Tools & DevOps" },
+    },
   },
   contact: {
     title: "Contact",
@@ -111,7 +111,7 @@ const en: Translations = {
     linkedinTitle: "LinkedIn",
     githubTitle: "GitHub",
     linkedin: "Connect professionally",
-    github: "View my code & projects"
+    github: "View my code & projects",
   },
   page: {
     contribs: "Contribs.",
@@ -124,7 +124,7 @@ const en: Translations = {
     email: "matychacong@gmail.com",
     openToWork: "Open to work",
     statusLocation: "Status & Location",
-    typingWords: ["Full-Stack Developer","React Enthusiast","Creative Coder","Pixel Precision"],
+    typingWords: ["Full-Stack Developer", "React Enthusiast", "Creative Coder", "Pixel Precision"],
     timezoneSuffix: "AR",
     years: "Years",
     projects: "Projects",
@@ -132,12 +132,12 @@ const en: Translations = {
     mainStack: "Main Stack",
     lifetime: "Lifetime",
     active: "Active",
-    connect: "Connect"
+    connect: "Connect",
   },
   intro: {
     name: "Matías Chacón",
     role: "Full Stack Dev",
-    loading: "Loading experience"
+    loading: "Loading experience",
   },
   projectModal: {
     closeAria: "Close project dialog",
@@ -147,14 +147,14 @@ const en: Translations = {
     viewLive: "Live Demo",
     noImages: "No images available",
     previousImage: "Previous image",
-    nextImage: "Next image"
+    nextImage: "Next image",
   },
   theme: {
     light: "Light",
     dark: "Dark",
-    toggle: "Toggle theme"
+    toggle: "Toggle theme",
   },
-  footer: { copyRight: "All rights reserved." }
+  footer: { copyRight: "All rights reserved." },
 };
 
 const es: Translations = {
@@ -166,23 +166,23 @@ const es: Translations = {
     projects: "Proyectos",
     skills: "Habilidades",
     education: "Educación",
-    contact: "Contacto"
+    contact: "Contacto",
   },
   header: {
     name: "Desarrollador Web Full-Stack",
     displayName: "Matías Chacón",
-    bio: "Soy Matías Chacón — Desarrollador Full-Stack apasionado por crear interfaces modernas y servicios backend sólidos. Trabajo principalmente con React y Node.js, me enfoco en aplicaciones responsivas y accesibles, y disfruto convertir ideas en proyectos listos para producción (desde portfolios hasta sistemas de gestión de tareas e inventarios).",
+    bio: "Soy Matías Chacón — Desarrollador Full-Stack trabajando actualmente en ForIT Software Factory, especializado en construir aplicaciones modernas y escalables aplicando Clean Architecture y TDD. Trabajo principalmente con React, TypeScript y Node.js, con experiencia en modelado de dominio, revisión de código y desarrollo colaborativo. Apasionado por entregar soluciones mantenibles y listas para producción mientras aprendo continuamente nuevas tecnologías y mejores prácticas.",
     downloadCv: "Descargar CV",
     headlinePrefix: "desarrollo con",
     headlineHighlight: "criterio",
-    available: "Disponible para nuevas oportunidades"
+    available: "Disponible para nuevas oportunidades",
   },
   alt: {
     profile: "Perfil",
-    logo: "Logo Mati"
+    logo: "Logo Mati",
   },
   home: {
-    viewProjects: "Ver Proyectos"
+    viewProjects: "Ver Proyectos",
   },
   projects: {
     title: "Proyectos",
@@ -191,42 +191,42 @@ const es: Translations = {
     viewDetails: "Ver más",
     links: {
       code: "Ver Código",
-      live: "Demo en Vivo"
+      live: "Demo en Vivo",
     },
     noDescription: "No hay descripción disponible.",
     defaultTitle: "Proyecto",
     items: {
       p1: {
         title: "Portafolio Web - Director de Fotografía",
-        description: "Aplicación portfolio full-stack construida con React"
+        description: "Aplicación portfolio full-stack construida con React",
       },
       p2: {
         title: "Sitio Web Sachito Refrigeración",
-        description: "Sitio web responsivo para un técnico en refrigeración."
+        description: "Sitio web responsivo para un técnico en refrigeración.",
       },
       p3: {
         title: "Sitio Web Hotel Now",
-        description: "Página web para un servicio de reservas hoteleras"
+        description: "Página web para un servicio de reservas hoteleras",
       },
       p4: {
         title: "App Gestión de Tareas",
-        description: "Herramienta de gestión de tareas conectada a SQLite"
+        description: "Herramienta de gestión de tareas conectada a SQLite",
       },
       p5: {
         title: "Portafolio Web - Community Manager",
-        description: "[WIP] Portfolio para community manager mostrando habilidades en redes"
+        description: "[WIP] Portfolio para community manager mostrando habilidades en redes",
       },
       p6: {
         title: "Sistema de Inventario",
-        description: "Sistema de inventario en Python + SQLite"
-      }
-    }
+        description: "Sistema de inventario en Python + SQLite",
+      },
+    },
   },
   experience: {
     title: "Experiencia Profesional",
     subtitle: "Mi trayectoria en el desarrollo de software y tecnologías web",
     responsibilities: "Responsabilidades Principales",
-    viewMore: "Ver experiencia completa en LinkedIn"
+    viewMore: "Ver experiencia completa en LinkedIn",
   },
   education: {
     title: "Educación y Certificaciones",
@@ -235,7 +235,7 @@ const es: Translations = {
     skills: "Habilidades Aprendidas",
     certificates: "Certificados",
     clickToView: "Click para ver detalles",
-    viewMore: "Ver educación completa en LinkedIn"
+    viewMore: "Ver educación completa en LinkedIn",
   },
   skills: {
     title: "Habilidades",
@@ -248,13 +248,13 @@ const es: Translations = {
       problemSolving: "Resolución de problemas",
       teamWork: "Trabajo en equipo",
       fastLearning: "Aprendizaje rápido",
-      adaptability: "Adaptabilidad"
+      adaptability: "Adaptabilidad",
     },
     categories: {
-      frontend_ui: { title: 'Frontend & UI' },
-      backend_data: { title: 'Backend & Data' },
-      tools_devops: { title: 'Tools & DevOps' }
-    }
+      frontend_ui: { title: "Frontend & UI" },
+      backend_data: { title: "Backend & Data" },
+      tools_devops: { title: "Tools & DevOps" },
+    },
   },
   contact: {
     title: "Contacto",
@@ -267,7 +267,7 @@ const es: Translations = {
     linkedinTitle: "LinkedIn",
     githubTitle: "GitHub",
     linkedin: "Conectá profesionalmente",
-    github: "Ver mi código y proyectos"
+    github: "Ver mi código y proyectos",
   },
   page: {
     contribs: "Contribs.",
@@ -280,7 +280,12 @@ const es: Translations = {
     email: "matychacong@gmail.com",
     openToWork: "Abierto a oportunidades",
     statusLocation: "Estado y ubicación",
-    typingWords: ["Desarrollador Full-Stack","Apasionado por React","Coder Creativo","Precisión de píxeles"],
+    typingWords: [
+      "Desarrollador Full-Stack",
+      "Apasionado por React",
+      "Coder Creativo",
+      "Precisión de píxeles",
+    ],
     timezoneSuffix: "AR",
     years: "Años",
     projects: "Proyectos",
@@ -288,12 +293,12 @@ const es: Translations = {
     mainStack: "Stack Principal",
     lifetime: "Lifetime",
     active: "Activo",
-    connect: "Conectar"
+    connect: "Conectar",
   },
   intro: {
     name: "Matías Chacón",
     role: "Desarrollador Full Stack",
-    loading: "Cargando experiencia"
+    loading: "Cargando experiencia",
   },
   projectModal: {
     closeAria: "Cerrar diálogo del proyecto",
@@ -303,14 +308,14 @@ const es: Translations = {
     viewLive: "Demo en Vivo",
     noImages: "No hay imágenes disponibles",
     previousImage: "Imagen anterior",
-    nextImage: "Imagen siguiente"
+    nextImage: "Imagen siguiente",
   },
   theme: {
     light: "Claro",
     dark: "Oscuro",
-    toggle: "Cambiar tema"
+    toggle: "Cambiar tema",
   },
-  footer: { copyRight: "Todos los derechos reservados." }
+  footer: { copyRight: "Todos los derechos reservados." },
 };
 
 export default { en, es };
