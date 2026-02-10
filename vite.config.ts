@@ -8,12 +8,12 @@ export default defineConfig({
   build: {
     // Optimizaciones de producción
     minify: "terser",
-    terserOptions: {
+    /*terserOptions: {
       compress: {
         drop_console: true,
         drop_debugger: true,
       },
-    },
+    },*/
     // Code splitting mejorado
     rollupOptions: {
       output: {
