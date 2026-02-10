@@ -3,6 +3,7 @@
 ## ¿Qué es Google Search Console?
 
 Google Search Console (GSC) es una herramienta gratuita de Google que te permite:
+
 - 📊 Ver cómo Google indexa tu sitio
 - 📈 Monitorear tráfico de búsqueda orgánica
 - 🔍 Descubrir por qué palabras clave te encuentran
@@ -29,11 +30,11 @@ Google Search Console (GSC) es una herramienta gratuita de Google que te permite
 3. **Verificar con DNS en Cloudflare:**
    - Google te dará un registro TXT
    - Ejemplo: `google-site-verification=ABC123...`
-   
 4. **Agregar en Cloudflare:**
+
    ```
    Dashboard Cloudflare → mchacon.dev → DNS → Records
-   
+
    Type: TXT
    Name: @
    Content: google-site-verification=ABC123...
@@ -59,16 +60,19 @@ Si no tienes acceso a DNS, puedes verificar con una meta tag:
 ## 📋 Paso 2: Enviar tu Sitemap
 
 ### 1. Verificar que tu sitemap existe:
+
 ```
 https://mchacon.dev/sitemap.xml
 ```
 
 ### 2. En Google Search Console:
+
 ```
 Panel izquierdo → Sitemaps → Agregar sitemap nuevo
 ```
 
 ### 3. Introduce la URL:
+
 ```
 https://mchacon.dev/sitemap.xml
 ```
@@ -76,6 +80,7 @@ https://mchacon.dev/sitemap.xml
 ### 4. Click en "Enviar"
 
 **Resultado esperado:**
+
 - Estado: ✅ Correcto
 - URLs descubiertas: 1 (tu página principal)
 - **Nota:** Google puede tardar 24-48 horas en procesarlo completamente
@@ -106,26 +111,26 @@ Actualmente tu sitemap solo tiene la página principal. **Mejorémoslo:**
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
-  
+
   <!-- Página Principal -->
   <url>
     <loc>https://mchacon.dev/</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
-    
+
     <!-- Imágenes importantes para SEO -->
     <image:image>
       <image:loc>https://mchacon.dev/og-image.png</image:loc>
       <image:title>Matías Chacón - Portfolio</image:title>
     </image:image>
-    
+
     <image:image>
       <image:loc>https://mchacon.dev/images/FOTO DE PERFIL.jpg</image:loc>
       <image:title>Matías Chacón - Desarrollador Full Stack</image:title>
     </image:image>
   </url>
-  
+
   <!-- Agregar secciones específicas si usas hash routing -->
   <url>
     <loc>https://mchacon.dev/#projects</loc>
@@ -133,21 +138,21 @@ Actualmente tu sitemap solo tiene la página principal. **Mejorémoslo:**
     <changefreq>monthly</changefreq>
     <priority>0.8</priority>
   </url>
-  
+
   <url>
     <loc>https://mchacon.dev/#experience</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
-  
+
   <url>
     <loc>https://mchacon.dev/#contact</loc>
     <lastmod>2026-02-09</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.6</priority>
   </url>
-  
+
 </urlset>
 ```
 
@@ -158,6 +163,7 @@ https://mchacon.dev/robots.txt
 ```
 
 Debe contener:
+
 ```txt
 User-agent: *
 Allow: /
@@ -201,14 +207,17 @@ Para análisis más profundo:
    - https://analytics.google.com/
 
 2. **Agregar a tu sitio:**
+
 ```html
 <!-- En index.html antes de </head> -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
 <script>
   window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-XXXXXXXXXX');
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+  gtag("config", "G-XXXXXXXXXX");
 </script>
 ```
 
@@ -222,18 +231,21 @@ Para análisis más profundo:
 Para aparecer en búsquedas, asegúrate de que tu sitio contenga:
 
 ### Keywords Primarias:
+
 - ✅ "Desarrollador Full Stack Argentina"
 - ✅ "React Developer Buenos Aires"
 - ✅ "Matías Chacón programador"
 - ✅ "Portfolio desarrollador web"
 
 ### Keywords Secundarias:
+
 - "TypeScript developer"
 - "Node.js backend"
 - "Frontend React"
 - "Desarrollador JavaScript"
 
 **Estas deben estar en:**
+
 - ✅ Title (ya está)
 - ✅ Meta description (ya está)
 - ✅ H1, H2 del sitio
@@ -244,13 +256,13 @@ Para aparecer en búsquedas, asegúrate de que tu sitio contenga:
 
 ## 📊 Timeline de Resultados Esperados
 
-| Tiempo | Qué Esperar |
-|--------|-------------|
-| **24-48h** | Google rastrea tu sitio |
-| **3-7 días** | Primera indexación completa |
+| Tiempo        | Qué Esperar                   |
+| ------------- | ----------------------------- |
+| **24-48h**    | Google rastrea tu sitio       |
+| **3-7 días**  | Primera indexación completa   |
 | **2 semanas** | Datos de búsqueda disponibles |
-| **1 mes** | Posicionamiento establece |
-| **3 meses** | Resultados SEO óptimos |
+| **1 mes**     | Posicionamiento establece     |
+| **3 meses**   | Resultados SEO óptimos        |
 
 ---
 
@@ -274,15 +286,19 @@ Verifica que tienes todo:
 ## 🐛 Troubleshooting
 
 ### Problema: "URL no está en Google"
+
 **Solución:** Solicita indexación manual (hasta 7 días)
 
 ### Problema: "Sitemap no se puede leer"
+
 **Solución:** Verifica formato XML en https://www.xml-sitemaps.com/validate-xml-sitemap.html
 
 ### Problema: "Errores de cobertura"
+
 **Solución:** Revisa que todas las URLs sean accesibles y retornen 200
 
 ### Problema: "No apto para móviles"
+
 **Solución:** Ya tienes viewport configurado, pero verifica en:
 https://search.google.com/test/mobile-friendly?url=https://mchacon.dev
 

@@ -3,17 +3,20 @@
 ## ⏱️ Timeline de Implementación
 
 ### 🔴 AHORA MISMO (5 min) - Ya Hecho ✅
+
 - [x] Optimizar carga de fuentes (async)
 - [x] Preload de recursos críticos
 - [x] Optimización de Vite build
 - [x] Sitemap mejorado
 
 ### 🟡 HOY (30 min) - TU TURNO
+
 1. **Convertir imágenes a WebP** → Ver [PERFORMANCE_OPTIMIZATION.md](PERFORMANCE_OPTIMIZATION.md#1-convertir-imágenes-a-webpavif-urgente)
 2. **Agregar lazy loading** → 3 líneas de código
 3. **Subir a Google Search Console** → Ver [GOOGLE_SEARCH_CONSOLE.md](GOOGLE_SEARCH_CONSOLE.md)
 
 ### 🟢 ESTA SEMANA (opcional)
+
 - Service Worker PWA
 - Bundle analysis
 - Más optimizaciones
@@ -22,23 +25,25 @@
 
 ## 📊 Score Esperado
 
-| Métrica | Antes | Después | Mejora |
-|---------|-------|---------|--------|
-| Performance | 60-70 | 90-95 | +25-35 |
-| LCP | 3-4s | <1.5s | 2x faster |
-| Tamaño total | 5-8 MB | <2 MB | -75% |
+| Métrica      | Antes  | Después | Mejora    |
+| ------------ | ------ | ------- | --------- |
+| Performance  | 60-70  | 90-95   | +25-35    |
+| LCP          | 3-4s   | <1.5s   | 2x faster |
+| Tamaño total | 5-8 MB | <2 MB   | -75%      |
 
 ---
 
 ## ✅ Checklist Rápido
 
 **Hecho hoy:**
+
 - [x] index.html optimizado con preload
 - [x] vite.config.ts con code splitting
 - [x] Sitemap mejorado con imágenes y secciones
 - [x] Scripts de optimización creados
 
 **Tu turno:**
+
 - [ ] Convertir PNG a WebP (30 min)
 - [ ] Agregar `loading="lazy"` a imágenes (5 min)
 - [ ] Verificar dominio en Google Search Console (5 min)
@@ -93,6 +98,7 @@
 ## 🎉 Resultado Final
 
 Después de implementar todo:
+
 - ✅ PageSpeed 90+ en desktop y mobile
 - ✅ Portfolio indexado en Google
 - ✅ Carga ultra rápida

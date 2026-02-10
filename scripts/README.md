@@ -28,6 +28,7 @@ Esto convertirá automáticamente todas las imágenes PNG y JPG a WebP con 80% d
    - Arrastra todas las PNG al navegador
 
 3. **Configurar:**
+
    ```
    Format: WebP
    Quality: 80
@@ -69,6 +70,7 @@ Busca y reemplaza en VS Code:
 **Reemplazar con:** `.webp`
 
 **Archivos afectados:**
+
 - `src/data/projectsData.ts`
 - `src/components/Page.tsx`
 - Cualquier otro que use imágenes
@@ -77,10 +79,10 @@ Busca y reemplaza en VS Code:
 
 ```typescript
 // Antes:
-"./images/DF Portfolio 1.png"
+"./images/DF Portfolio 1.png";
 
 // Después:
-"./images/DF Portfolio 1.webp"
+"./images/DF Portfolio 1.webp";
 ```
 
 ---
@@ -104,12 +106,14 @@ pnpm preview
 ### "sharp no se puede instalar"
 
 **Windows:**
+
 ```bash
 npm install --global windows-build-tools
 npm install sharp
 ```
 
 **Mac/Linux:**
+
 ```bash
 # Debería funcionar sin problemas
 pnpm add sharp
@@ -118,6 +122,7 @@ pnpm add sharp
 ### "Imágenes no se ven"
 
 Verifica que:
+
 1. Los nombres de archivo coincidan (case-sensitive)
 2. Las rutas sean correctas
 3. Los archivos .webp estén en `public/images/`

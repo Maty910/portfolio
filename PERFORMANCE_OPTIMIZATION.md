@@ -5,6 +5,7 @@ Esta guía te ayudará a mejorar significativamente tus scores de PageSpeed Insi
 ## 📊 Optimizaciones Ya Implementadas
 
 ### ✅ HTML & Fonts
+
 - [x] Carga asíncrona de Google Fonts
 - [x] Preconnect a dominios externos
 - [x] DNS prefetch configurado
@@ -12,6 +13,7 @@ Esta guía te ayudará a mejorar significativamente tus scores de PageSpeed Insi
 - [x] display=swap en fuentes para evitar FOIT
 
 ### ✅ Vite Build
+
 - [x] Code splitting optimizado
 - [x] Minificación con Terser
 - [x] Drop console.log en producción
@@ -19,7 +21,8 @@ Esta guía te ayudará a mejorar significativamente tus scores de PageSpeed Insi
 - [x] Assets inline para archivos <4kb
 
 ### ✅ Headers & Caching
-- [x] Headers de seguridad (_headers)
+
+- [x] Headers de seguridad (\_headers)
 - [x] Cache-Control para assets estáticos
 - [x] Compresión Brotli (Cloudflare)
 
@@ -52,6 +55,7 @@ squoosh-cli --webp '{"quality":80}' images/*.png
 ```
 
 #### Solución Manual (Recomendada):
+
 1. Ve a https://squoosh.app/
 2. Arrastra todas tus imágenes PNG de `/public/images/`
 3. Configura:
@@ -66,12 +70,13 @@ squoosh-cli --webp '{"quality":80}' images/*.png
 ```typescript
 // src/data/projectsData.ts
 // Cambiar de:
-"./images/DF Portfolio 1.png"
+"./images/DF Portfolio 1.png";
 // A:
-"./images/DF Portfolio 1.webp"
+"./images/DF Portfolio 1.webp";
 ```
 
 #### Beneficio Esperado:
+
 - 📉 Reducción de tamaño: 60-80%
 - ⚡ Carga más rápida: 2-3x
 - 📊 Score: +15-25 puntos
@@ -94,9 +99,10 @@ npx sharp -i "public/images/FOTO DE PERFIL.jpg" \
 ```
 
 **Actualizar referencia:**
+
 ```tsx
 // src/components/Page.tsx
-src="/images/FOTO DE PERFIL.webp"
+src = "/images/FOTO DE PERFIL.webp";
 ```
 
 ---
@@ -112,13 +118,14 @@ src="/images/FOTO DE PERFIL.webp"
 <img
   src={image}
   alt={alt}
-  loading="lazy"  // ← Agregar esto
+  loading="lazy" // ← Agregar esto
   decoding="async"
   className="..."
 />
 ```
 
 **Implementar en:**
+
 - [x] `src/components/Projects.tsx` (línea 85)
 - [x] `src/components/ProjectModal.tsx` (línea 108)
 - [x] `src/components/Page.tsx` (línea 232)
@@ -149,48 +156,49 @@ pnpm add -D vite-plugin-pwa
 ```
 
 **Actualizar vite.config.ts:**
+
 ```typescript
-import { VitePWA } from 'vite-plugin-pwa'
+import { VitePWA } from "vite-plugin-pwa";
 
 export default defineConfig({
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
-      registerType: 'autoUpdate',
-      includeAssets: ['Logo Mati.svg', 'og-image.png'],
+      registerType: "autoUpdate",
+      includeAssets: ["Logo Mati.svg", "og-image.png"],
       manifest: {
-        name: 'Matías Chacón Portfolio',
-        short_name: 'M. Chacón',
-        theme_color: '#000000',
+        name: "Matías Chacón Portfolio",
+        short_name: "M. Chacón",
+        theme_color: "#000000",
         icons: [
           {
-            src: '/Logo Mati.svg',
-            sizes: '512x512',
-            type: 'image/svg+xml',
-            purpose: 'any maskable'
-          }
-        ]
+            src: "/Logo Mati.svg",
+            sizes: "512x512",
+            type: "image/svg+xml",
+            purpose: "any maskable",
+          },
+        ],
       },
       workbox: {
-        globPatterns: ['**/*.{js,css,html,webp,svg,woff2}'],
+        globPatterns: ["**/*.{js,css,html,webp,svg,woff2}"],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
-            handler: 'CacheFirst',
+            handler: "CacheFirst",
             options: {
-              cacheName: 'google-fonts-cache',
+              cacheName: "google-fonts-cache",
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365 // 1 año
-              }
-            }
-          }
-        ]
-      }
-    })
-  ]
-})
+                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 año
+              },
+            },
+          },
+        ],
+      },
+    }),
+  ],
+});
 ```
 
 **Impacto:** +10-15 puntos en PWA score
@@ -202,14 +210,10 @@ export default defineConfig({
 **Problema:** La imagen principal puede tardar en aparecer
 
 **Agregar al `<head>` de index.html:**
+
 ```html
 <!-- Preload imagen de perfil (critical LCP) -->
-<link 
-  rel="preload" 
-  as="image" 
-  href="/images/FOTO DE PERFIL.webp" 
-  type="image/webp"
-/>
+<link rel="preload" as="image" href="/images/FOTO DE PERFIL.webp" type="image/webp" />
 ```
 
 ---
@@ -226,12 +230,12 @@ export const structuredData = {
   "@context": "https://schema.org",
   "@type": "Person",
   // ... resto del schema
-}
+};
 
 // En main.tsx o App.tsx:
 useEffect(() => {
-  const script = document.createElement('script');
-  script.type = 'application/ld+json';
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
   script.text = JSON.stringify(structuredData);
   document.head.appendChild(script);
 }, []);
@@ -268,12 +272,14 @@ git push
 ## 📈 Mejoras Esperadas
 
 ### Antes:
+
 - Performance: ~60-70
 - LCP: 3-4s
 - FCP: 1-2s
 - Total Size: 5-8 MB
 
 ### Después (con todas las optimizaciones):
+
 - Performance: ~90-95 ✅
 - LCP: <1.5s ✅
 - FCP: <0.8s ✅
@@ -284,11 +290,13 @@ git push
 ## 🛠️ Herramientas Útiles
 
 ### Online:
+
 - [Squoosh.app](https://squoosh.app/) - Optimizar imágenes
 - [PageSpeed Insights](https://pagespeed.web.dev/)
 - [WebPageTest](https://www.webpagetest.org/)
 
 ### CLI:
+
 ```bash
 # Analizar bundle
 pnpm add -D vite-bundle-visualizer
@@ -316,6 +324,7 @@ lhci autorun --config=lighthouserc.js
 ## 📞 Necesitas Ayuda?
 
 Si algo no funciona:
+
 1. Chequea la consola del navegador (F12)
 2. Revisa los logs de build
 3. Usa `pnpm build --debug`

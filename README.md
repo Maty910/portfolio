@@ -120,11 +120,13 @@ Este proyecto está desplegado en Cloudflare Pages:
 ```
 
 **Build Settings:**
+
 - Build command: `pnpm build`
 - Build output: `dist`
 - Node version: `22` (o >=18)
 
 Los deployments son automáticos:
+
 - Push a `main` → Producción
 - Push a otras ramas → Preview
 
@@ -136,12 +138,14 @@ Los deployments son automáticos:
 También compatible con:
 
 **Vercel:**
+
 ```bash
 npm i -g vercel
 vercel
 ```
 
 **Netlify:**
+
 - Build: `pnpm build`
 - Directory: `dist`
 

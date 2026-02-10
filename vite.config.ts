@@ -1,16 +1,13 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react-swc'
-import tailwindcss from '@tailwindcss/vite'
+import tailwindcss from "@tailwindcss/vite";
+import react from "@vitejs/plugin-react-swc";
+import { defineConfig } from "vite";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [
-    react(),
-    tailwindcss()
-  ],
+  plugins: [react(), tailwindcss()],
   build: {
     // Optimizaciones de producción
-    minify: 'terser',
+    minify: "terser",
     terserOptions: {
       compress: {
         drop_console: true,
@@ -21,9 +18,9 @@ export default defineConfig({
     rollupOptions: {
       output: {
         manualChunks: {
-          'react-vendor': ['react', 'react-dom'],
-          'mui-vendor': ['@mui/material', '@mui/icons-material'],
-          'react-icons': ['react-icons'],
+          "react-vendor": ["react", "react-dom"],
+          "mui-vendor": ["@mui/material", "@mui/icons-material"],
+          "react-icons": ["react-icons"],
         },
       },
     },
@@ -42,4 +39,4 @@ export default defineConfig({
   preview: {
     port: 4173,
   },
-})
+});
