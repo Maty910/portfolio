@@ -288,7 +288,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     {
       id: 3,
       institution: "ETH Kipu",
-      logo: "https://media.licdn.com/dms/image/v2/D4E0BAQHy3Y5Y7Y_7Yw/company-logo_200_200/company-logo_200_200/0/1725977086787/eth_kipu_logo?e=1743033600&v=beta&t=Ym9oqYxMEtLJ9l0Qkz4jV7JbZm8YzQ4qY_qYqYqYqYq",
+      logo: "/logos/ETH Kipu Logo.png",
       degree: "Ethereum Developer Pack",
       field: "Blockchain Development",
       startDate: "Dec 2025",
