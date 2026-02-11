@@ -44,42 +44,43 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
   onClose,
 }) => {
   const { t } = useLanguage();
+  const [selectedCert, setSelectedCert] = useState<string | null>(null);
 
   if (!education) return null;
 
   return createPortal(
     <div
-      className="fixed inset-0 bg-bg-base/80 backdrop-blur-sm z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-300"
+      className="fixed inset-0 bg-black/60 backdrop-blur-md z-[99999] flex items-center justify-center p-4 animate-in fade-in duration-200"
       role="dialog"
       aria-modal="true"
       onClick={onClose}
     >
       <div
-        className="w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl p-6 md:p-8 shadow-2xl relative animate-in zoom-in-95 slide-in-from-bottom-4 duration-300
-                   bg-bg-base border border-text-primary/10
-                   [&::-webkit-scrollbar]:w-2 
-                   [&::-webkit-scrollbar-track]:bg-transparent 
-                   [&::-webkit-scrollbar-thumb]:bg-primary/30 
-                   [&::-webkit-scrollbar-thumb]:rounded-full 
-                   hover:[&::-webkit-scrollbar-thumb]:bg-primary/60"
+        className="w-full max-w-4xl max-h-[85vh] rounded-3xl shadow-2xl relative 
+                   bg-bg-base border border-text-primary/20
+                   animate-in zoom-in-95 slide-in-from-bottom-8 duration-300
+                   flex flex-col overflow-hidden"
         onClick={(e) => e.stopPropagation()}
       >
-        {/* Close Button */}
+        {/* Close Button - Fixed position */}
         <button
-          className="absolute right-4 top-4 md:right-6 md:top-6 flex items-center justify-center w-10 h-10 rounded-full cursor-pointer transition-all duration-200 z-10 border-none
-                     bg-text-primary/5 text-text-secondary
-                     hover:bg-text-primary/10 hover:text-text-primary hover:rotate-90"
+          className="absolute right-6 top-6 z-20 flex items-center justify-center w-11 h-11 rounded-full 
+                     cursor-pointer transition-all duration-300 border-none
+                     bg-text-primary/10 text-text-secondary backdrop-blur-sm
+                     hover:bg-primary hover:text-white hover:rotate-90 hover:scale-110
+                     active:scale-95 shadow-lg"
           onClick={onClose}
           aria-label="Close modal"
         >
-          <X size={20} />
+          <X size={22} strokeWidth={2.5} />
         </button>
 
-        {/* Header */}
-        <header className="pr-12 mb-6 pb-4 border-b border-text-primary/10">
-          <div className="flex items-start gap-4 mb-3">
+        {/* Header - Fixed at top */}
+        <header className="px-8 pt-8 pb-6 border-b border-text-primary/10 bg-bg-base shrink-0">
+          <div className="flex items-start gap-5 mb-4 pr-14">
             {education.logo && (
-              <div className="w-16 h-16 rounded-xl bg-bg-base border border-text-primary/10 p-3 shrink-0">
+              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-bg-base to-text-primary/5 
+                            border border-text-primary/20 p-3.5 shrink-0 shadow-md">
                 <img
                   src={education.logo}
                   alt={`${education.institution} logo`}
@@ -89,45 +90,63 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                 />
               </div>
             )}
-            <div className="flex-1">
+            <div className="flex-1 min-w-0">
               <h3 className="m-0 mb-2 text-text-primary text-2xl md:text-3xl font-bold leading-tight">
                 {education.degree}
               </h3>
-              <p className="text-primary font-semibold text-lg m-0">{education.institution}</p>
+              <p className="text-primary font-semibold text-lg m-0 flex items-center gap-2">
+                <Building2 size={18} className="shrink-0" />
+                {education.institution}
+              </p>
             </div>
           </div>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-2 text-sm text-text-secondary">
-            <div className="flex items-center gap-1.5">
-              <Calendar size={14} className="text-primary" />
-              <span>
+          <div className="flex flex-wrap gap-x-6 gap-y-2.5 text-sm text-text-secondary">
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-text-primary/5">
+              <Calendar size={16} className="text-primary shrink-0" />
+              <span className="font-medium">
                 {education.startDate} - {education.endDate}
               </span>
+              <span className="text-xs text-text-muted">({education.duration})</span>
             </div>
-            <div className="flex items-center gap-1.5">
-              <MapPin size={14} className="text-primary" />
-              <span>{education.location}</span>
+            <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-text-primary/5">
+              <MapPin size={16} className="text-primary shrink-0" />
+              <span className="font-medium">{education.location}</span>
             </div>
             {education.status && (
-              <span className="px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 
+                             text-primary text-xs font-semibold border border-primary/30 shadow-sm">
                 {education.status}
               </span>
             )}
           </div>
         </header>
 
-        {/* Content */}
-        <div className="space-y-6">
+        {/* Scrollable Content */}
+        <div className="flex-1 overflow-y-auto px-8 py-6
+                      [&::-webkit-scrollbar]:w-2
+                      [&::-webkit-scrollbar-track]:bg-transparent
+                      [&::-webkit-scrollbar-track]:my-2
+                      [&::-webkit-scrollbar-thumb]:bg-primary/20
+                      [&::-webkit-scrollbar-thumb]:rounded-full
+                      [&::-webkit-scrollbar-thumb]:border-2
+                      [&::-webkit-scrollbar-thumb]:border-solid
+                      [&::-webkit-scrollbar-thumb]:border-transparent
+                      hover:[&::-webkit-scrollbar-thumb]:bg-primary/40
+                      [&::-webkit-scrollbar-thumb]:transition-colors">
+        <div className="space-y-8 pr-2">
           {/* Description */}
           {education.description.length > 0 && (
-            <div>
-              <h4 className="text-sm font-semibold text-text-primary uppercase tracking-wide mb-3 flex items-center gap-2">
-                <FileText size={16} className="text-primary" />
+            <div className="bg-gradient-to-br from-text-primary/5 to-transparent 
+                          border border-text-primary/10 rounded-2xl p-6">
+              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
+                           flex items-center gap-2 pb-3 border-b border-text-primary/10">
+                <FileText size={18} className="text-primary" />
                 {t("education.description")}
               </h4>
-              <div className="space-y-2">
+              <div className="space-y-3.5">
                 {education.description.map((desc, idx) => (
-                  <p key={idx} className="text-text-secondary text-sm leading-relaxed">
+                  <p key={idx} className="text-text-secondary text-[15px] leading-relaxed">
                     {desc}
                   </p>
                 ))}
@@ -138,15 +157,19 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
           {/* Skills */}
           {education.skills.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-text-primary uppercase tracking-wide mb-3 flex items-center gap-2">
-                <Award size={16} className="text-primary" />
+              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                <Award size={18} className="text-primary" />
                 {t("education.skills")}
               </h4>
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2.5">
                 {education.skills.map((skill, idx) => (
                   <span
                     key={idx}
-                    className="px-3 py-1.5 rounded-md bg-primary/10 border border-primary/20 text-primary text-xs font-medium"
+                    className="px-3.5 py-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 
+                             border border-primary/20 text-primary text-sm font-medium
+                             hover:from-primary/20 hover:to-primary/10 hover:border-primary/30
+                             hover:shadow-md hover:-translate-y-0.5
+                             transition-all duration-200 cursor-default"
                   >
                     {skill}
                   </span>
@@ -158,17 +181,27 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
           {/* Certificates */}
           {education.certificates && education.certificates.length > 0 && (
             <div>
-              <h4 className="text-sm font-semibold text-text-primary uppercase tracking-wide mb-3">
+              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
+                           flex items-center gap-2">
+                <Award size={18} className="text-primary" />
                 {t("education.certificates")}
               </h4>
               <div className="space-y-3">
                 {education.certificates.map((cert, idx) => (
                   <div
                     key={idx}
-                    className="flex items-center gap-3 p-3 rounded-lg bg-text-primary/5 border border-text-primary/10 hover:bg-text-primary/10 transition-colors"
+                    className="group flex items-center gap-4 p-4 rounded-2xl 
+                             bg-gradient-to-br from-text-primary/5 to-transparent
+                             border border-text-primary/10 
+                             hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5
+                             transition-all duration-300 cursor-pointer"
+                    onClick={() => cert.image && setSelectedCert(cert.image)}
                   >
                     {cert.image && (
-                      <div className="w-16 h-16 rounded border border-text-primary/10 overflow-hidden shrink-0">
+                      <div className="w-20 h-20 rounded-xl border-2 border-text-primary/20 
+                                    overflow-hidden shrink-0 shadow-md
+                                    group-hover:border-primary/40 group-hover:scale-105
+                                    transition-all duration-300">
                         <img
                           src={cert.image}
                           alt={cert.name}
@@ -179,18 +212,14 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                       </div>
                     )}
                     <div className="flex-1 min-w-0">
-                      <p className="text-text-primary font-medium text-sm truncate">{cert.name}</p>
-                      {cert.url && (
-                        <a
-                          href={cert.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-primary text-xs hover:underline inline-flex items-center gap-1 mt-1"
-                        >
-                          View Certificate
-                          <ExternalLink size={12} />
-                        </a>
-                      )}
+                      <p className="text-text-primary font-semibold text-base mb-1 
+                                  group-hover:text-primary transition-colors">
+                        {cert.name}
+                      </p>
+                      <span className="text-text-muted text-sm inline-flex items-center gap-1.5">
+                        <ExternalLink size={14} className="group-hover:text-primary transition-colors" />
+                        Click para ver certificado
+                      </span>
                     </div>
                   </div>
                 ))}
@@ -198,27 +227,57 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
             </div>
           )}
         </div>
+        </div>
 
-        {/* Footer Link */}
+        {/* Footer Link - Fixed at bottom */}
         {education.institutionUrl && (
-          <div className="mt-6 pt-6 border-t border-text-primary/10">
+          <div className="px-8 py-5 border-t border-text-primary/10 bg-bg-base shrink-0">
             <a
               href={education.institutionUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl
-                         bg-primary shadow-lg shadow-primary/20
-                         hover:opacity-90 hover:shadow-primary/30 hover:scale-[1.02]
-                         transition-all duration-300 font-semibold text-sm no-underline"
+              className="inline-flex items-center gap-2.5 px-6 py-3 rounded-xl
+                         bg-gradient-to-r from-primary to-primary/90
+                         shadow-lg shadow-primary/25
+                         hover:shadow-xl hover:shadow-primary/35 hover:scale-[1.02]
+                         active:scale-[0.98]
+                         transition-all duration-300 font-semibold text-base no-underline"
               style={{ color: "var(--color-on-primary)" }}
             >
-              <Building2 size={16} />
-              Visit {education.institution}
-              <ExternalLink size={14} />
+              <Building2 size={18} />
+              Visitar {education.institution}
+              <ExternalLink size={16} />
             </a>
           </div>
         )}
       </div>
+
+      {/* Certificate Fullscreen Modal */}
+      {selectedCert && (
+        <div
+          className="absolute inset-0 bg-black/90 backdrop-blur-xl z-10 
+                     flex items-center justify-center p-8 animate-in fade-in duration-200"
+          onClick={() => setSelectedCert(null)}
+        >
+          <button
+            className="absolute right-4 top-4 flex items-center justify-center w-12 h-12 
+                       rounded-full bg-white/10 text-white backdrop-blur-sm
+                       hover:bg-white/20 hover:rotate-90 hover:scale-110
+                       transition-all duration-300 border border-white/20"
+            onClick={() => setSelectedCert(null)}
+            aria-label="Close certificate"
+          >
+            <X size={24} strokeWidth={2.5} />
+          </button>
+          <img
+            src={selectedCert}
+            alt="Certificate fullscreen"
+            className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl
+                     animate-in zoom-in-95 duration-300"
+            onClick={(e) => e.stopPropagation()}
+          />
+        </div>
+      )}
     </div>,
     document.body
   );
@@ -241,8 +300,9 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       location: "Buenos Aires, Argentina",
       status: "50% Completado",
       description: [
-        "Actualmente cursando la Licenciatura en Psicología con un enfoque en comprender el comportamiento humano, procesos cognitivos y dinámicas sociales.",
-        "Esta formación complementa mi trabajo en desarrollo de software al proporcionar una comprensión profunda de la experiencia del usuario, principios de diseño centrado en el humano y psicología aplicada a la tecnología.",
+        "Formación universitaria en curso enfocada en el estudio científico del comportamiento humano, procesos cognitivos, emocionales y dinámicas sociales.",
+        "Esta carrera proporciona una base sólida en investigación cualitativa y cuantitativa, análisis de datos y metodología científica aplicable al desarrollo de software.",
+        "El conocimiento en psicología cognitiva complementa directamente el diseño de interfaces, experiencia de usuario y desarrollo de productos digitales centrados en las necesidades humanas.",
       ],
       skills: [
         "Psicología Cognitiva",
@@ -265,7 +325,9 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "1 mes",
       location: "Remote",
       description: [
-        "Certificación profesional en desarrollo web full-stack avanzado con énfasis en arquitectura limpia y mejores prácticas de la industria.",
+        "Programa intensivo de desarrollo web avanzado enfocado en arquitectura de software profesional, testing y metodologías modernas.",
+        "Formación práctica en Test-Driven Development (TDD), Clean Code, TypeScript avanzado y patrones de diseño aplicados a React.",
+        "Desarrollo de proyectos reales con contenedorización en Docker, Tailwind CSS para estilos escalables y arquitectura de componentes reutilizables.",
       ],
       skills: [
         "Test-Driven Development",
@@ -280,7 +342,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Certificado Programador Profesional Web Full Stack Avanzado",
-          image: "/certificates/forit-certificate.webp",
+          image: "/certificates/Certificado Programador Profesional Avanzado ForIT.webp",
         },
       ],
       institutionUrl: "https://forit.ar/",
@@ -296,13 +358,15 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "1 mes",
       location: "Remote",
       description: [
-        "Programa especializado en desarrollo blockchain enfocado en la plataforma Ethereum y aplicaciones descentralizadas.",
+        "Programa especializado en tecnología blockchain y desarrollo sobre la red Ethereum.",
+        "Formación en fundamentos de cadenas de bloques, arquitectura descentralizada, smart contracts y aplicaciones Web3.",
+        "Conocimientos prácticos en integración de wallets digitales, transacciones on-chain y desarrollo de DApps (Aplicaciones Descentralizadas).",
       ],
       skills: ["Ethereum", "Wallets", "Web3", "Decentralized Applications (DApps)", "Solidity"],
       certificates: [
         {
           name: "ETH Kipu Certificate",
-          image: "/certificates/eth-kipu.webp",
+          image: "/certificates/ETH Kipu Certificado.webp",
         },
       ],
     },
@@ -316,9 +380,10 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "6 meses",
       location: "Buenos Aires, Argentina",
       description: [
-        "Programa intensivo de desarrollo web full-stack que proporcionó una base sólida en lenguajes y técnicas de programación fundamentales, así como la capacidad de resolver problemas mientras se fomenta una atención meticulosa al detalle y un compromiso con el aprendizaje continuo.",
-        "El curso incluyó desarrollo práctico con Node.js y la oportunidad de construir un sitio web dinámico integrado con una base de datos SQL, mejorando la experiencia práctica tanto en desarrollo front-end como back-end.",
-        "Este enfoque colaborativo no solo refinó las habilidades técnicas sino que también inculcó la adaptabilidad requerida para prosperar en el panorama tecnológico en constante evolución de hoy.",
+        "Programa intensivo de 6 meses en desarrollo web full-stack con foco en JavaScript, Node.js y frameworks modernos.",
+        "Formación integral cubriendo frontend con React.js y Vue.js, backend con Express.js y Node.js, bases de datos relacionales SQL, y control de versiones con Git.",
+        "Desarrollo de proyecto final: aplicación web dinámica e interactiva con arquitectura completa cliente-servidor, base de datos SQL integrada, y diseño responsive.",
+        "Trabajo colaborativo aplicando metodologías ágiles (Scrum), promoviendo adaptabilidad, resolución de problemas y atención al detalle.",
       ],
       skills: [
         "Responsive Web Design",
@@ -347,7 +412,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Diploma Full Stack JavaScript - Node.js",
-          image: "/certificates/codo-a-codo-diploma.webp",
+          image: "/certificates/Certificado Codo a Codo.webp",
         },
       ],
     },
@@ -362,9 +427,10 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "5 meses",
       location: "Argentina",
       description: [
-        "Curso intensivo de diseño UX/UI como parte del programa Talento Tech. Desarrollé habilidades prácticas en investigación de usuarios, benchmarking y arquitectura de información.",
-        "Diseñé entregables clave incluyendo user flows, task flows, site maps y user journey maps para un proyecto de aplicación móvil que conecta bandas independientes con lugares.",
-        "Usando herramientas como Whimsical, Figma y UXtweak, traduje las necesidades de los usuarios en soluciones digitales claras e intuitivas, enfocándome en optimizar la experiencia general del usuario y asegurar una navegación fluida a través del producto.",
+        "Curso intensivo de 5 meses en diseño de experiencia e interfaz de usuario, metodología de investigación y arquitectura de información.",
+        "Desarrollo de habilidades en diseño centrado en el usuario: investigación UX, benchmarking competitivo, creación de user personas, empathy maps y journey maps.",
+        "Proyecto práctico: diseño completo de aplicación móvil conectando bandas independientes con venues, incluyendo user flows, task flows, site maps y wireframes interactivos.",
+        "Herramientas profesionales: Figma para diseño y prototipado, Whimsical para arquitectura de información, UXtweak para testing de usabilidad.",
       ],
       skills: [
         "Benchmarking",
@@ -389,7 +455,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Design UX/UI Diploma",
-          image: "/certificates/talento-tech-ux.webp",
+          image: "/certificates/Certificado Talento Tech Diseño UXUI.webp",
         },
       ],
     },
@@ -404,9 +470,10 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "5 meses",
       location: "Argentina",
       description: [
-        "Curso práctico enfocado en el desarrollo de aplicaciones en Python utilizando bases de datos SQLite.",
-        "A lo largo del curso se abordaron temas fundamentales de programación estructurada, manejo de errores, modularización del código, validaciones de entrada, y operaciones CRUD sobre bases de datos relacionales.",
-        "Como proyecto final, desarrollé una aplicación de consola para gestionar inventario de productos, aplicando principios de organización en módulos (main.py, db_methods.py, validations.py) y respetando buenas prácticas de desarrollo.",
+        "Curso práctico de 5 meses enfocado en programación estructurada con Python y gestión de bases de datos relacionales SQLite.",
+        "Formación en fundamentos de programación: estructuras de datos (listas, tuplas, diccionarios), manejo de excepciones, validaciones de entrada y modularización de código.",
+        "Desarrollo de operaciones CRUD completas sobre bases de datos SQL usando la biblioteca sqlite3, diseño de esquemas relacionales y consultas optimizadas.",
+        "Proyecto final: aplicación de consola para gestión de inventario de productos con arquitectura modular (main.py, db_methods.py, validations.py), aplicando principios de Clean Code y buenas prácticas.",
       ],
       skills: [
         "SQLite",
@@ -419,7 +486,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Python Programming Diploma",
-          image: "/certificates/talento-tech-python.webp",
+          image: "/certificates/Certificado Talento Tech Python.webp",
         },
       ],
     },
@@ -433,9 +500,11 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "3 meses",
       location: "Argentina",
       description: [
-        "Formación teórico-práctica orientada al control de calidad del software mediante testing manual y automatizado.",
-        "Aprendí a diseñar y ejecutar casos de prueba, a gestionar incidencias y reportes, y a trabajar dentro de ciclos de desarrollo utilizando metodologías ágiles.",
-        "Se abordaron conceptos clave como pruebas funcionales, E2E, de regresión y de caja negra. Realicé ejercicios prácticos utilizando herramientas específicas del entorno profesional.",
+        "Formación teórico-práctica de 3 meses en control de calidad de software (QA), testing manual y automatizado.",
+        "Conocimientos en ciclo de vida del testing: planificación de pruebas, diseño y ejecución de casos de prueba, gestión de incidencias y reportes de defectos.",
+        "Tipos de pruebas: funcionales, end-to-end (E2E), regresión, caja negra, integración y validación de requisitos.",
+        "Herramientas profesionales: Selenium WebDriver para automatización web, Robot Framework para testing estructurado, Postman para testing de APIs REST, Jira para seguimiento de bugs.",
+        "Metodologías: trabajo con Agile (Scrum), Waterfall y ciclos de desarrollo iterativos en equipos multidisciplinarios.",
       ],
       skills: [
         "Test Planning",
@@ -449,7 +518,12 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
         "Agile & Waterfall Methodologies",
         "Selenium WebDriver",
       ],
-      certificates: [],
+      certificates: [
+        {
+          name: "Testing & Automatización Certificate",
+          image: "/certificates/Certificado Cilsa.webp",
+        },
+      ],
     },
     {
       id: 8,
@@ -462,12 +536,16 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       duration: "1 mes",
       location: "Argentina",
       description: [
-        "Curso intensivo de Figma como parte del programa Talento Tech. Desarrollé habilidades prácticas en diseño de interfaces, prototipado y colaboración en tiempo real utilizando Figma.",
+        "Curso intensivo de 1 mes especializado en Figma como herramienta profesional de diseño UI/UX y prototipado.",
+        "Dominio de funcionalidades avanzadas: componentes reutilizables, auto-layout, variables de diseño, design tokens y sistemas de diseño escalables.",
+        "Prácticas de colaboración en tiempo real: trabajo en equipo, comentarios en diseños, control de versiones y hand-off a desarrollo.",
+        "Creación de prototipos interactivos con animaciones, transiciones y flujos de navegación para testing de usabilidad.",
       ],
       skills: ["Figma (Software)", "UX/UI Design", "Prototyping", "Collaboration Tools"],
       certificates: [
         {
           name: "Figma Course Certificate",
+          image: "/certificates/Certificado Talento Tech Figma.webp",
         },
       ],
     },
