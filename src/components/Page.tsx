@@ -185,7 +185,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
 
             <div className="grid grid-cols-4 gap-2 w-full place-items-center">
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-react, #61dafb)/10",
                   borderColor: "var(--color-react, #61dafb)/20",
@@ -195,7 +195,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiReact size={16} className="tech-react" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-tailwind, #38bdf8)/10",
                   borderColor: "var(--color-tailwind, #38bdf8)/20",
@@ -205,7 +205,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiTailwindcss size={16} className="tech-tailwind" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-typescript, #3178c6)/10",
                   borderColor: "var(--color-typescript, #3178c6)/20",
@@ -215,7 +215,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiTypescript size={16} className="tech-typescript" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-nodejs, #8cc84b)/10",
                   borderColor: "var(--color-nodejs, #8cc84b)/20",
@@ -225,7 +225,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiNodedotjs size={16} className="tech-nodejs" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-postgresql, #336791)/10",
                   borderColor: "var(--color-postgresql, #336791)/20",
@@ -235,7 +235,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiPostgresql size={16} className="tech-postgresql" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-mongodb, #47a248)/10",
                   borderColor: "var(--color-mongodb, #47a248)/20",
@@ -245,7 +245,7 @@ export function Page({ children, activeSection = "home" }: PageProps) {
                 <SiMongodb size={16} className="tech-mongodb" />
               </div>
               <div
-                className="p-1.5 rounded-lg border"
+                className="p-1.5 rounded-lg"
                 style={{
                   backgroundColor: "var(--color-docker, #2496ed)/10",
                   borderColor: "var(--color-docker, #2496ed)/20",
