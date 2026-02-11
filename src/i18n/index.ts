@@ -46,7 +46,7 @@ const en: Translations = {
           "Modern portfolio showcasing multimedia work with responsive design, optimized image galleries, and smooth animations built with React and TypeScript",
       },
       p2: {
-        title: "Sachito Refrigeration Website",
+        title: "SC Refrigeration Website",
         description:
           "Technician website with contact forms, service showcases, and mobile-first responsive design for a refrigeration services company",
       },
@@ -208,7 +208,7 @@ const es: Translations = {
           "Portafolio moderno que presenta trabajos multimedia con diseño responsivo, galerías de imágenes optimizadas y animaciones fluidas construido con React y TypeScript",
       },
       p2: {
-        title: "Sitio Web Sachito Refrigeración",
+        title: "Sitio Web SC Refrigeración",
         description:
           "Sitio web para técnico en refrigeración con formularios de contacto, catálogo de servicios y diseño mobile-first",
       },
