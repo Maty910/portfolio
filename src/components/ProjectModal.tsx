@@ -125,7 +125,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                         className="carousel-arrow absolute left-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
-                        aria-label={t("projectModal.previousImage") || "Previous image"}
+                        aria-label={t("projectModal.previousImage")}
                       >
                         <ChevronLeft size={20} />
                       </button>
@@ -139,7 +139,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                         className="carousel-arrow absolute right-2 top-1/2 -translate-y-1/2 p-2 rounded-full 
                                    bg-bg-base/80 text-text-primary backdrop-blur-md border border-text-primary/10
                                    transition-all duration-200 opacity-0 group-hover:opacity-100 focus:opacity-100 max-[880px]:opacity-100"
-                        aria-label={t("projectModal.nextImage") || "Next image"}
+                        aria-label={t("projectModal.nextImage")}
                       >
                         <ChevronRight size={20} />
                       </button>
@@ -173,7 +173,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
             <div className="flex flex-col h-full">
               <h4 className="text-text-primary mb-3 text-base md:text-lg font-semibold flex items-center gap-2">
                 <Code2 size={18} className="text-primary" />
-                {t("projects.modal.technologies") || "Technologies"}
+                {t("projectModal.technologies")}
               </h4>
 
               <ul className="flex flex-wrap gap-2 list-none p-0 m-0 mb-6 md:mb-8">
@@ -200,7 +200,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                   >
                     <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
                     <ExternalLink size={18} className="relative z-20" />
-                    <span className="relative z-20">{t("projects.links.live") || "Live Demo"}</span>
+                    <span className="relative z-20">{t("projects.links.live")}</span>
                   </a>
                 )}
 
@@ -214,7 +214,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                                hover:bg-text-primary/10 hover:border-text-primary/20"
                   >
                     <Github size={18} />
-                    {t("projects.links.code") || "View Code"}
+                    {t("projects.links.code")}
                   </a>
                 )}
               </div>
