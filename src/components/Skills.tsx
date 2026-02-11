@@ -126,10 +126,7 @@ export function Skills() {
               className="p-2 rounded-xl gradient-primary-br shadow-lg shadow-primary/20"
               style={{ color: "var(--color-on-primary)" }}
             >
-              <Cpu
-                size={24}
-                className="max-[880px]:w-5 max-[880px]:h-5"
-              />
+              <Cpu size={24} className="max-[880px]:w-5 max-[880px]:h-5" />
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-text-primary tracking-tight max-[880px]:text-2xl">
               {t("skills.title")}
@@ -178,7 +175,7 @@ export function Skills() {
                                transition-all duration-300 ease-out"
                     style={{ "--skill-color": skill.color } as React.CSSProperties}
                   >
-                     {/* Fondo sutil al hacer hover */}
+                    {/* Fondo sutil al hacer hover */}
                     <div className="absolute inset-0 opacity-0 group-hover/skill:opacity-5 transition-opacity duration-300 bg-[var(--skill-color)]" />
 
                     <skill.icon
@@ -263,7 +260,7 @@ export function Skills() {
           </div>
         </div>
       </div>
-      
+
       <style>{`
         @keyframes shimmer { 100% { transform: translateX(100%); } }
       `}</style>
