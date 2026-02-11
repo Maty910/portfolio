@@ -159,27 +159,29 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
         onMouseLeave={() => setExpanded(false)}
         aria-expanded={expanded}
       >
-        <div
-          className={`hidden min-[881px]:flex flex-col gap-3 items-center w-full transition-all duration-[800ms] ${expanded ? "items-start" : ""}`}
-        >
-          <button
-            className="group w-10 h-10 rounded-xl bg-transparent border-none flex flex-col items-end justify-center gap-[5px] hover:bg-text-primary/10 transition-colors cursor-pointer"
-            onClick={() => setExpanded((v) => !v)}
-            title={t("nav.toggleMenu")}
+        <div className="hidden min-[881px]:flex flex-col gap-3 w-full">
+          <div
+            className={`flex transition-all duration-[800ms] ${expanded ? "justify-start" : "justify-center"}`}
           >
-            <span
-              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-4"}`}
-            />
-            <span
-              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-3" : "w-5"}`}
-            />
-            <span
-              className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-3"}`}
-            />
-          </button>
+            <button
+              className="group w-10 h-10 rounded-xl bg-transparent border-none flex flex-col items-center justify-center gap-[5px] hover:bg-text-primary/10 transition-colors cursor-pointer shrink-0"
+              onClick={() => setExpanded((v) => !v)}
+              title={t("nav.toggleMenu")}
+            >
+              <span
+                className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-4"}`}
+              />
+              <span
+                className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-3" : "w-5"}`}
+              />
+              <span
+                className={`h-0.5 bg-text-primary rounded-full transition-all duration-300 group-hover:w-5 ${expanded ? "w-5" : "w-3"}`}
+              />
+            </button>
+          </div>
 
           <div
-            className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? "w-full" : "w-10"}`}
+            className={`flex items-center gap-3 overflow-hidden whitespace-nowrap transition-all duration-[800ms] ${expanded ? "w-full justify-start" : "w-10 justify-center"}`}
           >
             <div
               className={`flex flex-col justify-center transition-all duration-[800ms] ${expanded ? "opacity-100 translate-x-0" : "opacity-0 -translate-x-4 pointer-events-none"}`}
