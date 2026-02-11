@@ -51,6 +51,7 @@ export const useTheme = () => {
 
     // Si el navegador soporta View Transitions API
     const supportsViewTransitions = "startViewTransition" in document;
+    const isMobile = window.innerWidth < 768;
 
     if (supportsViewTransitions && x !== undefined && y !== undefined) {
       // Calcular el radio máximo para que cubra toda la pantalla
@@ -58,6 +59,14 @@ export const useTheme = () => {
         Math.max(x, window.innerWidth - x),
         Math.max(y, window.innerHeight - y)
       );
+
+      // Optimización: Duraciones más cortas en mobile para mejor performance
+      const animationDuration = isMobile ? 400 : 600;
+      const easing = "cubic-bezier(0.25, 1, 0.5, 1)";
+
+      // Forzar aceleración por hardware
+      const root = document.documentElement;
+      root.style.willChange = "contents";
 
       const transition = document.startViewTransition(() => {
         // Actualizar el estado de React
@@ -68,9 +77,6 @@ export const useTheme = () => {
       transition.ready
         .then(() => {
           // Aplicar clip-path al nuevo contenido
-          const animationDuration = 600;
-          const easing = "cubic-bezier(0.25, 1, 0.5, 1)";
-
           document.documentElement.animate(
             {
               clipPath: [`circle(0px at ${x}px ${y}px)`, `circle(${maxRadius}px at ${x}px ${y}px)`],
@@ -84,14 +90,23 @@ export const useTheme = () => {
         })
         .catch((error) => {
           console.error("View transition failed:", error);
+        })
+        .finally(() => {
+          // Limpiar will-change después de la animación
+          setTimeout(() => {
+            root.style.willChange = "auto";
+          }, animationDuration + 100);
         });
     } else {
       // Fallback: animación suave con fade para navegadores sin soporte
       document.documentElement.classList.add("theme-transitioning");
       setTheme(newTheme);
-      setTimeout(() => {
-        document.documentElement.classList.remove("theme-transitioning");
-      }, 400);
+      setTimeout(
+        () => {
+          document.documentElement.classList.remove("theme-transitioning");
+        },
+        isMobile ? 300 : 400
+      );
     }
   };
 
