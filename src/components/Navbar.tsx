@@ -246,7 +246,7 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
           <a
             href="/CV/CV Matias Chacon.pdf"
             download
-            className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? "w-full px-4 gap-3" : "w-11 px-0 gap-0"}`}
+            className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden gradient-primary font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? "w-full px-4 gap-3" : "w-11 px-0 gap-0"}`}
             style={{ color: "var(--color-on-primary)" }}
             title={t("header.downloadCv")}
           >
@@ -408,19 +408,15 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
                   href="/CV/CV Matias Chacon.pdf"
                   download
                   onClick={() => setMobileMenuOpen(false)}
-                  className="col-span-2 group btn-shiny relative flex items-center justify-between p-4 rounded-xl overflow-hidden bg-gradient-to-r from-primary to-primary/80 font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 no-underline"
+                  className="col-span-2 group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden gradient-primary font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 no-underline h-11 px-4 gap-3"
                   style={{ color: "var(--color-on-primary)" }}
+                  title={t("header.downloadCv")}
                 >
                   <div className="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
-                  <div className="flex items-center gap-3 relative z-20">
-                    <div className="w-10 h-10 rounded-lg bg-white/10 backdrop-blur-sm flex items-center justify-center">
-                      <FiDownload size={20} />
-                    </div>
-                    <div className="flex flex-col text-left">
-                      <span className="text-sm font-bold">{t("header.downloadCv")}</span>
-                      <span className="text-[10px] opacity-80 uppercase tracking-wider">PDF</span>
-                    </div>
-                  </div>
+                  <FiDownload className="text-xl shrink-0 relative z-20" />
+                  <span className="text-sm whitespace-nowrap overflow-hidden transition-all duration-300 relative z-20">
+                    {t("header.downloadCv")}
+                  </span>
                 </a>
 
                 {/* Theme Toggle */}
