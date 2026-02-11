@@ -79,8 +79,10 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
         <header className="px-8 pt-8 pb-6 border-b border-text-primary/10 bg-bg-base shrink-0">
           <div className="flex items-start gap-5 mb-4 pr-14">
             {education.logo && (
-              <div className="w-20 h-20 rounded-2xl bg-gradient-to-br from-bg-base to-text-primary/5 
-                            border border-text-primary/20 p-3.5 shrink-0 shadow-md">
+              <div
+                className="w-20 h-20 rounded-2xl bg-gradient-to-br from-bg-base to-text-primary/5 
+                            border border-text-primary/20 p-3.5 shrink-0 shadow-md"
+              >
                 <img
                   src={education.logo}
                   alt={`${education.institution} logo`}
@@ -114,8 +116,10 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
               <span className="font-medium">{education.location}</span>
             </div>
             {education.status && (
-              <span className="px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 
-                             text-primary text-xs font-semibold border border-primary/30 shadow-sm">
+              <span
+                className="px-4 py-1.5 rounded-full bg-gradient-to-r from-primary/20 to-primary/10 
+                             text-primary text-xs font-semibold border border-primary/30 shadow-sm"
+              >
                 {education.status}
               </span>
             )}
@@ -123,7 +127,8 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
         </header>
 
         {/* Scrollable Content */}
-        <div className="flex-1 overflow-y-auto px-8 py-6
+        <div
+          className="flex-1 overflow-y-auto px-8 py-6
                       [&::-webkit-scrollbar]:w-2
                       [&::-webkit-scrollbar-track]:bg-transparent
                       [&::-webkit-scrollbar-track]:my-2
@@ -133,100 +138,114 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                       [&::-webkit-scrollbar-thumb]:border-solid
                       [&::-webkit-scrollbar-thumb]:border-transparent
                       hover:[&::-webkit-scrollbar-thumb]:bg-primary/40
-                      [&::-webkit-scrollbar-thumb]:transition-colors">
-        <div className="space-y-8 pr-2">
-          {/* Description */}
-          {education.description.length > 0 && (
-            <div className="bg-gradient-to-br from-text-primary/5 to-transparent 
-                          border border-text-primary/10 rounded-2xl p-6">
-              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
-                           flex items-center gap-2 pb-3 border-b border-text-primary/10">
-                <FileText size={18} className="text-primary" />
-                {t("education.description")}
-              </h4>
-              <div className="space-y-3.5">
-                {education.description.map((desc, idx) => (
-                  <p key={idx} className="text-text-secondary text-[15px] leading-relaxed">
-                    {desc}
-                  </p>
-                ))}
+                      [&::-webkit-scrollbar-thumb]:transition-colors"
+        >
+          <div className="space-y-8 pr-2">
+            {/* Description */}
+            {education.description.length > 0 && (
+              <div
+                className="bg-gradient-to-br from-text-primary/5 to-transparent 
+                          border border-text-primary/10 rounded-2xl p-6"
+              >
+                <h4
+                  className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
+                           flex items-center gap-2 pb-3 border-b border-text-primary/10"
+                >
+                  <FileText size={18} className="text-primary" />
+                  {t("education.description")}
+                </h4>
+                <div className="space-y-3.5">
+                  {education.description.map((desc, idx) => (
+                    <p key={idx} className="text-text-secondary text-[15px] leading-relaxed">
+                      {desc}
+                    </p>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Skills */}
-          {education.skills.length > 0 && (
-            <div>
-              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
-                <Award size={18} className="text-primary" />
-                {t("education.skills")}
-              </h4>
-              <div className="flex flex-wrap gap-2.5">
-                {education.skills.map((skill, idx) => (
-                  <span
-                    key={idx}
-                    className="px-3.5 py-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 
+            {/* Skills */}
+            {education.skills.length > 0 && (
+              <div>
+                <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 flex items-center gap-2">
+                  <Award size={18} className="text-primary" />
+                  {t("education.skills")}
+                </h4>
+                <div className="flex flex-wrap gap-2.5">
+                  {education.skills.map((skill, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3.5 py-2 rounded-xl bg-gradient-to-br from-primary/10 to-primary/5 
                              border border-primary/20 text-primary text-sm font-medium
                              hover:from-primary/20 hover:to-primary/10 hover:border-primary/30
                              hover:shadow-md hover:-translate-y-0.5
                              transition-all duration-200 cursor-default"
-                  >
-                    {skill}
-                  </span>
-                ))}
+                    >
+                      {skill}
+                    </span>
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
+            )}
 
-          {/* Certificates */}
-          {education.certificates && education.certificates.length > 0 && (
-            <div>
-              <h4 className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
-                           flex items-center gap-2">
-                <Award size={18} className="text-primary" />
-                {t("education.certificates")}
-              </h4>
-              <div className="space-y-3">
-                {education.certificates.map((cert, idx) => (
-                  <div
-                    key={idx}
-                    className="group flex items-center gap-4 p-4 rounded-2xl 
+            {/* Certificates */}
+            {education.certificates && education.certificates.length > 0 && (
+              <div>
+                <h4
+                  className="text-sm font-bold text-text-primary uppercase tracking-wider mb-4 
+                           flex items-center gap-2"
+                >
+                  <Award size={18} className="text-primary" />
+                  {t("education.certificates")}
+                </h4>
+                <div className="space-y-3">
+                  {education.certificates.map((cert, idx) => (
+                    <div
+                      key={idx}
+                      className="group flex items-center gap-4 p-4 rounded-2xl 
                              bg-gradient-to-br from-text-primary/5 to-transparent
                              border border-text-primary/10 
                              hover:border-primary/30 hover:shadow-lg hover:-translate-y-0.5
                              transition-all duration-300 cursor-pointer"
-                    onClick={() => cert.image && setSelectedCert(cert.image)}
-                  >
-                    {cert.image && (
-                      <div className="w-20 h-20 rounded-xl border-2 border-text-primary/20 
+                      onClick={() => cert.image && setSelectedCert(cert.image)}
+                    >
+                      {cert.image && (
+                        <div
+                          className="w-20 h-20 rounded-xl border-2 border-text-primary/20 
                                     overflow-hidden shrink-0 shadow-md
                                     group-hover:border-primary/40 group-hover:scale-105
-                                    transition-all duration-300">
-                        <img
-                          src={cert.image}
-                          alt={cert.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                          decoding="async"
-                        />
+                                    transition-all duration-300"
+                        >
+                          <img
+                            src={cert.image}
+                            alt={cert.name}
+                            className="w-full h-full object-cover"
+                            loading="lazy"
+                            decoding="async"
+                          />
+                        </div>
+                      )}
+                      <div className="flex-1 min-w-0">
+                        <p
+                          className="text-text-primary font-semibold text-base mb-1 
+                                  group-hover:text-primary transition-colors"
+                        >
+                          {cert.name}
+                        </p>
+                        <span className="text-text-muted text-sm inline-flex items-center gap-1.5">
+                          <ExternalLink
+                            size={14}
+                            className="group-hover:text-primary transition-colors"
+                          />
+                          Click para ver certificado
+                        </span>
                       </div>
-                    )}
-                    <div className="flex-1 min-w-0">
-                      <p className="text-text-primary font-semibold text-base mb-1 
-                                  group-hover:text-primary transition-colors">
-                        {cert.name}
-                      </p>
-                      <span className="text-text-muted text-sm inline-flex items-center gap-1.5">
-                        <ExternalLink size={14} className="group-hover:text-primary transition-colors" />
-                        Click para ver certificado
-                      </span>
                     </div>
-                  </div>
-                ))}
+                  ))}
+                </div>
               </div>
-            </div>
-          )}
-        </div>
+            )}
+          </div>
         </div>
 
         {/* Footer Link - Fixed at bottom */}
@@ -320,9 +339,9 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       logo: "/logos/icon-forit.svg",
       degree: "Desarrollador Web Avanzado",
       field: "Web Development",
-      startDate: "Dec 2025",
+      startDate: "Jul 2025",
       endDate: "Dec 2025",
-      duration: "1 mes",
+      duration: "4 mes",
       location: "Remote",
       description: [
         "Programa intensivo de desarrollo web avanzado enfocado en arquitectura de software profesional, testing y metodologías modernas.",
