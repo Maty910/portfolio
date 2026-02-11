@@ -67,6 +67,19 @@
     }
   }
 
+  /* Optimización para animaciones del toggle de tema */
+  @keyframes themeToggleSpin {
+    0% {
+      transform: translate3d(0, 0, 0) rotate(0deg) scale(1);
+    }
+    50% {
+      transform: translate3d(0, 0, 0) rotate(180deg) scale(1.1);
+    }
+    100% {
+      transform: translate3d(0, 0, 0) rotate(360deg) scale(1);
+    }
+  }
+
   @keyframes slideInLeft {
     from {
       opacity: 0;
@@ -198,14 +211,23 @@
     @apply w-full h-full min-h-full relative overflow-x-hidden font-sans text-base leading-relaxed antialiased;
     color: var(--text-primary);
     background-color: var(--bg-color);
-    /* Transición suave al cambiar de tema */
+    /* Transición suave al cambiar de tema - más rápida en mobile */
     transition:
-      background-color 0.5s ease,
-      color 0.5s ease;
+      background-color 0.3s ease,
+      color 0.3s ease;
 
     /* Fondo complejo */
     background:
       radial-gradient(1200px 600px at 10% 10%, rgba(99, 83, 242, 0.04), transparent), var(--surface);
+  }
+
+  /* Transiciones más lentas en desktop para efecto premium */
+  @media (min-width: 768px) {
+    body {
+      transition:
+        background-color 0.5s ease,
+        color 0.5s ease;
+    }
   }
 
   /* Noise Overlay - Opacidad reducida en light mode via mix-blend */
@@ -247,6 +269,19 @@
     border-radius: 10px;
     border: 2px solid transparent;
     background-clip: padding-box;
+  }
+
+  /* === OPTIMIZACIÓN DEL TOGGLE DE TEMA === */
+  /* Aceleración por hardware para el botón y sus iconos */
+  .theme-toggle-button {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .theme-toggle-icons {
+    transform: translate3d(0, 0, 0);
+    backface-visibility: hidden;
   }
 
   @media (max-width: 880px) {
@@ -587,11 +622,14 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   view-transition-name: root;
 }
 
-/* Configuración base para las transiciones */
+/* Configuración base para las transiciones - OPTIMIZADA PARA MOBILE */
 ::view-transition-old(root),
 ::view-transition-new(root) {
   animation: none;
   mix-blend-mode: normal;
+  /* Aceleración por hardware */
+  transform: translate3d(0, 0, 0);
+  backface-visibility: hidden;
 }
 
 /* El contenido antiguo (tema actual) se desvanece */
@@ -605,9 +643,17 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 }
 
 /* Prevenir parpadeos durante la transición */
+/* Mobile: 400ms para mejor performance */
 ::view-transition-group(root) {
-  animation-duration: 0.6s;
+  animation-duration: 0.4s;
   animation-timing-function: cubic-bezier(0.25, 1, 0.5, 1);
+}
+
+/* Desktop: Transición más suave y elaborada */
+@media (min-width: 768px) {
+  ::view-transition-group(root) {
+    animation-duration: 0.6s;
+  }
 }
 
 /* Fallback mejorado para navegadores sin View Transitions API */
@@ -623,7 +669,18 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
   z-index: 9999;
   pointer-events: none;
   background: var(--bg-color);
-  animation: theme-fade-overlay 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  /* Mobile: Animación más rápida */
+  animation: theme-fade-overlay 300ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  /* Aceleración por hardware */
+  transform: translate3d(0, 0, 0);
+  will-change: opacity;
+}
+
+/* Desktop: Animación más suave */
+@media (min-width: 768px) {
+  .theme-transitioning::before {
+    animation: theme-fade-overlay 400ms cubic-bezier(0.25, 1, 0.5, 1) forwards;
+  }
 }
 
 @keyframes theme-fade-overlay {
@@ -641,12 +698,27 @@ body:has([aria-expanded="true"]) .main-content.scroll-container {
 .theme-transitioning *,
 .theme-transitioning *::before,
 .theme-transitioning *::after {
+  /* Mobile: Transiciones más rápidas (300ms) */
   transition:
-    color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-    background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-    border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-    fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
-    stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+    color 300ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    background-color 300ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    border-color 300ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    fill 300ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+    stroke 300ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+}
+
+/* Desktop: Transiciones más suaves (400ms) */
+@media (min-width: 768px) {
+  .theme-transitioning *,
+  .theme-transitioning *::before,
+  .theme-transitioning *::after {
+    transition:
+      color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+      background-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+      border-color 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+      fill 400ms cubic-bezier(0.25, 1, 0.5, 1) !important,
+      stroke 400ms cubic-bezier(0.25, 1, 0.5, 1) !important;
+  }
 }
 
 /* Deshabilitar animación de tema si el usuario prefiere movimiento reducido */
