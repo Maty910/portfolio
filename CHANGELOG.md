@@ -5,6 +5,22 @@ Todos los cambios notables de este proyecto serán documentados en este archivo.
 El formato está basado en [Keep a Changelog](https://keepachangelog.com/es-ES/1.0.0/),
 y este proyecto adhiere a [Semantic Versioning](https://semver.org/lang/es/).
 
+## [Unreleased]
+
+### 📚 Documentación
+
+- Agregado [CERTIFICATES_GUIDE.md](CERTIFICATES_GUIDE.md) - Guía completa para agregar certificados
+- Agregado script de optimización automática de certificados (scripts/optimize-certificates.js)
+- Actualizado README de certificates con instrucciones detalladas
+
+### 🔄 Cambiado
+
+- Migrado referencias de certificados de PNG a WebP para mejor performance
+- Actualizado Education.tsx con todas las extensiones .webp
+- Agregado certificado faltante de Talento Tech Python
+
+---
+
 ## [1.0.1] - 2026-02-09
 
 ### � Performance

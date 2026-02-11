@@ -280,7 +280,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Certificado Programador Profesional Web Full Stack Avanzado",
-          image: "/certificates/forit-certificate.png",
+          image: "/certificates/forit-certificate.webp",
         },
       ],
       institutionUrl: "https://forit.ar/",
@@ -302,7 +302,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "ETH Kipu Certificate",
-          image: "/certificates/eth-kipu.png",
+          image: "/certificates/eth-kipu.webp",
         },
       ],
     },
@@ -347,7 +347,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Diploma Full Stack JavaScript - Node.js",
-          image: "/certificates/codo-a-codo-diploma.png",
+          image: "/certificates/codo-a-codo-diploma.webp",
         },
       ],
     },
@@ -389,7 +389,7 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
       certificates: [
         {
           name: "Design UX/UI Diploma",
-          image: "/certificates/talento-tech-ux.png",
+          image: "/certificates/talento-tech-ux.webp",
         },
       ],
     },
@@ -416,7 +416,12 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
         "Manejo de base de datos con sqlite3",
         "Validaciones y manejo de errores",
       ],
-      certificates: [],
+      certificates: [
+        {
+          name: "Python Programming Diploma",
+          image: "/certificates/talento-tech-python.webp",
+        },
+      ],
     },
     {
       id: 7,
