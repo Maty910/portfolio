@@ -43,7 +43,7 @@ export default [
   },
   {
     slug: "p6",
-    image: "./images/project4.webp",
+    image: "./images/IA.webp",
     technologies: ["Python", "SQLite"],
     githubUrl: "https://github.com/Maty910/inventory",
   },
