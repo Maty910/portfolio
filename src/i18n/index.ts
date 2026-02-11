@@ -42,27 +42,33 @@ const en: Translations = {
     items: {
       p1: {
         title: "Portfolio Website - Director of Photography",
-        description: "Full-stack portfolio application built with React",
+        description:
+          "Modern portfolio showcasing multimedia work with responsive design, optimized image galleries, and smooth animations built with React and TypeScript",
       },
       p2: {
         title: "Sachito Refrigeration Website",
-        description: "Responsive website for a refrigeration services technician",
+        description:
+          "Technician website with contact forms, service showcases, and mobile-first responsive design for a refrigeration services company",
       },
       p3: {
-        title: "Hotel Now Website",
-        description: "Landing page for a hotel booking service",
+        title: "Hotel Now Platform",
+        description:
+          "Full-stack hotel booking system with RESTful API, PostgreSQL database, Docker containerization, and domain-driven architecture following clean code principles",
       },
       p4: {
         title: "Task Management App",
-        description: "Tasks management tool connected to SQLite",
+        description:
+          "Full-stack productivity tool with CRUD operations, real-time updates, and persistent storage using Node.js backend and SQLite database",
       },
       p5: {
         title: "Community Manager Portfolio",
-        description: "[WIP] Portfolio for a community manager showcasing social media skills",
+        description:
+          "Creative portfolio website highlighting social media management skills, campaigns, and content strategy with modern UI/UX design",
       },
       p6: {
         title: "Inventory Management System",
-        description: "Inventory system in Python + SQLite",
+        description:
+          "Terminal inventory tracking application built with Python featuring stock control, product management, and SQLite database integration",
       },
     },
   },
@@ -198,27 +204,33 @@ const es: Translations = {
     items: {
       p1: {
         title: "Portafolio Web - Director de Fotografía",
-        description: "Aplicación portfolio full-stack construida con React",
+        description:
+          "Portafolio moderno que presenta trabajos multimedia con diseño responsivo, galerías de imágenes optimizadas y animaciones fluidas construido con React y TypeScript",
       },
       p2: {
         title: "Sitio Web Sachito Refrigeración",
-        description: "Sitio web responsivo para un técnico en refrigeración.",
+        description:
+          "Sitio web para técnico en refrigeración con formularios de contacto, catálogo de servicios y diseño mobile-first",
       },
       p3: {
-        title: "Sitio Web Hotel Now",
-        description: "Página web para un servicio de reservas hoteleras",
+        title: "Plataforma Hotel Now",
+        description:
+          "Sistema full-stack de reservas hoteleras con API RESTful, base de datos PostgreSQL, contenerización Docker y arquitectura orientada al dominio siguiendo principios de código limpio",
       },
       p4: {
         title: "App Gestión de Tareas",
-        description: "Herramienta de gestión de tareas conectada a SQLite",
+        description:
+          "Herramienta de productividad full-stack con operaciones CRUD, actualizaciones en tiempo real y almacenamiento persistente usando backend Node.js y base de datos SQLite",
       },
       p5: {
         title: "Portafolio Web - Community Manager",
-        description: "[WIP] Portfolio para community manager mostrando habilidades en redes",
+        description:
+          "Sitio web creativo que destaca habilidades de gestión de redes sociales, campañas y estrategia de contenido con diseño UI/UX moderno",
       },
       p6: {
         title: "Sistema de Inventario",
-        description: "Sistema de inventario en Python + SQLite",
+        description:
+          "Aplicación de terminal para seguimiento de inventario construida con Python con control de stock, gestión de productos e integración con base de datos SQLite",
       },
     },
   },
