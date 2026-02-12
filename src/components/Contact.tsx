@@ -78,9 +78,7 @@ export function Contact() {
                   onClick={handleCopyEmail}
                   className="flex items-center justify-center min-w-[44px] min-h-[44px] px-3 py-2.5 rounded-xl bg-text-primary/5 border border-text-primary/10 text-text-primary hover:bg-text-primary/10 hover:border-text-primary/20 hover:scale-105 transition-all duration-500 cursor-pointer focus-visible:ring-2 focus-visible:ring-primary"
                   title={t("contact.copyEmail")}
-                  aria-label={
-                    copied ? "Email copied to clipboard" : "Copy email address to clipboard"
-                  }
+                  aria-label={copied ? t("contact.emailCopied") : t("contact.copyEmailAria")}
                 >
                   {copied ? <Check size={18} className="text-green-500" /> : <Copy size={18} />}
                 </button>
@@ -98,7 +96,7 @@ export function Contact() {
             rel="noopener noreferrer"
             className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             style={{ animationDelay: "250ms" }}
-            aria-label="Visit my LinkedIn profile"
+            aria-label={t("contact.visitLinkedIn")}
           >
             {/* Icono */}
             <div
@@ -134,7 +132,7 @@ export function Contact() {
             rel="noopener noreferrer"
             className="group relative flex flex-col max-[880px]:flex-row max-[880px]:items-center gap-4 max-[880px]:gap-3 p-5 max-[880px]:p-4 rounded-xl bg-text-primary/5 border border-text-primary/10 transition-all duration-300 ease-out hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1 active:scale-[0.98] overflow-hidden animate-in fade-in slide-in-from-bottom-8 cursor-pointer no-underline focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
             style={{ animationDelay: "350ms" }}
-            aria-label="Visit my GitHub profile"
+            aria-label={t("contact.visitGitHub")}
           >
             {/* Icono */}
             <div className="p-2.5 rounded-xl bg-gradient-to-br from-text-primary/10 to-text-primary/5 border border-text-primary/20 text-text-primary transition-all duration-300 relative z-10 max-[880px]:shrink-0 max-[880px]:mr-3">
