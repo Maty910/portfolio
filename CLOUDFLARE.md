@@ -97,6 +97,7 @@ Este es un comportamiento **esperado** y **no es un error real**:
 **Error:** "Expected a JavaScript module but server responded with application/octet-stream"
 
 **Solución:** Configurado en `vercel.json` y `public/_headers`:
+
 - Archivos `.js` y `.mjs` sirven con `Content-Type: text/javascript; charset=utf-8`
 - Archivos `.css` sirven con `Content-Type: text/css; charset=utf-8`
 
