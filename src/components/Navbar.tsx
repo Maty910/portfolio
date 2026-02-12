@@ -305,7 +305,7 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
                 ? "bg-transparent border-transparent text-text-primary scale-110"
                 : "bg-bg-base/80 border-text-primary/10 text-text-primary hover:scale-105 active:scale-95"
             }`}
-            aria-label={mobileMenuOpen ? "Close menu" : "Open menu"}
+            aria-label={mobileMenuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
             style={{ top: "calc(24px + env(safe-area-inset-top, 0px))" }}
           >
             {/* Icons container */}
