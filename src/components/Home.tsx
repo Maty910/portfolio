@@ -133,9 +133,8 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
           >
             {/* Botón CV (Primario) - Full width en mobile */}
             <a
-              href="/CV/CV Matias Chacon.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/CV/CV Matías Chacón.pdf"
+              download="CV Matías Chacón.pdf"
               className="relative overflow-hidden flex items-center justify-center gap-3 px-8 py-3.5 rounded-xl 
                             gradient-primary font-bold tracking-wide
                           shadow-lg shadow-primary/20
