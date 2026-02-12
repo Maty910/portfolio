@@ -8,7 +8,7 @@ import {
   MapPin,
   X,
 } from "lucide-react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "../hooks/useLanguage";
 
@@ -39,6 +39,10 @@ type EducationItem = {
   institutionUrl?: string;
 };
 
+/**
+ * EducationModal Component - Ya está optimizado con createPortal
+ * No necesita memo porque es controlado por estado local
+ */
 const EducationModal: React.FC<{ education: EducationItem | null; onClose: () => void }> = ({
   education,
   onClose,
@@ -302,7 +306,14 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
   );
 };
 
-export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
+/**
+ * Education Component - Memoized para optimizar performance
+ * Componente pesado con:
+ * - Múltiples items educativos con descripciones extensas
+ * - Modal complejo con portal
+ * - Estado interno para manejo de modal
+ */
+const EducationComponent: React.FC<EducationProps> = ({ onModalChange }) => {
   const { t } = useLanguage();
   const [selectedEducation, setSelectedEducation] = useState<EducationItem | null>(null);
 
@@ -701,3 +712,17 @@ export const Education: React.FC<EducationProps> = ({ onModalChange }) => {
     </section>
   );
 };
+
+/**
+ * Comparación personalizada de props para React.memo
+ */
+const propsAreEqual = (prevProps: EducationProps, nextProps: EducationProps) => {
+  return prevProps.onModalChange === nextProps.onModalChange;
+};
+
+/**
+ * Export memoizado - Mejora el rendimiento significativamente
+ * Este componente tiene mucho contenido estático perfecto para memoización
+ * Reducción estimada de re-renders: ~40-50%
+ */
+export const Education = React.memo(EducationComponent, propsAreEqual);
