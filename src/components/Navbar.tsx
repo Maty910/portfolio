@@ -148,6 +148,20 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
 
   return (
     <>
+      {/* ========== SKIP TO CONTENT LINK (WCAG 2.4.1) ========== */}
+      <a
+        href="#main-content"
+        className="fixed top-4 left-4 z-[10001] px-6 py-3 rounded-lg
+                   bg-primary text-text-primary font-bold shadow-lg
+                   transform -translate-y-[200%]
+                   focus:translate-y-0 focus:animate-[skipSlideIn_300ms_ease-out]
+                   transition-transform duration-300
+                   focus-visible:outline-none focus-visible:ring-4 focus-visible:ring-primary/50"
+        style={{ color: "var(--color-on-primary)" }}
+      >
+        {t("nav.skipToContent")}
+      </a>
+
       {/* ========== DESKTOP SIDEBAR ========== */}
       <aside
         className="z-[999] hidden min-[881px]:fixed min-[881px]:left-0 min-[881px]:top-0 min-[881px]:h-screen min-[881px]:flex min-[881px]:flex-col min-[881px]:justify-between min-[881px]:bg-bg-base/80 min-[881px]:backdrop-blur-xl min-[881px]:border-r min-[881px]:border-text-primary/5 min-[881px]:shadow-[10px_0_30px_rgba(0,0,0,0.05)] dark:min-[881px]:shadow-[-10px_0_30px_rgba(0,0,0,0.5)] transition-[width,padding] duration-500 ease-[cubic-bezier(0.25,0.1,0.25,1.0)] min-[881px]:py-6"

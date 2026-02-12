@@ -58,6 +58,16 @@
     }
   }
 
+  /* Skip-to-content animation - Accesibilidad WCAG 2.4.1 */
+  @keyframes skipSlideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   @keyframes fadeIn {
     from {
       opacity: 0;

@@ -13,6 +13,7 @@ export interface Translations {
     contact: string;
     closeMenu: string;
     openMenu: string;
+    skipToContent: string;
   };
   header: {
     name: string;

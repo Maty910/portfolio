@@ -13,6 +13,7 @@ const en: Translations = {
     contact: "Contact",
     closeMenu: "Close menu",
     openMenu: "Open menu",
+    skipToContent: "Skip to main content",
   },
   header: {
     name: "Full-Stack Web Developer",
@@ -192,6 +193,7 @@ const es: Translations = {
     contact: "Contacto",
     closeMenu: "Cerrar menú",
     openMenu: "Abrir menú",
+    skipToContent: "Saltar al contenido principal",
   },
   header: {
     name: "Desarrollador Web Full-Stack",

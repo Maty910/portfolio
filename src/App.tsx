@@ -51,7 +51,7 @@ function App() {
       <Intro onFinish={() => {}} />
       <Page activeSection={activeSection}>
         <Navbar activeSection={activeSection} setActiveSection={setActiveSection} />
-        <main className="main-content scroll-container">
+        <main id="main-content" className="main-content scroll-container" tabIndex={-1}>
           <Home setActiveSection={setActiveSection} />
           <Experience />
           <Projects />

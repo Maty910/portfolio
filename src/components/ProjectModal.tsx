@@ -25,6 +25,10 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
 
   const hasMultipleImages = images.length > 1;
 
+  // Dimensiones estándar de imágenes (prevent CLS)
+  const IMAGE_WIDTH = 800;
+  const IMAGE_HEIGHT = 600;
+
   // Reset del index cuando cambia el proyecto
   useEffect(() => {
     setCurrentImageIndex(0);
@@ -108,6 +112,8 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                   <img
                     src={images[currentImageIndex]}
                     alt={`${project.title} screenshot ${currentImageIndex + 1}`}
+                    width={IMAGE_WIDTH}
+                    height={IMAGE_HEIGHT}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-contain transition-transform duration-500"

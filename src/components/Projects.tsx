@@ -25,6 +25,10 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
     description: t(`projects.items.${p.slug}.description`) || t("projects.noDescription"),
   }));
 
+  // Dimensiones estándar de imágenes (prevent CLS)
+  const IMAGE_WIDTH = 800;
+  const IMAGE_HEIGHT = 600;
+
   // Función helper para obtener la primera imagen
   const getFirstImage = (image: string | string[] | undefined): string | undefined => {
     if (!image) return undefined;
@@ -83,11 +87,16 @@ export const Projects: React.FC<ProjectsProps> = ({ onModalChange }) => {
                          active:scale-[0.98]"
             >
               {/* Imagen con Overlay */}
-              <div className="relative h-48 overflow-hidden w-full bg-bg-base">
+              <div
+                className="relative h-48 overflow-hidden w-full bg-bg-base"
+                style={{ aspectRatio: "4/3" }}
+              >
                 {getFirstImage(project.image) ? (
                   <img
                     src={getFirstImage(project.image)}
                     alt={project.title}
+                    width={IMAGE_WIDTH}
+                    height={IMAGE_HEIGHT}
                     loading="lazy"
                     decoding="async"
                     className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
