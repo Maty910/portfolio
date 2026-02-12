@@ -56,6 +56,24 @@ export interface Translations {
     responsibilities: string;
     viewMore: string;
     visitWebsite: string;
+    present: string;
+    remote: string;
+    partTime: string;
+    fullTime: string;
+    duration: {
+      months: string;
+      month: string;
+      years: string;
+      year: string;
+    };
+    jobs: {
+      forit: {
+        position: string;
+        duration: string;
+        location: string;
+        description: string[];
+      };
+    };
   };
   education: {
     title: string;

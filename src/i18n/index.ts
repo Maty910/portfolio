@@ -79,6 +79,29 @@ const en: Translations = {
     responsibilities: "Key Responsibilities",
     viewMore: "View full experience on LinkedIn",
     visitWebsite: "Visit website",
+    present: "Present",
+    remote: "Remote",
+    partTime: "Part-time",
+    fullTime: "Full-time",
+    duration: {
+      months: "months",
+      month: "month",
+      years: "years",
+      year: "year",
+    },
+    jobs: {
+      forit: {
+        position: "Web Developer",
+        duration: "3 months",
+        location: "Buenos Aires Province, Argentina",
+        description: [
+          "Full Stack Development & Domain: End-to-end solution implementation (Frontend and Backend), with strong emphasis on domain modeling and business rules to ensure the software accurately reflects product needs.",
+          "Code Review & Quality: Active participation in peer code reviews, providing constructive feedback to elevate team standards. Rigorous application of Clean Architecture, Clean Code, and TDD to minimize technical debt.",
+          "Pull Request Management: Creation of atomic, clean, and well-documented PRs, facilitating continuous integration and maintaining a clear change history.",
+          "Autonomy & Collaboration: Resolution of medium-complexity tickets independently, maintaining fluid communication about task status and managing blockers early.",
+        ],
+      },
+    },
   },
   education: {
     title: "Education & Certifications",
@@ -259,6 +282,29 @@ const es: Translations = {
     responsibilities: "Responsabilidades Principales",
     viewMore: "Ver experiencia completa en LinkedIn",
     visitWebsite: "Visitar sitio web",
+    present: "Presente",
+    remote: "Remoto",
+    partTime: "Part-time",
+    fullTime: "Full-time",
+    duration: {
+      months: "meses",
+      month: "mes",
+      years: "años",
+      year: "año",
+    },
+    jobs: {
+      forit: {
+        position: "Web Developer",
+        duration: "3 meses",
+        location: "Provincia de Buenos Aires, Argentina",
+        description: [
+          "Desarrollo Full Stack & Dominio: Implementación de soluciones end-to-end (Frontend y Backend), con fuerte énfasis en el modelado de dominio y reglas de negocio para asegurar que el software refleje fielmente las necesidades del producto.",
+          "Code Review & Calidad: Participación activa en la revisión de código de pares, aportando feedback constructivo para elevar el estándar del equipo. Aplicación rigurosa de Clean Architecture, Clean Code y TDD para minimizar deuda técnica.",
+          "Gestión de Pull Requests: Elaboración de PRs atómicos, prolijos y bien documentados, facilitando la integración continua y manteniendo un historial de cambios claro.",
+          "Autonomía y Colaboración: Resolución de tickets de complejidad media con independencia, manteniendo una comunicación fluida sobre el estado de las tareas y gestionando bloqueos de forma temprana.",
+        ],
+      },
+    },
   },
   education: {
     title: "Educación y Certificaciones",

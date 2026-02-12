@@ -28,26 +28,21 @@ type ExperienceItem = {
 const ExperienceComponent: React.FC<ExperienceProps> = () => {
   const { t } = useLanguage();
 
-  // Datos de experiencia - después los movemos a un archivo separado si crece
+  // Datos de experiencia con traducciones
   const experiences: ExperienceItem[] = [
     {
       id: 1,
       company: "ForIT Software Factory",
       logo: "/logos/icon-forit.svg",
-      position: "Web Developer",
-      type: "Part-time",
+      position: t("experience.jobs.forit.position"),
+      type: t("experience.partTime"),
       startDate: "Dec 2025",
-      endDate: "Present",
-      duration: "3 meses",
-      location: "Provincia de Buenos Aires, Argentina",
+      endDate: t("experience.present"),
+      duration: t("experience.jobs.forit.duration"),
+      location: t("experience.jobs.forit.location"),
       remote: true,
       companyUrl: "https://forit.ar/",
-      description: [
-        "Desarrollo Full Stack & Dominio: Implementación de soluciones end-to-end (Frontend y Backend), con fuerte énfasis en el modelado de dominio y reglas de negocio para asegurar que el software refleje fielmente las necesidades del producto.",
-        "Code Review & Calidad: Participación activa en la revisión de código de pares, aportando feedback constructivo para elevar el estándar del equipo. Aplicación rigurosa de Clean Architecture, Clean Code y TDD para minimizar deuda técnica.",
-        "Gestión de Pull Requests: Elaboración de PRs atómicos, prolijos y bien documentados, facilitando la integración continua y manteniendo un historial de cambios claro.",
-        "Autonomía y Colaboración: Resolución de tickets de complejidad media con independencia, manteniendo una comunicación fluida sobre el estado de las tareas y gestionando bloqueos de forma temprana.",
-      ],
+      description: [t("experience.jobs.forit.description")],
     },
   ];
 
@@ -172,7 +167,7 @@ const ExperienceComponent: React.FC<ExperienceProps> = () => {
                             <>
                               <span className="text-text-muted">·</span>
                               <span className="px-2 py-0.5 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
-                                Remote
+                                {t("experience.remote")}
                               </span>
                             </>
                           )}
