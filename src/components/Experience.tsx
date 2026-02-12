@@ -117,7 +117,7 @@ export const Experience: React.FC<ExperienceProps> = () => {
                             rel="noopener noreferrer"
                             className="block w-12 h-12 rounded-lg bg-bg-base border border-text-primary/10 p-2 shrink-0 hover:border-primary/30 hover:shadow-lg hover:scale-105 transition-all duration-300
                                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
-                            title={`Visit ${exp.company} website`}
+                            title={`${t("experience.visitWebsite")} ${exp.company}`}
                           >
                             <img
                               src={exp.logo}
