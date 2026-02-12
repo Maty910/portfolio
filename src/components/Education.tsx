@@ -8,7 +8,7 @@ import {
   MapPin,
   X,
 } from "lucide-react";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { createPortal } from "react-dom";
 import { useLanguage } from "../hooks/useLanguage";
 
@@ -286,7 +286,7 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                             size={12}
                             className="group-hover:text-primary transition-colors max-[880px]:w-3 max-[880px]:h-3"
                           />
-                          Click para ver certificado
+                          {t("education.clickToViewCertificate")}
                         </span>
                       </div>
                     </div>
@@ -317,7 +317,9 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
               style={{ color: "var(--color-on-primary)" }}
             >
               <Building2 size={16} className="max-[880px]:w-4 max-[880px]:h-4" />
-              <span className="max-[880px]:truncate">Visitar {education.institution}</span>
+              <span className="max-[880px]:truncate">
+                {t("education.visitInstitution")} {education.institution}
+              </span>
               <ExternalLink size={14} className="max-[880px]:w-3.5 max-[880px]:h-3.5" />
             </a>
           </div>
@@ -366,280 +368,250 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
  * - Estado interno para manejo de modal
  */
 const EducationComponent: React.FC<EducationProps> = ({ onModalChange }) => {
-  const { t } = useLanguage();
-  const [selectedEducation, setSelectedEducation] = useState<EducationItem | null>(null);
+  const { t, get } = useLanguage();
+  const [selectedEducationId, setSelectedEducationId] = useState<number | null>(null);
 
-  const educationItems: EducationItem[] = [
-    {
-      id: 1,
-      institution: "Universidad de Buenos Aires",
-      logo: "/logos/UBA-01.webp",
-      degree: "Licenciatura en Psicología",
-      field: "Psychology",
-      startDate: "2021",
-      endDate: "Present",
-      duration: "4 años",
-      location: "Buenos Aires, Argentina",
-      status: "50% Completado",
-      description: [
-        "Formación universitaria en curso enfocada en el estudio científico del comportamiento humano, procesos cognitivos, emocionales y dinámicas sociales.",
-        "Esta carrera proporciona una base sólida en investigación cualitativa y cuantitativa, análisis de datos y metodología científica aplicable al desarrollo de software.",
-        "El conocimiento en psicología cognitiva complementa directamente el diseño de interfaces, experiencia de usuario y desarrollo de productos digitales centrados en las necesidades humanas.",
-      ],
-      skills: [
-        "Psicología Cognitiva",
-        "Investigación Cualitativa",
-        "User Psychology",
-        "Human-Computer Interaction",
-        "Behavioral Analysis",
-        "Research Methods",
-      ],
-      institutionUrl: "https://www.uba.ar/",
-    },
-    {
-      id: 2,
-      institution: "ForIT Software Factory",
-      logo: "/logos/icon-forit.svg",
-      degree: "Desarrollador Web Avanzado",
-      field: "Web Development",
-      startDate: "Jul 2025",
-      endDate: "Dec 2025",
-      duration: "4 mes",
-      location: "Remote",
-      description: [
-        "Programa intensivo de desarrollo web avanzado enfocado en arquitectura de software profesional, testing y metodologías modernas.",
-        "Formación práctica en Test-Driven Development (TDD), Clean Code, TypeScript avanzado y patrones de diseño aplicados a React.",
-        "Desarrollo de proyectos reales con contenedorización en Docker, Tailwind CSS para estilos escalables y arquitectura de componentes reutilizables.",
-      ],
-      skills: [
-        "Test-Driven Development",
-        "Tailwind CSS",
-        "TypeScript",
-        "Visual TDD",
-        "Clean Code",
-        "React Hooks",
-        "Docker",
-        "Web Development",
-      ],
-      certificates: [
-        {
-          name: "Certificado Programador Profesional Web Full Stack Avanzado",
-          image: "/certificates/Certificado Programador Profesional Avanzado ForIT.webp",
-        },
-      ],
-      institutionUrl: "https://forit.ar/",
-    },
-    {
-      id: 3,
-      institution: "ETH Kipu",
-      logo: "/logos/ETH Kipu Logo.png",
-      degree: "Ethereum Developer Pack",
-      field: "Blockchain Development",
-      startDate: "Dec 2025",
-      endDate: "Dec 2025",
-      duration: "1 mes",
-      location: "Remote",
-      description: [
-        "Programa especializado en tecnología blockchain y desarrollo sobre la red Ethereum.",
-        "Formación en fundamentos de cadenas de bloques, arquitectura descentralizada, smart contracts y aplicaciones Web3.",
-        "Conocimientos prácticos en integración de wallets digitales, transacciones on-chain y desarrollo de DApps (Aplicaciones Descentralizadas).",
-      ],
-      skills: ["Ethereum", "Wallets", "Web3", "Decentralized Applications (DApps)", "Solidity"],
-      certificates: [
-        {
-          name: "ETH Kipu Certificate",
-          image: "/certificates/ETH Kipu Certificado.webp",
-        },
-      ],
-    },
-    {
-      id: 4,
-      institution: "Codo a Codo 4.0",
-      degree: "Full Stack Web Developer",
-      field: "Information Technology",
-      startDate: "Feb 2024",
-      endDate: "Jul 2024",
-      duration: "6 meses",
-      location: "Buenos Aires, Argentina",
-      description: [
-        "Programa intensivo de 6 meses en desarrollo web full-stack con foco en JavaScript, Node.js y frameworks modernos.",
-        "Formación integral cubriendo frontend con React.js y Vue.js, backend con Express.js y Node.js, bases de datos relacionales SQL, y control de versiones con Git.",
-        "Desarrollo de proyecto final: aplicación web dinámica e interactiva con arquitectura completa cliente-servidor, base de datos SQL integrada, y diseño responsive.",
-        "Trabajo colaborativo aplicando metodologías ágiles (Scrum), promoviendo adaptabilidad, resolución de problemas y atención al detalle.",
-      ],
-      skills: [
-        "Responsive Web Design",
-        "Express.js",
-        "Databases",
-        "Software Development",
-        "Vue.js",
-        "Relational Databases",
-        "Back-End Web Development",
-        "Programming",
-        "Teamwork",
-        "JavaScript",
-        "Scrum",
-        "SQL",
-        "Full-Stack Development",
-        "Python",
-        "React Hooks",
-        "JSON",
-        "Front-End Development",
-        "Git",
-        "Programming Languages",
-        "React.js",
-        "Document Object Model",
-        "Node.js",
-      ],
-      certificates: [
-        {
-          name: "Diploma Full Stack JavaScript - Node.js",
-          image: "/certificates/Certificado Codo a Codo.webp",
-        },
-      ],
-    },
-    {
-      id: 5,
-      institution: "Talento Tech",
-      logo: "/logos/Talento-Tech-Logo.webp",
-      degree: "Design UX/UI, Web Page, Digital/Multimedia and Information Resources Design",
-      field: "UX/UI Design",
-      startDate: "Aug 2024",
-      endDate: "Dec 2024",
-      duration: "5 meses",
-      location: "Argentina",
-      description: [
-        "Curso intensivo de 5 meses en diseño de experiencia e interfaz de usuario, metodología de investigación y arquitectura de información.",
-        "Desarrollo de habilidades en diseño centrado en el usuario: investigación UX, benchmarking competitivo, creación de user personas, empathy maps y journey maps.",
-        "Proyecto práctico: diseño completo de aplicación móvil conectando bandas independientes con venues, incluyendo user flows, task flows, site maps y wireframes interactivos.",
-        "Herramientas profesionales: Figma para diseño y prototipado, Whimsical para arquitectura de información, UXtweak para testing de usabilidad.",
-      ],
-      skills: [
-        "Benchmarking",
-        "User Personas",
-        "User Centered Design",
-        "User Experience (UX)",
-        "Site Maps",
-        "Scrum",
-        "User Interface Design",
-        "Task Flow",
-        "Web Design",
-        "Python",
-        "Design Research",
-        "User Journey Map",
-        "Empathy Mapping",
-        "Git",
-        "Storyboarding",
-        "Document Object Model",
-        "Figma (Software)",
-        "Tailwind CSS",
-      ],
-      certificates: [
-        {
-          name: "Design UX/UI Diploma",
-          image: "/certificates/Certificado Talento Tech Diseño UXUI.webp",
-        },
-      ],
-    },
-    {
-      id: 6,
-      institution: "Talento Tech",
-      logo: "/logos/Talento-Tech-Logo.webp",
-      degree: "Python, Information Technology",
-      field: "Python Development",
-      startDate: "Mar 2025",
-      endDate: "Jul 2025",
-      duration: "5 meses",
-      location: "Argentina",
-      description: [
-        "Curso práctico de 5 meses enfocado en programación estructurada con Python y gestión de bases de datos relacionales SQLite.",
-        "Formación en fundamentos de programación: estructuras de datos (listas, tuplas, diccionarios), manejo de excepciones, validaciones de entrada y modularización de código.",
-        "Desarrollo de operaciones CRUD completas sobre bases de datos SQL usando la biblioteca sqlite3, diseño de esquemas relacionales y consultas optimizadas.",
-        "Proyecto final: aplicación de consola para gestión de inventario de productos con arquitectura modular (main.py, db_methods.py, validations.py), aplicando principios de Clean Code y buenas prácticas.",
-      ],
-      skills: [
-        "SQLite",
-        "Dictionaries",
-        "Python",
-        "Programación estructurada",
-        "Manejo de base de datos con sqlite3",
-        "Validaciones y manejo de errores",
-      ],
-      certificates: [
-        {
-          name: "Python Programming Diploma",
-          image: "/certificates/Certificado Talento Tech Python.webp",
-        },
-      ],
-    },
-    {
-      id: 7,
-      institution: "Cilsa",
-      degree: "Testing & Automatization",
-      field: "Information Technology",
-      startDate: "Apr 2025",
-      endDate: "Jun 2025",
-      duration: "3 meses",
-      location: "Argentina",
-      description: [
-        "Formación teórico-práctica de 3 meses en control de calidad de software (QA), testing manual y automatizado.",
-        "Conocimientos en ciclo de vida del testing: planificación de pruebas, diseño y ejecución de casos de prueba, gestión de incidencias y reportes de defectos.",
-        "Tipos de pruebas: funcionales, end-to-end (E2E), regresión, caja negra, integración y validación de requisitos.",
-        "Herramientas profesionales: Selenium WebDriver para automatización web, Robot Framework para testing estructurado, Postman para testing de APIs REST, Jira para seguimiento de bugs.",
-        "Metodologías: trabajo con Agile (Scrum), Waterfall y ciclos de desarrollo iterativos en equipos multidisciplinarios.",
-      ],
-      skills: [
-        "Test Planning",
-        "Robot Framework",
-        "Testing",
-        "Selenium Testing",
-        "Agile Methodologies",
-        "Postman API",
-        "Jira",
-        "Test Cases",
-        "Agile & Waterfall Methodologies",
-        "Selenium WebDriver",
-      ],
-      certificates: [
-        {
-          name: "Testing & Automatización Certificate",
-          image: "/certificates/Certificado Cilsa.webp",
-        },
-      ],
-    },
-    {
-      id: 8,
-      institution: "Talento Tech",
-      logo: "/logos/Talento-Tech-Logo.webp",
-      degree: "Figma Course",
-      field: "UX/UI Design",
-      startDate: "Jan 2026",
-      endDate: "Jan 2026",
-      duration: "1 mes",
-      location: "Argentina",
-      description: [
-        "Curso intensivo de 1 mes especializado en Figma como herramienta profesional de diseño UI/UX y prototipado.",
-        "Dominio de funcionalidades avanzadas: componentes reutilizables, auto-layout, variables de diseño, design tokens y sistemas de diseño escalables.",
-        "Prácticas de colaboración en tiempo real: trabajo en equipo, comentarios en diseños, control de versiones y hand-off a desarrollo.",
-        "Creación de prototipos interactivos con animaciones, transiciones y flujos de navegación para testing de usabilidad.",
-      ],
-      skills: ["Figma (Software)", "UX/UI Design", "Prototyping", "Collaboration Tools"],
-      certificates: [
-        {
-          name: "Figma Course Certificate",
-          image: "/certificates/Certificado Talento Tech Figma.webp",
-        },
-      ],
-    },
-  ];
+  const educationItems: EducationItem[] = useMemo(
+    () => [
+      {
+        id: 1,
+        institution: "Universidad de Buenos Aires",
+        logo: "/logos/UBA-01.webp",
+        degree: t("education.items.uba.degree"),
+        field: "Psychology",
+        startDate: "2021",
+        endDate: "Present",
+        duration: "4 años",
+        location: "Buenos Aires, Argentina",
+        status: t("education.items.uba.status"),
+        description: get<string[]>("education.items.uba.description") || [],
+        skills: [
+          "Psicología Cognitiva",
+          "Investigación Cualitativa",
+          "User Psychology",
+          "Human-Computer Interaction",
+          "Behavioral Analysis",
+          "Research Methods",
+        ],
+        institutionUrl: "https://www.uba.ar/",
+      },
+      {
+        id: 2,
+        institution: "ForIT Software Factory",
+        logo: "/logos/icon-forit.svg",
+        degree: t("education.items.forit.degree"),
+        field: "Web Development",
+        startDate: "Jul 2025",
+        endDate: "Dec 2025",
+        duration: "4 mes",
+        location: "Remote",
+        description: get<string[]>("education.items.forit.description") || [],
+        skills: [
+          "Test-Driven Development",
+          "Tailwind CSS",
+          "TypeScript",
+          "Visual TDD",
+          "Clean Code",
+          "React Hooks",
+          "Docker",
+          "Web Development",
+        ],
+        certificates: [
+          {
+            name: "Certificado Programador Profesional Web Full Stack Avanzado",
+            image: "/certificates/Certificado Programador Profesional Avanzado ForIT.webp",
+          },
+        ],
+        institutionUrl: "https://forit.ar/",
+      },
+      {
+        id: 3,
+        institution: "ETH Kipu",
+        logo: "/logos/ETH Kipu Logo.png",
+        degree: t("education.items.ethKipu.degree"),
+        field: "Blockchain Development",
+        startDate: "Dec 2025",
+        endDate: "Dec 2025",
+        duration: "1 mes",
+        location: "Remote",
+        description: get<string[]>("education.items.ethKipu.description") || [],
+        skills: ["Ethereum", "Wallets", "Web3", "Decentralized Applications (DApps)", "Solidity"],
+        certificates: [
+          {
+            name: "ETH Kipu Certificate",
+            image: "/certificates/ETH Kipu Certificado.webp",
+          },
+        ],
+      },
+      {
+        id: 4,
+        institution: "Codo a Codo 4.0",
+        degree: t("education.items.codoACodo.degree"),
+        field: "Information Technology",
+        startDate: "Feb 2024",
+        endDate: "Jul 2024",
+        duration: "6 meses",
+        location: "Buenos Aires, Argentina",
+        description: get<string[]>("education.items.codoACodo.description") || [],
+        skills: [
+          "Responsive Web Design",
+          "Express.js",
+          "Databases",
+          "Software Development",
+          "Vue.js",
+          "Relational Databases",
+          "Back-End Web Development",
+          "Programming",
+          "Teamwork",
+          "JavaScript",
+          "Scrum",
+          "SQL",
+          "Full-Stack Development",
+          "Python",
+          "React Hooks",
+          "JSON",
+          "Front-End Development",
+          "Git",
+          "Programming Languages",
+          "React.js",
+          "Document Object Model",
+          "Node.js",
+        ],
+        certificates: [
+          {
+            name: "Diploma Full Stack JavaScript - Node.js",
+            image: "/certificates/Certificado Codo a Codo.webp",
+          },
+        ],
+      },
+      {
+        id: 5,
+        institution: "Talento Tech",
+        logo: "/logos/Talento-Tech-Logo.webp",
+        degree: t("education.items.talentoTechUX.degree"),
+        field: "UX/UI Design",
+        startDate: "Aug 2024",
+        endDate: "Dec 2024",
+        duration: "5 meses",
+        location: "Argentina",
+        description: get<string[]>("education.items.talentoTechUX.description") || [],
+        skills: [
+          "Benchmarking",
+          "User Personas",
+          "User Centered Design",
+          "User Experience (UX)",
+          "Site Maps",
+          "Scrum",
+          "User Interface Design",
+          "Task Flow",
+          "Web Design",
+          "Python",
+          "Design Research",
+          "User Journey Map",
+          "Empathy Mapping",
+          "Git",
+          "Storyboarding",
+          "Document Object Model",
+          "Figma (Software)",
+          "Tailwind CSS",
+        ],
+        certificates: [
+          {
+            name: "Design UX/UI Diploma",
+            image: "/certificates/Certificado Talento Tech Diseño UXUI.webp",
+          },
+        ],
+      },
+      {
+        id: 6,
+        institution: "Talento Tech",
+        logo: "/logos/Talento-Tech-Logo.webp",
+        degree: t("education.items.talentoTechPython.degree"),
+        field: "Python Development",
+        startDate: "Mar 2025",
+        endDate: "Jul 2025",
+        duration: "5 meses",
+        location: "Argentina",
+        description: get<string[]>("education.items.talentoTechPython.description") || [],
+        skills: [
+          "SQLite",
+          "Dictionaries",
+          "Python",
+          "Programación estructurada",
+          "Manejo de base de datos con sqlite3",
+          "Validaciones y manejo de errores",
+        ],
+        certificates: [
+          {
+            name: "Python Programming Diploma",
+            image: "/certificates/Certificado Talento Tech Python.webp",
+          },
+        ],
+      },
+      {
+        id: 7,
+        institution: "Cilsa",
+        degree: t("education.items.cilsa.degree"),
+        field: "Information Technology",
+        startDate: "Apr 2025",
+        endDate: "Jun 2025",
+        duration: "3 meses",
+        location: "Argentina",
+        description: get<string[]>("education.items.cilsa.description") || [],
+        skills: [
+          "Test Planning",
+          "Robot Framework",
+          "Testing",
+          "Selenium Testing",
+          "Agile Methodologies",
+          "Postman API",
+          "Jira",
+          "Test Cases",
+          "Agile & Waterfall Methodologies",
+          "Selenium WebDriver",
+        ],
+        certificates: [
+          {
+            name: "Testing & Automatización Certificate",
+            image: "/certificates/Certificado Cilsa.webp",
+          },
+        ],
+      },
+      {
+        id: 8,
+        institution: "Talento Tech",
+        logo: "/logos/Talento-Tech-Logo.webp",
+        degree: t("education.items.talentoTechFigma.degree"),
+        field: "UX/UI Design",
+        startDate: "Jan 2026",
+        endDate: "Jan 2026",
+        duration: "1 mes",
+        location: "Argentina",
+        description: get<string[]>("education.items.talentoTechFigma.description") || [],
+        skills: ["Figma (Software)", "UX/UI Design", "Prototyping", "Collaboration Tools"],
+        certificates: [
+          {
+            name: "Figma Course Certificate",
+            image: "/certificates/Certificado Talento Tech Figma.webp",
+          },
+        ],
+      },
+    ],
+    [t, get]
+  );
+
+  const selectedEducation = useMemo(
+    () => educationItems.find((item) => item.id === selectedEducationId) || null,
+    [educationItems, selectedEducationId]
+  );
 
   const handleOpenModal = (education: EducationItem) => {
-    setSelectedEducation(education);
+    setSelectedEducationId(education.id);
     onModalChange?.(true);
   };
 
   const handleCloseModal = () => {
-    setSelectedEducation(null);
+    setSelectedEducationId(null);
     onModalChange?.(false);
   };
 
