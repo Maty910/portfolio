@@ -53,7 +53,6 @@ export default [
     imageHeight: IMG_HEIGHT,
     technologies: ["React", "CSS"],
     githubUrl: "https://github.com/Maty910/Portafolio-Lu",
-    liveUrl: "https://luciacastro.netlify.app/",
   },
   {
     slug: "p6",
