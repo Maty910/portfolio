@@ -11,6 +11,8 @@ export interface Translations {
     skills: string;
     education: string;
     contact: string;
+    closeMenu: string;
+    openMenu: string;
   };
   header: {
     name: string;
@@ -27,6 +29,7 @@ export interface Translations {
   };
   home: {
     viewProjects: string;
+    techStackAria: string;
   };
   projects: {
     title: string;
@@ -51,6 +54,7 @@ export interface Translations {
     subtitle: string;
     responsibilities: string;
     viewMore: string;
+    visitWebsite: string;
   };
   education: {
     title: string;
@@ -60,6 +64,9 @@ export interface Translations {
     certificates: string;
     clickToView: string;
     viewMore: string;
+    closeModalAria: string;
+    closeCertificateAria: string;
+    certificateFullscreenAlt: string;
   };
   skills: {
     title: string;
@@ -92,6 +99,10 @@ export interface Translations {
     githubTitle: string;
     linkedin: string;
     github: string;
+    visitLinkedIn: string;
+    visitGitHub: string;
+    emailCopied: string;
+    copyEmailAria: string;
   };
   page: {
     contribs: string;
@@ -128,6 +139,7 @@ export interface Translations {
     noImages: string;
     previousImage: string;
     nextImage: string;
+    goToImageAria: string;
   };
   theme: {
     light: string;
@@ -136,5 +148,9 @@ export interface Translations {
   };
   footer: {
     copyRight: string;
+  };
+  emptyState: {
+    errorTitle: string;
+    retry: string;
   };
 }
