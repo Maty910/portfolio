@@ -11,6 +11,8 @@ const en: Translations = {
     skills: "Skills",
     education: "Education",
     contact: "Contact",
+    closeMenu: "Close menu",
+    openMenu: "Open menu",
   },
   header: {
     name: "Full-Stack Web Developer",
@@ -25,9 +27,7 @@ const en: Translations = {
     profile: "Profile",
     logo: "Logo",
   },
-  home: {
-    viewProjects: "View Projects",
-  },
+
   projects: {
     title: "Projects",
     cta: "Want to see more of my work?",
@@ -77,6 +77,7 @@ const en: Translations = {
     subtitle: "My journey through software development and web technologies",
     responsibilities: "Key Responsibilities",
     viewMore: "View full experience on LinkedIn",
+    visitWebsite: "Visit website",
   },
   education: {
     title: "Education & Certifications",
@@ -86,6 +87,9 @@ const en: Translations = {
     certificates: "Certificates",
     clickToView: "Click to view details",
     viewMore: "View full education on LinkedIn",
+    closeModalAria: "Close modal",
+    closeCertificateAria: "Close certificate",
+    certificateFullscreenAlt: "Certificate fullscreen",
   },
   skills: {
     title: "Skills",
@@ -118,6 +122,14 @@ const en: Translations = {
     githubTitle: "GitHub",
     linkedin: "Connect professionally",
     github: "View my code & projects",
+    visitLinkedIn: "Visit my LinkedIn profile",
+    visitGitHub: "Visit my GitHub profile",
+    emailCopied: "Email copied to clipboard",
+    copyEmailAria: "Copy email address to clipboard",
+  },
+  home: {
+    viewProjects: "View Projects",
+    techStackAria: "Tech Stack",
   },
   page: {
     contribs: "Contribs.",
@@ -154,6 +166,7 @@ const en: Translations = {
     noImages: "No images available",
     previousImage: "Previous image",
     nextImage: "Next image",
+    goToImageAria: "Go to image",
   },
   theme: {
     light: "Light",
@@ -161,6 +174,10 @@ const en: Translations = {
     toggle: "Toggle theme",
   },
   footer: { copyRight: "All rights reserved." },
+  emptyState: {
+    errorTitle: "Oops! Something went wrong",
+    retry: "Retry",
+  },
 };
 
 const es: Translations = {
@@ -173,6 +190,8 @@ const es: Translations = {
     skills: "Habilidades",
     education: "Educación",
     contact: "Contacto",
+    closeMenu: "Cerrar menú",
+    openMenu: "Abrir menú",
   },
   header: {
     name: "Desarrollador Web Full-Stack",
@@ -187,9 +206,7 @@ const es: Translations = {
     profile: "Perfil",
     logo: "Logo Mati",
   },
-  home: {
-    viewProjects: "Ver Proyectos",
-  },
+
   projects: {
     title: "Proyectos",
     cta: "¿Querés ver más de mi trabajo?",
@@ -239,6 +256,7 @@ const es: Translations = {
     subtitle: "Mi trayectoria en el desarrollo de software y tecnologías web",
     responsibilities: "Responsabilidades Principales",
     viewMore: "Ver experiencia completa en LinkedIn",
+    visitWebsite: "Visitar sitio web",
   },
   education: {
     title: "Educación y Certificaciones",
@@ -248,6 +266,9 @@ const es: Translations = {
     certificates: "Certificados",
     clickToView: "Click para ver detalles",
     viewMore: "Ver educación completa en LinkedIn",
+    closeModalAria: "Cerrar modal",
+    closeCertificateAria: "Cerrar certificado",
+    certificateFullscreenAlt: "Certificado en pantalla completa",
   },
   skills: {
     title: "Habilidades",
@@ -272,7 +293,7 @@ const es: Translations = {
     title: "Contacto",
     sub: "Si querés ponerte en contacto, hacelo a través de estos enlaces!",
     sendMessage: "Enviar mensaje",
-    cardTitle: "Let's work together",
+    cardTitle: "Trabajemos juntos",
     cardSubtitle: "¿Tenés un proyecto en mente? Enviame un mensaje.",
     sendEmail: "Enviar Email",
     copyEmail: "Copiar dirección de correo",
@@ -280,6 +301,14 @@ const es: Translations = {
     githubTitle: "GitHub",
     linkedin: "Conectá profesionalmente",
     github: "Ver mi código y proyectos",
+    visitLinkedIn: "Visitar mi perfil de LinkedIn",
+    visitGitHub: "Visitar mi perfil de GitHub",
+    emailCopied: "Email copiado al portapapeles",
+    copyEmailAria: "Copiar dirección de correo al portapapeles",
+  },
+  home: {
+    viewProjects: "Ver Proyectos",
+    techStackAria: "Stack de Tecnologías",
   },
   page: {
     contribs: "Contribs.",
@@ -321,6 +350,7 @@ const es: Translations = {
     noImages: "No hay imágenes disponibles",
     previousImage: "Imagen anterior",
     nextImage: "Imagen siguiente",
+    goToImageAria: "Ir a imagen",
   },
   theme: {
     light: "Claro",
@@ -328,6 +358,10 @@ const es: Translations = {
     toggle: "Cambiar tema",
   },
   footer: { copyRight: "Todos los derechos reservados." },
+  emptyState: {
+    errorTitle: "Oops! Algo salió mal",
+    retry: "Reintentar",
+  },
 };
 
 export default { en, es };
