@@ -26,7 +26,7 @@ type ExperienceItem = {
  * Datos principalmente estáticos con traducciones
  */
 const ExperienceComponent: React.FC<ExperienceProps> = () => {
-  const { t } = useLanguage();
+  const { t, get } = useLanguage();
 
   // Datos de experiencia con traducciones
   const experiences: ExperienceItem[] = [
@@ -42,7 +42,7 @@ const ExperienceComponent: React.FC<ExperienceProps> = () => {
       location: t("experience.jobs.forit.location"),
       remote: true,
       companyUrl: "https://forit.ar/",
-      description: [t("experience.jobs.forit.description")],
+      description: get<string[]>("experience.jobs.forit.description") || [],
     },
   ];
 
@@ -108,7 +108,7 @@ const ExperienceComponent: React.FC<ExperienceProps> = () => {
                   {/* Header */}
                   <div className="flex items-start justify-between gap-4 mb-4 max-[880px]:flex-col max-[880px]:gap-3">
                     <div className="flex-1">
-                      <div className="flex items-center gap-3 mb-2 max-[880px]:flex-col max-[880px]:items-start max-[880px]:gap-2">
+                      <div className="flex items-center gap-3 mb-2">
                         {/* Logo (si existe) */}
                         {exp.logo && (
                           <a
@@ -116,6 +116,7 @@ const ExperienceComponent: React.FC<ExperienceProps> = () => {
                             target="_blank"
                             rel="noopener noreferrer"
                             className="block w-12 h-12 rounded-lg bg-bg-base border border-text-primary/10 p-2 shrink-0 hover:border-primary/30 hover:shadow-lg hover:scale-105 transition-all duration-300
+                                       max-[880px]:w-10 max-[880px]:h-10
                                        focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2 focus-visible:ring-offset-bg-base"
                             title={`${t("experience.visitWebsite")} ${exp.company}`}
                           >
@@ -129,8 +130,8 @@ const ExperienceComponent: React.FC<ExperienceProps> = () => {
                           </a>
                         )}
 
-                        <div className="flex-1">
-                          <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors leading-tight">
+                        <div className="flex-1 min-w-0">
+                          <h3 className="text-xl font-bold text-text-primary group-hover:text-primary transition-colors leading-tight max-[880px]:text-lg">
                             {exp.position}
                           </h3>
                           <div className="flex items-center gap-2 text-text-secondary mt-1 flex-wrap">
