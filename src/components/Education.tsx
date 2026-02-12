@@ -178,7 +178,7 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
               <div
                 className="bg-gradient-to-br from-text-primary/5 to-transparent 
                           border border-text-primary/10 rounded-2xl p-5
-                          max-[880px]:p-4 max-[880px]:rounded-xl"
+                          max-[880px]:p-4 max-[880px]:rounded-xl selection:bg-primary/30 selection:text-primary transition-colors duration-500"
               >
                 <h4
                   className="text-sm font-bold text-text-primary uppercase tracking-wider mb-3 
