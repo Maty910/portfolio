@@ -110,10 +110,85 @@ const en: Translations = {
     skills: "Skills Learned",
     certificates: "Certificates",
     clickToView: "Click to view details",
+    clickToViewCertificate: "Click to view certificate",
+    visitInstitution: "Visit",
     viewMore: "View full education on LinkedIn",
     closeModalAria: "Close modal",
     closeCertificateAria: "Close certificate",
     certificateFullscreenAlt: "Certificate fullscreen",
+    items: {
+      uba: {
+        degree: "Bachelor's Degree in Psychology",
+        status: "50% Completed",
+        description: [
+          "Ongoing university education focused on the scientific study of human behavior, cognitive processes, emotions, and social dynamics.",
+          "This degree provides a solid foundation in qualitative and quantitative research, data analysis, and scientific methodology applicable to software development.",
+          "Knowledge in cognitive psychology directly complements interface design, user experience, and development of digital products centered on human needs.",
+        ],
+      },
+      forit: {
+        degree: "Advanced Web Developer",
+        description: [
+          "Intensive advanced web development program focused on professional software architecture, testing, and modern methodologies.",
+          "Hands-on training in Test-Driven Development (TDD), Clean Code, advanced TypeScript, and design patterns applied to React.",
+          "Real-world project development with Docker containerization, Tailwind CSS for scalable styling, and reusable component architecture.",
+        ],
+      },
+      ethKipu: {
+        degree: "Ethereum Developer Pack",
+        description: [
+          "Specialized program in blockchain technology and development on the Ethereum network.",
+          "Training in blockchain fundamentals, decentralized architecture, smart contracts, and Web3 applications.",
+          "Practical knowledge in digital wallet integration, on-chain transactions, and DApp (Decentralized Applications) development.",
+        ],
+      },
+      codoACodo: {
+        degree: "Full Stack Web Developer",
+        description: [
+          "Intensive 6-month full-stack web development program focused on JavaScript, Node.js, and modern frameworks.",
+          "Comprehensive training covering frontend with React.js and Vue.js, backend with Express.js and Node.js, relational SQL databases, and version control with Git.",
+          "Final project development: dynamic and interactive web application with complete client-server architecture, integrated SQL database, and responsive design.",
+          "Collaborative work applying agile methodologies (Scrum), promoting adaptability, problem-solving, and attention to detail.",
+        ],
+      },
+      talentoTechUX: {
+        degree: "Design UX/UI",
+        description: [
+          "Intensive 5-month course in user experience and interface design, research methodology, and information architecture.",
+          "Skill development in user-centered design: UX research, competitive benchmarking, user personas creation, empathy maps, and journey maps.",
+          "Hands-on project: complete mobile application design connecting independent bands with venues, including user flows, task flows, site maps, and interactive wireframes.",
+          "Professional tools: Figma for design and prototyping, Whimsical for information architecture, UXtweak for usability testing.",
+        ],
+      },
+      talentoTechPython: {
+        degree: "Python, Information Technology",
+        description: [
+          "Practical 5-month course focused on structured programming with Python and relational database management with SQLite.",
+          "Training in programming fundamentals: data structures (lists, tuples, dictionaries), exception handling, input validation, and code modularization.",
+          "Development of complete CRUD operations on SQL databases using the sqlite3 library, relational schema design, and optimized queries.",
+          "Final project: console application for product inventory management with modular architecture (main.py, db_methods.py, validations.py), applying Clean Code principles and best practices.",
+        ],
+      },
+      cilsa: {
+        degree: "Testing & Automatization",
+        description: [
+          "Theoretical-practical 3-month training in software quality assurance (QA), manual and automated testing.",
+          "Knowledge in testing lifecycle: test planning, test case design and execution, incident management, and defect reporting.",
+          "Testing types: functional, end-to-end (E2E), regression, black box, integration, and requirements validation.",
+          "Professional tools: Selenium WebDriver for web automation, Robot Framework for structured testing, Postman for REST API testing, Jira for bug tracking.",
+          "Methodologies: work with Agile (Scrum), Waterfall, and iterative development cycles in multidisciplinary teams.",
+        ],
+      },
+      talentoTechFigma: {
+        degree: "Figma Course",
+        description: [
+          "Intensive 1-month course specialized in Figma as a professional UI/UX design and prototyping tool.",
+          "Mastery of advanced functionalities: reusable components, auto-layout, design variables, design tokens, and scalable design systems.",
+          "Real-time collaboration practices: teamwork, design comments, version control, and developer hand-off.",
+          "Creation of interactive prototypes with animations, transitions, and navigation flows for usability testing.",
+        ],
+      },
+    },
   },
   skills: {
     title: "Skills",
@@ -313,10 +388,85 @@ const es: Translations = {
     skills: "Habilidades Aprendidas",
     certificates: "Certificados",
     clickToView: "Click para ver detalles",
+    clickToViewCertificate: "Click para ver certificado",
+    visitInstitution: "Visitar",
     viewMore: "Ver educación completa en LinkedIn",
     closeModalAria: "Cerrar modal",
     closeCertificateAria: "Cerrar certificado",
     certificateFullscreenAlt: "Certificado en pantalla completa",
+    items: {
+      uba: {
+        degree: "Licenciatura en Psicología",
+        status: "50% Completado",
+        description: [
+          "Formación universitaria en curso enfocada en el estudio científico del comportamiento humano, procesos cognitivos, emocionales y dinámicas sociales.",
+          "Esta carrera proporciona una base sólida en investigación cualitativa y cuantitativa, análisis de datos y metodología científica aplicable al desarrollo de software.",
+          "El conocimiento en psicología cognitiva complementa directamente el diseño de interfaces, experiencia de usuario y desarrollo de productos digitales centrados en las necesidades humanas.",
+        ],
+      },
+      forit: {
+        degree: "Desarrollador Web Avanzado",
+        description: [
+          "Programa intensivo de desarrollo web avanzado enfocado en arquitectura de software profesional, testing y metodologías modernas.",
+          "Formación práctica en Test-Driven Development (TDD), Clean Code, TypeScript avanzado y patrones de diseño aplicados a React.",
+          "Desarrollo de proyectos reales con contenedorización en Docker, Tailwind CSS para estilos escalables y arquitectura de componentes reutilizables.",
+        ],
+      },
+      ethKipu: {
+        degree: "Ethereum Developer Pack",
+        description: [
+          "Programa especializado en tecnología blockchain y desarrollo sobre la red Ethereum.",
+          "Formación en fundamentos de cadenas de bloques, arquitectura descentralizada, smart contracts y aplicaciones Web3.",
+          "Conocimientos prácticos en integración de wallets digitales, transacciones on-chain y desarrollo de DApps (Aplicaciones Descentralizadas).",
+        ],
+      },
+      codoACodo: {
+        degree: "Full Stack Web Developer",
+        description: [
+          "Programa intensivo de 6 meses en desarrollo web full-stack con foco en JavaScript, Node.js y frameworks modernos.",
+          "Formación integral cubriendo frontend con React.js y Vue.js, backend con Express.js y Node.js, bases de datos relacionales SQL, y control de versiones con Git.",
+          "Desarrollo de proyecto final: aplicación web dinámica e interactiva con arquitectura completa cliente-servidor, base de datos SQL integrada, y diseño responsive.",
+          "Trabajo colaborativo aplicando metodologías ágiles (Scrum), promoviendo adaptabilidad, resolución de problemas y atención al detalle.",
+        ],
+      },
+      talentoTechUX: {
+        degree: "Design UX/UI",
+        description: [
+          "Curso intensivo de 5 meses en diseño de experiencia e interfaz de usuario, metodología de investigación y arquitectura de información.",
+          "Desarrollo de habilidades en diseño centrado en el usuario: investigación UX, benchmarking competitivo, creación de user personas, empathy maps y journey maps.",
+          "Proyecto práctico: diseño completo de aplicación móvil conectando bandas independientes con venues, incluyendo user flows, task flows, site maps y wireframes interactivos.",
+          "Herramientas profesionales: Figma para diseño y prototipado, Whimsical para arquitectura de información, UXtweak para testing de usabilidad.",
+        ],
+      },
+      talentoTechPython: {
+        degree: "Python, Information Technology",
+        description: [
+          "Curso práctico de 5 meses enfocado en programación estructurada con Python y gestión de bases de datos relacionales SQLite.",
+          "Formación en fundamentos de programación: estructuras de datos (listas, tuplas, diccionarios), manejo de excepciones, validaciones de entrada y modularización de código.",
+          "Desarrollo de operaciones CRUD completas sobre bases de datos SQL usando la biblioteca sqlite3, diseño de esquemas relacionales y consultas optimizadas.",
+          "Proyecto final: aplicación de consola para gestión de inventario de productos con arquitectura modular (main.py, db_methods.py, validations.py), aplicando principios de Clean Code y buenas prácticas.",
+        ],
+      },
+      cilsa: {
+        degree: "Testing & Automatization",
+        description: [
+          "Formación teórico-práctica de 3 meses en control de calidad de software (QA), testing manual y automatizado.",
+          "Conocimientos en ciclo de vida del testing: planificación de pruebas, diseño y ejecución de casos de prueba, gestión de incidencias y reportes de defectos.",
+          "Tipos de pruebas: funcionales, end-to-end (E2E), regresión, caja negra, integración y validación de requisitos.",
+          "Herramientas profesionales: Selenium WebDriver para automatización web, Robot Framework para testing estructurado, Postman para testing de APIs REST, Jira para seguimiento de bugs.",
+          "Metodologías: trabajo con Agile (Scrum), Waterfall y ciclos de desarrollo iterativos en equipos multidisciplinarios.",
+        ],
+      },
+      talentoTechFigma: {
+        degree: "Figma Course",
+        description: [
+          "Curso intensivo de 1 mes especializado en Figma como herramienta profesional de diseño UI/UX y prototipado.",
+          "Dominio de funcionalidades avanzadas: componentes reutilizables, auto-layout, variables de diseño, design tokens y sistemas de diseño escalables.",
+          "Prácticas de colaboración en tiempo real: trabajo en equipo, comentarios en diseños, control de versiones y hand-off a desarrollo.",
+          "Creación de prototipos interactivos con animaciones, transiciones y flujos de navegación para testing de usabilidad.",
+        ],
+      },
+    },
   },
   skills: {
     title: "Habilidades",
