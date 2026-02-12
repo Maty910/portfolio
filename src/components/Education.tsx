@@ -694,19 +694,22 @@ const EducationComponent: React.FC<EducationProps> = ({ onModalChange }) => {
                 </div>
               </div>
 
-              {/* Status Badge */}
-              {edu.status && (
-                <div className="mt-auto">
-                  <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
-                    {edu.status}
-                  </span>
-                </div>
-              )}
+              {/* Footer Container - Siempre en el bottom */}
+              <div className="mt-auto flex flex-col gap-3">
+                {/* Status Badge */}
+                {edu.status && (
+                  <div>
+                    <span className="inline-block px-3 py-1 rounded-full bg-primary/10 text-primary text-xs font-medium border border-primary/20">
+                      {edu.status}
+                    </span>
+                  </div>
+                )}
 
-              {/* Click indicator */}
-              <div className="mt-4 pt-4 border-t border-text-primary/10 text-xs text-text-muted group-hover:text-primary transition-colors flex items-center gap-1">
-                <span>{t("education.clickToView")}</span>
-                <ExternalLink size={12} />
+                {/* Click indicator */}
+                <div className="pt-4 border-t border-text-primary/10 text-xs text-text-muted group-hover:text-primary transition-colors flex items-center gap-1">
+                  <span>{t("education.clickToView")}</span>
+                  <ExternalLink size={12} />
+                </div>
               </div>
             </article>
           ))}
