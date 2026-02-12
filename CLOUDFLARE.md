@@ -73,6 +73,33 @@ Cloudflare Pages caches:
 
 ## Troubleshooting
 
+### Cloudflare Web Analytics (Insights)
+
+**Error:** `ERR_BLOCKED_BY_CLIENT` para `beacon.min.js`
+
+Este es un comportamiento **esperado** y **no es un error real**:
+
+- **Causa:** Ad blockers y privacy extensions bloquean scripts de analytics
+- **Impacto:** Ninguno en la funcionalidad del sitio
+- **Usuarios afectados:** Solo usuarios con ad blockers activos
+- **Acción requerida:** Ninguna - es comportamiento normal
+
+**Opciones:**
+
+1. **Ignorar el error** (recomendado) - No afecta la experiencia del usuario
+2. **Deshabilitar Insights** en Cloudflare Dashboard → Speed → Web Analytics
+3. **Usar CSP más restrictiva** para evitar que se cargue el script
+
+**Nota:** El script es inyectado automáticamente por Cloudflare cuando Web Analytics está habilitado. No aparece en tu código fuente.
+
+### MIME Type Issues
+
+**Error:** "Expected a JavaScript module but server responded with application/octet-stream"
+
+**Solución:** Configurado en `vercel.json` y `public/_headers`:
+- Archivos `.js` y `.mjs` sirven con `Content-Type: text/javascript; charset=utf-8`
+- Archivos `.css` sirven con `Content-Type: text/css; charset=utf-8`
+
 ### Node Version Issues
 
 If you get Node version errors:
