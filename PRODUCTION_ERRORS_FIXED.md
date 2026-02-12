@@ -3,16 +3,19 @@
 ## ✅ MIME Type Error - SOLUCIONADO
 
 ### Problema Original
+
 ```
 Failed to load module script: Expected a JavaScript-or-Wasm module script but the server responded with a MIME type of "application/octet-stream"
 ```
 
 ### Causa
+
 Los archivos JavaScript no se estaban sirviendo con el `Content-Type` correcto. Los módulos ES6 requieren específicamente `text/javascript` o `application/javascript`.
 
 ### Solución Implementada
 
 #### 1. Configuración en `vercel.json`
+
 ```json
 {
   "source": "/(.*)\\.js",
@@ -30,6 +33,7 @@ Los archivos JavaScript no se estaban sirviendo con el `Content-Type` correcto. 
 ```
 
 #### 2. Configuración en `public/_headers` (Cloudflare)
+
 ```
 /assets/*.js
   Content-Type: text/javascript; charset=utf-8
@@ -37,6 +41,7 @@ Los archivos JavaScript no se estaban sirviendo con el `Content-Type` correcto. 
 ```
 
 ### Resultado
+
 - ✅ Archivos `.js` y `.mjs` se sirven con el MIME type correcto
 - ✅ Módulos ES6 se cargan correctamente
 - ✅ Compatible con Vercel y Cloudflare Pages
@@ -46,14 +51,17 @@ Los archivos JavaScript no se estaban sirviendo con el `Content-Type` correcto. 
 ## ℹ️ Cloudflare Insights - ERR_BLOCKED_BY_CLIENT
 
 ### Error Reportado
+
 ```
 GET https://static.cloudflareinsights.com/beacon.min.js/... net::ERR_BLOCKED_BY_CLIENT
 ```
 
 ### ¿ES ESTO UN ERROR REAL?
+
 **NO** - Este es un comportamiento completamente normal y esperado.
 
 ### Explicación
+
 - **Qué es:** Cloudflare Web Analytics (script de telemetría)
 - **Por qué aparece:** Ad blockers y privacy extensions bloquean scripts de tracking
 - **Impacto en usuarios:** Ninguno - el sitio funciona perfectamente
@@ -61,6 +69,7 @@ GET https://static.cloudflareinsights.com/beacon.min.js/... net::ERR_BLOCKED_BY_
 - **Necesita corrección:** No
 
 ### Contexto Técnico
+
 1. Cloudflare inyecta automáticamente el script cuando Web Analytics está habilitado
 2. El script no aparece en tu código fuente (es inyectado por el CDN)
 3. Es bloqueado por extensiones como:
@@ -71,6 +80,7 @@ GET https://static.cloudflareinsights.com/beacon.min.js/... net::ERR_BLOCKED_BY_
    - Firefox Enhanced Tracking Protection
 
 ### Opciones
+
 ```
 Opción 1: IGNORAR (Recomendado)
 ✅ Sin impacto en funcionalidad
@@ -89,6 +99,7 @@ Opción 3: Analytics alternativo
 ```
 
 ### Recomendación Profesional
+
 **No hacer nada.** Este "error" es normal y ocurre en la mayoría de sitios web. Los usuarios con ad blockers han elegido conscientemente bloquear scripts de analytics. Su sitio funciona perfectamente para ellos.
 
 ---
@@ -96,6 +107,7 @@ Opción 3: Analytics alternativo
 ## Verificación Post-Deploy
 
 ### Checklist
+
 - [ ] Hacer push de los cambios a producción
 - [ ] Esperar a que el build complete
 - [ ] Verificar en DevTools que archivos `.js` tienen `Content-Type: text/javascript`
@@ -103,6 +115,7 @@ Opción 3: Analytics alternativo
 - [ ] Validar que no aparece el error de MIME type
 
 ### Comandos útiles
+
 ```bash
 # Commit de los cambios
 git add vercel.json public/_headers CLOUDFLARE.md
@@ -114,6 +127,7 @@ curl -I https://mchacon.dev/assets/index-[hash].js | grep -i content-type
 ```
 
 ### Testing Local
+
 ```bash
 # Build de producción
 pnpm build
@@ -129,11 +143,13 @@ pnpm preview
 ## Recursos Adicionales
 
 ### Documentación
+
 - [MDN: JavaScript MIME Type](https://developer.mozilla.org/en-US/docs/Web/HTTP/Basics_of_HTTP/MIME_types#javascript_types)
 - [Vercel Headers Configuration](https://vercel.com/docs/projects/project-configuration#headers)
 - [Cloudflare Pages Headers](https://developers.cloudflare.com/pages/configuration/headers/)
 
 ### Prevención Futura
+
 1. Siempre especificar `Content-Type` explícitamente para assets estáticos
 2. Testear en producción con DevTools antes de considerar completo
 3. Usar `curl -I` para verificar headers HTTP
