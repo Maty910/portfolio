@@ -57,7 +57,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
               <div
                 className="hidden md:flex flex-1 items-center max-w-[300px] h-12 overflow-hidden relative mask-linear-fade border-l-2 border-text-primary/10 pl-6 ml-2"
                 role="list"
-                aria-label="Tech Stack"
+                aria-label={t("home.techStackAria")}
               >
                 <div className="flex w-max animate-marquee items-center gap-6 opacity-60 grayscale hover:grayscale-0 transition-all duration-500">
                   {[1, 2].map((i) => (
