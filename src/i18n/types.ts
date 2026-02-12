@@ -82,10 +82,19 @@ export interface Translations {
     skills: string;
     certificates: string;
     clickToView: string;
+    clickToViewCertificate: string;
+    visitInstitution: string;
     viewMore: string;
     closeModalAria: string;
     closeCertificateAria: string;
     certificateFullscreenAlt: string;
+    items: {
+      [key: string]: {
+        degree: string;
+        description: string[];
+        status?: string;
+      };
+    };
   };
   skills: {
     title: string;
