@@ -155,7 +155,7 @@ export const ProjectModal: React.FC<Props> = ({ project, onClose }) => {
                             }}
                             className={`w-2 h-2 rounded-full transition-all duration-300 
                               ${idx === currentImageIndex ? "bg-primary w-4" : "bg-white/50 hover:bg-white"}`}
-                            aria-label={`Go to image ${idx + 1}`}
+                            aria-label={`${t("projectModal.goToImageAria")} ${idx + 1}`}
                           />
                         ))}
                       </div>
