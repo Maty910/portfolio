@@ -70,7 +70,7 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                      hover:bg-primary hover:text-white hover:rotate-90 hover:scale-110
                      active:scale-95 shadow-lg"
           onClick={onClose}
-          aria-label="Close modal"
+          aria-label={t("education.closeModalAria")}
         >
           <X size={22} strokeWidth={2.5} />
         </button>
@@ -284,13 +284,13 @@ const EducationModal: React.FC<{ education: EducationItem | null; onClose: () =>
                        hover:bg-white/20 hover:rotate-90 hover:scale-110
                        transition-all duration-300 border border-white/20"
             onClick={() => setSelectedCert(null)}
-            aria-label="Close certificate"
+            aria-label={t("education.closeCertificateAria")}
           >
             <X size={24} strokeWidth={2.5} />
           </button>
           <img
             src={selectedCert}
-            alt="Certificate fullscreen"
+            alt={t("education.certificateFullscreenAlt")}
             className="max-w-full max-h-full object-contain rounded-2xl shadow-2xl
                      animate-in zoom-in-95 duration-300"
             onClick={(e) => e.stopPropagation()}
