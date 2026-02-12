@@ -260,8 +260,8 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
           className={`max-[880px]:hidden flex flex-col gap-3 pt-3 border-t border-text-primary/10 w-full ${!expanded ? "items-center" : ""}`}
         >
           <a
-            href="/CV/CV Matias Chacon.pdf"
-            download
+            href="/CV/CV Matías Chacón.pdf"
+            download="CV Matías Chacón.pdf"
             className={`group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden gradient-primary font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 h-11 ${expanded ? "w-full px-4 gap-3" : "w-11 px-0 gap-0"}`}
             style={{ color: "var(--color-on-primary)" }}
             title={t("header.downloadCv")}
@@ -421,8 +421,8 @@ export const Navbar: React.FC<HeaderProps> = ({ activeSection, setActiveSection 
               <div className="grid grid-cols-2 gap-3 animate-in slide-in-from-bottom-8 fade-in duration-500 delay-200">
                 {/* CV Button */}
                 <a
-                  href="/CV/CV Matias Chacon.pdf"
-                  download
+                  href="/CV/CV Matías Chacón.pdf"
+                  download="CV Matías Chacón.pdf"
                   onClick={() => setMobileMenuOpen(false)}
                   className="col-span-2 group btn-shiny relative flex items-center justify-center rounded-xl overflow-hidden gradient-primary font-bold shadow-[0_4px_14px_rgba(99,83,242,0.3)] transition-all duration-300 ease-out hover:shadow-[0_6px_20px_rgba(99,83,242,0.5)] hover:scale-[1.02] active:scale-95 no-underline h-11 px-4 gap-3"
                   style={{ color: "var(--color-on-primary)" }}
