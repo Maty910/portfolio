@@ -38,6 +38,11 @@ import {
 } from "react-icons/si";
 import { VscVscode } from "react-icons/vsc";
 import { useLanguage } from "../hooks/useLanguage";
+import type { Section } from "../types";
+
+interface SkillsProps {
+  setActiveSection?: (section: Section) => void;
+}
 
 // --- DATA CONFIGURATION ---
 const SKILL_CATEGORIES = [
@@ -103,8 +108,16 @@ const SOFT_SKILLS = [
   { key: "adaptability", icon: Code2, color: "text-emerald-500" },
 ];
 
-export function Skills() {
+export function Skills({ setActiveSection }: SkillsProps) {
   const { t } = useLanguage();
+
+  const scrollToSection = (sectionId: Section) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection?.(sectionId);
+    }
+  };
 
   return (
     <section
@@ -241,13 +254,13 @@ export function Skills() {
                 </p>
               </div>
 
-              <a
-                href="#projects"
+              <button
+                onClick={() => scrollToSection("projects")}
                 className="relative overflow-hidden inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl w-full
-                           bg-primary font-bold text-sm
+                           bg-primary font-bold text-sm cursor-pointer
                            shadow-lg shadow-primary/20
                            hover:bg-primary/90 hover:shadow-primary/30 hover:scale-[1.02]
-                           transition-all duration-300 no-underline group/link"
+                           transition-all duration-300 group/link"
                 style={{ color: "var(--color-on-primary)" }}
               >
                 <div className="absolute inset-0 -translate-x-full group-hover/link:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10" />
@@ -256,7 +269,7 @@ export function Skills() {
                   size={16}
                   className="relative z-20 group-hover/link:translate-x-1 transition-transform duration-300"
                 />
-              </a>
+              </button>
             </div>
           </div>
         </div>
