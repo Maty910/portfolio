@@ -55,7 +55,7 @@ function App() {
           <Home setActiveSection={setActiveSection} />
           <Experience />
           <Projects />
-          <Skills />
+          <Skills setActiveSection={setActiveSection} />
           <Education />
           <Contact />
         </main>
