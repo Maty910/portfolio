@@ -19,6 +19,14 @@ interface HomeProps {
 export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   const { t } = useLanguage();
 
+  const scrollToSection = (sectionId: Section) => {
+    const section = document.getElementById(sectionId);
+    if (section) {
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
+      setActiveSection(sectionId);
+    }
+  };
+
   const bioContent = <>{t("header.bio")}</>;
 
   return (
@@ -150,7 +158,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
 
             {/* Botón Ver Proyectos (Secundario) - Full width en mobile */}
             <button
-              onClick={() => setActiveSection("projects")}
+              onClick={() => scrollToSection("projects")}
               className="flex items-center justify-center gap-3 px-8 py-3.5 rounded-2xl
                         bg-text-primary/5 border border-text-primary/10 text-text-primary font-medium
                         hover:bg-text-primary/10 hover:border-primary/30 hover:shadow-lg hover:-translate-y-1
