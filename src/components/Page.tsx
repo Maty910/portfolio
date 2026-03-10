@@ -1,5 +1,6 @@
 import LinkedInIcon from "@mui/icons-material/LinkedIn";
 import {
+  Briefcase,
   Check,
   Copy,
   Database,
@@ -119,10 +120,8 @@ const AnimatedName = () => {
 export function Page({ children, activeSection = "home" }: PageProps) {
   const { t, lang } = useLanguage();
 
-  // ✅ OPTIMIZACIÓN: Hook aplicado a las frases (selecciona según el idioma actual)
   const typingText = useTypewriter(lang === "en" ? TYPING_WORDS_EN : TYPING_WORDS_ES, 60, 2000);
 
-  // ✅ OPTIMIZACIÓN: Hook reutilizable para clipboard
   const { copied, copy } = useCopyToClipboard(2000);
 
   const handleCopyEmail = () => {
@@ -164,10 +163,10 @@ export function Page({ children, activeSection = "home" }: PageProps) {
             </div>
 
             <div className="mt-3 pt-3 border-t border-text-primary/10 flex items-center gap-2">
-              <div className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+              <Briefcase size={11} className="text-primary shrink-0" />
               <p className="text-[10px] text-text-secondary">
                 {t("page.building")}:{" "}
-                <span className="text-text-primary font-medium">{t("page.buildingProject")}</span>
+                <span className="text-primary font-semibold">{t("page.buildingProject")}</span>
               </p>
             </div>
           </div>
