@@ -233,8 +233,8 @@ const en: Translations = {
   page: {
     contribs: "Contribs.",
     publicRepos: "Public Repos",
-    building: "Building",
-    buildingProject: "Portfolio V2",
+    building: "Currently at",
+    buildingProject: "ForIT",
     alwaysLearning: "Always learning new technologies",
     available: "Available for hire",
     location: "BA, Argentina",
@@ -511,8 +511,8 @@ const es: Translations = {
   page: {
     contribs: "Contribs.",
     publicRepos: "Repos Públicos",
-    building: "Construyendo",
-    buildingProject: "Portfolio V2",
+    building: "Actualmente en",
+    buildingProject: "ForIT",
     alwaysLearning: "Siempre aprendiendo nuevas tecnologías",
     available: "Disponible para contratación",
     location: "BA, Argentina",
