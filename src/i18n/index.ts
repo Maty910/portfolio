@@ -18,7 +18,7 @@ const en: Translations = {
   header: {
     name: "Full-Stack Web Developer",
     displayName: "Matías Chacón",
-    bio: "I'm Matías Chacón — a Full-Stack Web Developer currently working at ForIT Software Factory, specializing in building modern, scalable applications with Clean Architecture and TDD principles. I work primarily with React, TypeScript and Node.js, with expertise in domain modeling, code review, and collaborative development. Passionate about delivering maintainable, production-ready solutions while continuously learning new technologies and best practices.",
+    bio: "I'm Matías Chacón — a Full-Stack Web Developer currently working at Mentelem, a B2B SaaS for workplace mental health. I build end-to-end across a Next.js web app, a React Native mobile app (Expo), and a shared Django + GraphQL backend. I work primarily with React, TypeScript and Python, applying Clean Architecture, TDD, and Clean Code to model a sensitive clinical domain with clear business rules. Passionate about delivering maintainable, production-ready features that help employees and clinicians work better, while continuously learning and raising the team's bar through code review.",
     downloadCv: "Download CV",
     headlinePrefix: "development with",
     headlineHighlight: "purpose",
@@ -92,13 +92,22 @@ const en: Translations = {
     jobs: {
       forit: {
         position: "Web Developer",
-        duration: "3 months",
         location: "Buenos Aires Province, Argentina",
         description: [
           "Full Stack Development & Domain: End-to-end solution implementation (Frontend and Backend), with strong emphasis on domain modeling and business rules to ensure the software accurately reflects product needs.",
           "Code Review & Quality: Active participation in peer code reviews, providing constructive feedback to elevate team standards. Rigorous application of Clean Architecture, Clean Code, and TDD to minimize technical debt.",
           "Pull Request Management: Creation of atomic, clean, and well-documented PRs, facilitating continuous integration and maintaining a clear change history.",
           "Autonomy & Collaboration: Resolution of medium-complexity tickets independently, maintaining fluid communication about task status and managing blockers early.",
+        ],
+      },
+      mentelem: {
+        position: "Full Stack Developer",
+        location: "Remote",
+        description: [
+          "Full-Stack Delivery (Web + Mobile + Backend): End-to-end development on a B2B mental-health SaaS for company employees — Next.js web app, React Native mobile app (Expo), and a shared Django + GraphQL backend — supporting a structured clinical program for employees, managers, and clinical staff.",
+          "Backend Consumption Optimization: Reduced unnecessary backend load by tuning auto-refresh strategies, applying request pooling, and orchestrating API calls through filtered/paginated GraphQL queries — improving server stability and mobile data freshness across employee and counsellor surfaces.",
+          "UX-Driven Section Design: Designed and shipped new user-facing sections from UX flows to React/React Native components — applying user-centered design principles and aligning GraphQL contracts with the backend to faithfully reflect product needs in a sensitive clinical domain.",
+          "Cross-Platform Architecture: Worked in a monorepo where web and mobile share a single GraphQL schema, preserving data-model integrity and avoiding silent contract drift between the Next.js and React Native apps.",
         ],
       },
     },
@@ -234,7 +243,11 @@ const en: Translations = {
     contribs: "Contribs.",
     publicRepos: "Public Repos",
     building: "Currently at",
-    buildingProject: "ForIT",
+    buildingProject: {
+      name: "Mentelem",
+      role: "Full Stack Developer",
+      url: "https://mentelem.com/",
+    },
     alwaysLearning: "Always learning new technologies",
     available: "Available for hire",
     location: "BA, Argentina",
@@ -296,7 +309,7 @@ const es: Translations = {
   header: {
     name: "Desarrollador Web Full-Stack",
     displayName: "Matías Chacón",
-    bio: "Soy Matías Chacón — Desarrollador Full-Stack trabajando actualmente en ForIT Software Factory, especializado en construir aplicaciones modernas y escalables aplicando Clean Architecture y TDD. Trabajo principalmente con React, TypeScript y Node.js, con experiencia en modelado de dominio, revisión de código y desarrollo colaborativo. Apasionado por entregar soluciones mantenibles y listas para producción mientras aprendo continuamente nuevas tecnologías y mejores prácticas.",
+    bio: "Soy Matías Chacón — Desarrollador Web Full-Stack trabajando actualmente en Mentelem, SaaS B2B de salud mental laboral. Construyo end-to-end sobre una app web Next.js, una app móvil React Native (Expo) y un backend compartido Django + GraphQL. Trabajo principalmente con React, TypeScript y Python, aplicando Clean Architecture, TDD y Clean Code para modelar un dominio clínico sensible con reglas de negocio claras. Apasionado por entregar funcionalidades mantenibles y listas para producción que ayudan a empleados y profesionales a trabajar mejor, aprendiendo de forma continua y elevando el estándar del equipo a través de code review.",
     downloadCv: "Descargar CV",
     headlinePrefix: "desarrollo con",
     headlineHighlight: "criterio",
@@ -370,13 +383,22 @@ const es: Translations = {
     jobs: {
       forit: {
         position: "Web Developer",
-        duration: "3 meses",
         location: "Provincia de Buenos Aires, Argentina",
         description: [
           "Desarrollo Full Stack & Dominio: Implementación de soluciones end-to-end (Frontend y Backend), con fuerte énfasis en el modelado de dominio y reglas de negocio para asegurar que el software refleje fielmente las necesidades del producto.",
           "Code Review & Calidad: Participación activa en la revisión de código de pares, aportando feedback constructivo para elevar el estándar del equipo. Aplicación rigurosa de Clean Architecture, Clean Code y TDD para minimizar deuda técnica.",
           "Gestión de Pull Requests: Elaboración de PRs atómicos, prolijos y bien documentados, facilitando la integración continua y manteniendo un historial de cambios claro.",
           "Autonomía y Colaboración: Resolución de tickets de complejidad media con independencia, manteniendo una comunicación fluida sobre el estado de las tareas y gestionando bloqueos de forma temprana.",
+        ],
+      },
+      mentelem: {
+        position: "Full Stack Developer",
+        location: "Remoto",
+        description: [
+          "Desarrollo Full-Stack (Web + Mobile + Backend): Implementación end-to-end en un SaaS B2B de salud mental para empleados de empresa — app web Next.js, app móvil React Native (Expo) y backend compartido Django + GraphQL — dando soporte a un programa clínico estructurado para empleados, managers y equipo clínico.",
+          "Optimización del Consumo del Backend: Reducción de carga innecesaria en el backend ajustando estrategias de auto-refresh, aplicando pooling de requests y orquestando llamadas a la API con queries GraphQL filtradas/paginadas — mejorando estabilidad del servidor y frescura de datos en mobile en las superficies de empleado y profesional.",
+          "Diseño de Secciones con Foco UX: Diseño y entrega de nuevas secciones de usuario, desde flujos UX hasta componentes React/React Native — aplicando principios de diseño centrado en el usuario y alineando contratos GraphQL con el backend para reflejar fielmente las necesidades del producto en un dominio clínico sensible.",
+          "Arquitectura Cross-Platform: Trabajo en un monorepo donde web y mobile comparten un único schema GraphQL, preservando integridad del modelo de datos y evitando drift silencioso de contratos entre las apps Next.js y React Native.",
         ],
       },
     },
@@ -512,7 +534,11 @@ const es: Translations = {
     contribs: "Contribs.",
     publicRepos: "Repos Públicos",
     building: "Actualmente en",
-    buildingProject: "ForIT",
+    buildingProject: {
+      name: "Mentelem",
+      role: "Full Stack Developer",
+      url: "https://mentelem.com/",
+    },
     alwaysLearning: "Siempre aprendiendo nuevas tecnologías",
     available: "Disponible para contratación",
     location: "BA, Argentina",
