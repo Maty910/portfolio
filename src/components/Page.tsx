@@ -118,7 +118,7 @@ const AnimatedName = () => {
 };
 
 export function Page({ children, activeSection = "home" }: PageProps) {
-  const { t, lang } = useLanguage();
+  const { t, get, lang } = useLanguage();
 
   const typingText = useTypewriter(lang === "en" ? TYPING_WORDS_EN : TYPING_WORDS_ES, 60, 2000);
 
@@ -166,7 +166,9 @@ export function Page({ children, activeSection = "home" }: PageProps) {
               <Briefcase size={11} className="text-primary shrink-0" />
               <p className="text-[10px] text-text-secondary">
                 {t("page.building")}:{" "}
-                <span className="text-primary font-semibold">{t("page.buildingProject")}</span>
+                <span className="text-primary font-semibold">
+                  {get<{ name: string; role: string; url: string }>("page.buildingProject")?.name}
+                </span>
               </p>
             </div>
           </div>
