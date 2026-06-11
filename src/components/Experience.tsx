@@ -1,6 +1,7 @@
 import { Briefcase, Building2, Calendar, ExternalLink, MapPin } from "lucide-react";
 import React from "react";
 import { useLanguage } from "../hooks/useLanguage";
+import { computeDuration, type DurationLabels } from "../utils/duration";
 
 interface ExperienceProps {
   onModalChange?: (isOpen: boolean) => void;
@@ -26,19 +27,40 @@ type ExperienceItem = {
  * Datos principalmente estáticos con traducciones
  */
 const ExperienceComponent: React.FC<ExperienceProps> = () => {
-  const { t, get } = useLanguage();
+  const { t, get, lang } = useLanguage();
+
+  const durationLabels: DurationLabels = get<DurationLabels>("experience.duration") ?? {
+    months: "months",
+    month: "month",
+    years: "years",
+    year: "year",
+  };
 
   // Datos de experiencia con traducciones
   const experiences: ExperienceItem[] = [
     {
       id: 1,
+      company: "Mentelem",
+      logo: "/logos/logo-Mentelem.png",
+      position: t("experience.jobs.mentelem.position"),
+      type: t("experience.fullTime"),
+      startDate: "Apr 2026",
+      endDate: t("experience.present"),
+      duration: computeDuration("Apr 2026", t("experience.present"), lang, durationLabels),
+      location: t("experience.jobs.mentelem.location"),
+      remote: true,
+      companyUrl: "https://mentelem.com/",
+      description: get<string[]>("experience.jobs.mentelem.description") || [],
+    },
+    {
+      id: 2,
       company: "ForIT Software Factory",
       logo: "/logos/icon-forit.svg",
       position: t("experience.jobs.forit.position"),
       type: t("experience.partTime"),
       startDate: "Dec 2025",
-      endDate: t("experience.present"),
-      duration: t("experience.jobs.forit.duration"),
+      endDate: "Mar 2026",
+      duration: computeDuration("Dec 2025", "Mar 2026", lang, durationLabels),
       location: t("experience.jobs.forit.location"),
       remote: true,
       companyUrl: "https://forit.ar/",
