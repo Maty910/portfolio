@@ -69,7 +69,11 @@ export interface Translations {
     jobs: {
       forit: {
         position: string;
-        duration: string;
+        location: string;
+        description: string[];
+      };
+      mentelem: {
+        position: string;
         location: string;
         description: string[];
       };
@@ -136,7 +140,11 @@ export interface Translations {
     contribs: string;
     publicRepos: string;
     building: string;
-    buildingProject: string;
+    buildingProject: {
+      name: string;
+      role: string;
+      url: string;
+    };
     alwaysLearning: string;
     available: string;
     location: string;
