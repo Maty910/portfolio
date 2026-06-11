@@ -403,7 +403,7 @@ const EducationComponent: React.FC<EducationProps> = ({ onModalChange }) => {
         field: "Web Development",
         startDate: "Jul 2025",
         endDate: "Dec 2025",
-        duration: "4 mes",
+        duration: "4 meses",
         location: "Remote",
         description: get<string[]>("education.items.forit.description") || [],
         skills: [
