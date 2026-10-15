@@ -20,7 +20,7 @@ export const Home: React.FC<HomeProps> = ({ setActiveSection }) => {
   const { t, lang } = useLanguage();
 
   const cvFileName =
-    lang === "en" ? "Resume Matías Chacón.pdf" : "CV Matías Chacón.pdf";
+    lang === "en" ? "Resume Matías Chacón.pdf" : "CV Matias Chacon.pdf";
   const cvHref = `/CV/${cvFileName}`;
 
   const scrollToSection = (sectionId: Section) => {
